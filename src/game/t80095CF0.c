@@ -226,7 +226,7 @@ s32 scr_SD_Term(s32 arg0) {
 }
 
 s32 scr_SD_Mount(s32 arg0) {
-    u16 temp_r3;
+    s32 temp_r3;
 
     temp_r3 = fn_80080738();
     fn_8008065C(arg0, SD_Mount(&lbl_803506F8 + (temp_r3 * 4), temp_r3));

@@ -115,8 +115,8 @@ s32 fn_8008D55C(void *arg0, s32 arg1) {
     }
     sp8 = (s32) spC;
     if (temp_r3 != NULL) {
-        M2C_FIELD(temp_r3, u8 *, 0x18) = (u8) sp8;
         M2C_FIELD(temp_r3, u8 *, 0x19) = unksp9;
+        M2C_FIELD(temp_r3, u8 *, 0x18) = (u8) sp8;
         M2C_FIELD(temp_r3, u8 *, 0x1A) = unkspA;
         M2C_FIELD(temp_r3, u8 *, 0x1B) = unkspB;
     }
@@ -347,16 +347,16 @@ loop_5:
 }
 
 s32 scr_Clamp(s32 arg0) {
-    f32 temp_f1;
+    f32 temp_f31;
     f32 temp_f1_2;
     f32 temp_f2;
     f32 temp_f30;
-    f32 temp_f31;
+    f32 temp_f1;
     f32 var_f1;
 
-    temp_f30 = fn_80080764();
-    temp_f31 = fn_80080764(arg0);
     temp_f1 = fn_80080764(arg0);
+    temp_f31 = fn_80080764(arg0);
+    temp_f30 = fn_80080764();
     if (temp_f1 < temp_f31) {
         temp_f2 = ((temp_f30 - temp_f31) >= 0.0f) ? temp_f31 : temp_f30;
         var_f1 = ((temp_f1 - temp_f2) >= 0.0f) ? temp_f1 : temp_f2;

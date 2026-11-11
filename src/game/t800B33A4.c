@@ -141,7 +141,7 @@ loop_42:
     if ((u8) M2C_FIELD(sp8, u8 *, 0) != 0xFF) {
         M2C_FIELD(sp8, u8 *, 1) = (u8) M2C_FIELD(sp8, u8 *, 0);
         M2C_FIELD(sp8, u8 *, 0) = (u8) *(&lbl_80350808 + lbl_803507F8);
-        if (EXIImmEx(lbl_803507F8, sp8, 1, 2) == 0) {
+        if (EXIImmEx((u16)lbl_803507F8, sp8, 1, 2) == 0) {
             temp_r4_13 = lbl_803507F8 * 2;
             *(&lbl_803507E0 + temp_r4_13) = *(&lbl_803507E0 + temp_r4_13) | 0xF0;
         } else if ((u8) M2C_FIELD(sp8, u8 *, 0) != 0xFF) {
@@ -376,6 +376,8 @@ block_59:
 }
 #pragma pop
 
+#pragma push
+#pragma optimize_for_size on
 u16 fn_800B400C(void) {
     u8 sp8;
     s32 temp_r0;
@@ -577,6 +579,7 @@ block_64:
     }
     return *(&lbl_803507E0 + (lbl_803507F8 * 2));
 }
+#pragma pop
 
 u16 fn_800B4778(u8 *arg0, u16 arg1) {
     s16 sp14;

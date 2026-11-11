@@ -48,6 +48,8 @@ void fn_8014F768(u32 arg0, u32 arg1) {
     }
 }
 
+#pragma push
+#pragma peephole off
 s32 vprintf(s32 arg0, s32 arg1) {
     void *temp_r31;
 
@@ -57,6 +59,7 @@ s32 vprintf(s32 arg0, s32 arg1) {
     }
     return 0;
 }
+#pragma pop
 
 s32 fn_8014F858(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, f64 farg0, f64 farg1, f64 farg2, f64 farg3, f64 farg4, f64 farg5, f64 farg6, f64 farg7, M2C_UNK arg_sp8) {
     s32 *sp70;
@@ -97,7 +100,7 @@ s32 fn_8014F858(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 
     sp1C = arg5;
     sp20 = arg6;
     sp24 = arg7;
-    if (fwide(arg0, -1) >= 0) {
+    if ((s16)fwide(arg0, -1) >= 0) {
         return -1;
     }
     sp68 = 0x02000000;
@@ -147,7 +150,7 @@ s32 fn_8014F91C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 
     sp1C = arg5;
     sp20 = arg6;
     sp24 = arg7;
-    if (fwide(temp_r31, -1) >= 0) {
+    if ((s16)fwide(temp_r31, -1) >= 0) {
         return -1;
     }
     sp68 = 0x01000000;
@@ -161,10 +164,10 @@ s32 __StringWrite(void *arg0, s32 arg2) {
     s32 var_r31;
     u32 temp_r6;
 
-    temp_r3 = M2C_FIELD(arg0, s32 *, 8);
+    temp_r3 = M2C_FIELD((s32)arg0, s32 *, 8);
     temp_r6 = M2C_FIELD(arg0, u32 *, 4);
     var_r31 = temp_r6 - temp_r3;
-    if ((u32) (temp_r3 + arg2) <= temp_r6) {
+    if ((u32) (arg2 + temp_r3) <= temp_r6) {
         var_r31 = arg2;
     }
     /* draft: did not compile: memcpy(M2C_FIELD(arg0, s32 *, 0) + temp_r3, var_r31); */
@@ -172,12 +175,15 @@ s32 __StringWrite(void *arg0, s32 arg2) {
     return 1;
 }
 
+#pragma push
+#pragma optimize_for_size on
 s32 __FileWrite(s32 arg0, s32 arg1, u32 arg2) {
     if (arg2 == fwrite(arg1, 1, arg0)) {
         return arg0;
     }
     return 0;
 }
+#pragma pop
 
 s32 __pformatter_8014FAAC(u32 (*arg0)(s32, u8 *, u8), s32 arg1, u8 *arg2, s32 arg3) { return 0; } /* draft: stub */
 

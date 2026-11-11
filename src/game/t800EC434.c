@@ -131,9 +131,7 @@ void MObjRelease(void *arg0) {
 }
 
 void fn_800EC5F4(u32 arg0) {
-    if (arg0 == (u32) lbl_80350C08) {
-        lbl_80350C08 = 0U;
-    }
+    lbl_80350C08 = arg0 != (u32) lbl_80350C08 ? lbl_80350C08 : 0U;
     if (0 /* draft: did not compile */) {
         lbl_80350C10 = 0;
         lbl_80350C14 = 0;
@@ -141,17 +139,20 @@ void fn_800EC5F4(u32 arg0) {
     M2C_FIELD(M2C_FIELD(&lbl_802A8AA0, void **, 0x14), M2C_UNK (**)(void *), 0x38)(M2C_FIELD(&lbl_802A8AA0, void **, 0x14));
 }
 
+#pragma push
+#pragma peephole off
 void JObjInfoInit(void) {
     hsdInitClassInfo(&lbl_802A8AA0, &lbl_802AA538, &lbl_802A8AA0 + 0x148, &lbl_802A8AA0 + 0x160, 0x54, 0x20);
     /* draft: did not compile: M2C_FIELD(&lbl_802A8AA0, M2C_UNK (**)(), 0x30) = MObjRelease; */
     /* draft: did not compile: M2C_FIELD(&lbl_802A8AA0, M2C_UNK (**)(), 0x38) = fn_800EC5F4; */
-    M2C_FIELD(&lbl_802A8AA0, M2C_UNK **, 0x3C) = &HSD_MObjSetup;
     M2C_FIELD(&lbl_802A8AA0, M2C_UNK **, 0x50) = &HSD_MObjUnset;
     M2C_FIELD(&lbl_802A8AA0, M2C_UNK **, 0x40) = &MObjLoad;
     M2C_FIELD(&lbl_802A8AA0, M2C_UNK **, 0x44) = &fn_800EB738;
+    M2C_FIELD(&lbl_802A8AA0, M2C_UNK **, 0x3C) = &HSD_MObjSetup;
     M2C_FIELD(&lbl_802A8AA0, M2C_UNK **, 0x48) = &MObjSetupTev;
     M2C_FIELD(&lbl_802A8AA0, M2C_UNK **, 0x4C) = &MObjUpdateFunc;
 }
+#pragma pop
 
 void HSD_AObjInitAllocData(void) {
     HSD_ObjAllocInit(&lbl_8031D238, 0x1C, 4);

@@ -358,18 +358,18 @@ void fn_8002298C(void *arg0, s32 arg1) {
 }
 
 void fn_800229B4(void *arg0, u32 arg1, u32 arg2, u32 arg3) {
-    s32 temp_r0;
+    u8 var_r7;
     s32 temp_r0_2;
     s32 temp_r5_2;
     s32 temp_r8_2;
     u8 var_ctr;
     s32 var_r5;
     s32 var_r9;
-    u32 temp_r5;
+    unsigned int temp_r5;
     u32 var_r10;
     u32 var_r4;
     u32 var_r6;
-    u32 var_r7;
+    s32 temp_r0;
 
     var_r4 = arg1;
     var_r6 = arg3;
@@ -389,7 +389,8 @@ void fn_800229B4(void *arg0, u32 arg1, u32 arg2, u32 arg3) {
         if (var_r7 >= (u32) M2C_FIELD((M2C_FIELD(arg0, void **, 0x170)), u32 *, 0x1C)) {
             var_r7 = 0U;
         }
-        var_r9 = temp_r5 - 1;
+        var_r9 = temp_r5;
+        var_r9 -= 1;
         var_r5 = var_r9 * 8;
         var_ctr = var_r9 + 1;
         if (var_r9 >= 0) {
@@ -425,7 +426,7 @@ s32 fn_80022A78(void *arg0) {
 }
 
 void fn_80022AD4(s32 arg0, u32 arg1, s32 arg2) {
-    s32 temp_r30;
+    s8 temp_r30;
     s32 temp_r31;
 
     temp_r31 = arg1 * arg2;
@@ -440,12 +441,12 @@ void fn_80022AD4(s32 arg0, u32 arg1, s32 arg2) {
 s32 fn_80022B54(void *arg0, void *arg1, s32 arg2, s32 arg3, M2C_UNK arg_sp0) {
     s32 temp_r0;
     u8 temp_r0_2;
-    s32 temp_r25;
-    s32 temp_r26;
+    s32 temp_r3_2;
     s32 temp_r30;
     s32 temp_r30_2;
     s32 temp_r3;
-    s32 temp_r3_2;
+    s32 temp_r26;
+    s32 temp_r25;
     s32 var_r31;
 
     var_r31 = 0;
@@ -576,12 +577,15 @@ void fn_8002303C(void *arg0) {
     }
 }
 
+#pragma push
+#pragma dont_inline on
 void SetStreamAudioTrack(void *arg0, s8 arg1) {
     M2C_FIELD(arg0, s8 *, 0x140) = arg1;
     if ((u32) M2C_FIELD(arg0, u32 *, 0x18) != 0U) {
         fn_8002303C((void *)(0));
     }
 }
+#pragma pop
 
 u8 GetStreamAudioTrack(void *arg0) {
     return M2C_FIELD(arg0, u8 *, 0x140);

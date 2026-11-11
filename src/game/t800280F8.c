@@ -97,9 +97,9 @@ u8 fn_80029F78(void *arg0, s32 *arg1);
 void fn_800280F8(void *arg0) {
     M2C_FIELD(arg0, s32 *, 0) = 0;
     M2C_FIELD(arg0, s32 *, 4) = 0;
-    M2C_FIELD(arg0, f32 *, 8) = (f32) lbl_8035161C;
     M2C_FIELD(arg0, f32 *, 0xC) = (f32) lbl_8035161C;
     M2C_FIELD(arg0, s32 *, 0x10) = -2;
+    M2C_FIELD(arg0, f32 *, 8) = (f32) lbl_8035161C;
     M2C_FIELD(arg0, s32 *, 0x14) = 0;
     M2C_FIELD(arg0, s32 *, 0x1C) = 0;
     M2C_FIELD(arg0, s32 *, 0x20) = -1;
@@ -424,8 +424,7 @@ loop_4:
         }
         return 1;
     }
-    temp_r3_10 = M2C_FIELD(var_r29, void **, 8);
-    if (M2C_FIELD(M2C_FIELD(temp_r3_10, void **, 4), u8 (**)(void *), 0x24)(temp_r3_10) == 0) {
+    if (M2C_FIELD(M2C_FIELD((temp_r3_10 = M2C_FIELD(var_r29, void **, 8)), void **, 4), u8 (**)(void *), 0x24)(temp_r3_10) == 0) {
         return 0;
     }
     var_r29 = M2C_FIELD(var_r29, void **, 4);
@@ -500,11 +499,11 @@ void FineTuneDialog(void *arg0, s32 arg1, s32 arg2, f32 farg0, f32 farg1) {
 }
 
 void fn_80028B0C(void *arg0, s32 arg1) {
-    void *sp20;
+    M2C_UNK sp10;
     s32 sp1C;
     void *temp_r3;
     void *sp14;
-    M2C_UNK sp10;
+    void *sp20;
     void *spC;
     void *sp8;
     s32 temp_cr0_eq;

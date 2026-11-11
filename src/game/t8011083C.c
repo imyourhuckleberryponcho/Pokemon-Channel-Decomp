@@ -275,10 +275,9 @@ block_35:
 
 void HSD_SaveContext(void) {
     s32 saved_reg_lr;
-    u16 temp_r4;
+    u8 temp_r4;
 
     M2C_ERROR(/* unknown instruction: mtsprg 0x0, $r3 */);
-    M2C_FIELD(&lbl_8031EEB8, s32 *, 0xC) = (s32) M2C_ERROR(/* unknown instruction: mfsprg $r4, 0x0 */);
     M2C_FIELD(&lbl_8031EEB8, s32 *, 0x1A4) = (s32) M2C_ERROR(/* unknown instruction: mfspr $r4, GQR0 */);
     M2C_FIELD(&lbl_8031EEB8, s32 *, 0x1A8) = (s32) M2C_ERROR(/* unknown instruction: mfspr $r4, GQR1 */);
     M2C_FIELD(&lbl_8031EEB8, s32 *, 0x1AC) = (s32) M2C_ERROR(/* unknown instruction: mfspr $r4, GQR2 */);
@@ -287,13 +286,14 @@ void HSD_SaveContext(void) {
     M2C_FIELD(&lbl_8031EEB8, s32 *, 0x1B8) = (s32) M2C_ERROR(/* unknown instruction: mfspr $r4, GQR5 */);
     M2C_FIELD(&lbl_8031EEB8, s32 *, 0x1BC) = (s32) M2C_ERROR(/* unknown instruction: mfspr $r4, GQR6 */);
     M2C_FIELD(&lbl_8031EEB8, s32 *, 0x1C0) = (s32) M2C_ERROR(/* unknown instruction: mfspr $r4, GQR7 */);
-    M2C_FIELD(&lbl_8031EEB8, s32 *, 0x80) = (s32) M2C_ERROR(/* unknown instruction: mfcr $r4 */);
+    M2C_FIELD(&lbl_8031EEB8, s32 *, 0xC) = (s32) M2C_ERROR(/* unknown instruction: mfsprg $r4, 0x0 */);
     M2C_FIELD(&lbl_8031EEB8, s32 *, 0x84) = (s32) saved_reg_lr;
     M2C_FIELD(&lbl_8031EEB8, s32 *, 0x88) = (s32) M2C_ERROR(/* Read from unset register $ctr */);
     M2C_FIELD(&lbl_8031EEB8, s32 *, 0x8C) = (s32) M2C_ERROR(/* unknown instruction: mfxer $r4 */);
     M2C_FIELD(&lbl_8031EEB8, s32 *, 0x198) = (s32) M2C_ERROR(/* unknown instruction: mfsrr0 $r4 */);
     M2C_FIELD(&lbl_8031EEB8, s32 *, 0x19C) = (s32) M2C_ERROR(/* unknown instruction: mfsrr1 $r4 */);
     temp_r4 = M2C_FIELD(&lbl_8031EEB8, u16 *, 0x1A2) | 1;
+    M2C_FIELD(&lbl_8031EEB8, s32 *, 0x80) = (s32) M2C_ERROR(/* unknown instruction: mfcr $r4 */);
     M2C_FIELD(&lbl_8031EEB8, u16 *, 0x1A2) = temp_r4;
     OSFillFPUContext(&lbl_8031EEB8, temp_r4);
 }

@@ -131,13 +131,13 @@ void fn_8013998C(void) {
 }
 
 s32 fn_80139998(u8 *arg0) {
+    void *temp_r4;
     s32 var_r5;
     s32 var_r6;
-    s32 var_r7;
-    s32 var_r8;
     u8 temp_r0;
     u8 temp_r0_2;
-    void *temp_r4;
+    u32 var_r7;
+    s32 var_r8;
 
     temp_r0 = *arg0;
     switch ((s32) temp_r0) {                        /* switch 1; irregular */
@@ -319,11 +319,10 @@ s32 fn_80139C84(void *arg0, s32 arg1) {
     u32 temp_r7_3;
     s32 temp_r5;
     s32 temp_r6;
-    s32 temp_r7_2;
     s32 var_ctr;
-    s32 var_r10;
-    s32 var_r5;
     s32 var_r9;
+    s32 var_r5;
+    s32 var_r10;
     u32 temp_r4;
     u32 temp_r7;
     s32 temp_r0;
@@ -361,8 +360,7 @@ s32 fn_80139C84(void *arg0, s32 arg1) {
     var_ctr = arg1 - 1;
     if (arg1 > 1) {
         do {
-            temp_r7_2 = M2C_FIELD(var_r6, s32 *, 0x68);
-            if (temp_r7_2 <= 0) {
+            if ((M2C_FIELD(var_r6, s32 *, 0x68)) <= 0) {
                 var_r4 = 0;
             } else if (var_r10 == 0) {
                 temp_r7_3 = M2C_FIELD(arg0, u32 *, 8);
@@ -375,7 +373,7 @@ s32 fn_80139C84(void *arg0, s32 arg1) {
                 }
             } else {
                 temp_r4 = M2C_FIELD(arg0, u32 *, 8);
-                var_r4 = (u32) (temp_r7_2 + (temp_r4 - 0x21)) / (u32) (temp_r4 - 0x20);
+                var_r4 = (u32) ((M2C_FIELD(var_r6, s32 *, 0x68)) + (temp_r4 - 0x21)) / (u32) (temp_r4 - 0x20);
             }
             var_r9 += var_r4;
             /* draft: did not compile: var_r6 += 4; */

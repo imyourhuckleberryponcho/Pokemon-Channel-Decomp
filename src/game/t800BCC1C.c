@@ -31,10 +31,11 @@ u16 fn_800BCC1C(void *arg0, u8 *arg1) { return 0; } /* draft: stub */
 
 u16 fn_800BD304(void *arg0, s32 arg1) {
     s32 temp_r0;
-    u16 var_r30;
+    s8 var_r30;
     u32 temp_r31;
 
-    temp_r31 = M2C_FIELD(M2C_FIELD(arg0, void **, 4), u16 *, 0xF6) * M2C_FIELD(M2C_FIELD(arg0, void **, 4), u16 *, 0x1C);
+    temp_r31 = M2C_FIELD(M2C_FIELD(arg0, void **, 4), u16 *, 0x1C);
+    temp_r31 *= M2C_FIELD(M2C_FIELD(arg0, void **, 4), u16 *, 0xF6);
     temp_r0 = M2C_FIELD(arg0, u32 *, 0x28) % temp_r31;
     var_r30 = (u16) ((u32) (arg1 + temp_r0) / temp_r31);
     if (((arg1 + temp_r0) % temp_r31) != 0) {
@@ -71,16 +72,16 @@ u16 fn_800BD360(void *arg0) {
 }
 
 u16 fn_800BD42C(void *arg0, s32 arg1, u16 arg2) {
+    u32 temp_r27;
     s32 var_r24;
     u16 temp_r3;
     s16 temp_r3_2;
     u16 temp_r3_3;
     u16 var_r28;
-    u32 var_r30;
-    u32 temp_r27;
+    s32 var_r30;
+    u32 var_r26;
     u32 var_r25;
     u32 var_r25_2;
-    u32 var_r26;
     void *temp_r21;
 
     var_r28 = 0;

@@ -113,15 +113,18 @@ void method_setGoal(void *arg0, void *arg1) {
 
 s32 fn_8001A920(void *arg0, void *arg1) { return 0; } /* draft: stub */
 
+#pragma push
+#pragma dont_inline on
 f32 method_getGoalDistance(void *arg0) {
     M2C_UNK sp8;
 
     M2C_FIELD(M2C_FIELD(arg0, void **, 0x20), M2C_UNK (**)(M2C_UNK *), 0x3C)(&sp8);
-    if (fn_8001A920(arg0, 0) != 0) {
+    if ((u8)fn_8001A920(arg0, 0) != 0) {
         return 0;
     }
     return lbl_80351460;
 }
+#pragma pop
 
 f32 method_getGoalDistanceXZ(void *arg0) {
     f32 spC;
@@ -152,16 +155,20 @@ u32 method_getGoalObject(void *arg0) {
     return 0U;
 }
 
+#pragma push
+#pragma dont_inline on
 f32 method_getGoalRelRotY(s32 arg0) {
-    s32 sp10;
+    f32 sp14;
     s32 sp1C;
     s32 sp18;
     M2C_UNK sp2C;
     M2C_UNK sp20;
-    f32 sp14;
+    u32 sp10;
     f32 sp8;
 
-    if (fn_8001A920((void *)(0), (void *)(0)) == 0) {
+    u8 cmpv = fn_8001A920((void *)(0), (void *)(0));
+
+    if (cmpv == 0) {
         return lbl_80351458;
     }
     fn_80074F54(arg0, &sp20);
@@ -171,6 +178,7 @@ f32 method_getGoalRelRotY(s32 arg0) {
     PSMTXMultVecSR(&sp2C, &sp8, &sp8);
     return (f32) ArcTan2(sp8, sp10);
 }
+#pragma pop
 
 void fn_8001ABEC(void *arg0) {
     f32 *temp_r31;

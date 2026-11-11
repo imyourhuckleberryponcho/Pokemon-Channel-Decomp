@@ -85,7 +85,7 @@ s32 ICEnable(void) {
 
 void __LCEnable(void) {
     s32 var_ctr;
-    s32 var_ctr_2;
+    u16 var_ctr_2;
     s32 var_r3;
     s32 var_r3_2;
 
@@ -122,7 +122,7 @@ void LCEnable(void) {
 }
 
 void LCDisable(void) {
-    s32 var_ctr;
+    u16 var_ctr;
     s32 var_r3;
 
     var_r3 = 0xE0000000;
@@ -349,7 +349,7 @@ s32 fn_800C5410(void) {
 }
 
 s32 OSSaveContext(void *arg0) {
-    s32 saved_reg_r2;
+    u8 saved_reg_r2;
     s32 saved_reg_lr;
     M2C_FIELD(arg0, s32 *, 0x1A8) = (s32) M2C_ERROR(/* unknown instruction: mfspr $r0, GQR1 */);
     M2C_FIELD(arg0, s32 *, 0x1AC) = (s32) M2C_ERROR(/* unknown instruction: mfspr $r0, GQR2 */);
@@ -363,8 +363,8 @@ s32 OSSaveContext(void *arg0) {
     M2C_FIELD(arg0, s32 *, 0x198) = (s32) saved_reg_lr;
     M2C_FIELD(arg0, s32 *, 0x19C) = (s32) M2C_ERROR(/* unknown instruction: mfmsr $r0 */);
     M2C_FIELD(arg0, s32 *, 0x88) = (s32) M2C_ERROR(/* Read from unset register $ctr */);
-    M2C_FIELD(arg0, s32 *, 0x8C) = (s32) M2C_ERROR(/* unknown instruction: mfxer $r0 */);
     M2C_FIELD(arg0, void **, 4) = (void *) sp;
+    M2C_FIELD(arg0, s32 *, 0x8C) = (s32) M2C_ERROR(/* unknown instruction: mfxer $r0 */);
     M2C_FIELD(arg0, s32 *, 8) = (s32) saved_reg_r2;
     M2C_FIELD(arg0, s32 *, 0xC) = 1;
     return 0;
@@ -396,8 +396,8 @@ s32 OSLoadContext(void *arg0) {
     M2C_ERROR(/* unknown instruction: mtsrr0 $r4 */);
     M2C_ERROR(/* unknown instruction: mtsrr1 $r4 */);
     M2C_ERROR(/* unknown instruction: rfi */);
-    return M2C_FIELD(arg0, s32 *, 0xC);
-}
+    temp_r4 = M2C_FIELD(arg0, s32 *, 0xC);
+    return temp_r4;}
 
 void *fn_800C5574(void) {
     return;
@@ -598,6 +598,8 @@ void OSReport(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 ar
     vprintf(&sp6C);
 }
 
+#pragma push
+#pragma dont_inline on
 void fn_800C5B7C(void *arg0, void *arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, f64 farg0, f64 farg1, f64 farg2, f64 farg3, f64 farg4, f64 farg5, f64 farg6, f64 farg7, M2C_UNK arg_sp8) {
     void **sp7C;
     M2C_UNK *sp78;
@@ -661,6 +663,7 @@ loop_4:
     }
     PPCHalt();
 }
+#pragma pop
 
 u32 OSSetErrorHandler(u16 arg0, u32 arg1) {
     s32 temp_r29;

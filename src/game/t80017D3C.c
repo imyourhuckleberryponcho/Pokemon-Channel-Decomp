@@ -110,6 +110,8 @@ void fn_80019AE8(void *arg0);
 
 s32 fn_80017D3C(void *arg0, s32 arg1, s32 arg2, f32 farg0) { return 0; } /* draft: stub */
 
+#pragma push
+#pragma dont_inline on
 void fn_80017FD8(void *arg0, s32 arg1, s32 arg2, f32 farg0) {
     s32 sp10;
     s32 spC;
@@ -123,6 +125,7 @@ void fn_80017FD8(void *arg0, s32 arg1, s32 arg2, f32 farg0) {
     /* draft: did not compile: fn_80019BF0(&sp8, arg0 + 0xC0, &spC, &sp10, temp_r7); */
     fn_80017D3C(arg0, arg1, arg2, farg0);
 }
+#pragma pop
 
 s32 fn_80018060(void *arg0, s32 arg1) {
     void *var_r3;
@@ -206,14 +209,16 @@ void method_addPathPoint(void *arg0) {
     fn_8007CBE0(M2C_FIELD(arg0, s32 *, 0x194));
 }
 
+#pragma push
+#pragma peephole off
 void method_endCreatePath(void *arg0, f32 farg2) {
     fn_8007CC38(M2C_FIELD(arg0, s32 *, 0x194), (u8) ((((u32) M2C_ERROR(/* unknown instruction: mfcr $r0 */) >> 0x1DU) & 1) ^ 1), M2C_FIELD(arg0, f32 *, 0x138));
 }
+#pragma pop
 
 f32 method_setPath(void *arg0, s32 arg1) {
     void *sp8;
     f32 var_f1;
-    s32 *temp_r5;
     s32 var_r0;
     u32 temp_r3_2;
     u32 temp_r3_3;
@@ -222,6 +227,7 @@ f32 method_setPath(void *arg0, s32 arg1) {
     void *temp_r4;
     void *temp_r4_2;
     void *temp_r4_3;
+    s32 *temp_r5;
 
     /* draft: did not compile: var_f1 = method_resetPath((void *)(0)); */
     if ((void *) M2C_FIELD(arg0, void **, 0x64) != NULL) {
@@ -568,8 +574,10 @@ s32 fn_800197D8(void *arg0, void *arg1) {
     return 1;
 }
 
+#pragma push
+#pragma optimize_for_size on
 void fn_80019808(void *arg0, void *arg1, s32 arg2) {
-    s32 sp10;
+    u32 sp10;
     f32 spC;
     f32 sp8;
     f32 temp_f31;
@@ -577,17 +585,17 @@ void fn_80019808(void *arg0, void *arg1, s32 arg2) {
     fn_80016CB8(arg1);
     PSMTXMultVec(arg2, &sp8);
     temp_f31 = -sp10 * (f32) Tan((lbl_803513D0 * (HSD_CObjGetFov(M2C_FIELD(arg1, s32 *, 0x60)) * lbl_803513F8)) / lbl_803513FC, lbl_803513D0);
-    if (fabs(temp_f31) < (f32) lbl_80351448) {
-        sp8 = lbl_803513B4;
-        spC = lbl_803513B4;
+    if (fabs(temp_f31) < lbl_80351448) {
+        sp8 = spC = lbl_803513B4;
     } else {
         sp8 = lbl_80351414 * (sp8 / (temp_f31 * method_getAspect(M2C_FIELD(arg1, s32 *, 0x60))));
         spC = lbl_80351450 * (spC / temp_f31);
     }
-    M2C_FIELD(arg0, f32 *, 0) = sp8;
     M2C_FIELD(arg0, f32 *, 4) = spC;
+    M2C_FIELD(arg0, f32 *, 0) = sp8;
     M2C_FIELD(arg0, f32 *, 8) = sp10;
 }
+#pragma pop
 
 void fn_8001990C(void *arg0, void *arg1, void *arg2) {
     f32 temp_f31;
@@ -605,13 +613,13 @@ void fn_8001990C(void *arg0, void *arg1, void *arg2) {
     temp_r4 = M2C_FIELD(arg2, f32 *, 4);
     spC = temp_r4;
     sp10 = M2C_FIELD(arg2, f32 *, 8);
+    M2C_FIELD(arg0, f32 *, 8) = sp10;
     temp_f1 = (f32) Tan((lbl_803513D0 * (HSD_CObjGetFov(M2C_FIELD(arg1, s32 *, 0x60), temp_r4, temp_r6) * lbl_803513F8)) / lbl_803513FC, lbl_803513D0);
     sp8 = temp_r6;
     temp_f31 = -sp10 * temp_f1;
     temp_f3 = sp8;
     temp_f1_2 = (temp_f3 * lbl_80351454) * (temp_f31 * method_getAspect(M2C_FIELD(arg1, s32 *, 0x60), temp_f1));
     spC = (spC / lbl_80351450);
-    M2C_FIELD(arg0, f32 *, 8) = sp10;
     M2C_FIELD(arg0, f32 *, 4) = (spC * temp_f31);
     sp8 = temp_f1_2;
     fn_80016CB8((void *)(arg1));

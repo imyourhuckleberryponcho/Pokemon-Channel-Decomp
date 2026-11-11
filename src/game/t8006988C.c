@@ -222,9 +222,7 @@ void fn_80069BE8(void *arg0, s32 arg1) {
                 var_r4 = 0x1E848;
                 M2C_FIELD(arg0, u8 *, 0x21) = (u8) (M2C_FIELD(arg0, u8 *, 0x21) + (M2C_FIELD(arg0, u8 *, 0x20) / 65));
                 M2C_FIELD(arg0, u8 *, 0x20) = (u8) (M2C_FIELD(arg0, u8 *, 0x20) % 65);
-                if (M2C_FIELD(arg0, u8 *, 9) & 0x10) {
-                    var_r4 = 0x1AB59;
-                }
+                var_r4 = !(M2C_FIELD(arg0, u8 *, 9) & 0x10) ? var_r4 : 0x1AB59;
                 M2C_FIELD(arg0, s32 *, 0x1C) = var_r4;
             }
             temp_r4_2 = M2C_FIELD(arg0, u8 *, 0x21);

@@ -112,7 +112,7 @@ void fn_800CE9CC(u32 arg0) {
 }
 
 void fn_800CEA64(void) {
-    DVDLowStopMotor(fn_800CEA8C);
+    DVDLowStopMotor((u16)fn_800CEA8C);
 }
 
 void fn_800CEA8C(u32 arg0) {
@@ -164,7 +164,7 @@ void fn_800CEA8C(u32 arg0) {
 void fn_800CEBE4(void) {
     if ((s32) CurrCommand_803509BC != 3) {
         if (memcmp(&BB2_8031C720 + 0x20, IDShouldBe_803509A4, 0x20) != 0) {
-            DVDLowStopMotor(fn_800CEDD8);
+            DVDLowStopMotor((u16)fn_800CEDD8);
             return;
         }
         /* draft: did not compile: lbl_803509E4 = fn_800CECC4; */
@@ -179,15 +179,15 @@ void fn_800CEBE4(void) {
         fn_800CECF8();
         return;
     }
-    DVDLowStopMotor(fn_800CEDD8);
+    DVDLowStopMotor((u16)fn_800CEDD8);
 }
 
 void fn_800CECC4(void) {
-    DVDLowAudioBufferConfig(M2C_FIELD(IDShouldBe_803509A4, u8 *, 8), 0xA, fn_800CEFD0);
+    DVDLowAudioBufferConfig(M2C_FIELD(IDShouldBe_803509A4, s8 *, 8), 0xA, fn_800CEFD0);
 }
 
 void fn_800CECF8(void) {
-    DVDLowAudioBufferConfig(M2C_FIELD(IDShouldBe_803509A4, u8 *, 8), 0xA, fn_800CED2C);
+    DVDLowAudioBufferConfig(M2C_FIELD(IDShouldBe_803509A4, s8 *, 8), 0xA, fn_800CED2C);
 }
 
 void fn_800CED2C(u32 arg0) {
@@ -354,7 +354,7 @@ block_7:
 }
 
 void fn_800CF1DC(void) {
-    DVDLowReadDiskID(&lbl_8031C740, fn_800CF20C);
+    DVDLowReadDiskID(&lbl_8031C740, (u16)fn_800CF20C);
 }
 
 void fn_800CF20C(u32 arg0) {
@@ -374,7 +374,7 @@ void fn_800CF20C(u32 arg0) {
 }
 
 void fn_800CF27C(void) {
-    DVDLowWaitCoverClose(cbForStateMotorStopped);
+    DVDLowWaitCoverClose((u16)cbForStateMotorStopped);
 }
 
 static void cbForStateMotorStopped(void) {
@@ -502,6 +502,8 @@ block_28:
 
 void stateBusy_800CF5B8() { } /* draft: stub */
 
+#pragma push
+#pragma dont_inline on
 void fn_800CF8D8(u32 arg0) {
     M2C_UNK (*temp_r12)(M2C_UNK, void *);
     M2C_UNK (*temp_r12_10)(s32);
@@ -536,7 +538,7 @@ void fn_800CF8D8(u32 arg0) {
         cbForStateError_800CE514(0);
         return;
     }
-    if (((u32) CurrCommand_803509BC == 3U) || ((u32) CurrCommand_803509BC == 0xFU)) {
+    if ((CurrCommand_803509BC == 3U) || ((u32) CurrCommand_803509BC == 0xFU)) {
         if (arg0 & 2) {
             M2C_FIELD(executing_803509A0, s32 *, 0xC) = -1;
             __DVDStoreErrorCode(0x01234567, executing_803509A0);
@@ -739,6 +741,7 @@ void fn_800CF8D8(u32 arg0) {
         }
     }
 }
+#pragma pop
 
 s32 DVDReadAbsAsyncPrio(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
     s32 temp_r31;
@@ -864,15 +867,13 @@ void DVDReset(void) {
 }
 
 s32 DVDGetCommandBlockStatus(void *arg0) {
-    s32 temp_r0;
     s32 var_r31;
 
     OSDisableInterrupts();
-    temp_r0 = M2C_FIELD(arg0, s32 *, 0xC);
-    if (temp_r0 == 3) {
+    if ((M2C_FIELD(arg0, s32 *, 0xC)) == 3) {
         var_r31 = 1;
     } else {
-        var_r31 = temp_r0;
+        var_r31 = (M2C_FIELD(arg0, s32 *, 0xC));
     }
     OSRestoreInterrupts((long)(0));
     return var_r31;

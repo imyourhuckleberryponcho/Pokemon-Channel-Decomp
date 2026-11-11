@@ -472,12 +472,15 @@ void fn_80062368(void *arg0, s32 *arg1) {
     fn_800469DC((u16) ((s8) M2C_FIELD(arg0, u8 *, 0x37) + M2C_FIELD(arg0, u16 *, 0x26)), &sp8);
 }
 
+#pragma push
+#pragma dont_inline on
 void fn_800623A8(void *arg0) {
     s32 sp8;
 
     sp8 = M2C_FIELD(arg0, s32 *, 0x10);
     fn_80062368((void *)(&sp8), (long *)(0));
 }
+#pragma pop
 
 void fn_800623D4(void *arg0) {
     s32 sp8;
@@ -486,12 +489,15 @@ void fn_800623D4(void *arg0) {
     fn_80062368((void *)(&sp8), (long *)(0));
 }
 
+#pragma push
+#pragma dont_inline on
 void fn_80062400(void *arg0) {
     s32 sp8;
 
     sp8 = M2C_FIELD(arg0, s32 *, 0x18);
     fn_80062368((void *)(&sp8), (long *)(0));
 }
+#pragma pop
 
 void fn_8006242C(s32 arg0) {
     fn_8004658C(arg0 + 0x24);

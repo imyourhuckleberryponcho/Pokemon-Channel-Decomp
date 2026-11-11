@@ -218,6 +218,8 @@ void TRKEXICallBack(s32 arg1) {
     TRKLoadContext(arg1, 0x500);
 }
 
+#pragma push
+#pragma dont_inline on
 s32 TRKTargetContinue(void) {
     TRKTargetSetStopped(0);
     UnreserveEXI2Port();
@@ -225,6 +227,7 @@ s32 TRKTargetContinue(void) {
     ReserveEXI2Port();
     return 0;
 }
+#pragma pop
 
 u8 fn_8015DAAC(void) {
     return lbl_8034E130;
@@ -375,9 +378,9 @@ void fn_8015DE84(void) {
     s32 temp_r8;
     s32 var_ctr_2;
     s32 var_r5;
-    s8 *var_r7;
     u32 temp_r6;
     s8 var_ctr;
+    s8 *var_r7;
 
 loop_14:
     if (!(M2C_FIELD(lbl_803503B8, s32 *, 0xC) & 4)) {
@@ -399,8 +402,8 @@ loop_14:
                             if (temp_r8 > 0) {
                                 do {
                                     M2C_FIELD(var_r7, s8 *, 1) = (s8) (temp_r6 >> ((3 - (var_r5 + 1)) * 8));
-                                    M2C_FIELD(var_r7, s8 *, 2) = (s8) (temp_r6 >> ((3 - (var_r5 + 2)) * 8));
                                     M2C_FIELD(var_r7, s8 *, 3) = (s8) (temp_r6 >> (var_r5 * -8));
+                                    M2C_FIELD(var_r7, s8 *, 2) = (s8) (temp_r6 >> ((3 - (var_r5 + 2)) * 8));
                                     M2C_FIELD(var_r7, s8 *, 4) = (s8) (temp_r6 >> ((3 - (var_r5 + 4)) * 8));
                                     M2C_FIELD(var_r7, s8 *, 5) = (s8) (temp_r6 >> ((3 - (var_r5 + 5)) * 8));
                                     M2C_FIELD(var_r7, s8 *, 0) = (s8) (temp_r6 >> ((3 - var_r5) * 8));
@@ -474,7 +477,7 @@ s32 fn_8015E0C8(s32 arg0) {
 
 s32 fn_8015E148(void) {
     OSDisableInterrupts();
-    if (!(M2C_FIELD(lbl_803503B8, s32 *, 0xC) & 4)) {
+    if (!(M2C_FIELD((s32)lbl_803503B8, s32 *, 0xC) & 4)) {
         OSRestoreInterrupts();
         return 0;
     }
@@ -501,8 +504,8 @@ void fn_8015E200(void) {
 }
 
 void fn_8015E240(void) {
-    memset(&lbl_8034E138, 0, 0x18);
     *(s32 *)0xCC006828 = 0;
+    memset(&lbl_8034E138, 0, 0x18);
     *(s32 *)0xCC00643C = 0;
 }
 
@@ -542,10 +545,13 @@ loop_2:
     fn_8015E148();
 }
 
+#pragma push
+#pragma dont_inline on
 void EXI2_EnableInterrupts(void) {
     /* draft: did not compile: fn_8015E05C(fn_8015E280); */
     fn_8015E200();
 }
+#pragma pop
 
 #pragma push
 #pragma dont_inline on

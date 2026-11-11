@@ -36,15 +36,14 @@ s32 fn_80139DA8(void *arg0) {
     s32 var_r6;
     s32 temp_r0;
     s32 var_r8;
-    int temp_r10;
     u32 temp_r10_4;
-    u32 temp_r10_5;
+    u32 temp_r11_5;
     u32 temp_r10_6;
     u32 temp_r11;
     u32 temp_r11_2;
     u32 temp_r11_3;
     u32 temp_r11_4;
-    u32 temp_r11_5;
+    u32 temp_r10_5;
     u32 temp_r12;
     u32 temp_r12_2;
     u32 temp_r6;
@@ -63,6 +62,7 @@ s32 fn_80139DA8(void *arg0) {
     u32 var_r9;
     u32 var_r9_2;
     void *var_r4_2;
+    int temp_r10;
 
     temp_r0 = M2C_FIELD(arg0, s32 *, 0x68);
     var_r6 = 0;
@@ -84,8 +84,8 @@ s32 fn_80139DA8(void *arg0) {
         var_r6 = var_r4 - 1;
     }
     /* draft: did not compile: var_r4_2 = arg0 + 4; */
-    var_r8 = 1;
     var_ctr = 0xF;
+    var_r8 = 1;
     do {
         temp_r5_2 = M2C_FIELD(var_r4_2, s32 *, 0x68);
         if (temp_r5_2 > 0) {
@@ -234,7 +234,7 @@ s32 fn_8013A140(s32 arg0, s32 arg1) {
 }
 
 s32 fn_8013A1B8(void *arg0, s32 arg1) {
-    u32 temp_r5;
+    u8 temp_r5;
 
     temp_r5 = M2C_FIELD(arg0, u32 *, 8);
     return temp_r5 * (arg1 + (((u32) (M2C_FIELD(arg0, s32 *, 0x24) + temp_r5 + 0x2F) / temp_r5) - 1));

@@ -369,6 +369,8 @@ loop_4:
     goto loop_4;
 }
 
+#pragma push
+#pragma peephole off
 s32 fn_80010758(s32 arg0, s32 arg1, s32 arg2) {
     void *var_r31;
 
@@ -383,6 +385,7 @@ loop_4:
     var_r31 = M2C_FIELD(var_r31, void **, 0);
     goto loop_4;
 }
+#pragma pop
 
 s32 fn_800107C4(void **arg0) {
     return *M2C_FIELD(M2C_FIELD(*arg0, void **, 8), s32 **, 4);
@@ -654,9 +657,9 @@ void fn_80011010(void) {
 
     fn_80008DBC();
     temp_r3 = M2C_FIELD(&lbl_802BFD60, s32 *, 0);
-    lbl_80350438 = 0;
-    M2C_FIELD(&lbl_802BFD60, s32 *, 4) = temp_r3;
     M2C_FIELD(&lbl_802BFD60, s32 *, 0) = 0;
+    M2C_FIELD(&lbl_802BFD60, s32 *, 4) = temp_r3;
+    lbl_80350438 = 0;
     M2C_FIELD(&lbl_802BFD60, s32 *, 8) = 0;
     lbl_80350428 = 0x1338;
     fn_80010FE4();
@@ -666,9 +669,7 @@ void fn_80011010(void) {
     lbl_803502D0 = &lbl_803502C8;
     lbl_803502C8 = sp8;
     var_r6 = get_up_vector_for_viewing_mtx((long)(0x88), (void *)(&lbl_803502C8), (float)(0), (float)(0));
-    if (var_r6 != NULL) {
-        var_r6 = fn_800A163C(0, M2C_FIELD(&lbl_802C0270, s32 *, 4));
-    }
+    var_r6 = var_r6 == NULL ? var_r6 : fn_800A163C(0, M2C_FIELD(&lbl_802C0270, s32 *, 4));
     lbl_8035043C = var_r6;
     M2C_FIELD(var_r6, f32 *, 0x48) = (f32) lbl_80351170;
     M2C_FIELD(var_r6, f32 *, 0x4C) = (f32) lbl_80351170;
@@ -680,9 +681,9 @@ void fn_80011010(void) {
     M2C_FIELD(lbl_8035043C, u8 *, 7) = (u8) M2C_FIELD(&lbl_801CB330, u8 *, 0x23);
     M2C_FIELD(lbl_8035043C, u8 *, 8) = (u8) M2C_FIELD(&lbl_801CB330, u8 *, 0x3C);
     M2C_FIELD(lbl_8035043C, u8 *, 9) = (u8) M2C_FIELD(&lbl_801CB330, u8 *, 0x3D);
+    M2C_FIELD(lbl_8035043C, s32 *, 0x74) = 0x50;
     M2C_FIELD(lbl_8035043C, u8 *, 0xA) = (u8) M2C_FIELD(&lbl_801CB330, u8 *, 0x3E);
     M2C_FIELD(lbl_8035043C, u8 *, 0xB) = (u8) M2C_FIELD(&lbl_801CB330, u8 *, 0x3F);
-    M2C_FIELD(lbl_8035043C, s32 *, 0x74) = 0x50;
     M2C_FIELD(lbl_8035043C, u8 *, 0x10) = 1U;
     if ((u8) M2C_FIELD(lbl_8035043C, u8 *, 0x10) == 0) {
         M2C_FIELD(lbl_8035043C, s32 *, 0x58) = -1;

@@ -199,12 +199,15 @@ loop_30:
     }
 }
 
+#pragma push
+#pragma dont_inline on
 void fn_80046CBC(void *arg0) {
     s32 sp8;
 
     sp8 = M2C_FIELD(arg0, s32 *, 0x10);
     fn_800469A4((void *)(&sp8), (long *)(0));
 }
+#pragma pop
 
 void fn_80046CE8(void *arg0) {
     s32 sp8;
@@ -213,12 +216,15 @@ void fn_80046CE8(void *arg0) {
     fn_800469A4((void *)(&sp8), (long *)(0));
 }
 
+#pragma push
+#pragma dont_inline on
 void fn_80046D14(void *arg0) {
     s32 sp8;
 
     sp8 = M2C_FIELD(arg0, s32 *, 0x18);
     fn_800469A4((void *)(&sp8), (long *)(0));
 }
+#pragma pop
 
 void fn_80046D40(void *arg0) {
     s32 temp_r4;

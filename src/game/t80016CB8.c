@@ -144,41 +144,41 @@ void fn_80016E04(void *arg0, void *arg1) {
 }
 
 void method_setScissor(void *arg0, u16 arg1, u16 arg2, u16 arg3, u16 arg4) {
-    HSD_CObjSetScissorx4(M2C_FIELD(arg0, s32 *, 0x60), arg1, arg2, arg3, arg4);
+    HSD_CObjSetScissorx4(M2C_FIELD(arg0, s32 *, 0x60), (s32)arg1, (s32)arg2, (s32)arg3, (u16)arg4);
 }
 
 void fn_80016E78(void *arg0) {
     /* draft: did not compile: fn_8001652C(arg0 + 0x10C, lbl_803513B4); */
-    M2C_FIELD(arg0, s8 *, 0x108) = 1;
+    M2C_FIELD(arg0, s32 *, 0x168) = (s32) M2C_FIELD(arg0, s32 *, 0x114);
     M2C_FIELD(arg0, s32 *, 0x160) = (s32) M2C_FIELD(arg0, s32 *, 0x10C);
     M2C_FIELD(arg0, s32 *, 0x164) = (s32) M2C_FIELD(arg0, s32 *, 0x110);
-    M2C_FIELD(arg0, s32 *, 0x168) = (s32) M2C_FIELD(arg0, s32 *, 0x114);
+    M2C_FIELD(arg0, s8 *, 0x108) = 1;
     M2C_FIELD(arg0, s32 *, 0x16C) = (s32) M2C_FIELD(arg0, s32 *, 0x118);
     M2C_FIELD(arg0, s32 *, 0x170) = (s32) M2C_FIELD(arg0, s32 *, 0x11C);
     M2C_FIELD(arg0, s32 *, 0x174) = (s32) M2C_FIELD(arg0, s32 *, 0x120);
     M2C_FIELD(arg0, u8 *, 0x178) = (u8) M2C_FIELD(arg0, u8 *, 0x124);
-    M2C_FIELD(arg0, s32 *, 0x17C) = (s32) M2C_FIELD(arg0, s32 *, 0x128);
     M2C_FIELD(arg0, s32 *, 0x180) = (s32) M2C_FIELD(arg0, s32 *, 0x12C);
+    M2C_FIELD(arg0, s32 *, 0x18C) = 0;
     M2C_FIELD(arg0, s32 *, 0x184) = (s32) M2C_FIELD(arg0, s32 *, 0x130);
     M2C_FIELD(arg0, f32 *, 0x188) = (f32) M2C_FIELD(arg0, f32 *, 0x134);
-    M2C_FIELD(arg0, s32 *, 0x18C) = 0;
+    M2C_FIELD(arg0, s32 *, 0x17C) = (s32) M2C_FIELD(arg0, s32 *, 0x128);
 }
 
 void method_setInterest(void *arg0) {
     /* draft: did not compile: fn_800165B0(arg0 + 0x10C); */
+    M2C_FIELD(arg0, s32 *, 0x16C) = (s32) M2C_FIELD(arg0, s32 *, 0x118);
     M2C_FIELD(arg0, s8 *, 0x108) = 1;
     M2C_FIELD(arg0, s32 *, 0x160) = (s32) M2C_FIELD(arg0, s32 *, 0x10C);
     M2C_FIELD(arg0, s32 *, 0x164) = (s32) M2C_FIELD(arg0, s32 *, 0x110);
     M2C_FIELD(arg0, s32 *, 0x168) = (s32) M2C_FIELD(arg0, s32 *, 0x114);
-    M2C_FIELD(arg0, s32 *, 0x16C) = (s32) M2C_FIELD(arg0, s32 *, 0x118);
     M2C_FIELD(arg0, s32 *, 0x170) = (s32) M2C_FIELD(arg0, s32 *, 0x11C);
     M2C_FIELD(arg0, s32 *, 0x174) = (s32) M2C_FIELD(arg0, s32 *, 0x120);
     M2C_FIELD(arg0, u8 *, 0x178) = (u8) M2C_FIELD(arg0, u8 *, 0x124);
-    M2C_FIELD(arg0, s32 *, 0x17C) = (s32) M2C_FIELD(arg0, s32 *, 0x128);
     M2C_FIELD(arg0, s32 *, 0x180) = (s32) M2C_FIELD(arg0, s32 *, 0x12C);
+    M2C_FIELD(arg0, s32 *, 0x18C) = 0;
     M2C_FIELD(arg0, s32 *, 0x184) = (s32) M2C_FIELD(arg0, s32 *, 0x130);
     M2C_FIELD(arg0, f32 *, 0x188) = (f32) M2C_FIELD(arg0, f32 *, 0x134);
-    M2C_FIELD(arg0, s32 *, 0x18C) = 0;
+    M2C_FIELD(arg0, s32 *, 0x17C) = (s32) M2C_FIELD(arg0, s32 *, 0x128);
 }
 
 void fn_80016FAC(void *arg0, void *arg1) {
@@ -450,5 +450,5 @@ void fn_80017CB8(void *arg0, s32 arg1, s32 arg2, f32 farg0) {
     /* draft: did not compile: sp10 = arg0 + 0xC4; */
     spC = M2C_FIELD(arg0, s32 *, 0xC8);
     /* draft: did not compile: fn_80019BF0(&sp8, arg0 + 0xC0, &spC, &sp10); */
-    fn_80017D3C(arg0, arg1, arg2, farg0);
+    fn_80017D3C(arg0, arg1, arg2, (u16)farg0);
 }

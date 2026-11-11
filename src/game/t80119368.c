@@ -165,9 +165,7 @@ s32 fn_80119BBC(s32 arg0) {
     s32 var_r3;
 
     var_r3 = -1;
-    if ((u32) (fn_80123AC4() + 0x10000) != -1U) {
-        var_r3 = arg0;
-    }
+    var_r3 = !((u32) (fn_80123AC4() + 0x10000) != -1U) ? var_r3 : arg0;
     return var_r3;
 }
 
@@ -390,8 +388,8 @@ s32 GetPrivateIndex(u32 arg0) {
     void *temp_r4_7;
 
     var_r4 = &lbl_8032DFA8;
-    var_r5 = 0;
     var_ctr = 8;
+    var_r5 = 0;
 loop_1:
     if (((u8) M2C_FIELD(var_r4, u8 *, 0xC) != 0) && (arg0 == (u32) M2C_FIELD(var_r4, u32 *, 4))) {
         return var_r5;

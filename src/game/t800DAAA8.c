@@ -89,9 +89,8 @@ s32 VerifyDir(void *arg0, s32 *arg1) {
     u16 temp_r9_4;
     u16 temp_r9_5;
     u16 temp_r9_6;
-    u16 temp_r9_7;
+    int temp_r9_7;
     u16 temp_r9_8;
-    u16 temp_r9_9;
     u16 var_r10;
     u16 var_r11;
 
@@ -133,10 +132,9 @@ s32 VerifyDir(void *arg0, s32 *arg1) {
 block_5:
                 var_ctr_2 = var_r6;
                 do {
-                    temp_r9_9 = *var_r5;
                     var_r5 += 2;
-                    var_r10 += temp_r9_9;
-                    var_r11 += ~(temp_r9_9 | temp_r9_9);
+                    var_r10 += (*var_r5);
+                    var_r11 += ~((*var_r5) | (*var_r5));
                     var_ctr_2 -= 1;
                 } while (var_ctr_2 != 0);
             }
@@ -318,7 +316,7 @@ loop_18:
 }
 
 s32 __CARDVerify(s32 arg0) {
-    s32 temp_r0;
+    u8 temp_r0;
     s32 temp_r31;
     s32 temp_r3;
 
@@ -621,12 +619,15 @@ void CARDFormatAsync(s32 arg0, s32 arg1) {
     /* draft: did not compile: __CARDFormatRegionAsync(arg0, fn_800D86CC(), arg1); */
 }
 
+#pragma push
+#pragma dont_inline on
 void fn_800DC8A8(s32 arg0) {
     if (__CARDFormatRegionAsync(arg0, fn_800D86CC(), &fn_800D77B0) < 0) {
         return;
     }
     fn_800D8A2C(arg0);
 }
+#pragma pop
 
 s32 __CARDCompareFileName(s32 arg0, u8 *arg1) {
     s32 var_r7;

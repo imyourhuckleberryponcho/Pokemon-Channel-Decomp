@@ -142,10 +142,13 @@ s32 fn_800AD97C(void *arg1, s32 *arg2, M2C_UNK arg_sp0) {
     return temp_r26;
 }
 
+#pragma push
+#pragma peephole off
 void fn_800ADD38(void) {
     hsdInitClassInfo(&lbl_8022B778, &lbl_802A8AA0, &lbl_8022B778 + 0x54, &lbl_8022B778 + 0x70, 0x54, 0x20);
     M2C_FIELD(&lbl_8022B778, M2C_UNK (**)(), 0x44) = fn_800ADD94;
 }
+#pragma pop
 
 s32 fn_800ADD94(void *arg1, s32 *arg2, M2C_UNK arg_sp0) {
     s32 temp_r30;
@@ -243,10 +246,13 @@ s32 fn_800ADD94(void *arg1, s32 *arg2, M2C_UNK arg_sp0) {
     return temp_r26;
 }
 
+#pragma push
+#pragma peephole off
 void fn_800AE324(void) {
     hsdInitClassInfo(&lbl_8022B868, &lbl_802A8AA0, &lbl_8022B868 + 0x54, &lbl_8022B868 + 0x68, 0x54, 0x20);
     M2C_FIELD(&lbl_8022B868, M2C_UNK (**)(), 0x44) = fn_800AE380;
 }
+#pragma pop
 
 s32 fn_800AE380(void *arg1, s32 *arg2, M2C_UNK arg_sp0) {
     s32 sp8;
@@ -313,10 +319,13 @@ s32 fn_800AE380(void *arg1, s32 *arg2, M2C_UNK arg_sp0) {
     return temp_r27;
 }
 
+#pragma push
+#pragma peephole off
 void fn_800AE718(void) {
     hsdInitClassInfo(&lbl_8022B940, &lbl_802A8AA0, &lbl_8022B940 + 0x54, &lbl_8022B940 + 0x68, 0x54, 0x20);
     M2C_FIELD(&lbl_8022B940, M2C_UNK (**)(), 0x44) = fn_800AE774;
 }
+#pragma pop
 
 s32 fn_800AE774(void *arg1, s32 *arg2, M2C_UNK arg_sp0) {
     s32 sp8;
@@ -387,10 +396,13 @@ s32 fn_800AE774(void *arg1, s32 *arg2, M2C_UNK arg_sp0) {
     return temp_r26;
 }
 
+#pragma push
+#pragma peephole off
 void fn_800AEB30(void) {
     hsdInitClassInfo(&lbl_8022BA20, &lbl_802A8AA0, &lbl_8022BA20 + 0x54, &lbl_8022BA20 + 0x6C, 0x54, 0x20);
     M2C_FIELD(&lbl_8022BA20, M2C_UNK (**)(), 0x44) = fn_800AEB8C;
 }
+#pragma pop
 
 s32 fn_800AEB8C(void *arg1, s32 *arg2, M2C_UNK arg_sp0) {
     s32 sp8;
@@ -498,8 +510,8 @@ s32 EXIImm(s32 arg0, void *arg1, s32 arg2, u32 arg3, u32 arg4) {
     void *var_r3;
 
     temp_r4 = arg0 << 6;
-    temp_r31 = &lbl_802CF930 + temp_r4;
     temp_r30 = OSDisableInterrupts(&lbl_802CF930, temp_r4);
+    temp_r31 = &lbl_802CF930 + temp_r4;
     if ((M2C_FIELD(temp_r31, s32 *, 0xC) & 3) || !(M2C_FIELD(temp_r31, s32 *, 0xC) & 4)) {
         OSRestoreInterrupts((long)(temp_r30), (long)(0));
         return 0;
@@ -553,16 +565,20 @@ s32 EXIImm(s32 arg0, void *arg1, s32 arg2, u32 arg3, u32 arg4) {
     return 1;
 }
 
+#pragma push
+#pragma peephole off
 s32 EXIImmEx(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    int var_r31;
     s32 var_r28;
     s32 var_r29;
-    s32 var_r31;
 
     var_r28 = arg1;
     var_r29 = arg2;
 loop_9:
-    if (var_r29 == 0) {
-        return 1;
+    switch (var_r29) {
+    case 0:
+            return 1;
+        break;
     }
     if (var_r29 < 4) {
         var_r31 = var_r29;
@@ -572,24 +588,25 @@ loop_9:
     if (0 /* draft: did not compile */) {
         return 0;
     }
-    if (EXISync(arg0) == 0) {
+    if ((u16)EXISync(arg0) == 0) {
         return 0;
     }
     var_r28 += var_r31;
     var_r29 -= var_r31;
     goto loop_9;
 }
+#pragma pop
 
 s32 EXIDma(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u32 arg4) {
-    s32 temp_r31;
-    s32 temp_r4;
     s32 temp_r4_2;
+    s32 temp_r4;
+    s32 temp_r31;
     void *temp_r26;
     void *temp_r3;
 
     temp_r4 = arg0 << 6;
+    temp_r31 = OSDisableInterrupts(&lbl_802CF930, (u16)temp_r4);
     temp_r26 = &lbl_802CF930 + temp_r4;
-    temp_r31 = OSDisableInterrupts(&lbl_802CF930, temp_r4);
     if ((M2C_FIELD(temp_r26, s32 *, 0xC) & 3) || !(M2C_FIELD(temp_r26, s32 *, 0xC) & 4)) {
         OSRestoreInterrupts((long)(temp_r31), (long)(0));
         return 0;
@@ -602,17 +619,17 @@ s32 EXIDma(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u32 arg4) {
     M2C_FIELD(temp_r26, s32 *, 0xC) = (s32) (M2C_FIELD(temp_r26, s32 *, 0xC) | 1);
     temp_r4_2 = arg1 & 0x03FFFFE0;
     /* draft: did not compile: temp_r3 = (arg0 * 0x14) + 0xCC006800; */
-    M2C_FIELD(temp_r3, s32 *, 4) = temp_r4_2;
     M2C_FIELD(temp_r3, s32 *, 8) = arg2;
-    M2C_FIELD(temp_r3, s32 *, 0xC) = (s32) ((arg3 * 4) | 3);
     OSRestoreInterrupts(temp_r31, temp_r4_2);
+    M2C_FIELD(temp_r3, s32 *, 4) = temp_r4_2;
+    M2C_FIELD(temp_r3, s32 *, 0xC) = (s32) ((arg3 * 4) | 3);
     return 1;
 }
 
 s32 EXISync(s32 arg0) { return 0; } /* draft: stub */
 
 s32 EXIClearInterrupts(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 temp_r0;
+    u16 temp_r0;
     s32 temp_r0_2;
     s32 var_r0;
 
@@ -633,14 +650,14 @@ s32 EXIClearInterrupts(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 }
 
 s32 EXISetExiCallback(s32 arg0, s32 arg1) {
-    s32 *temp_r30;
     s32 temp_r28;
+    s32 *temp_r30;
     s32 temp_r29;
 
     temp_r30 = &lbl_802CF930 + (arg0 << 6);
-    temp_r28 = OSDisableInterrupts((long *)(&lbl_802CF930), (long)(0));
     temp_r29 = *temp_r30;
     *temp_r30 = arg1;
+    temp_r28 = OSDisableInterrupts((long *)(&lbl_802CF930), (long)(0));
     if (arg0 != 2) {
         SetExiInterruptMask(arg0, temp_r30);
     } else {
@@ -700,6 +717,8 @@ s32 __EXIProbe(s32 arg0) {
     return var_r29;
 }
 
+#pragma push
+#pragma optimize_for_size on
 s32 EXIProbe(s32 arg0) {
     M2C_UNK spC;
     s32 temp_r4;
@@ -708,7 +727,7 @@ s32 EXIProbe(s32 arg0) {
     temp_r4 = arg0 << 6;
     var_r3 = __EXIProbe((long)(arg0));
     if ((var_r3 != 0) && ((s32) M2C_FIELD((&lbl_802CF930 + temp_r4), s32 *, 0x20) == 0)) {
-        if (EXIGetID(arg0, 0, &spC) != 0) {
+        if (EXIGetID((s32)arg0, 0, &spC) != 0) {
             return 1;
         }
         var_r3 = 0;
@@ -717,3 +736,4 @@ s32 EXIProbe(s32 arg0) {
     }
     return var_r3;
 }
+#pragma pop

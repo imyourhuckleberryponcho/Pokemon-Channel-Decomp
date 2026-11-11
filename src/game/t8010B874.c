@@ -171,16 +171,16 @@ loop_10:
         M2C_FIELD(temp_r3, s32 *, 0) = 4;
         M2C_FIELD(temp_r3, void **, 4) = (void *) *arg3;
         *arg3 = temp_r3;
-        M2C_FIELD(temp_r3, s8 *, 0x10) = 0;
+        M2C_FIELD(temp_r3, u8 *, 0x10) = 0;
         M2C_FIELD(temp_r3, u32 *, 8) = arg0;
-        M2C_FIELD(temp_r3, s8 *, 0xC) = arg1;
-        M2C_FIELD(temp_r3, s8 *, 0xD) = arg2;
-        M2C_FIELD(temp_r3, s8 *, 0xE) = 0xFF;
-        M2C_FIELD(temp_r3, s8 *, 0xF) = 0xFF;
-        M2C_FIELD(temp_r3, s8 *, 0x11) = 0;
+        M2C_FIELD(temp_r3, u8 *, 0xC) = arg1;
+        M2C_FIELD(temp_r3, u8 *, 0xD) = arg2;
+        M2C_FIELD(temp_r3, u8 *, 0xE) = 0xFF;
+        M2C_FIELD(temp_r3, u8 *, 0xF) = 0xFF;
+        M2C_FIELD(temp_r3, u8 *, 0x11) = 0;
         return temp_r3;
     }
-    if (((s32) M2C_FIELD(var_r31, s32 *, 0) == 4) && ((u32) M2C_FIELD(var_r31, u32 *, 8) == arg0) && ((s32) M2C_FIELD(var_r31, u8 *, 0xC) == arg1)) {
+    if (((s32) (u16)M2C_FIELD(var_r31, s32 *, 0) == 4) && ((u32) M2C_FIELD(var_r31, u32 *, 8) == arg0) && ((s32) M2C_FIELD(var_r31, u8 *, 0xC) == arg1)) {
         if ((s32) M2C_FIELD(var_r31, u8 *, 0xD) != arg2) {
             __assert(&lbl_80350300, 0x171, &lbl_802AA6EC);
         }
@@ -351,12 +351,12 @@ s32 AssignColorReg(s32 arg0, s32 arg1, s32 arg2) {
     s32 var_ctr;
     s32 var_ctr_2;
     u8 temp_r0;
-    u16 var_r8;
-    u8 var_r8_2;
+    void *temp_r6_3;
+    s32 var_r8_2;
     void *temp_r4;
     void *temp_r6;
     void *temp_r6_2;
-    void *temp_r6_3;
+    u16 var_r8;
     void *var_r6;
     void *var_r6_2;
 

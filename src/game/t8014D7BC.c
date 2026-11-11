@@ -59,7 +59,7 @@ s32 fn_8014DCB8(void *arg0, void *arg1) {
     s16 temp_r0;
     u8 temp_r6;
     u8 temp_r7;
-    s32 var_r8;
+    u8 var_r8;
     s32 var_ctr;
     u8 var_r9;
 
@@ -123,15 +123,15 @@ loop_15:
 #pragma push
 #pragma peephole off
 s32 __equals_dec(void *arg0, void *arg1) {
-    s32 temp_r0;
+    u16 var_ctr;
     u32 var_ctr_2;
     u8 var_ctr_3;
     s32 var_r8;
     u8 temp_r5;
     u8 temp_r6;
-    u8 temp_r7;
-    u16 var_ctr;
+    s32 temp_r0;
     u8 var_r9;
+    u8 temp_r7;
 
     temp_r5 = M2C_FIELD(arg0, u8 *, 5);
     if (temp_r5 == 0) {
@@ -155,23 +155,23 @@ loop_8:
             if (0 /* draft: did not compile */) {
                 return 0;
             }
-            var_r8 += 1;
-            var_ctr -= 1;
-            if (var_ctr == 0) {
+            var_r8 = var_r8 + 1;
+            var_ctr = var_ctr;
+            if ((var_ctr - 1) == 0) {
                 goto block_11;
             }
             goto loop_8;
         }
 block_11:
-        if ((s32) var_r9 == (s32) temp_r7) {
+        if (var_r9 == (s32) temp_r7) {
             var_ctr_2 = temp_r6 - var_r8;
             if (var_r8 < (s32) temp_r6) {
 loop_13:
                 if (0 /* draft: did not compile */) {
                     return 0;
                 }
-                var_r8 += 1;
-                var_ctr_2 -= 1;
+                var_r8 = var_r8 + 1;
+                var_ctr_2 = var_ctr_2 - 1;
                 if (var_ctr_2 == 0) {
                     /* Duplicate return node #21. Try simplifying control flow for better match */
                     return 1;
@@ -187,8 +187,8 @@ loop_18:
             if (0 /* draft: did not compile */) {
                 return 0;
             }
-            var_r8 += 1;
-            var_ctr_3 -= 1;
+            var_r8 = var_r8 + 1;
+            var_ctr_3 = var_ctr_3 - 1;
             if (var_ctr_3 == 0) {
                 /* Duplicate return node #21. Try simplifying control flow for better match */
                 return 1;
@@ -209,14 +209,14 @@ void fn_8014E2E8(void *arg0, void *arg1, void *arg2) { } /* draft: stub */
 
 void fn_8014E574(void *arg0, u64 arg2, u32 arg3) {
     u32 temp_r4;
-    u32 var_r28;
+    unsigned int var_r28;
     u64 temp_r3;
     u64 temp_ret;
     u64 var_r29;
     u8 *var_r3;
     u8 *var_r4;
     u8 temp_r5;
-    u8 temp_r7;
+    s8 temp_r7;
     u8 temp_r8;
 
     var_r29 = arg2;
@@ -231,12 +231,12 @@ void fn_8014E574(void *arg0, u64 arg2, u32 arg3) {
     M2C_FIELD(arg0, u8 *, 4) = 0U;
 loop_4:
     if (((var_r28 ^ 0) | (var_r29 ^ 0)) != 0) {
-        temp_r4 = (u32) __mod2u(var_r29, var_r28, 0, 0xA);
         temp_r8 = M2C_FIELD(arg0, u8 *, 4);
         temp_r7 = temp_r8 + 1;
         M2C_FIELD(arg0, u8 *, 4) = temp_r7;
+        temp_r4 = (u32) __mod2u(var_r29, var_r28, 0, 0xA);
         /* draft: did not compile: *(arg0 + (temp_r8 + 5)) = (s8) temp_r4; */
-        temp_ret = __div2u(var_r29, var_r28, 0, 0xA, temp_r7, temp_r8);
+        temp_ret = __div2u((s32)var_r29, var_r28, 0, 0xA, temp_r7, temp_r8);
         temp_r3 = temp_ret;
         var_r28 = (u32) temp_ret;
         var_r29 = temp_r3;
@@ -248,8 +248,8 @@ loop_7:
     var_r3 -= 1;
     if (var_r4 < var_r3) {
         temp_r5 = *var_r4;
-        *var_r4 = *var_r3;
         var_r4 += 1;
+        *var_r4 = *var_r3;
         *var_r3 = temp_r5;
         goto loop_7;
     }
@@ -319,8 +319,8 @@ u8 fn_8014E7FC(s32 arg0) {
 #pragma push
 #pragma dont_inline on
 u32 __fwrite(u32 arg0, u32 arg1, s32 arg2, void *arg3) {
-    s32 var_r28;
     s32 var_r31;
+    u32 var_r30;
     s32 var_r3;
     u32 temp_r0;
     u32 temp_r0_2;
@@ -330,7 +330,7 @@ u32 __fwrite(u32 arg0, u32 arg1, s32 arg2, void *arg3) {
     u32 temp_r4;
     u32 var_r27;
     u32 var_r29;
-    u32 var_r30;
+    s32 var_r28;
     u8 temp_r3;
     u32 sp8;
 
@@ -358,8 +358,8 @@ u32 __fwrite(u32 arg0, u32 arg1, s32 arg2, void *arg3) {
             if (0 /* draft: did not compile */) {
                 return 0U;
             }
-            M2C_FIELD(arg3, u8 *, 8) = (u8) ((M2C_FIELD(arg3, u8 *, 8) & ~0xE0) | 0x20);
             __prep_buffer(arg3);
+            M2C_FIELD(arg3, u8 *, 8) = (u8) ((M2C_FIELD(arg3, u8 *, 8) & ~0xE0) | 0x20);
             goto block_20;
         }
     }
@@ -388,9 +388,9 @@ loop_26:
         }
         if (sp8 != 0) {
             /* draft: did not compile: memcpy(M2C_FIELD(arg3, u32 *, 0x24), var_r30); */
+            var_r29 -= sp8;
             var_r30 += sp8;
             var_r28 += sp8;
-            var_r29 -= sp8;
             M2C_FIELD(arg3, u32 *, 0x24) = (u32) (M2C_FIELD(arg3, u32 *, 0x24) + sp8);
             M2C_FIELD(arg3, u32 *, 0x28) = (u32) (M2C_FIELD(arg3, u32 *, 0x28) - sp8);
         }
@@ -645,15 +645,18 @@ loop_2:
 
 void *memchr(s32 arg0, u8 arg1, s32 arg2) {
     s32 var_r5;
-    u8 temp_r0;
+    s8 temp_r0;
     void *var_r3;
 
     /* draft: did not compile: var_r3 = arg0 - 1; */
-    var_r5 = arg2 + 1;
+    var_r5 = arg2;
+    var_r5 += 1;
 loop_2:
     var_r5 -= 1;
-    if (var_r5 == 0) {
-        return NULL;
+    switch (var_r5) {
+    case 0:
+            return NULL;
+        break;
     }
     temp_r0 = M2C_FIELD(var_r3, u8 *, 1);
     /* draft: did not compile: var_r3 += 1; */
@@ -720,17 +723,17 @@ loop_16:
 }
 
 void fn_8014F2C4(s32 arg0, s32 arg1, u32 arg2) {
-    s32 temp_r3;
+    u32 var_r6;
     s32 temp_r7;
     s32 temp_r8;
-    s32 temp_r9;
+    u8 temp_r9;
     s32 var_r11;
     s32 var_r3;
     s32 var_r5_2;
     u32 temp_r0_2;
     u32 var_r4;
     u32 var_r5;
-    u32 var_r6;
+    s32 temp_r3;
     u8 temp_r0;
     u8 temp_r0_3;
     void *temp_r10;

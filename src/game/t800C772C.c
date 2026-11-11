@@ -218,7 +218,7 @@ u32 OSGetResetCode(void) {
 
 void __OSResetSWInterruptHandler(void) {
     M2C_UNK (*temp_lr)();
-    s32 temp_r3;
+    u8 temp_r3;
     u32 temp_r29;
     u64 temp_ret;
 
@@ -227,8 +227,7 @@ void __OSResetSWInterruptHandler(void) {
     lbl_803508E8 = temp_ret;
     temp_r29 = (u32) ((*(u32 *)0x800000F8 / 500000) * 0x64) >> 3U;
 loop_1:
-    temp_r3 = ((__OSGetSystemTime() - lbl_803508E8) - !M2C_CARRY) ^ 0x80000000;
-    if (-((temp_r3 - temp_r3) - !M2C_CARRY) != 0) {
+    if (-(((temp_r3 = ((__OSGetSystemTime() - lbl_803508E8) - !M2C_CARRY) ^ 0x80000000) - temp_r3) - !M2C_CARRY) != 0) {
         if (!(*(s32 *)0xCC003000 & 0x10000)) {
             goto loop_1;
         }
@@ -256,10 +255,10 @@ s32 fn_800C7B20(void) {
     s32 temp_r8;
     u8 var_r0;
     s32 var_r10;
-    u8 var_r29;
-    s32 var_r7;
+    u16 var_r29;
+    u8 var_r7;
     u32 temp_r4;
-    u32 temp_r6_3;
+    u8 temp_r6_3;
     u64 temp_r3;
     u64 temp_ret;
     u64 temp_ret_2;
@@ -283,9 +282,7 @@ s32 fn_800C7B20(void) {
         } else {
             var_r10 = 1;
             if (((lbl_803508E4 ^ 0) | (lbl_803508E0 ^ 0)) == 0) {
-                if (-(((temp_r6 = 0 ^ 0x80000000) - temp_r6) - !M2C_CARRY) == 0) {
-                    var_r10 = 0;
-                }
+                var_r10 = -(((temp_r6 = 0 ^ 0x80000000) - temp_r6) - !M2C_CARRY) != 0 ? var_r10 : 0;
             }
             if (var_r10 != 0) {
                 var_r0 = 1;
@@ -394,7 +391,7 @@ void __OSInitSram(void) {
 
 M2C_UNK *__OSLockSram(void) {
     M2C_UNK *var_r31;
-    s32 temp_r3;
+    u8 temp_r3;
 
     var_r31 = &Scb_8031BA00;
     temp_r3 = OSDisableInterrupts(&Scb_8031BA00);
@@ -409,7 +406,7 @@ M2C_UNK *__OSLockSram(void) {
 }
 
 void *__OSLockSramEx(void) {
-    s32 temp_r3;
+    u8 temp_r3;
 
     temp_r3 = OSDisableInterrupts(&Scb_8031BA00);
     if ((s32) M2C_FIELD(&Scb_8031BA00, s32 *, 0x48) != 0) {
@@ -482,8 +479,8 @@ s32 fn_800C813C(s32 arg0, u32 arg1) {
                         M2C_FIELD(&Scb_8031BA00, u16 *, 2) = (u16) (M2C_FIELD(&Scb_8031BA00, u16 *, 2) + ~(temp_r0_7 | temp_r0_7));
                         M2C_FIELD(&Scb_8031BA00, u16 *, 0) = (u16) (M2C_FIELD(&Scb_8031BA00, u16 *, 0) + M2C_FIELD(var_r6, u16 *, 0xC));
                         temp_r0_8 = M2C_FIELD(var_r6, u16 *, 0xC);
-                        M2C_FIELD(&Scb_8031BA00, u16 *, 2) = (u16) (M2C_FIELD(&Scb_8031BA00, u16 *, 2) + ~(temp_r0_8 | temp_r0_8));
                         M2C_FIELD(&Scb_8031BA00, u16 *, 0) = (u16) (M2C_FIELD(&Scb_8031BA00, u16 *, 0) + M2C_FIELD(var_r6, u16 *, 0xE));
+                        M2C_FIELD(&Scb_8031BA00, u16 *, 2) = (u16) (M2C_FIELD(&Scb_8031BA00, u16 *, 2) + ~(temp_r0_8 | temp_r0_8));
                         temp_r0_9 = M2C_FIELD(var_r6, u16 *, 0xE);
                         var_r6 = var_r6 + 0x10;
                         M2C_FIELD(&Scb_8031BA00, u16 *, 2) = (u16) (M2C_FIELD(&Scb_8031BA00, u16 *, 2) + ~(temp_r0_9 | temp_r0_9));
@@ -573,7 +570,7 @@ s32 OSGetSoundMode(void) {
 
 s32 OSGetProgressiveMode(void) {
     M2C_UNK *var_r31;
-    s32 temp_r31;
+    s8 temp_r31;
     s32 temp_r3;
 
     var_r31 = &Scb_8031BA00;
@@ -642,7 +639,7 @@ void OSSetWirelessID(s32 arg0, u16 arg1) {
 }
 
 void fn_800C8760(s32 *arg0, s32 arg1) {
-    s32 temp_r31;
+    u8 temp_r31;
 
     temp_r31 = OSDisableInterrupts();
     OSInitThreadQueue(arg0 + 4);
@@ -651,8 +648,8 @@ void fn_800C8760(s32 *arg0, s32 arg1) {
 }
 
 s32 fn_800C87B8(s32 *arg0) {
-    s32 temp_r30;
     s32 temp_r31;
+    u8 temp_r30;
     s32 temp_r4;
 
     temp_r31 = OSDisableInterrupts();
@@ -669,11 +666,11 @@ loop_2:
 }
 
 s32 fn_800C8828(s32 *arg0) {
-    s32 temp_r30;
     s32 temp_r31;
+    s32 temp_r30;
 
-    temp_r30 = *arg0;
     temp_r31 = OSDisableInterrupts();
+    temp_r30 = *arg0;
     *arg0 = temp_r30 + 1;
     OSWakeupThread(arg0 + 4);
     OSRestoreInterrupts(temp_r31);
@@ -712,6 +709,7 @@ void __OSThreadInit(void) {
     /* draft: did not compile: OSInitThreadQueue(temp_r31 + 0x2E8, 0x10); */
     M2C_FIELD(&RunQueue_8031BA58, s32 *, 0x710) = 0;
     M2C_FIELD(&RunQueue_8031BA58, s32 *, 0x70C) = 0;
+    var_r29 = &RunQueue_8031BA58;
     *(void **)0x800000D8 = temp_r31;
     OSClearContext(temp_r31);
     OSSetCurrentContext(temp_r31);
@@ -721,10 +719,9 @@ void __OSThreadInit(void) {
     M2C_FIELD(&RunQueue_8031BA58, s32 **, 0x720) = &_stack_end;
     OSClearStack(0);
     RunQueueBits_803508F0 = 0;
-    *(void **)0x800000E4 = temp_r31;
     var_r30 = 0;
     RunQueueHint_803508F4 = 0;
-    var_r29 = &RunQueue_8031BA58;
+    *(void **)0x800000E4 = temp_r31;
     do {
         OSInitThreadQueue(var_r29);
         var_r30 += 1;
@@ -754,7 +751,7 @@ s32 fn_800C8A78(void) {
 }
 
 s32 OSDisableScheduler(void) {
-    s32 temp_r4;
+    u8 temp_r4;
 
     OSDisableInterrupts();
     temp_r4 = Reschedule_803508F8;
@@ -764,7 +761,7 @@ s32 OSDisableScheduler(void) {
 }
 
 s32 OSEnableScheduler(void) {
-    s32 temp_r4;
+    u8 temp_r4;
 
     OSDisableInterrupts();
     temp_r4 = Reschedule_803508F8;

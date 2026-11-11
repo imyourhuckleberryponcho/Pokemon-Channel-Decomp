@@ -128,8 +128,8 @@ s32 scr_CardScheduleExec(s32 arg0) {
 s32 scr_ClearNurieData(s32 arg0) {
     /* draft: did not compile: memset(lbl_8035055C, 0, 4); */
     M2C_FIELD(lbl_80350564, s16 *, 0x3A) = 0;
-    M2C_FIELD(lbl_80350564, s16 *, 0x38) = 0;
     fn_8008065C((long)(arg0), (long)(0));
+    M2C_FIELD(lbl_80350564, s16 *, 0x38) = 0;
     return 0;
 }
 
@@ -250,6 +250,8 @@ s32 scr_method_setScaleV(s32 arg0) {
     return 0;
 }
 
+#pragma push
+#pragma peephole off
 s32 fn_8008F304(s32 arg0, s32 arg1) {
     s32 sp10;
     s32 spC;
@@ -257,8 +259,8 @@ s32 fn_8008F304(s32 arg0, s32 arg1) {
     f32 sp8;
     f32 var_f31;
 
-    var_f31 = saved_reg_f31;
     M2C_FIELD(M2C_FIELD(fn_80089738(), void **, 0x20), M2C_UNK (**)(f32 *), 0x2C)(&sp8);
+    var_f31 = saved_reg_f31;
     switch (arg1) {                                 /* irregular */
     case 0:
         var_f31 = sp8;
@@ -273,6 +275,7 @@ s32 fn_8008F304(s32 arg0, s32 arg1) {
     fn_80080698(arg0, var_f31);
     return 0;
 }
+#pragma pop
 
 void scr_method_getScaleX(void) {
     fn_8008F304((long)(0), (long)(0));

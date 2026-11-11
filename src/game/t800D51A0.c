@@ -91,14 +91,14 @@ void ARQInit(void) {
     if ((s32) lbl_80350B04 != 1) {
         OSRegisterVersion(lbl_8034FFE0);
         lbl_80350AE8 = 0;
-        lbl_80350AE0 = 0;
         lbl_80350B00 = 0x1000;
+        lbl_80350AE0 = 0;
         fn_800D4F14(__ARQInterruptServiceRoutine);
+        lbl_80350B04 = 1;
         lbl_80350AF0 = 0;
         lbl_80350AF4 = 0;
         lbl_80350AF8 = 0;
         lbl_80350AFC = 0;
-        lbl_80350B04 = 1;
     }
 }
 
@@ -180,12 +180,12 @@ s32 fn_800D6D68(void) {
 }
 
 s32 fn_800D6D78(void) {
-    return (M2C_FIELD((void *)0xCC005000, u16 *, 6) & ~0xFFFF0000) | (M2C_FIELD((void *)0xCC005000, u16 *, 4) << 0x10);
+    return (M2C_FIELD((void *)0xCC005000, s16 *, 6) & ~0xFFFF0000) | (M2C_FIELD((void *)0xCC005000, s16 *, 4) << 0x10);
 }
 
 void fn_800D6D90(u16 arg0) {
-    *(u16 *)0xCC005000 = (u16) (arg0 >> 0x10U);
     *(u16 *)0xCC005002 = arg0;
+    *(u16 *)0xCC005000 = (u16) (arg0 >> 0x10U);
 }
 
 void DSPInit(void) {
@@ -212,19 +212,22 @@ void DSPInit(void) {
     }
 }
 
+#pragma push
+#pragma peephole off
 void *DSPAddTask(void *arg0) {
     s32 temp_r31;
 
     temp_r31 = OSDisableInterrupts();
-    __DSP_insert_task(arg0);
     M2C_FIELD(arg0, s32 *, 0) = 0;
     M2C_FIELD(arg0, s32 *, 8) = 1;
+    __DSP_insert_task(arg0);
     OSRestoreInterrupts(temp_r31);
     if (0 /* draft: did not compile */) {
         __DSP_boot_task(arg0);
     }
     return arg0;
 }
+#pragma pop
 
 void fn_800D6ED8(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, f64 farg0, f64 farg1, f64 farg2, f64 farg3, f64 farg4, f64 farg5, f64 farg6, f64 farg7) {
     f64 sp60;

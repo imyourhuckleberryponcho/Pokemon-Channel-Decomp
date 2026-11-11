@@ -160,13 +160,15 @@ f64 __kernel_tan(s32 arg0, f64 farg0, f64 farg1) {
         var_f2 = lbl_80352988;
         temp_f1_2 = lbl_80352978 - sp8;
         sp18 = temp_f1_2;
-        sp8 = temp_f1_2 + temp_f0;
+        sp8 = temp_f0;
+        sp8 += temp_f1_2;
     }
     temp_f13 = sp8 * sp8;
     temp_f31 = temp_f13 * temp_f13;
     temp_f1_3 = temp_f13 * sp8;
     sp18 = temp_f13;
-    temp_f6 = (M2C_FIELD(&lbl_801DB138, f64 *, 0) * temp_f1_3) + ((temp_f13 * ((temp_f1_3 * ((temp_f31 * ((temp_f31 * ((temp_f31 * ((temp_f31 * ((temp_f31 * M2C_FIELD(&lbl_801DB138, f64 *, 0x58)) + M2C_FIELD(&lbl_801DB138, f64 *, 0x48))) + M2C_FIELD(&lbl_801DB138, f64 *, 0x38))) + M2C_FIELD(&lbl_801DB138, f64 *, 0x28))) + M2C_FIELD(&lbl_801DB138, f64 *, 0x18))) + M2C_FIELD(&lbl_801DB138, f64 *, 8) + (temp_f13 * ((temp_f31 * ((temp_f31 * ((temp_f31 * ((temp_f31 * ((temp_f31 * M2C_FIELD(&lbl_801DB138, f64 *, 0x60)) + M2C_FIELD(&lbl_801DB138, f64 *, 0x50))) + M2C_FIELD(&lbl_801DB138, f64 *, 0x40))) + M2C_FIELD(&lbl_801DB138, f64 *, 0x30))) + M2C_FIELD(&lbl_801DB138, f64 *, 0x20))) + M2C_FIELD(&lbl_801DB138, f64 *, 0x10))))) + var_f2)) + var_f2);
+    temp_f6 = ((temp_f13 * ((temp_f1_3 * ((temp_f31 * ((temp_f31 * ((temp_f31 * ((temp_f31 * ((temp_f31 * M2C_FIELD(&lbl_801DB138, f64 *, 0x58)) + M2C_FIELD(&lbl_801DB138, f64 *, 0x48))) + M2C_FIELD(&lbl_801DB138, f64 *, 0x38))) + M2C_FIELD(&lbl_801DB138, f64 *, 0x28))) + M2C_FIELD(&lbl_801DB138, f64 *, 0x18))) + M2C_FIELD(&lbl_801DB138, f64 *, 8) + (temp_f13 * ((temp_f31 * ((temp_f31 * ((temp_f31 * ((temp_f31 * ((temp_f31 * M2C_FIELD(&lbl_801DB138, f64 *, 0x60)) + M2C_FIELD(&lbl_801DB138, f64 *, 0x50))) + M2C_FIELD(&lbl_801DB138, f64 *, 0x40))) + M2C_FIELD(&lbl_801DB138, f64 *, 0x30))) + M2C_FIELD(&lbl_801DB138, f64 *, 0x20))) + M2C_FIELD(&lbl_801DB138, f64 *, 0x10))))) + var_f2)) + var_f2);
+    temp_f6 += (temp_f1_3 * M2C_FIELD(&lbl_801DB138, f64 *, 0));
     temp_f1 = sp8 + temp_f6;
     if (temp_r6 >= 0x3FE59428) {
         temp_f7 = (f64) arg0;
@@ -269,7 +271,7 @@ f64 Ceil(f64 farg0) {
     temp_r7 = ((var_r5 >> 0x14U) & 0x7FF) - 0x3FF;
     if (temp_r7 < 0x14) {
         if (temp_r7 < 0) {
-            if ((lbl_803529C8 + var_f1) > (f32) lbl_803529D0) {
+            if ((lbl_803529C8 + var_f1) > lbl_803529D0) {
                 if ((s32) var_r5 < 0) {
                     var_r5 = 0x80000000;
                     var_r6 = 0;
@@ -284,7 +286,7 @@ f64 Ceil(f64 farg0) {
         if ((var_r6 | (var_r5 & temp_r4)) == 0) {
             return var_f1;
         }
-        if ((lbl_803529C8 + var_f1) > (f32) lbl_803529D0) {
+        if ((lbl_803529C8 + var_f1) > lbl_803529D0) {
             if ((s32) var_r5 > 0) {
                 var_r5 += 0x100000 >> temp_r7;
             }
@@ -301,10 +303,10 @@ f64 Ceil(f64 farg0) {
         return var_f1;
     }
     temp_r4_2 = -1U >> (temp_r7 - 0x14);
-    if (!(var_r6 & temp_r4_2)) {
+    if (!(temp_r4_2 & var_r6)) {
         return var_f1;
     }
-    if ((lbl_803529C8 + var_f1) > (f32) lbl_803529D0) {
+    if ((lbl_803529C8 + var_f1) > lbl_803529D0) {
         if ((s32) var_r5 > 0) {
             if (temp_r7 == 0x14) {
                 var_r5 += 1;
@@ -512,7 +514,8 @@ f64 fn_8015685C(s32 arg0, f64 farg0) {
             }
             temp_f1 = sp8 * lbl_80352A00;
             sp8 = temp_f1;
-            var_r4 = ((M2C_BITWISE(u32, (s32)sp8) >> 0x14U) & 0x7FF) - 0x36;
+            var_r4 = ((M2C_BITWISE(u32, (s32)sp8) >> 0x14U) & 0x7FF);
+            var_r4 -= 0x36;
             if (arg0 < 0xFFFF3CB0) {
                 return lbl_80352A08 * temp_f1;
             }
@@ -555,7 +558,7 @@ f64 fn_80156A20(void *arg0, f64 farg0) {
     u32 temp_r5;
 
     sp8 = farg0;
-    temp_r5 = M2C_BITWISE(u32, sp8);
+    temp_r5 = M2C_BITWISE(u32, (s32)sp8);
     temp_r7 = ((temp_r5 >> 0x14U) & 0x7FF) - 0x3FF;
     if (temp_r7 < 0x14) {
         if (temp_r7 < 0) {
@@ -581,7 +584,7 @@ f64 fn_80156A20(void *arg0, f64 farg0) {
         return M2C_BITWISE(f64, sp8);
     }
     temp_r4_2 = -1U >> (temp_r7 - 0x14);
-    if (!(unkspC & temp_r4_2)) {
+    if (!(temp_r4_2 & unkspC)) {
         sp8 = temp_r5 & 0x80000000;
         unkspC = 0;
         M2C_FIELD(arg0, u32 *, 0) = farg0;
@@ -625,7 +628,7 @@ f64 fn_80156B1C(f64 farg0, f64 farg1) {
         temp_f0 = M2C_BITWISE(f64, sp8);
         temp_f1 = temp_f0 * temp_f0;
         sp10 = temp_f1;
-        if (temp_f1 == (f32) temp_f0) {
+        if (temp_f1 == temp_f0) {
             return temp_f1;
         }
         return temp_f0;
@@ -700,7 +703,7 @@ f64 Sin(f64 farg0) {
 }
 
 f64 Tan(f64 farg0) {
-    s32 sp18;
+    u32 sp18;
     f64 sp10;
     f64 sp8;
     s32 temp_r3;
@@ -708,7 +711,8 @@ f64 Tan(f64 farg0) {
     sp8 = farg0;
     temp_r3 = M2C_BITWISE(s32, sp8) & 0x7FFFFFFF;
     if (temp_r3 <= 0x3FE921FB) {
-        return __kernel_tan((long)(1), (double)(lbl_80352A28), (double)(0));
+        sp10 = __kernel_tan((long)(1), (double)(lbl_80352A28), (double)(0));
+        return sp10;
     }
     if (temp_r3 >= 0x7FF00000) {
         return farg0 - farg0;

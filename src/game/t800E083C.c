@@ -100,8 +100,8 @@ void fn_800E1314(u8 arg0) {
     M2C_FIELD(gx, s32 *, 0x204) = (s32) ((M2C_FIELD(gx, s32 *, 0x204) & 0xFFFFFFF0) | arg0);
     *(s8 *)0xCC008000 = 0x10;
     *(s8 *)0xCC008000 = 0x103F;
-    *(s8 *)0xCC008000 = (s32) arg0;
     M2C_FIELD(gx, s32 *, 0x4F4) = (s32) (M2C_FIELD(gx, s32 *, 0x4F4) | 4);
+    *(s8 *)0xCC008000 = (s32) arg0;
 }
 
 #pragma push
@@ -257,12 +257,10 @@ void fn_800E16C8(s32 arg0) {
 }
 
 void fn_800E16E4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 var_r9;
+    s8 var_r9;
 
     var_r9 = 1;
-    if ((arg0 != 1) && (arg0 != 3)) {
-        var_r9 = 0;
-    }
+    var_r9 = !((arg0 != 1) && (arg0 != 3)) ? var_r9 : 0;
     M2C_FIELD(__peReg, u16 *, 2) = (u16) ((((((((((((((M2C_FIELD(__peReg, u16 *, 2) & 0xFFFFFFFE) | var_r9) & 0xFFFFF7FF) | ((CLZ(3 - arg0) << 6) & 0xFFFFF800)) & 0xFFFFFFFD) | (((u32) CLZ(2 - arg0) >> 4U) & 0x0FFFFFFE)) & 0xFFFF0FFF) | (arg3 << 0xC)) & 0xFFFFF8FF) | (arg1 << 8)) & 0xFFFFFF1F) | (arg2 << 5)) & 0xFFFFFF) | 0x41000000);
 }
 
@@ -271,7 +269,7 @@ void fn_800E176C(s32 arg0) {
 }
 
 void fn_800E1788(s32 arg0, s32 arg1) {
-    M2C_FIELD(__peReg, s16 *, 4) = (s16) (((arg0 << 8) & 0xFF00 & ~0xFF) | (arg1 & 0xFF));
+    M2C_FIELD(__peReg, s16 *, 4) = (s16) ((arg1 & 0xFF) | ((arg0 << 8) & 0xFF00 & ~0xFF));
 }
 
 void fn_800E179C(s32 arg0) {
@@ -282,8 +280,10 @@ void fn_800E17B8(u8 arg0, s32 arg1, s32 arg2) { } /* draft: stub */
 
 void fn_800E17E0(s32 arg0, s32 arg1, s32 *arg2) { } /* draft: stub */
 
+#pragma push
+#pragma peephole off
 s32 fn_800E1804(s32 arg0) {
-    s32 temp_r31;
+    u8 temp_r31;
 
     temp_r31 = lbl_80350B78;
     OSDisableInterrupts();
@@ -291,6 +291,7 @@ s32 fn_800E1804(s32 arg0) {
     OSRestoreInterrupts((long)(0));
     return temp_r31;
 }
+#pragma pop
 
 void fn_800E1848(M2C_UNK *arg1) {
     M2C_UNK sp10;
@@ -307,8 +308,10 @@ void fn_800E1848(M2C_UNK *arg1) {
     M2C_FIELD(__peReg, u16 *, 0xA) = (u16) ((M2C_FIELD(__peReg, u16 *, 0xA) & 0xFFFFFFFB) | 4);
 }
 
+#pragma push
+#pragma peephole off
 s32 GXSetDrawDoneCallback(s32 arg0) {
-    s32 temp_r31;
+    u8 temp_r31;
 
     temp_r31 = lbl_80350B7C;
     OSDisableInterrupts();
@@ -316,6 +319,7 @@ s32 GXSetDrawDoneCallback(s32 arg0) {
     OSRestoreInterrupts((long)(0));
     return temp_r31;
 }
+#pragma pop
 
 void fn_800E1914(M2C_UNK *arg1) {
     M2C_UNK sp10;
@@ -341,6 +345,8 @@ void __GXPEInit(void) {
     M2C_FIELD(__peReg, u16 *, 0xA) = (u16) ((((((((M2C_FIELD(__peReg, u16 *, 0xA) & 0xFFFFFFFB) | 4) & 0xFFFFFFF7) | 8) & 0xFFFFFFFE) | 1) & 0xFFFFFFFD) | 2);
 }
 
+#pragma push
+#pragma dont_inline on
 void fn_800E1A18(void) {
     if (M2C_FIELD(gx, s32 *, 0x4F4) & 1) {
         __GXSetSUTexRegs();
@@ -362,6 +368,7 @@ void fn_800E1A18(void) {
     }
     M2C_FIELD(gx, s32 *, 0x4F4) = 0;
 }
+#pragma pop
 
 #pragma push
 #pragma dont_inline on
@@ -402,9 +409,9 @@ void __GXSendFlushPrim(void) {
     u16 temp_r6;
     u32 temp_r0;
     u32 temp_r7;
-    u32 var_ctr;
     u32 var_ctr_2;
     u32 var_r3;
+    u32 var_ctr;
 
     temp_r6 = M2C_FIELD(gx, u16 *, 4);
     temp_r7 = temp_r6 * M2C_FIELD(gx, u16 *, 6);
@@ -424,9 +431,9 @@ void __GXSendFlushPrim(void) {
                 *(s8 *)0xCC008000 = 0;
                 *(s8 *)0xCC008000 = 0;
                 *(s8 *)0xCC008000 = 0;
-                var_ctr -= 1;
+                var_ctr = var_ctr - 1;
             } while (var_ctr != 0);
-            var_r3 &= 7;
+            var_r3 = var_r3 & 7;
             if (var_r3 != 0) {
                 goto block_4;
             }
@@ -435,7 +442,7 @@ block_4:
             var_ctr_2 = var_r3;
             do {
                 *(s8 *)0xCC008000 = 0;
-                var_ctr_2 -= 1;
+                var_ctr_2 = var_ctr_2 - 1;
             } while (var_ctr_2 != 0);
         }
     }
@@ -443,17 +450,17 @@ block_4:
 }
 
 void fn_800E1C30(s32 arg0, s32 arg1) {
-    M2C_FIELD(gx, s32 *, 0x7C) = (s32) ((M2C_FIELD(gx, s32 *, 0x7C) & 0xFFFFFF00 & ~0xFF) | (arg0 & 0xFF));
+    M2C_FIELD(gx, s16 *, 2) = 0;
+    M2C_FIELD(gx, s32 *, 0x7C) = (s32) ((arg0 & 0xFF) | (M2C_FIELD(gx, s32 *, 0x7C) & 0xFFFFFF00 & ~0xFF));
     M2C_FIELD(gx, s32 *, 0x7C) = (s32) ((M2C_FIELD(gx, s32 *, 0x7C) & 0xFFF8FFFF) | (arg1 << 0x10));
     *(s8 *)0xCC008000 = 0x61;
     *(s8 *)0xCC008000 = (s32) M2C_FIELD(gx, s32 *, 0x7C);
-    M2C_FIELD(gx, s16 *, 2) = 0;
 }
 
 void fn_800E1C78(s32 arg0, s32 arg1) {
+    M2C_FIELD(gx, s16 *, 2) = 0;
     M2C_FIELD(gx, s32 *, 0x7C) = (s32) ((M2C_FIELD(gx, s32 *, 0x7C) & 0xFFFF00FF & ~0xFF00) | ((arg0 << 8) & 0xFF00));
     M2C_FIELD(gx, s32 *, 0x7C) = (s32) ((M2C_FIELD(gx, s32 *, 0x7C) & 0xFFC7FFFF) | (arg1 << 0x13));
     *(s8 *)0xCC008000 = 0x61;
     *(s8 *)0xCC008000 = (s32) M2C_FIELD(gx, s32 *, 0x7C);
-    M2C_FIELD(gx, s16 *, 2) = 0;
 }

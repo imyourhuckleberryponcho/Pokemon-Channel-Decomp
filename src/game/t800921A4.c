@@ -114,10 +114,13 @@ loop_2:
     return var_r31 - 1;
 }
 
+#pragma push
+#pragma dont_inline on
 s32 MiniScore_SelectScene(s32 arg0) {
     lbl_803506D4 = arg0 - 1;
     return MiniScore_GetRanks() > 0;
 }
+#pragma pop
 
 void MiniScore_SelectGame(s32 arg0) {
     lbl_803506D0 = arg0;
@@ -149,10 +152,13 @@ s32 scr_MiniScore_SelectScene(s32 arg0) {
     return 0;
 }
 
+#pragma push
+#pragma dont_inline on
 s32 scr_MiniScore_GetRanks(s32 arg0) {
     fn_8008065C(arg0, MiniScore_GetRanks());
     return 0;
 }
+#pragma pop
 
 s32 scr_MiniScore_GetScore(s32 arg0) {
     fn_80080738();
@@ -160,11 +166,14 @@ s32 scr_MiniScore_GetScore(s32 arg0) {
     return 0;
 }
 
+#pragma push
+#pragma dont_inline on
 s32 scr_MiniScore_GetScoreAlt(s32 arg0) {
     fn_80080738();
     fn_8008065C(arg0, MiniScore_GetScoreAlt((long)(0)));
     return 0;
 }
+#pragma pop
 
 s32 scr_MiniScore_GetName(s32 arg0) {
     fn_80080738();
@@ -285,8 +294,8 @@ loop_62:
                 M2C_FIELD(var_r29, u8 *, 4) = 1U;
                 M2C_FIELD(var_r29, M2C_UNK **, 0) = temp_r26_2;
             } else if (fn_8007F65C(arg0) != 0) {
-                temp_r0_2 = M2C_FIELD(var_r29, u8 *, 4);
                 temp_f31 = fn_80080764(arg0);
+                temp_r0_2 = M2C_FIELD(var_r29, u8 *, 4);
                 switch ((s32) temp_r0_2) {          /* switch 2; irregular */
                 case 3:                             /* switch 2 */
                     fn_800146F0(M2C_FIELD(var_r29, M2C_UNK **, 0), 1);

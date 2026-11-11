@@ -141,17 +141,23 @@ loop_13:
     }
 }
 
+#pragma push
+#pragma dont_inline on
 void fn_80045C0C(s32 arg0) {
     fn_80045A0C((unsigned char)(arg0 + 0x10), (void *)(0));
 }
+#pragma pop
 
 void fn_80045C30(s32 arg0) {
     fn_80045A0C((unsigned char)(arg0 + 0x14), (void *)(0));
 }
 
+#pragma push
+#pragma dont_inline on
 void fn_80045C54(s32 arg0) {
     fn_80045A0C((unsigned char)(arg0 + 0x18), (void *)(0));
 }
+#pragma pop
 
 void fn_80045C78(void *arg0) {
     /* draft: did not compile: fn_80045A54(M2C_FIELD(arg0, u8 *, 0x2A)); */
@@ -181,17 +187,23 @@ void fn_80045D44(s32 arg0, s32 arg1) {
 
 void fn_80045D8C(void *arg0, u8 *arg1, M2C_UNK arg_sp0) { } /* draft: stub */
 
+#pragma push
+#pragma dont_inline on
 void fn_80045F68(s32 arg0) {
     fn_80045D44((long)(arg0 + 0x10), (long)(0));
 }
+#pragma pop
 
 void fn_80045F8C(s32 arg0) {
     fn_80045D44((long)(arg0 + 0x14), (long)(0));
 }
 
+#pragma push
+#pragma dont_inline on
 void fn_80045FB0(s32 arg0) {
     fn_80045D44((long)(arg0 + 0x18), (long)(0));
 }
+#pragma pop
 
 void fn_80045FD4(s32 arg0) {
     /* draft: did not compile: fn_80045D8C(arg0 + 0x2A); */
@@ -206,10 +218,13 @@ void fn_8004601C(s32 arg0) {
     /* draft: did not compile: fn_80045D8C(arg0, arg0 + 0x15); */
 }
 
+#pragma push
+#pragma dont_inline on
 void fn_80046058(s32 *arg0) {
     fn_80045D8C((void *)(arg0 + 0x2C), (unsigned char *)(0), (long)(0));
     *arg0 |= 1;
 }
+#pragma pop
 
 void fn_80046094(void *arg0) {
     M2C_FIELD(arg0, u8 *, 0xF) = (u8) M2C_FIELD(arg0, u8 *, 0x37);

@@ -654,12 +654,12 @@ void fn_80016964(void *arg0) {
     M2C_FIELD(arg0, s32 *, 0x5C) = 1;
     M2C_FIELD(arg0, s8 *, 0x108) = 0;
     /* draft: did not compile: fn_800163E0(arg0 + 0x10C, M2C_FIELD(arg0, s32 *, 0x60), 1, temp_r6, 1, lbl_803513E0); */
+    M2C_FIELD(arg0, f32 *, 0x14C) = (f32) lbl_803513EC;
     M2C_FIELD(arg0, f32 *, 0x138) = (f32) lbl_803513E4;
     M2C_FIELD(arg0, f32 *, 0x13C) = (f32) lbl_803513E8;
     M2C_FIELD(arg0, f32 *, 0x140) = (f32) lbl_803513E8;
     M2C_FIELD(arg0, f32 *, 0x144) = (f32) lbl_803513EC;
     M2C_FIELD(arg0, f32 *, 0x148) = (f32) lbl_803513F0;
-    M2C_FIELD(arg0, f32 *, 0x14C) = (f32) lbl_803513EC;
     M2C_FIELD(arg0, f32 *, 0x150) = (f32) lbl_803513F4;
     M2C_FIELD(arg0, s32 *, 0x160) = (s32) M2C_FIELD(arg0, s32 *, 0x10C);
     M2C_FIELD(arg0, s32 *, 0x164) = (s32) M2C_FIELD(arg0, s32 *, 0x110);

@@ -160,21 +160,21 @@ loop_8:
 }
 
 void __DVDClearWaitingQueue(void) {
-    void *temp_r3;
     void *temp_r4;
     void *temp_r5;
+    void *temp_r3;
 
     M2C_FIELD(&WaitingQueue_8031C7B8, M2C_UNK **, 0) = &WaitingQueue_8031C7B8;
     temp_r5 = &WaitingQueue_8031C7B8 + 8;
     temp_r4 = &WaitingQueue_8031C7B8 + 0x10;
-    M2C_FIELD(&WaitingQueue_8031C7B8, M2C_UNK **, 4) = &WaitingQueue_8031C7B8;
     temp_r3 = &WaitingQueue_8031C7B8 + 0x18;
     M2C_FIELD(&WaitingQueue_8031C7B8, void **, 8) = temp_r5;
+    M2C_FIELD(temp_r3, void **, 4) = temp_r3;
     M2C_FIELD(temp_r5, void **, 4) = temp_r5;
     M2C_FIELD(&WaitingQueue_8031C7B8, void **, 0x10) = temp_r4;
     M2C_FIELD(temp_r4, void **, 4) = temp_r4;
     M2C_FIELD(&WaitingQueue_8031C7B8, void **, 0x18) = temp_r3;
-    M2C_FIELD(temp_r3, void **, 4) = temp_r3;
+    M2C_FIELD(&WaitingQueue_8031C7B8, M2C_UNK **, 4) = &WaitingQueue_8031C7B8;
 }
 
 s32 __DVDPushWaitingQueue(s32 arg0, M2C_UNK *arg1) {
@@ -185,9 +185,9 @@ s32 __DVDPushWaitingQueue(s32 arg0, M2C_UNK *arg1) {
     temp_r5 = &WaitingQueue_8031C7B8 + (arg0 * 8);
     temp_r4 = M2C_FIELD(temp_r5, M2C_UNK **, 4);
     /* draft: did not compile: *temp_r4 = arg1; */
+    M2C_FIELD(temp_r5, M2C_UNK **, 4) = arg1;
     M2C_FIELD(arg1, M2C_UNK **, 4) = (M2C_UNK *) M2C_FIELD(temp_r5, M2C_UNK **, 4);
     M2C_FIELD(arg1, M2C_UNK **, 0) = temp_r5;
-    M2C_FIELD(temp_r5, M2C_UNK **, 4) = arg1;
     OSRestoreInterrupts(temp_r4, temp_r5);
     return 1;
 }
@@ -229,7 +229,7 @@ loop_1:
 }
 
 s32 __DVDCheckWaitingQueue(void) {
-    s32 var_ctr;
+    u8 var_ctr;
     u32 *var_r4;
 
     OSDisableInterrupts();
@@ -242,9 +242,11 @@ loop_1:
     }
     var_r4 += 8;
     var_ctr -= 1;
-    if (var_ctr == 0) {
-        OSRestoreInterrupts();
-        return 0;
+    switch (var_ctr) {
+    case 0:
+            OSRestoreInterrupts();
+            return 0;
+        break;
     }
     goto loop_1;
 }
@@ -656,15 +658,15 @@ void fn_800D1B74(void *arg0, u32 *arg1, u32 *arg2, u32 *arg3, u32 *arg4) {
 
 void fn_800D1E48(u16 arg0, u16 arg1, u8 arg2, u16 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg_sp8) {
     s32 var_r0;
-    s32 var_r3;
-    s32 var_r6;
     s32 var_r7;
+    s32 var_r6;
+    s32 var_r3;
     s32 temp_r29;
     s32 temp_r29_2;
     s32 temp_r30;
-    s32 temp_r30_2;
+    u8 temp_r30_2;
     s32 temp_r4;
-    s32 var_r12;
+    u16 var_r12;
     s32 var_r29;
     s32 var_r4;
 
@@ -692,7 +694,8 @@ void fn_800D1E48(u16 arg0, u16 arg1, u8 arg2, u16 arg3, s32 arg4, s32 arg5, s32 
     }
     var_r4 = (u16) ((s32) arg1 / (s32) var_r12);
     if (arg_sp8 != 0) {
-        temp_r4 = (var_r4 * 2) - 2;
+        temp_r4 = (var_r4 * 2);
+        temp_r4 -= 2;
         var_r0 += temp_r4;
         var_r3 += temp_r4;
         var_r4 = 0;

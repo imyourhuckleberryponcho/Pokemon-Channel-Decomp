@@ -462,13 +462,13 @@ u8 *fn_80030830(f32 *arg1, f32 *arg2) {
 #pragma optimize_for_size on
 void fn_800308C0(s32 arg0, u8 *arg1) {
     M2C_UNK sp14;
-    s32 sp28;
+    M2C_UNK sp10;
     f32 sp24;
     f32 sp20;
     u32 *sp1C;
     s32 sp18;
     s32 spC;
-    M2C_UNK sp10;
+    s32 sp28;
     u8 sp8;
     f32 temp_f31;
     u8 *var_r24;
@@ -737,6 +737,8 @@ void fn_800313CC(void *arg0, s8 arg1) {
     M2C_FIELD(arg0, s8 *, 0x28) = arg1;
 }
 
+#pragma push
+#pragma optimize_for_size on
 u32 **fn_800313D4(u32 **arg0, u32 *arg1, s32 arg2, M2C_UNK arg_sp0) {
     u32 sp8;
     s32 temp_r29;
@@ -797,6 +799,7 @@ u32 **fn_800313D4(u32 **arg0, u32 *arg1, s32 arg2, M2C_UNK arg_sp0) {
     }
     return arg0;
 }
+#pragma pop
 
 u32 **fn_80031578(u32 **arg0, u32 **arg1, u32 arg2, u32 arg3) { return 0; } /* draft: stub */
 

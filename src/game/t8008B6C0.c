@@ -95,6 +95,8 @@ void fn_8008B6C0(u32 arg0, u8 arg1) {
     fn_8008085C(temp_r31 + 9, temp_r4 & ~(1 << temp_r30));
 }
 
+#pragma push
+#pragma peephole off
 s32 GetGlobalFlag(s32 arg0) {
     u32 temp_r0;
     u32 temp_r4;
@@ -103,14 +105,15 @@ s32 GetGlobalFlag(s32 arg0) {
     temp_r0 = (arg0 << 0x1B) - temp_r4;
     return ((1 << (((temp_r0 << 5) | (temp_r0 >> 0x1BU)) + temp_r4)) & fn_800807CC((arg0 / 32) + 9)) != 0;
 }
+#pragma pop
 
 s32 scr_ModifyGlobalFlag(s32 arg0) {
-    s32 temp_r31;
+    u8 temp_r31;
 
+    fn_8008065C(arg0, 0);
     temp_r31 = fn_80080738((long)(0)) != 0;
     fn_80080738(arg0);
     fn_8008B6C0((unsigned long)(temp_r31), (unsigned char)(0));
-    fn_8008065C(arg0, 0);
     return 0;
 }
 

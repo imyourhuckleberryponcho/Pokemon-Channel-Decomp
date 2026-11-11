@@ -111,8 +111,8 @@ s32 GetFloorAttr(void *arg0) {
 }
 
 void fn_800A89EC(void *arg0, void *arg1) {
-    s32 sp28;
-    s32 sp24;
+    u32 sp28;
+    u32 sp24;
     f32 sp20;
     f32 sp1C;
     f32 sp18;
@@ -135,8 +135,8 @@ void fn_800A89EC(void *arg0, void *arg1) {
         sp10 = sp1C;
     }
     M2C_FIELD(arg0, f32 *, 0) = sp8;
-    M2C_FIELD(arg0, f32 *, 4) = spC;
     M2C_FIELD(arg0, f32 *, 8) = sp10;
+    M2C_FIELD(arg0, f32 *, 4) = spC;
 }
 
 f32 method_getPosYShouldBe(u32 arg0, s32 arg1, u32 arg2) { return 0; } /* draft: stub */
@@ -165,6 +165,8 @@ void fn_800A8D50(s32 arg0) {
     lbl_8034FE6C = arg0;
 }
 
+#pragma push
+#pragma peephole off
 void *fn_800A8D58(s32 arg0, u32 arg1) {
     s32 temp_r29;
     s32 temp_r4;
@@ -193,9 +195,9 @@ void *fn_800A8D58(s32 arg0, u32 arg1) {
             } else {
                 /* draft: did not compile: M2C_FIELD(var_r6, void **, 0) = (void *) (temp_r7 + ((var_r9 + 1) * 0x10)); */
             }
-            M2C_FIELD(var_r6, s32 *, 4) = 0;
             var_r9 += 1;
             M2C_FIELD(var_r6, s32 *, 8) = 0;
+            M2C_FIELD(var_r6, s32 *, 4) = 0;
             M2C_FIELD(var_r6, s32 *, 0xC) = var_r8;
             /* draft: did not compile: var_r6 += 0x10; */
             var_r8 = (var_r8 + arg0 + 0x3F) & 0xFFFFFFC0;
@@ -209,6 +211,7 @@ void *fn_800A8D58(s32 arg0, u32 arg1) {
     M2C_FIELD(temp_r3, s32 *, 0x10) = 0;
     return temp_r3;
 }
+#pragma pop
 
 s32 fn_800A8E64(void) {
     fn_800A8D20();

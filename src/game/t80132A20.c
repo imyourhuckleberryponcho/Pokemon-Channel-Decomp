@@ -50,10 +50,10 @@ void fn_80134650(void *arg0, void *arg1) {
 }
 
 s32 fn_80134674(void *arg0) {
+    u32 var_r4;
     u32 temp_r5;
     u32 temp_r6;
     u32 var_r3;
-    u32 var_r4;
 
     temp_r5 = (u16) M2C_FIELD(arg0, u16 *, 4) >> 2U;
     var_r4 = temp_r5;
@@ -62,8 +62,6 @@ s32 fn_80134674(void *arg0) {
     }
     temp_r6 = (u16) M2C_FIELD(arg0, u16 *, 6) >> 2U;
     var_r3 = temp_r6;
-    if ((u8) M2C_FIELD(arg0, u8 *, 9) == 2) {
-        var_r3 = (u32) ((s32) temp_r6 >> 1);
-    }
+    var_r3 = !((u8) M2C_FIELD(arg0, u8 *, 9) == 2) ? var_r3 : (u32) ((s32) temp_r6 >> 1);
     return ((((temp_r5 + 2) * (temp_r6 + 2)) + ((var_r4 + 2) * (var_r3 + 2) * 2)) * 2) + 0x81A0;
 }

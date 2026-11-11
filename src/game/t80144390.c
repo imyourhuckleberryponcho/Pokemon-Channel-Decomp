@@ -94,7 +94,7 @@ loop_10:
 
 s32 method_getTotalBlock(void *arg0) {
     s32 temp_r4;
-    s32 var_r4;
+    u32 var_r4;
     s32 var_r5;
     s32 var_r6;
     s32 var_r7;
@@ -266,18 +266,18 @@ loop_18:
         sp40 = 0;
         var_r7 = 0;
         sp38 = 0x40;
-        sp36 = (sp36 & 0xFFFFFFFC) | M2C_FIELD(arg0, u8 *, 0x3E8);
+        sp36 = (sp36 & 0xFFFFFFFC) | M2C_FIELD(arg0, s8 *, 0x3E8);
 loop_24:
         if (var_r6 < 8) {
             /* draft: did not compile: temp_r8 = arg0 + var_r6; */
-            if ((u8) M2C_FIELD(temp_r8, u8 *, 0x3F2) == 0) {
+            if ((s8) M2C_FIELD(temp_r8, s8 *, 0x3F2) == 0) {
 
             } else {
                 temp_r3_4 = 3 << var_r7;
                 temp_r9 = ~(temp_r3_4 | temp_r3_4);
                 var_r6 += 1;
-                sp3C = (sp3C & temp_r9) | (M2C_FIELD(temp_r8, u8 *, 0x3EA) << var_r7);
-                temp_r0 = M2C_FIELD(temp_r8, u8 *, 0x3F2) << var_r7;
+                sp3C = (sp3C & temp_r9) | (M2C_FIELD(temp_r8, s8 *, 0x3EA) << var_r7);
+                temp_r0 = M2C_FIELD(temp_r8, s8 *, 0x3F2) << var_r7;
                 sp3E = (sp3E & temp_r9) | temp_r0;
                 var_r7 += 2;
                 goto loop_24;
@@ -386,7 +386,7 @@ s32 fn_801448E0(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, M2C_UNK arg_
     u32 sp10;
     void *spC;
     s32 sp8;
-    s32 temp_r22;
+    u32 temp_r22;
     s32 temp_r23;
     s32 temp_r29;
     s32 var_r3;
@@ -649,18 +649,18 @@ loop_23:
         sp40 = 0;
         var_r7 = 0;
         sp38 = 0x40;
-        sp36 = (sp36 & 0xFFFFFFFC) | M2C_FIELD(arg0, u8 *, 0x3E8);
+        sp36 = (sp36 & 0xFFFFFFFC) | M2C_FIELD(arg0, s8 *, 0x3E8);
 loop_29:
         if (var_r6 < 8) {
             /* draft: did not compile: temp_r8 = arg0 + var_r6; */
-            if ((u8) M2C_FIELD(temp_r8, u8 *, 0x3F2) == 0) {
+            if ((s8) M2C_FIELD(temp_r8, s8 *, 0x3F2) == 0) {
 
             } else {
                 temp_r3_5 = 3 << var_r7;
                 temp_r9 = ~(temp_r3_5 | temp_r3_5);
                 var_r6 += 1;
-                sp3C = (sp3C & temp_r9) | (M2C_FIELD(temp_r8, u8 *, 0x3EA) << var_r7);
-                temp_r0_2 = M2C_FIELD(temp_r8, u8 *, 0x3F2) << var_r7;
+                sp3C = (sp3C & temp_r9) | (M2C_FIELD(temp_r8, s8 *, 0x3EA) << var_r7);
+                temp_r0_2 = M2C_FIELD(temp_r8, s8 *, 0x3F2) << var_r7;
                 sp3E = (sp3E & temp_r9) | temp_r0_2;
                 var_r7 += 2;
                 goto loop_29;
@@ -764,7 +764,7 @@ loop_50:
 
 s32 fn_80144F30(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, M2C_UNK arg_sp0) {
     s32 temp_r6;
-    u32 temp_r0;
+    int temp_r0;
     u32 temp_r3;
     u32 temp_r4;
     void *temp_r5;
@@ -778,19 +778,20 @@ s32 fn_80144F30(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, M2C_
     *(&lbl_803474C0 + temp_r6) = 3;
     temp_r5 = &lbl_803474C0 + temp_r6;
     temp_r4 = temp_r3 >> 0x1FU;
-    M2C_FIELD(temp_r5, s32 *, 4) = arg0;
     temp_r0 = (temp_r3 << 0x1B) - temp_r4;
     M2C_FIELD(temp_r5, s32 *, 8) = arg1;
     M2C_FIELD(temp_r5, s32 *, 0xC) = arg3;
     M2C_FIELD(temp_r5, s32 *, 0x10) = arg4;
+    lbl_80350EDC = ((temp_r0 << 5) | (temp_r0 >> 0x1BU));
+    M2C_FIELD(temp_r5, s32 *, 4) = arg0;
     M2C_FIELD(temp_r5, s32 *, 0x14) = arg5;
-    lbl_80350EDC = ((temp_r0 << 5) | (temp_r0 >> 0x1BU)) + temp_r4;
+    lbl_80350EDC += temp_r4;
     return 0;
 }
 
 s32 fn_80144FFC(s32 arg0, s32 arg2, s32 arg3, s32 arg4) {
     s32 temp_r6;
-    u32 temp_r0;
+    int temp_r0;
     u32 temp_r3;
     u32 temp_r4;
     void *temp_r5;
@@ -804,12 +805,13 @@ s32 fn_80144FFC(s32 arg0, s32 arg2, s32 arg3, s32 arg4) {
     *(&lbl_803474C0 + temp_r6) = 4;
     temp_r5 = &lbl_803474C0 + temp_r6;
     temp_r4 = temp_r3 >> 0x1FU;
-    M2C_FIELD(temp_r5, s32 *, 4) = arg0;
     temp_r0 = (temp_r3 << 0x1B) - temp_r4;
     M2C_FIELD(temp_r5, s32 *, 0xC) = arg2;
     M2C_FIELD(temp_r5, s32 *, 0x10) = arg3;
     M2C_FIELD(temp_r5, s32 *, 0x14) = arg4;
-    lbl_80350EDC = ((temp_r0 << 5) | (temp_r0 >> 0x1BU)) + temp_r4;
+    lbl_80350EDC = ((temp_r0 << 5) | (temp_r0 >> 0x1BU));
+    M2C_FIELD(temp_r5, s32 *, 4) = arg0;
+    lbl_80350EDC += temp_r4;
     return 0;
 }
 
@@ -903,13 +905,13 @@ s32 fn_80145200(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 #pragma pop
 
 s32 fn_8014529C(void *arg0) {
-    s32 var_r3;
     s32 var_r4;
     s32 var_r5;
     s32 var_r6;
     u8 temp_r0;
     u8 temp_r0_2;
     void *temp_r7;
+    u32 var_r3;
 
     /* draft: did not compile: memcpy(arg0 + 0x3E8, 0x12); */
     temp_r0 = M2C_FIELD(arg0, u8 *, 0x3E8);
@@ -1015,7 +1017,6 @@ void fn_80145374(u8 *arg0, s32 arg1, s32 arg2, M2C_UNK arg_sp0) {
     u8 temp_r0_7;
     u8 temp_r12_3;
     u8 temp_r3;
-    u8 temp_r3_2;
     u8 temp_r3_3;
     u8 temp_r3_4;
     u8 temp_r3_5;
@@ -1114,9 +1115,8 @@ void fn_80145374(u8 *arg0, s32 arg1, s32 arg2, M2C_UNK arg_sp0) {
         if ((u8) M2C_FIELD(var_r7, u8 *, -1) == temp_r3) {
             M2C_FIELD(var_r7, u8 *, 0) = temp_r3 ^ 0xFF;
         }
-        temp_r3_2 = M2C_FIELD(var_r7, u8 *, 1);
-        if ((u8) M2C_FIELD(var_r7, u8 *, 0) == temp_r3_2) {
-            M2C_FIELD(var_r7, u8 *, 1) = (u8) (temp_r3_2 ^ 0xFF);
+        if ((u8) M2C_FIELD(var_r7, u8 *, 0) == (M2C_FIELD(var_r7, u8 *, 1))) {
+            M2C_FIELD(var_r7, u8 *, 1) = (u8) ((M2C_FIELD(var_r7, u8 *, 1)) ^ 0xFF);
         }
         temp_r3_3 = M2C_FIELD(var_r7, u8 *, 2);
         if ((u8) M2C_FIELD(var_r7, u8 *, 1) == temp_r3_3) {
@@ -1299,8 +1299,8 @@ loop_4:
                     temp_r8_4 = ((temp_r0_5 << 4) | (temp_r0_5 >> 0x1CU)) + temp_r7_4;
                     temp_r10_3 = (&sp8)[temp_r11_4];
                     var_r4 += 8;
-                    (&sp8)[temp_r11_4] = temp_r10_3 + M2C_FIELD(var_r5, u8 *, 5);
                     (&sp8)[temp_r9_4] += M2C_FIELD(var_r5, u8 *, 6);
+                    (&sp8)[temp_r11_4] = temp_r10_3 + M2C_FIELD(var_r5, u8 *, 5);
                     temp_r0_6 = M2C_FIELD(var_r5, u8 *, 7);
                     var_r5 += 8;
                     (&sp8)[temp_r8_4] += temp_r0_6;

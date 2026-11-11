@@ -209,13 +209,13 @@ block_17:
 }
 
 u16 fn_800C2D7C(void *arg0, u16 arg1) {
-    u16 spC;
-    u16 temp_r3;
+    u32 var_r30;
+    s32 temp_r3;
     u16 temp_r3_2;
     u16 temp_r3_3;
     u16 var_r28;
     u16 var_r29;
-    u32 var_r30;
+    u16 spC;
     s8 temp_r27;
     void *temp_r25;
 
@@ -224,8 +224,7 @@ u16 fn_800C2D7C(void *arg0, u16 arg1) {
     var_r29 = 0;
     var_r28 = 1;
     temp_r25 = M2C_FIELD(arg0, void **, 4);
-    temp_r27 = M2C_FIELD(M2C_FIELD(arg0, void **, 4), u16 *, 0x1E) * M2C_FIELD(M2C_FIELD(arg0, void **, 4), u16 *, 0x1C);
-    if ((u32) ((u32) (M2C_FIELD(arg0, u32 *, 0x28) + spC) / temp_r27) == (u32) ((u32) M2C_FIELD(arg0, u32 *, 0x28) / temp_r27)) {
+    if ((u32) ((u32) (M2C_FIELD(arg0, u32 *, 0x28) + spC) / (temp_r27 = M2C_FIELD(M2C_FIELD(arg0, void **, 4), u16 *, 0x1E) * M2C_FIELD(M2C_FIELD(arg0, void **, 4), u16 *, 0x1C))) == (u32) ((u32) M2C_FIELD(arg0, u32 *, 0x28) / temp_r27)) {
         return 0U;
     }
 loop_15:
@@ -268,7 +267,7 @@ s32 fn_800C33AC(void *arg0, u32 arg1) {
     if ((u32) M2C_FIELD(arg0, u32 *, 0x28) > (u32) M2C_FIELD(arg0, u32 *, 0x24)) {
         return 0xA00C;
     }
-    if ((u16) M2C_FIELD(M2C_FIELD(arg0, void **, 4), u16 *, 0x2A) != 0) {
+    if ((u16) M2C_FIELD(M2C_FIELD((s32)arg0, void **, 4), u16 *, 0x2A) != 0) {
         if ((u16) M2C_FIELD(M2C_FIELD(arg0, void **, 4), u16 *, 0x2A) < (u32) (arg1 / (u16) M2C_FIELD(M2C_FIELD(arg0, void **, 4), u16 *, 0x1C))) {
             return 0xA00C;
         }
@@ -367,7 +366,7 @@ void PPCMtpmc4(void) {
 }
 
 s32 PPCMffpscr(void) {
-    s32 unkspC;
+    u8 unkspC;
     f64 sp8;
 
     sp8 = M2C_ERROR(/* unknown instruction: mffs $f31 */);
@@ -395,14 +394,19 @@ void PPCMtwpar(void) {
     M2C_ERROR(/* unknown instruction: mtspr WPAR, $r3 */);
 }
 
+#pragma push
+#pragma dont_inline on
 void PPCDisableSpeculation(void) {
     fn_800C34CC();
 }
+#pragma pop
 
 void PPCSetFpNonIEEEMode(void) {
     M2C_ERROR(/* unknown instruction: mtfsb1 cr7gt */);
 }
 
+#pragma push
+#pragma peephole off
 M2C_UNK *__OSFPRInit(void) {
     s32 var_r3;
 
@@ -446,6 +450,7 @@ M2C_UNK *__OSFPRInit(void) {
     M2C_ERROR(/* unknown instruction: mtfsf 0xff, $f0 */);
     return (M2C_UNK *) var_r3;
 }
+#pragma pop
 
 u32 OSGetConsoleType(void) {
     u32 var_r3;

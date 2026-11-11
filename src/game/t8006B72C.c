@@ -83,7 +83,7 @@ void *fn_8006BCA4(void *arg0) {
     s32 sp8;
     s8 temp_r6;
     u8 temp_r4;
-    u8 temp_r5;
+    s8 temp_r5;
 
     M2C_FIELD(arg0, M2C_UNK **, 4) = &lbl_80223A80;
     M2C_FIELD(arg0, s32 *, 0) = 0;
@@ -99,10 +99,10 @@ void *fn_8006BCA4(void *arg0) {
     }
     M2C_FIELD(arg0, s32 *, 0x201E) = 0;
     OSGetTime();
-    OSTicksToCalendarTime(&sp8);
-    temp_r5 = M2C_FIELD(arg0, u8 *, 0x2024);
     M2C_FIELD(arg0, u8 *, 0x2021) = (u8) (sp1C % 100);
+    OSTicksToCalendarTime(&sp8);
     M2C_FIELD(arg0, u8 *, 0x2022) = (u8) (sp18 + 1);
+    temp_r5 = M2C_FIELD(arg0, u8 *, 0x2024);
     M2C_FIELD(arg0, u8 *, 0x2023) = (u8) sp14;
     M2C_FIELD(arg0, u8 *, 0x2024) = (u8) sp10;
     M2C_FIELD(arg0, u8 *, 0x2025) = (u8) spC;
@@ -244,7 +244,7 @@ void fn_8006C278(void *arg0, u32 arg1, u8 *arg2) {
 }
 
 void fn_8006C2F4(void *arg0, u32 arg1, s8 arg2) {
-    s32 temp_r0;
+    u8 temp_r0;
 
     switch (arg1) {                                 /* irregular */
     case 0x44:

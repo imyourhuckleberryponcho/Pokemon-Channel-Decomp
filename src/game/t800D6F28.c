@@ -531,7 +531,7 @@ void __CARDTxHandler(s32 arg0) {
     M2C_UNK (*temp_r0)(s32, M2C_UNK);
     M2C_UNK var_r4;
     s32 temp_r31;
-    s32 temp_r4;
+    u8 temp_r4;
     s32 var_r30;
     void *temp_r29;
 
@@ -561,7 +561,7 @@ void __CARDUnlockedHandler(s32 arg0) {
     void *temp_r3;
 
     temp_r3 = &lbl_8031C9E0 + (arg0 * 0x110);
-    temp_r0 = M2C_FIELD(temp_r3, M2C_UNK (**)(s32, M2C_UNK), 0xDC);
+    temp_r0 = M2C_FIELD((s32)temp_r3, M2C_UNK (**)(s32, M2C_UNK), 0xDC);
     if (temp_r0 != NULL) {
         M2C_FIELD(temp_r3, M2C_UNK (**)(s32, M2C_UNK), 0xDC) = NULL;
         if (EXIProbe(arg0) != 0) {
@@ -719,14 +719,16 @@ s32 __CARDReadSegment(s32 arg0) { return 0; } /* draft: stub */
 
 s32 fn_800D8424(s32 arg0, s32 arg1) { return 0; } /* draft: stub */
 
+#pragma push
+#pragma dont_inline on
 s32 fn_800D8540(s32 arg0, u32 arg1) {
-    s32 var_r30;
+    s8 var_r30;
     void *temp_r31;
 
-    temp_r31 = &lbl_8031C9E0 + (arg0 * 0x110);
-    M2C_FIELD(temp_r31, s8 *, 0x94) = 0xF1;
     M2C_FIELD(temp_r31, s8 *, 0x95) = (s8) ((arg1 >> 0x11U) & 0x7F);
+    temp_r31 = &lbl_8031C9E0 + (arg0 * 0x110);
     M2C_FIELD(temp_r31, u8 *, 0x96) = (u8) (arg1 >> 9U);
+    M2C_FIELD(temp_r31, s8 *, 0x94) = 0xF1;
     M2C_FIELD(temp_r31, s32 *, 0xA0) = 3;
     M2C_FIELD(temp_r31, s32 *, 0xA4) = -1;
     M2C_FIELD(temp_r31, s32 *, 0xA8) = 3;
@@ -745,6 +747,7 @@ s32 fn_800D8540(s32 arg0, u32 arg1) {
     }
     return var_r30;
 }
+#pragma pop
 
 void CARDInit(void) {
     M2C_UNK *var_r30;
@@ -784,11 +787,7 @@ void __CARDSetDiskID(void *arg0) {
         var_r0 = &lbl_8031C9E0 + 0x220;
     }
     M2C_FIELD(&lbl_8031C9E0, void **, 0x10C) = var_r0;
-    if (var_r3 != NULL) {
-
-    } else {
-        var_r3 = &lbl_8031C9E0 + 0x220;
-    }
+    var_r3 = var_r3 != NULL ? var_r3 : &lbl_8031C9E0 + 0x220;
     M2C_FIELD(&lbl_8031C9E0, void **, 0x21C) = var_r3;
 }
 
@@ -817,7 +816,7 @@ s32 __CARDGetControlBlock(s32 arg0, void **arg1) {
 
 s32 __CARDPutControlBlock(void *arg0, s32 arg1) {
     OSDisableInterrupts();
-    if ((s32) M2C_FIELD(arg0, s32 *, 0) != 0) {
+    if ((s32) (u16)M2C_FIELD(arg0, s32 *, 0) != 0) {
         M2C_FIELD(arg0, s32 *, 4) = arg1;
     } else if ((s32) M2C_FIELD(arg0, s32 *, 4) == -1) {
         M2C_FIELD(arg0, s32 *, 4) = arg1;
@@ -884,7 +883,7 @@ loop_16:
 
 s32 fn_800D89A8(s32 *arg1) {
     void *sp10;
-    s32 temp_r3;
+    s8 temp_r3;
 
     /* draft: did not compile: temp_r3 = __CARDGetControlBlock(&sp10); */
     if (temp_r3 < 0) {
@@ -902,12 +901,13 @@ s32 fn_800D89A8(s32 *arg1) {
 }
 
 s32 fn_800D8A2C(s32 arg0) {
-    s32 temp_r29;
+    u8 temp_r29;
     s32 temp_r4;
-    s32 var_r0;
     void *temp_r31;
+    u32 var_r0;
 
-    temp_r4 = arg0 * 0x110;
+    temp_r4 = arg0;
+    temp_r4 *= 0x110;
     temp_r31 = &lbl_8031C9E0 + temp_r4;
     temp_r29 = OSDisableInterrupts(&lbl_8031C9E0, temp_r4);
 loop_2:
@@ -934,7 +934,6 @@ s32 OnReset_800D8AC4(s32 arg0) {
 s32 fn_800D8B14(u32 arg0) {
     u32 temp_r8;
     s32 var_r10;
-    s32 var_r7;
     s32 var_r7_2;
     s32 var_r7_3;
     s32 var_r7_4;
@@ -944,13 +943,14 @@ s32 fn_800D8B14(u32 arg0) {
     s8 temp_r8_2;
     u32 temp_r8_3;
     u32 var_r8;
+    s32 var_r7;
 
-    var_ctr = 8;
-    temp_r6 = arg0 >> 0x1FU;
-    var_r9 = 0;
-    var_r10 = 1;
-    var_r7 = 0;
     var_r8 = 0;
+    temp_r6 = arg0 >> 0x1FU;
+    var_r10 = 1;
+    var_ctr = 8;
+    var_r7 = 0;
+    var_r9 = 0;
     do {
         if (var_r8 > 0xFU) {
             if (var_r8 == 0x1F) {

@@ -168,7 +168,6 @@ void fn_8001E6F0(void *arg0, void *arg1, f32 farg0, f32 farg1) {
     f32 temp_f22;
     f32 temp_f22_2;
     f32 temp_f23;
-    f32 temp_f26;
     f32 temp_f26_2;
     f32 temp_f27;
     f32 temp_f28;
@@ -186,6 +185,7 @@ void fn_8001E6F0(void *arg0, void *arg1, f32 farg0, f32 farg1) {
     f32 var_f23;
     f32 var_f24;
     f32 var_f25;
+    f32 temp_f26;
 
     temp_f31 = lbl_803514B8 * method_getAspect(M2C_FIELD(arg1, s32 *, 0x60));
     temp_f29 = (f32) -((((f64) M2C_FIELD(arg0, f32 *, 0x24) / lbl_803514C8) * (f64) lbl_803514B8) - (f64) lbl_803514B8);
@@ -309,9 +309,9 @@ s32 fn_8001EB5C(void *arg0, s32 arg1, void *arg2, f32 farg0, f32 farg1) { return
 #pragma dont_inline on
 void fn_8001F5D8(void *arg0, s32 arg1) {
     f32 temp_f31;
-    f32 temp_f1_2;
-    f32 temp_f29;
     f32 temp_f30;
+    f32 temp_f29;
+    f32 temp_f1_2;
     f32 temp_f1;
     s32 temp_cr0_eq;
     void *temp_r3;
@@ -636,7 +636,7 @@ void fn_80020054(s32 arg0) {
 
 void fn_8002007C(s32 arg0, s32 arg1) {
     void *spC;
-    s32 sp8;
+    u8 sp8;
     void *temp_r3;
     void *temp_r3_2;
 
@@ -703,7 +703,7 @@ loop_14:
 s32 IsModelLoaded(s32 arg0) {
     void *spC;
     s32 sp8;
-    s32 temp_r31;
+    u8 temp_r31;
     void *temp_r3;
 
     temp_r31 = lbl_803504B8;
@@ -713,8 +713,8 @@ s32 IsModelLoaded(s32 arg0) {
         return 1;
     }
     temp_r3 = M2C_FIELD(spC, void **, 0x10);
-    return M2C_FIELD(M2C_FIELD(temp_r3, void **, 4), s32 (**)(void *), 0x24)(temp_r3);
-}
+    sp8 = M2C_FIELD(M2C_FIELD(temp_r3, void **, 4), s32 (**)(void *), 0x24)(temp_r3);
+    return sp8;}
 
 void fn_800202C0(void) {
     /* draft: did not compile: fn_80020108(lbl_803504B8); */
@@ -727,11 +727,12 @@ void fn_800202E4(void *arg0) {
     DVDReadAsyncPrio(&lbl_802C0208, M2C_FIELD(M2C_FIELD(arg0, void **, 4), s32 *, 4), (M2C_FIELD(&lbl_802C0208, s32 *, 0x34) + 0x1F) & 0xFFFFFFE0, 0, fn_80020358, 2);
 }
 
+#pragma push
+#pragma dont_inline on
 void fn_80020358(s32 arg0, void *arg1) {
     void *sp8;
-    M2C_UNK *temp_r3;
-    s32 *temp_r4;
     void *temp_r31;
+    M2C_UNK *temp_r3;
 
     temp_r31 = M2C_FIELD(arg1, void **, 0x2C);
     sp8 = arg1;
@@ -744,9 +745,8 @@ void fn_80020358(s32 arg0, void *arg1) {
             lbl_803504C4 = 0;
         }
     } else {
-        temp_r4 = M2C_FIELD(temp_r31, s32 **, 4);
-        *temp_r4 = M2C_FIELD(arg1, s32 *, 0x34);
-        DVDClose(arg1, temp_r4);
+        *(M2C_FIELD(temp_r31, s32 **, 4)) = M2C_FIELD(arg1, s32 *, 0x34);
+        DVDClose(arg1, (M2C_FIELD(temp_r31, s32 **, 4)));
         M2C_FIELD(temp_r31, s32 **, 4) = NULL;
         M2C_FIELD(temp_r31, void **, 0) = (void *) lbl_803504C0;
         /* draft: did not compile: lbl_803504C0 = temp_r31; */
@@ -760,17 +760,18 @@ void fn_80020358(s32 arg0, void *arg1) {
         lbl_803504C4 = 0;
     }
 }
+#pragma pop
 
 void ReadBmp(void *arg0, s32 arg1) {
-    s32 sp38;
+    s32 var_r30;
     s32 sp3C;
     M2C_UNK sp8;
     M2C_UNK *var_r31;
     M2C_UNK *var_r4;
     M2C_UNK *var_r7;
-    s32 var_r30;
+    s32 sp38;
     u32 temp_r5;
-    u8 temp_r30;
+    s16 temp_r30;
     u8 var_r6;
 
     var_r31 = NULL;

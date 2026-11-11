@@ -219,9 +219,12 @@ s32 HSD_SListRemove(s32 *arg0) {
     return 0;
 }
 
+#pragma push
+#pragma peephole off
 void fn_80109370(void) {
     hsdInitClassInfo(&lbl_802AA3D0, &lbl_802AA538, &lbl_802AA40C, &lbl_803502C0, 0x3C, 8);
 }
+#pragma pop
 
 s32 EulerToQuat(void *arg0, void *arg1) {
     f32 temp_f31;

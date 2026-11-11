@@ -59,7 +59,7 @@ s32 HSD_CObjGetFlags(void *arg0) {
 }
 
 void **fn_8001D708(void **arg0, s32 arg1, s32 arg2) {
-    s32 temp_r31;
+    u8 temp_r31;
 
     if (arg2 != 0) {
         temp_r31 = M2C_FIELD(*arg0, s32 *, 0);
@@ -306,6 +306,8 @@ void fn_8001E000(void *arg0, s8 arg1, s8 arg2, s8 arg3, s8 arg4) {
     M2C_FIELD(arg0, s8 *, 0xB) = arg4;
 }
 
+#pragma push
+#pragma peephole off
 void fn_8001E014(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, f64 farg0, f64 farg1, f64 farg2, f64 farg3, f64 farg4, f64 farg5, f64 farg6, f64 farg7, M2C_UNK arg_sp8) {
     M2C_UNK sp74;
     s32 *sp70;
@@ -352,6 +354,7 @@ void fn_8001E014(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32
     fn_8014F768(&sp74, 0x400, arg1, &sp68);
     /* draft: did not compile: fn_8001E0D0(arg0, &sp74); */
 }
+#pragma pop
 
 void fn_8001E0D0(void *arg0, u8 *arg1) {
     u8 sp8;
@@ -509,10 +512,10 @@ void fn_8001E5B8(void) {
 }
 
 void fn_8001E5BC(void *arg0) {
+    M2C_FIELD(arg0, f32 *, 0xC) = (f32) lbl_803514A8;
     M2C_FIELD(arg0, s32 *, 0) = 0;
     M2C_FIELD(arg0, s32 *, 4) = 0;
     M2C_FIELD(arg0, f32 *, 8) = (f32) lbl_803514A8;
-    M2C_FIELD(arg0, f32 *, 0xC) = (f32) lbl_803514A8;
     M2C_FIELD(arg0, f32 *, 0x18) = (f32) lbl_803514A8;
     M2C_FIELD(arg0, f32 *, 0x20) = (f32) lbl_803514AC;
     M2C_FIELD(arg0, f32 *, 0x24) = (f32) lbl_803514B0;

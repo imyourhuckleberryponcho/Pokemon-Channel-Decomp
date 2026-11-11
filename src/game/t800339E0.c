@@ -108,10 +108,10 @@ void *CreateAmbientLight(void *arg0, s32 *arg1) {
     M2C_FIELD(arg0, M2C_UNK **, 0x20) = &lbl_80221B10;
     M2C_FIELD(arg0, s32 *, 8) = 0x200000;
     M2C_FIELD(arg0, s32 *, 0xC) = 0;
-    M2C_FIELD(arg0, M2C_UNK **, 0x20) = &lbl_80223D70;
-    M2C_FIELD(arg0, s32 *, 0x24) = 0;
     M2C_FIELD(arg0, s32 *, 0x28) = 5;
     M2C_FIELD(arg0, s32 *, 0x58) = 0;
+    M2C_FIELD(arg0, M2C_UNK **, 0x20) = &lbl_80223D70;
+    M2C_FIELD(arg0, s32 *, 0x24) = 0;
     M2C_FIELD(arg0, M2C_UNK **, 0x20) = &lbl_802232C4;
     M2C_FIELD(arg0, s32 *, 0x5C) = 0;
     M2C_FIELD(arg0, s32 *, 8) = (s32) (M2C_FIELD(arg0, s32 *, 8) | 2);
@@ -355,10 +355,10 @@ void fn_80034404(void) {
     temp_r3 = get_up_vector_for_viewing_mtx(0x110);
     if (temp_r3 != NULL) {
         M2C_FIELD(temp_r3, s32 *, 0x104) = (s32) *(&lbl_80223360 + (lbl_80350524 * 4));
-        M2C_FIELD(temp_r3, s32 *, 0x100) = 0;
         M2C_FIELD(temp_r3, s32 *, 0x104) = 0;
         M2C_FIELD(temp_r3, s32 *, 0x108) = 0;
         M2C_FIELD(temp_r3, s32 *, 0x10C) = 0;
+        M2C_FIELD(temp_r3, s32 *, 0x100) = 0;
     }
     temp_r3_2 = fn_80038694(temp_r3);
     if ((temp_r3_2 >= 0) && (temp_r3_2 < 0x40)) {

@@ -66,12 +66,15 @@ void fn_8012AF44(u16 *arg0, u32 arg1);
 s32 fn_8012B040(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg4);
 void fn_8012B18C(void);
 
+#pragma push
+#pragma peephole off
 s32 salSynthSendMessage(void *arg0, s32 arg1) {
     if (((s32 (*)(s32, s32)) lbl_80350E40) == NULL) {
         return 0;
     }
     return 0;
 }
+#pragma pop
 
 void salActivateVoice(void *arg0, u8 arg1) {
     void *temp_r0;
@@ -415,7 +418,7 @@ block_47:
 }
 
 void fn_8012AA28(void *arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 *arg4, f32 *arg5) {
-    s32 sp18;
+    f32 var_f2;
     u8 sp1C;
     f32 sp14;
     f32 sp10;
@@ -447,7 +450,7 @@ void fn_8012AA28(void *arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 *arg4, f32 *ar
     f32 var_f1;
     f32 var_f28;
     f32 var_f29;
-    f32 var_f2;
+    s32 sp18;
     f32 var_f30;
     f32 var_f6;
     f64 temp_f2_2;

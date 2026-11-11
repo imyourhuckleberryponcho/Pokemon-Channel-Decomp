@@ -406,7 +406,8 @@ void fn_80014164(void *arg0) {
     }
     M2C_FIELD(arg0, s32 *, 0x1C) = var_r0;
     temp_r4_2 = M2C_FIELD(arg0, void **, 0x14);
-    temp_r6_4 = temp_r6_3 + (M2C_FIELD(temp_r4_2, u32 *, 8) * 4);
+    temp_r6_4 = (M2C_FIELD(temp_r4_2, u32 *, 8) * 4);
+    temp_r6_4 += temp_r6_3;
     if ((u32) M2C_FIELD(temp_r4_2, u32 *, 0xC) != 0) {
         var_r0_2 = temp_r6_4;
     } else {
@@ -424,9 +425,7 @@ void fn_80014164(void *arg0) {
     var_r4 = 0;
     temp_r5 = M2C_FIELD(arg0, void **, 0x14);
     temp_r5_2 = M2C_FIELD(temp_r5, u32 *, 0x10);
-    if (((u32) M2C_FIELD(temp_r5, u32 *, 0xC) != 0) || (temp_r5_2 != 0)) {
-        var_r4 = 1;
-    }
+    var_r4 = !(((u32) M2C_FIELD(temp_r5, u32 *, 0xC) != 0) || (temp_r5_2 != 0)) ? var_r4 : 1;
     if (var_r4 != 0) {
         var_r0_4 = temp_r6_5 + (temp_r5_2 * 8);
     } else {
@@ -463,7 +462,7 @@ s32 fn_800143B8(void **arg0, u8 *arg1, u32 arg2, u32 arg3) {
     s32 var_ctr;
     u32 temp_r0;
     u32 temp_r9;
-    u32 var_r8;
+    s8 var_r8;
     u8 *var_r10;
     u8 *var_r11;
     u8 *var_r12;
@@ -476,7 +475,8 @@ s32 fn_800143B8(void **arg0, u8 *arg1, u32 arg2, u32 arg3) {
     }
     temp_r7 = M2C_FIELD(temp_r3, s32 *, 0xC);
     /* draft: did not compile: temp_r9 = arg1 + arg3; */
-    var_r8 = temp_r0 - arg2;
+    var_r8 = temp_r0;
+    var_r8 -= arg2;
     /* draft: did not compile: var_r10 = temp_r7 + arg2; */
 loop_8:
     if (var_r8 < arg3) {
@@ -552,13 +552,13 @@ M2C_UNK *fn_800146F0(M2C_UNK *arg0, s16 arg1) {
 s32 *fn_80014798(s32 *arg0, s32 arg1, s32 arg2) {
     s32 sp8;
     u8 spC;
-    u32 temp_r3;
+    u8 temp_r3;
 
     *arg0 = 0;
     temp_r3 = strlen(arg1);
     if (temp_r3 > -2U) {
-        fn_8014F858(&__files + 0xA0, &lbl_801DB920, &__files);
         fn_8014BB10();
+        fn_8014F858(&__files + 0xA0, &lbl_801DB920, &__files);
     }
     spC = sp8;
     /* draft: did not compile: fn_80014844(arg0, arg1, arg1 + temp_r3, arg2, &spC); */
@@ -613,11 +613,11 @@ void fn_8001498C(void) {
     u32 **var_r30;
     u32 var_r29;
 
-    var_r3 = &lbl_802C00C8;
     lbl_80350489 = 0;
     lbl_8035048C = 0;
     lbl_80350490 = 0;
     var_ctr = 2;
+    var_r3 = &lbl_802C00C8;
     do {
         M2C_FIELD(var_r3, s8 *, 0) = 0;
         M2C_FIELD(var_r3, s8 *, 1) = 0;
@@ -662,8 +662,8 @@ void fn_8001498C(void) {
     sndMasterVolume(0x64, 0x64, 1, 1);
     sndVolume(0x7F, 0x64, 0xFF);
     ARQSetChunkSize(0x20000);
-    var_r30 = &lbl_801DB948;
     var_r29 = 0;
+    var_r30 = &lbl_801DB948;
     do {
         if ((u32) **var_r30 != 0U) {
             OSFreeToHeap((long)(lbl_8034FE78), (long)(0));

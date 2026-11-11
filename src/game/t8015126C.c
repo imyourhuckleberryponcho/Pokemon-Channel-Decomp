@@ -104,7 +104,6 @@ s32 fn_80151820(s32 arg0) {
 }
 
 void *fn_801518D0(void *arg0, u8 *arg1) {
-    u8 temp_r0;
     u8 temp_r0_2;
     u8 temp_r3;
     u8 temp_r6;
@@ -119,12 +118,11 @@ void *fn_801518D0(void *arg0, u8 *arg1) {
             return arg0;
         }
 loop_9:
-        temp_r0 = M2C_FIELD(var_r5, u8 *, 1);
         /* draft: did not compile: var_r5 += 1; */
-        if (temp_r0 == 0) {
+        if ((M2C_FIELD(var_r5, u8 *, 1)) == 0) {
             return NULL;
         }
-        if (temp_r0 == temp_r6) {
+        if ((M2C_FIELD(var_r5, u8 *, 1)) == temp_r6) {
             /* draft: did not compile: var_r7 = var_r5 - 1; */
             var_r8 = arg1 - 1;
 loop_5:
@@ -155,10 +153,9 @@ s32 fn_80151938(s32 arg0, s32 arg1) {
     s32 sp14;
     s32 sp10;
     s32 spC;
-    s32 sp8;
+    u8 sp8;
     s32 temp_r7;
-    u8 temp_r0;
-    u8 temp_r0_2;
+    s8 temp_r0_2;
     void *var_r30;
     void *var_r7;
 
@@ -172,16 +169,15 @@ s32 fn_80151938(s32 arg0, s32 arg1) {
     sp20 = M2C_FIELD(&lbl_801DAE98, s32 *, 0x18);
     sp24 = M2C_FIELD(&lbl_801DAE98, s32 *, 0x1C);
 loop_2:
-    temp_r0 = M2C_FIELD(var_r30, u8 *, 1);
     /* draft: did not compile: var_r30 += 1; */
-    if ((s32) temp_r0 != 0) {
-        temp_r7 = (temp_r0 >> 3U) & 0x1F;
-        *(&sp8 + temp_r7) = *(&sp8 + temp_r7) | (1 << (temp_r0 & 7));
+    if ((M2C_FIELD(var_r30, s8 *, 1)) != 0) {
+        temp_r7 = ((M2C_FIELD(var_r30, s8 *, 1)) >> 3U) & 0x1F;
+        *(&sp8 + temp_r7) = *(&sp8 + temp_r7) | (1 << ((M2C_FIELD(var_r30, s8 *, 1)) & 7));
         goto loop_2;
     }
     /* draft: did not compile: var_r7 = arg0 - 1; */
 loop_5:
-    temp_r0_2 = M2C_FIELD(var_r7, u8 *, 1);
+    temp_r0_2 = M2C_FIELD(var_r7, s8 *, 1);
     /* draft: did not compile: var_r7 += 1; */
     if ((s32) temp_r0_2 != 0) {
         if (*(&sp8 + ((temp_r0_2 >> 3U) & 0x1F)) & (1 << (temp_r0_2 & 7))) {
@@ -215,8 +211,8 @@ loop_2:
 s32 strncmp(s32 arg0, s32 arg1, s32 arg2) {
     s32 var_r6;
     u8 temp_r0;
-    u8 temp_r5;
     void *var_r3;
+    u8 temp_r5;
     void *var_r4;
 
     /* draft: did not compile: var_r3 = arg0 - 1; */
@@ -247,7 +243,6 @@ s32 strcmp(u8 *arg0, u8 *arg1) {
     s32 temp_r0_3;
     s32 temp_r0_4;
     u8 temp_r0_5;
-    u32 var_ctr;
     u32 var_r7;
     u32 var_r8;
     u8 *var_r3;
@@ -258,6 +253,7 @@ s32 strcmp(u8 *arg0, u8 *arg1) {
     u8 temp_r5_2;
     u32 var_r5;
     u32 temp_r6;
+    u32 var_ctr;
 
     var_r3 = arg0;
     var_r4 = arg1;
@@ -266,8 +262,7 @@ s32 strcmp(u8 *arg0, u8 *arg1) {
     if (temp_r0_4 != 0) {
         return temp_r0_4;
     }
-    temp_r6 = (s32) var_r3 & 3;
-    if ((u32) ((s32) var_r4 & 3) == temp_r6) {
+    if ((u32) ((s32) var_r4 & 3) == (temp_r6 = (s32) var_r3 & 3)) {
         if (temp_r6 != 0) {
             if (var_r5 == 0) {
                 return 0;
@@ -345,6 +340,8 @@ loop_23:
     goto loop_23;
 }
 
+#pragma push
+#pragma peephole off
 void strcat(s32 arg0, s32 arg1) {
     u8 temp_r0;
     u8 temp_r0_2;
@@ -366,12 +363,13 @@ void strcat(s32 arg0, s32 arg1) {
         M2C_FIELD(var_r5_2, u8 *, 1) = temp_r0_2;
     } while (temp_r0_2 != 0);
 }
+#pragma pop
 
 void strncpy(s32 arg0, s32 arg1, s32 arg2) {
-    s32 var_r5;
     u8 temp_r0;
     void *var_r4;
     void *var_r6;
+    s32 var_r5;
 
     /* draft: did not compile: var_r4 = arg1 - 1; */
     /* draft: did not compile: var_r6 = arg0 - 1; */
@@ -401,7 +399,6 @@ loop_4:
 void strcpy(s32 arg0, s32 arg1) {
     s32 var_r4;
     s32 var_r7;
-    u8 var_r8;
     u8 temp_r0_2;
     u32 temp_r5;
     u32 var_ctr;
@@ -410,6 +407,7 @@ void strcpy(s32 arg0, s32 arg1) {
     u32 temp_r0_4;
     u8 temp_r0_5;
     void *var_r7_2;
+    s32 var_r8;
 
     var_r4 = arg1;
     temp_r5 = var_r4 & 3;
@@ -486,7 +484,7 @@ void fn_80151CE4(s32 arg0, s32 *arg1) {
     s32 sp14;
     s32 sp10;
     s32 spC;
-    s32 sp8;
+    u32 sp8;
     f32 temp_f1;
     f32 temp_f2;
 
@@ -497,7 +495,7 @@ void fn_80151CE4(s32 arg0, s32 *arg1) {
         *arg1 = arg0 + spC;
     }
     temp_f2 = fabs(temp_f1);
-    if ((sp8 != 0) || (((f32) lbl_80352488 != temp_f1) && ((temp_f2 < (f32) lbl_80350390) || (temp_f2 > (f32) lbl_80350398)))) {
+    if ((sp8 != 0) || ((lbl_80352488 != temp_f1) && ((temp_f2 < (f32) lbl_80350390) || (temp_f2 > (f32) lbl_80350398)))) {
         lbl_80350F48 = 0x22;
     }
 }

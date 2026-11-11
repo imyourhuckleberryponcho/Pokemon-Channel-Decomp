@@ -73,7 +73,7 @@ u16 fn_800BAEE0(s32 arg0, s32 arg1, u16 arg2) {
     u16 sp10;
     s32 spC;
     s32 sp8;
-    u16 temp_r3;
+    s8 temp_r3;
 
     sp8 = arg0;
     spC = arg1;
@@ -236,7 +236,7 @@ u16 fn_800BB4D4(void *arg0, void ***arg1, u8 *arg2) {
     u32 var_r0;
     s16 temp_r3;
     s16 temp_r3_2;
-    s16 var_r26;
+    u16 var_r26;
     s16 var_r29;
     u32 *var_r28;
     void **var_r31;
@@ -316,14 +316,16 @@ loop_23:
         if (var_r29 >= 0x40U) {
             goto block_30;
         }
-        if (var_r29 == 0x3F) {
-            if ((u8) (&sp14)[var_r29] != 0) {
-                return 0xA017U;
-            }
-            if ((u8) *(var_r28 + (var_r29 + 0x14)) != 0) {
-                return 0xA02DU;
-            }
-            return 0xA02FU;
+        switch (var_r29) {
+        case 0x3F:
+                if ((u8) (&sp14)[var_r29] != 0) {
+                    return 0xA017U;
+                }
+                if ((u8) *(var_r28 + (var_r29 + 0x14)) != 0) {
+                    return 0xA02DU;
+                }
+                return 0xA02FU;
+            break;
         }
         if ((u8) *(var_r28 + (var_r29 + 0x14)) == 0) {
             if ((u8) (&sp14)[var_r29] == 0) {
@@ -346,7 +348,7 @@ loop_23:
         *var_r31 = arg0;
     }
 block_30:
-    var_r26 += 1;
+    var_r26 = var_r26 + 1;
     var_r28 += 0x54;
     goto loop_31;
 }
@@ -467,7 +469,7 @@ u16 fn_800BBBBC(void *arg0, void **arg1, s32 arg2, s32 arg3, u16 arg4, s32 arg5)
     s32 sp20;
     u16 sp1E;
     u16 sp1C;
-    s32 sp10;
+    int sp10;
     s32 var_r27;
     u16 temp_r3;
     s32 temp_r3_2;
@@ -478,7 +480,7 @@ u16 fn_800BBBBC(void *arg0, void **arg1, s32 arg2, s32 arg3, u16 arg4, s32 arg5)
     u16 temp_r3_7;
     u32 var_r0;
     u16 var_r0_2;
-    u16 var_r24;
+    s32 var_r24;
     void *temp_r23;
     void *var_r29;
 
@@ -564,7 +566,7 @@ block_19:
         return temp_r3;
     }
 block_39:
-    return fn_800BC2E4(arg0, *arg1, sp44, sp20, sp1E, sp10, arg5);
+    return fn_800BC2E4(arg0, *arg1, (u16)sp44, sp20, sp1E, sp10, arg5);
 }
 
 u16 fn_800BBEBC(void *arg0, s32 *arg1, s32 arg2, s32 arg3, u16 arg4, s32 arg5) {
@@ -581,7 +583,7 @@ u16 fn_800BBEBC(void *arg0, s32 *arg1, s32 arg2, s32 arg3, u16 arg4, s32 arg5) {
     u16 temp_r3_3;
     u16 temp_r3_4;
     u16 temp_r3_5;
-    u16 temp_r3_6;
+    u32 temp_r3_6;
     u16 temp_r3_7;
     u16 var_r0;
 
@@ -704,24 +706,24 @@ block_14:
 
 s32 fn_800BC2E4(u16 *arg0, void *arg1, u16 arg2, s32 arg3, u16 arg4, s32 arg5, u16 arg6) {
     void *sp24;
-    u16 sp20;
+    u8 sp20;
     s32 sp1C;
-    u16 sp18;
-    s32 sp14;
-    u16 sp10;
+    u8 sp18;
+    u8 sp14;
+    u8 sp10;
 
     sp10 = arg2;
     sp14 = arg3;
     sp18 = arg4;
     sp1C = arg5;
     sp20 = arg6;
+    M2C_FIELD(arg1, u16 *, 0x2C) = sp20;
     sp24 = &lbl_802CFCA8 + (*arg0 * 0x25E48);
     M2C_FIELD(arg1, u16 *, 0) = sp10;
     M2C_FIELD(arg1, u16 **, 4) = arg0;
     M2C_FIELD(arg1, s32 *, 0x28) = 0;
-    M2C_FIELD(arg1, u16 *, 0x2C) = sp20;
-    M2C_FIELD(arg1, u16 *, 0x2E) = (u16) M2C_FIELD(arg1, u16 *, 0x22);
     M2C_FIELD(arg1, s16 *, 0x30) = 0;
+    M2C_FIELD(arg1, u16 *, 0x2E) = (u16) M2C_FIELD(arg1, u16 *, 0x22);
     M2C_FIELD(arg1, s32 *, 0x34) = sp14;
     M2C_FIELD(arg1, u16 *, 0x38) = sp18;
     /* draft: did not compile: fn_800C1D34(arg1 + 0x3A, sp1C); */
@@ -819,7 +821,7 @@ s32 fn_800BC81C(void *arg0, s32 arg1, u16 arg2) { return 0; } /* draft: stub */
 u16 fn_800BC960(void *arg0, s32 arg1, void *arg2, s32 arg3, u16 *arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg_sp8, u16 arg_spC) { return 0; } /* draft: stub */
 
 s32 fn_800BCB74(void **arg0, s32 arg1) {
-    s32 spC;
+    u8 spC;
 
     spC = arg1;
     if (arg0 == NULL) {

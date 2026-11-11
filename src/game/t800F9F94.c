@@ -254,6 +254,8 @@ loop_60:
     }
 }
 
+#pragma push
+#pragma peephole off
 void HSD_JObjAnimAll(s32 arg0) {
     if (arg0 != 0) {
         HSD_AObjInitEndCallBack();
@@ -261,6 +263,7 @@ void HSD_JObjAnimAll(s32 arg0) {
         HSD_AObjInvokeCallBacks();
     }
 }
+#pragma pop
 
 void fn_800FADC0(void *arg0, void *arg1, s32 arg2) {
     s32 temp_cr0_eq;

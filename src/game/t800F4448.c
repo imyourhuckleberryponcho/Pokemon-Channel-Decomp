@@ -80,13 +80,13 @@ loop_2:
 void *HSD_FObjLoadDesc(void *arg0, M2C_UNK arg_sp0) {
     void *temp_r23;
     void *temp_r24;
-    void *temp_r25;
-    void *temp_r27;
-    void *var_r28;
+    void *var_r30;
     void *temp_r29;
+    void *var_r28;
+    void *temp_r27;
     void *var_r22;
     void *var_r26;
-    void *var_r30;
+    void *temp_r25;
 
     if (arg0 != NULL) {
         temp_r29 = M2C_FIELD(arg0, void **, 0);

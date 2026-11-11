@@ -256,9 +256,9 @@ void fn_8003345C(void *arg0, void *arg1) {
 
 void fn_800335C0(void *arg0, void *arg1) {
     M2C_FIELD(arg0, f32 *, 0x1BC) = (f32) M2C_FIELD(arg1, f32 *, 0);
+    M2C_FIELD(arg0, f32 *, 0x1C8) = (f32) lbl_803517CC;
     M2C_FIELD(arg0, f32 *, 0x1C0) = (f32) M2C_FIELD(arg1, f32 *, 4);
     M2C_FIELD(arg0, f32 *, 0x1C4) = (f32) M2C_FIELD(arg1, f32 *, 8);
-    M2C_FIELD(arg0, f32 *, 0x1C8) = (f32) lbl_803517CC;
     M2C_FIELD(arg0, s32 *, 0x1B8) = 1;
 }
 
@@ -370,8 +370,8 @@ void fn_80033814(void *arg0) {
 }
 
 void fn_80033964(void *arg0, s32 arg1, void *arg2) {
-    M2C_FIELD(arg0, s32 *, 0x60) = arg1;
     M2C_FIELD(arg0, s32 *, 0x5C) = 0;
+    M2C_FIELD(arg0, s32 *, 0x60) = arg1;
     /* draft: did not compile: HSD_LObjGetColor(M2C_FIELD(arg0, s32 *, 0x7C), arg0 + 0x64); */
     M2C_FIELD(arg0, s32 *, 0x68) = (s32) (M2C_FIELD(arg2, u8 *, 0) - M2C_FIELD(arg0, u8 *, 0x64));
     M2C_FIELD(arg0, s32 *, 0x6C) = (s32) (M2C_FIELD(arg2, u8 *, 1) - M2C_FIELD(arg0, u8 *, 0x65));

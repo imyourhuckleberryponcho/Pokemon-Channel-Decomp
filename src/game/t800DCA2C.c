@@ -84,11 +84,11 @@ s32 CARDCreateAsync(s32 arg0, s32 arg1, u32 arg2, void *arg3, M2C_UNK *arg4) {
     M2C_UNK *var_r0;
     u32 temp_r3;
     s32 temp_r3_2;
-    u16 var_r23;
     s32 var_r30;
     void *sp1C;
     u8 *temp_r7;
     u8 *var_r24;
+    u16 var_r23;
 
     if (strlen(arg1) > 0x20U) {
         return -0xC;
@@ -196,7 +196,7 @@ s32 fn_800DD530(void *arg0, s32 arg1, s32 arg2, s32 arg3, M2C_UNK *arg4) {
     if (arg2 < var_r3) {
         var_r3 = arg2;
     }
-    temp_r3 = __CARDRead(M2C_FIELD(arg0, s32 *, 0), temp_r8 + ((M2C_FIELD(sp1C, s32 *, 0xC)) * M2C_FIELD(arg0, u16 *, 0x10)), var_r3, arg1, ReadCallback);
+    temp_r3 = __CARDRead(M2C_FIELD(arg0, s32 *, 0), temp_r8 + ((M2C_FIELD(sp1C, s32 *, 0xC)) * M2C_FIELD(arg0, u16 *, 0x10)), var_r3, arg1, (u16)ReadCallback);
     if (temp_r3 < 0) {
         __CARDPutControlBlock(sp1C, temp_r3);
     }
@@ -215,13 +215,13 @@ void WriteCallback_800DD6C0(s32 arg0, s32 arg1) { } /* draft: stub */
 
 void EraseCallback(s32 arg0, s32 arg1) {
     M2C_UNK (*temp_r30)(s32, s32);
-    s32 temp_r5;
-    s32 var_r29;
     void *temp_r31;
+    s32 var_r29;
+    s32 temp_r5;
 
     var_r29 = arg1;
     temp_r31 = &lbl_8031C9E0 + (arg0 * 0x110);
-    if ((var_r29 < 0) || (temp_r5 = M2C_FIELD(temp_r31, s32 *, 0xC), var_r29 = fn_800D9F90(arg0, temp_r5 * M2C_FIELD(M2C_FIELD(temp_r31, void **, 0xC0), u16 *, 0x10), temp_r5, M2C_FIELD(temp_r31, s32 *, 0xB4), WriteCallback_800DD6C0), ((var_r29 < 0) != 0))) {
+    if ((var_r29 < 0) || (temp_r5 = M2C_FIELD(temp_r31, s32 *, 0xC), var_r29 = fn_800D9F90(arg0, temp_r5 * M2C_FIELD(M2C_FIELD(temp_r31, void **, 0xC0), u16 *, 0x10), temp_r5, M2C_FIELD(temp_r31, s32 *, 0xB4), (u16)WriteCallback_800DD6C0), ((var_r29 < 0) != 0))) {
         temp_r30 = M2C_FIELD(temp_r31, M2C_UNK (**)(s32, s32), 0xD0);
         M2C_FIELD(temp_r31, M2C_UNK (**)(s32, s32), 0xD0) = NULL;
         __CARDPutControlBlock(temp_r31, var_r29);
@@ -273,8 +273,8 @@ void fn_800DD9F4(s32 *arg0) {
 
 void DeleteCallback(s32 arg0, s32 arg1) {
     M2C_UNK (*temp_r30)(s32, s32);
-    s32 var_r29;
     void *temp_r31;
+    s32 var_r29;
 
     var_r29 = arg1;
     temp_r31 = &lbl_8031C9E0 + (arg0 * 0x110);
@@ -547,19 +547,19 @@ void fn_800DE0D0(s32 arg0) {
 }
 
 s32 fn_800DE118(s32 arg0, u8 *arg1, u8 *arg2, s32 arg3) {
-    void *sp18;
-    s32 temp_r3;
-    s32 temp_r3_2;
-    s32 temp_r3_3;
     u8 *var_r27;
-    s32 var_r24;
+    s32 temp_r3;
+    void *temp_r27;
+    s32 temp_r3_3;
+    void *sp18;
+    u8 *temp_r3_5;
     s32 var_r25;
     u32 temp_r29;
-    u8 *temp_r3_5;
+    s32 var_r24;
     s32 var_r23;
     s32 temp_r3_4;
     s32 temp_r4;
-    void *temp_r27;
+    s32 temp_r3_2;
 
     temp_r4 = *arg1;
     if (((s8) temp_r4 == -1) || (temp_r3_4 = *arg2, (((s8) temp_r3_4 == -1) != 0)) || ((s8) temp_r4 == 0) || ((s8) temp_r3_4 == 0)) {
@@ -590,7 +590,8 @@ s32 fn_800DE118(s32 arg0, u8 *arg1, u8 *arg2, s32 arg3) {
         var_r27 += 0x40;
     } while (var_r25 < 0x7F);
     if (var_r23 == -1) {
-        return __CARDPutControlBlock(sp18, -4);
+        temp_r29 = __CARDPutControlBlock(sp18, -4);
+        return temp_r29;
     }
     if (var_r24 != -1) {
         return __CARDPutControlBlock(sp18, -7);
@@ -649,6 +650,8 @@ s32 fn_800DE418(s32 arg0, s32 arg1, void *arg2, s32 arg3) { return 0; } /* draft
 
 s32 CARDGetSerialNo(s32 arg0, void *arg1) { return 0; } /* draft: stub */
 
+#pragma push
+#pragma dont_inline on
 void fn_800DE730(s32 arg0, s32 arg1, s8 arg2, s32 arg3) {
     s8 sp4C;
     M2C_UNK sp18;
@@ -659,11 +662,12 @@ void fn_800DE730(s32 arg0, s32 arg1, s8 arg2, s32 arg3) {
     sp4C = arg2;
     fn_800DE418(arg0, arg1, &sp18, arg3);
 }
+#pragma pop
 
 void fn_800DE7A8(s32 arg0, s32 arg1, s8 arg2) {
     s8 sp48;
     M2C_UNK sp14;
-    s32 var_r3;
+    u32 var_r3;
 
     /* draft: did not compile: var_r3 = fn_800DE35C(&sp14); */
     if (var_r3 < 0) {
@@ -679,8 +683,8 @@ void fn_800DE7A8(s32 arg0, s32 arg1, s8 arg2) {
 }
 
 void *fn_800DE82C(void) {
-    s32 temp_r3;
-    s32 temp_r3_2;
+    u8 temp_r3;
+    u8 temp_r3_2;
     s32 temp_r3_3;
 
     temp_r3_3 = fn_800E3428();

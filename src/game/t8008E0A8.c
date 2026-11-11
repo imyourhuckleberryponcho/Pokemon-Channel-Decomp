@@ -145,9 +145,10 @@ s32 scr_method_setRegion(s32 arg0) {
     s32 temp_r31;
 
     /* draft: did not compile: temp_r31 = fn_80080738(); */
-    /* draft: did not compile: temp_r30 = fn_80080738(arg0); */
-    /* draft: did not compile: temp_r29 = fn_80080738(arg0); */
-    /* draft: did not compile: method_setRegion(fn_80080738(arg0) + 0x14, temp_r29, temp_r30, temp_r31, 0); */
+    void * dc_fn_80080738 = fn_80080738(arg0);
+    /* draft: did not compile: temp_r30 = dc_fn_80080738; */
+    /* draft: did not compile: temp_r29 = dc_fn_80080738; */
+    /* draft: did not compile: method_setRegion(dc_fn_80080738 + 0x14, temp_r29, temp_r30, temp_r31, 0); */
     fn_8008065C(arg0, 0);
     return 0;
 }
@@ -225,7 +226,7 @@ s32 scr_method_savePortables(s32 arg0) {
 #pragma pop
 
 s32 scr_method_savePortablesAsync(s32 arg0) {
-    s32 spC;
+    u32 spC;
     s32 sp8;
     s32 temp_r30;
     s32 temp_r31;

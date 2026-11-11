@@ -271,10 +271,10 @@ void fn_8009B4D8(void *arg0, s32 *arg1, u32 arg2, s32 *arg3, M2C_UNK arg_sp0) {
                         if (var_r5 != NULL) {
                             *var_r5 = *arg3;
                         }
-                        var_r5 += 4;
-                        var_r30 -= 1;
+                        var_r5 = var_r5 + 4;
+                        var_r30 = var_r30 - 1;
                         M2C_FIELD(arg0, u32 *, 4) = (u32) (M2C_FIELD(arg0, u32 *, 4) + 1);
-                        var_ctr -= 1;
+                        var_ctr = var_ctr - 1;
                     } while (var_ctr != 0);
                 }
                 var_r7 = arg1;
@@ -284,10 +284,10 @@ void fn_8009B4D8(void *arg0, s32 *arg1, u32 arg2, s32 *arg3, M2C_UNK arg_sp0) {
                         if (var_r5 != NULL) {
                             *var_r5 = *var_r7;
                         }
-                        var_r7 += 4;
-                        var_r5 += 4;
+                        var_r7 = var_r7 + 4;
+                        var_r5 = var_r5 + 4;
                         M2C_FIELD(arg0, u32 *, 4) = (u32) (M2C_FIELD(arg0, u32 *, 4) + 1);
-                        var_ctr_2 -= 1;
+                        var_ctr_2 = var_ctr_2 - 1;
                     } while (var_ctr_2 != 0);
                 }
             } else {
@@ -300,15 +300,15 @@ void fn_8009B4D8(void *arg0, s32 *arg1, u32 arg2, s32 *arg3, M2C_UNK arg_sp0) {
                         if (var_r9 != NULL) {
                             *var_r9 = *var_r8;
                         }
-                        var_r8 += 4;
-                        var_r9 += 4;
+                        var_r8 = var_r8 + 4;
+                        var_r9 = var_r9 + 4;
                         M2C_FIELD(arg0, u32 *, 4) = (u32) (M2C_FIELD(arg0, u32 *, 4) + 1);
-                        var_ctr_3 -= 1;
+                        var_ctr_3 = var_ctr_3 - 1;
                     } while (var_ctr_3 != 0);
                 }
                 temp_r4_2 = (temp_r7 - var_r30) * 4;
                 if (0 /* draft: did not compile */) {
-                    var_r3 += temp_r5;
+                    var_r3 = var_r3 + temp_r5;
                 }
                 var_r5_2 = arg1 + temp_r4_2;
                 /* draft: did not compile: var_r4 = (u32) ((var_r5_2 + 3) - arg1) >> 2U; */
@@ -326,11 +326,11 @@ void fn_8009B4D8(void *arg0, s32 *arg1, u32 arg2, s32 *arg3, M2C_UNK arg_sp0) {
                             M2C_FIELD(var_r6, s32 *, -0x1C) = (s32) M2C_FIELD(var_r5_2, s32 *, -0x1C);
                             temp_r0_2 = M2C_FIELD(var_r5_2, s32 *, -0x20);
                             /* draft: did not compile: var_r5_2 -= 0x20; */
-                            var_r6 -= 0x20;
+                            var_r6 = var_r6 - 0x20;
                             M2C_FIELD(var_r6, s32 *, -0x20) = temp_r0_2;
-                            var_ctr_4 -= 1;
+                            var_ctr_4 = var_ctr_4 - 1;
                         } while (var_ctr_4 != 0);
-                        var_r4 &= 7;
+                        var_r4 = var_r4 & 7;
                         if (var_r4 != 0) {
                             goto block_26;
                         }
@@ -340,9 +340,9 @@ block_26:
                         do {
                             temp_r0_3 = M2C_FIELD(var_r5_2, s32 *, -4);
                             /* draft: did not compile: var_r5_2 -= 4; */
-                            var_r6 -= 4;
+                            var_r6 = var_r6 - 4;
                             M2C_FIELD(var_r6, s32 *, -4) = temp_r0_3;
-                            var_ctr_5 -= 1;
+                            var_ctr_5 = var_ctr_5 - 1;
                         } while (var_ctr_5 != 0);
                     }
                 }
@@ -362,10 +362,10 @@ block_26:
                         M2C_FIELD(var_r5_3, s32 *, 0x14) = (s32) *var_r3;
                         M2C_FIELD(var_r5_3, s32 *, 0x18) = (s32) *var_r3;
                         M2C_FIELD(var_r5_3, s32 *, 0x1C) = (s32) *var_r3;
-                        var_r5_3 += 0x20;
-                        var_ctr_6 -= 1;
+                        var_r5_3 = var_r5_3 + 0x20;
+                        var_ctr_6 = var_ctr_6 - 1;
                     } while (var_ctr_6 != 0);
-                    var_r4_2 &= 7;
+                    var_r4_2 = var_r4_2 & 7;
                     if (var_r4_2 != 0) {
                         goto block_32;
                     }
@@ -374,8 +374,8 @@ block_32:
                     var_ctr_7 = var_r4_2;
                     do {
                         *var_r5_3 = *var_r3;
-                        var_r5_3 += 4;
-                        var_ctr_7 -= 1;
+                        var_r5_3 = var_r5_3 + 4;
+                        var_ctr_7 = var_ctr_7 - 1;
                     } while (var_ctr_7 != 0);
                 }
             }
@@ -392,7 +392,7 @@ block_32:
 loop_41:
             if (temp_r4 > var_r26) {
                 if (var_r26 < 0x1FFFFFFFU) {
-                    var_r26 *= 2;
+                    var_r26 = var_r26 * 2;
                 } else {
                     var_r26 = 0x3FFFFFFF;
                 }
@@ -414,10 +414,10 @@ loop_41:
                     if (var_r6_2 != NULL) {
                         *var_r6_2 = *var_r5_4;
                     }
-                    var_r5_4 += 4;
-                    var_r6_2 += 4;
-                    spC += 1;
-                    var_ctr_8 -= 1;
+                    var_r5_4 = var_r5_4 + 4;
+                    var_r6_2 = var_r6_2 + 4;
+                    spC = spC + 1;
+                    var_ctr_8 = var_ctr_8 - 1;
                 } while (var_ctr_8 != 0);
             }
             var_ctr_9 = var_r30;
@@ -426,9 +426,9 @@ loop_41:
                     if (var_r6_2 != NULL) {
                         *var_r6_2 = *arg3;
                     }
-                    var_r6_2 += 4;
-                    spC += 1;
-                    var_ctr_9 -= 1;
+                    var_r6_2 = var_r6_2 + 4;
+                    spC = spC + 1;
+                    var_ctr_9 = var_ctr_9 - 1;
                 } while (var_ctr_9 != 0);
             }
             /* draft: did not compile: var_ctr_10 = (u32) ((temp_r4_3 + 3) - var_r5_4) >> 2U; */
@@ -437,10 +437,10 @@ loop_41:
                     if (var_r6_2 != NULL) {
                         *var_r6_2 = *var_r5_4;
                     }
-                    var_r5_4 += 4;
-                    var_r6_2 += 4;
-                    spC += 1;
-                    var_ctr_10 -= 1;
+                    var_r5_4 = var_r5_4 + 4;
+                    var_r6_2 = var_r6_2 + 4;
+                    spC = spC + 1;
+                    var_ctr_10 = var_ctr_10 - 1;
                 } while (var_ctr_10 != 0);
             }
             if (&sp8 != arg0) {
@@ -460,6 +460,8 @@ loop_41:
 }
 #pragma pop
 
+#pragma push
+#pragma optimize_for_size on
 void fn_8009B918(void *arg0) {
     u32 temp_r5;
     u32 temp_r6;
@@ -475,6 +477,7 @@ void fn_8009B918(void *arg0) {
     }
     M2C_FIELD(arg0, s32 *, 4) = 0;
 }
+#pragma pop
 
 void fn_8009B954(void *arg0) {
     u32 temp_r4;
@@ -502,9 +505,7 @@ void fn_8009B98C(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, M2C_UNK arg
     void *var_r4;
 
     /* draft: did not compile: var_r0 = get_up_vector_for_viewing_mtx(0x60); */
-    if (var_r0 != NULL) {
-        var_r0 = fn_800A6A34();
-    }
+    var_r0 = var_r0 == NULL ? var_r0 : fn_800A6A34();
     M2C_FIELD(arg0, void **, 0x278) = var_r0;
     temp_r5 = M2C_FIELD(arg0, void **, 0x278);
     M2C_FIELD(temp_r5, void **, 0x38) = arg0;
@@ -921,7 +922,7 @@ void fn_8009C728(void *arg0, s32 arg1, u8 arg2, s32 arg3, s32 arg4) {
 }
 
 s32 EnableSfxGroup(void *arg0, s32 arg1) {
-    s32 var_ctr;
+    s8 var_ctr;
     s32 var_r5;
     void *temp_r5;
     void *temp_r6;
@@ -935,7 +936,8 @@ loop_1:
     if ((s32) M2C_FIELD(var_r3, s32 *, 0x168) == -1) {
         /* draft: did not compile: temp_r5 = temp_r6 + (var_r5 * 4); */
         M2C_FIELD(temp_r5, s32 *, 0x168) = arg1;
-        return StackSfxGroup(arg1, temp_r5);
+        var_ctr = StackSfxGroup(arg1, temp_r5);
+        return var_ctr;
     }
     /* draft: did not compile: var_r3 += 4; */
     var_r5 += 1;
@@ -948,6 +950,8 @@ loop_1:
 
 void DisableSfxGroup(void *arg0, u32 arg1) { } /* draft: stub */
 
+#pragma push
+#pragma dont_inline on
 void DisableAllSfxGroup(void *arg0) {
     s32 var_r30;
     s32 var_r30_2;
@@ -957,7 +961,7 @@ void DisableAllSfxGroup(void *arg0) {
     var_r30 = 0;
     var_r31 = arg0;
     do {
-        if ((u32) (M2C_FIELD(var_r31, s32 *, 0x48) + 0x10000) != -1U) {
+        if ((u32) (M2C_FIELD((s32)var_r31, s32 *, 0x48) + 0x10000) != -1U) {
             StopSound((void *)(arg0), (unsigned long)(0));
         }
         var_r30 += 1;
@@ -967,12 +971,13 @@ void DisableAllSfxGroup(void *arg0) {
     var_r31_2 = arg0;
     do {
         if ((s32) M2C_FIELD(var_r31_2, s32 *, 0x168) != -1) {
-            DisableSfxGroup((void *)(arg0), (unsigned long)(0));
+            DisableSfxGroup((void *)((s32)arg0), (unsigned long)(0));
         }
         var_r30_2 += 1;
         /* draft: did not compile: var_r31_2 += 4; */
     } while (var_r30_2 < 0x40);
 }
+#pragma pop
 
 void fn_8009C924(void *arg0) {
     void *spC;

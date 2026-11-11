@@ -268,15 +268,15 @@ void *fn_800A6A34(void *arg0) {
     M2C_FIELD(arg0, s32 *, 4) = 0x2C;
     M2C_FIELD(arg0, s32 *, 8) = 0x28;
     M2C_FIELD(arg0, M2C_UNK (**)(), 0xC) = fn_800A68FC;
+    M2C_FIELD(arg0, s32 *, 0x14) = 0x3C;
     M2C_FIELD(arg0, s32 *, 0x30) = 0;
     M2C_FIELD(arg0, s32 *, 0x10) = 0;
-    M2C_FIELD(arg0, s32 *, 0x14) = 0x3C;
     M2C_FIELD(arg0, s32 *, 0x18) = 0x38;
-    M2C_FIELD(arg0, M2C_UNK (**)(), 0x1C) = fn_800A6948;
     M2C_FIELD(arg0, s32 *, 0x20) = 0;
     M2C_FIELD(arg0, s32 *, 0x24) = 0x4C;
     M2C_FIELD(arg0, s32 *, 0x28) = 0x48;
     M2C_FIELD(arg0, M2C_UNK (**)(), 0x2C) = fn_800A6994;
+    M2C_FIELD(arg0, M2C_UNK (**)(), 0x1C) = fn_800A6948;
     M2C_FIELD(arg0, s32 *, 0x3C) = 0;
     M2C_FIELD(arg0, s32 *, 0x40) = 0;
     M2C_FIELD(arg0, s32 *, 0x44) = 0;

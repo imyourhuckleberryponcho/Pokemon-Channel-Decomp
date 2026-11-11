@@ -86,8 +86,8 @@ void fn_800E4808(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     s32 *temp_r11;
 
     /* draft: did not compile: temp_r11 = gx + ((arg0 * 8) + 0x1B0); */
-    *temp_r11 = (*temp_r11 & 0xFFFFFFFC) | arg1;
     *temp_r11 = (*temp_r11 & 0xFFFFFFF3) | (arg2 * 4);
+    *temp_r11 = (*temp_r11 & 0xFFFFFFFC) | arg1;
     /* draft: did not compile: temp_r10 = gx + ((((arg0 * 2) + 1) * 4) + 0x1B0); */
     *(s8 *)0xCC008000 = 0x61;
     *(s8 *)0xCC008000 = (s32) *temp_r11;
@@ -99,9 +99,9 @@ void fn_800E4808(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
 }
 
 void fn_800E48A0(s32 arg0, u8 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    *(s8 *)0xCC008000 = 0x61;
-    *(s8 *)0xCC008000 = (s32) (((((((((arg1 | 0xF3000000) & 0xFFFF00FF & ~0xFF00) | ((arg4 << 8) & 0xFF00)) & 0xFFF8FFFF) | (arg0 << 0x10)) & 0xFFC7FFFF) | (arg3 << 0x13)) & 0xFF3FFFFF) | (arg2 << 0x16));
     M2C_FIELD(gx, s16 *, 2) = 0;
+    *(s8 *)0xCC008000 = (s32) (((((((((arg1 | 0xF3000000) & 0xFFFF00FF & ~0xFF00) | ((arg4 << 8) & 0xFF00)) & 0xFFF8FFFF) | (arg0 << 0x10)) & 0xFFC7FFFF) | (arg3 << 0x13)) & 0xFF3FFFFF) | (arg2 << 0x16));
+    *(s8 *)0xCC008000 = 0x61;
 }
 
 void fn_800E48F4(s32 arg0, s32 arg1, s32 arg2) {
@@ -268,7 +268,7 @@ void GXSetBlendMode(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 }
 
 void GXSetColorUpdate(s32 arg0) {
-    s32 temp_r6;
+    u8 temp_r6;
 
     temp_r6 = (M2C_FIELD(gx, s32 *, 0x1D0) & ~8) | ((arg0 << 3) & 8);
     *(s8 *)0xCC008000 = 0x61;
@@ -278,7 +278,7 @@ void GXSetColorUpdate(s32 arg0) {
 }
 
 void GXSetAlphaUpdate(s32 arg0) {
-    s32 temp_r6;
+    u8 temp_r6;
 
     temp_r6 = (M2C_FIELD(gx, s32 *, 0x1D0) & ~0x10) | ((arg0 << 4) & 0x10);
     *(s8 *)0xCC008000 = 0x61;
@@ -290,18 +290,18 @@ void GXSetAlphaUpdate(s32 arg0) {
 void GXSetZMode(s32 arg0, s32 arg1, s32 arg2) {
     s32 temp_r7;
 
+    M2C_FIELD(gx, s16 *, 2) = 0;
     *(s8 *)0xCC008000 = 0x61;
     temp_r7 = (((((M2C_FIELD(gx, s32 *, 0x1D8) & ~1) | (arg0 & 1)) & ~0xE) | ((arg1 << 1) & 0xE)) & ~0x10) | ((arg2 << 4) & 0x10);
-    *(s8 *)0xCC008000 = temp_r7;
     M2C_FIELD(gx, s32 *, 0x1D8) = temp_r7;
-    M2C_FIELD(gx, s16 *, 2) = 0;
+    *(s8 *)0xCC008000 = temp_r7;
 }
 
 void fn_800E5144(s32 arg0) {
+    M2C_FIELD(gx, s16 *, 2) = 0;
     M2C_FIELD(gx, s32 *, 0x1DC) = (s32) ((M2C_FIELD(gx, s32 *, 0x1DC) & 0xFFFFFFBF) | ((arg0 << 6) & 0x3FC0));
     *(s8 *)0xCC008000 = 0x61;
     *(s8 *)0xCC008000 = (s32) M2C_FIELD(gx, s32 *, 0x1DC);
-    M2C_FIELD(gx, s16 *, 2) = 0;
 }
 
 void fn_800E517C(s32 arg0, s32 arg1) {
@@ -336,7 +336,7 @@ void fn_800E517C(s32 arg0, s32 arg1) {
 }
 
 void GXSetDither(s32 arg0) {
-    s32 temp_r6;
+    u8 temp_r6;
 
     temp_r6 = (M2C_FIELD(gx, s32 *, 0x1D0) & ~4) | ((arg0 << 2) & 4);
     *(s8 *)0xCC008000 = 0x61;
@@ -348,8 +348,8 @@ void GXSetDither(s32 arg0) {
 void GXSetDstAlpha(u8 arg0, u8 arg1) {
     s32 temp_r3;
 
+    temp_r3 = (((arg1 & 0xFF) | (M2C_FIELD(gx, s32 *, 0x1D4) & ~0xFF)) & ~0x100) | ((arg0 << 8) & 0x100);
     *(s8 *)0xCC008000 = 0x61;
-    temp_r3 = (((M2C_FIELD(gx, s32 *, 0x1D4) & ~0xFF) | (arg1 & 0xFF)) & ~0x100) | ((arg0 << 8) & 0x100);
     *(s8 *)0xCC008000 = temp_r3;
     M2C_FIELD(gx, s32 *, 0x1D4) = temp_r3;
     M2C_FIELD(gx, s16 *, 2) = 0;
@@ -365,13 +365,13 @@ void fn_800E5304(u8 arg0, s32 arg1) {
     s32 temp_r4;
 
     temp_r4 = M2C_FIELD(gx, s32 *, 0x7C) & 0xFFBFFFFF;
-    M2C_FIELD(gx, s32 *, 0x7C) = (s32) (temp_r4 | ((arg1 << 0x16) & 0x3FC00000));
+    M2C_FIELD(gx, s32 *, 0x7C) = (s32) (((arg1 << 0x16) & 0x3FC00000) | temp_r4);
     *(s8 *)0xCC008000 = 0x61;
     *(s8 *)0xCC008000 = (s32) M2C_FIELD(gx, s32 *, 0x7C);
     __GXFlushTextureState(temp_r4, gx);
-    *(s8 *)0xCC008000 = 0x61;
-    *(s8 *)0xCC008000 = (s32) (arg0 | 0x68000000);
+    *(s8 *)0xCC008000 = (arg0 | 0x68000000);
     __GXFlushTextureState((long)(0), (void *)(0));
+    *(s8 *)0xCC008000 = 0x61;
 }
 
 void fn_800E5380(void) {
@@ -452,8 +452,8 @@ f32 GXLoadPosMtxImm(s32 arg1) {
 }
 
 f32 GXLoadNrmMtxImm(void *arg0, s32 arg1) {
-    *(s8 *)0xCC008000 = 0x10;
     *(s8 *)0xCC008000 = (s32) (((arg1 * 3) + 0x400) | 0x80000);
+    *(s8 *)0xCC008000 = 0x10;
     /* draft: did not compile: *(0xCC010000 - 0x8000) = (f32) M2C_FIELD(arg0, f32 *, 8); */
     /* draft: did not compile: *(0xCC010000 - 0x8000) = (f32) M2C_FIELD(arg0, f32 *, 0x18); */
     /* draft: did not compile: *(0xCC010000 - 0x8000) = (f32) M2C_FIELD(arg0, f32 *, 0x28); */
@@ -465,6 +465,8 @@ void GXSetCurrentMtx(s32 arg0) {
     /* draft: did not compile: __GXSetMatrixIndex(0, gx + 0x80); */
 }
 
+#pragma push
+#pragma peephole off
 f32 GXLoadTexMtxImm(u32 arg1, s32 arg2) {
     s32 var_r4;
     s32 var_r7;
@@ -472,20 +474,23 @@ f32 GXLoadTexMtxImm(u32 arg1, s32 arg2) {
     if (arg1 >= 0x40U) {
         var_r7 = ((arg1 - 0x40) * 4) + 0x500;
     } else {
-        var_r7 = arg1 * 4;
+        var_r7 = arg1;
     }
     if (arg2 == 1) {
         var_r4 = 8;
     } else {
         var_r4 = 0xC;
     }
+    *(s8 *)0xCC008000 = (s32) ((var_r7 * 4) | ((var_r4 - 1) << 0x10));
     *(s8 *)0xCC008000 = 0x10;
-    *(s8 *)0xCC008000 = (s32) (var_r7 | ((var_r4 - 1) << 0x10));
-    if (arg2 == 0) {
-        return M2C_ERROR(/* psq_l unimplemented */);
+    switch (arg2) {
+    case 0:
+            return M2C_ERROR(/* psq_l unimplemented */);
+        break;
     }
     return M2C_ERROR(/* psq_l unimplemented */);
 }
+#pragma pop
 
 void fn_800E5754(u32 arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 farg4, f32 farg5) {
     f32 temp_f26;

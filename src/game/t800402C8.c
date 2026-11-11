@@ -175,7 +175,7 @@ void fn_80040968(void *arg0) {
     void *temp_r4_2;
     void *temp_r4_5;
     void *temp_r5;
-    u32 temp_r30;
+    s32 temp_r30;
 
     temp_r30 = M2C_FIELD(arg0, u32 *, 0x14);
     temp_r31 = M2C_FIELD(arg0, u8 *, 0x13);

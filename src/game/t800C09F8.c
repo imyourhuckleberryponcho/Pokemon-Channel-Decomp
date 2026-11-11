@@ -147,16 +147,16 @@ u16 fn_800C0FEC(void *arg0, u32 arg1) {
     if (arg1 >= (u32) M2C_FIELD(arg0, u32 *, 0x68)) {
         return 0xFFFFU;
     }
-    return (u16) (((u32) (arg1 - M2C_FIELD(arg0, u32 *, 0x64)) / (u16) M2C_FIELD(arg0, u16 *, 0x1E)) + 2);
+    return (s16) (((u32) (arg1 - M2C_FIELD(arg0, u32 *, 0x64)) / (s16) M2C_FIELD(arg0, s16 *, 0x1E)) + 2);
 }
 
 u32 fn_800C1048(void *arg0, u16 arg1) {
-    u32 temp_r31;
+    u8 temp_r31;
 
     if (arg1 < 2U) {
         return -1U;
     }
-    temp_r31 = M2C_FIELD(arg0, s32 *, 0x64) + ((arg1 - 2) * M2C_FIELD(arg0, u16 *, 0x1E));
+    temp_r31 = M2C_FIELD(arg0, s32 *, 0x64) + ((arg1 - 2) * M2C_FIELD(arg0, s16 *, 0x1E));
     if (temp_r31 >= (u32) M2C_FIELD(arg0, u32 *, 0x68)) {
         return -1U;
     }
@@ -434,8 +434,8 @@ void fn_800C194C(s32 arg0) {
     u16 var_r31_3;
 
     /* draft: did not compile: fn_800C1C84(&spC, 0, 0xC); */
-    var_r30 = 0;
     var_r31 = 0xB;
+    var_r30 = 0;
 loop_7:
     if (var_r31 > 8U) {
         if ((u8) M2C_FIELD((var_r31 + arg0), u8 *, -1) != 0x20) {
@@ -702,7 +702,7 @@ loop_4:
 }
 
 s32 fn_800C1EB8(s32 arg0, s32 arg1, u32 arg2) {
-    u32 var_r31;
+    u8 var_r31;
 
     var_r31 = 0U;
 loop_4:
@@ -719,9 +719,9 @@ loop_4:
 void fn_800C1F00(u16 arg0, u16 arg1) {
     void *temp_r31;
 
-    temp_r31 = &lbl_802CFCA8 + (arg1 * 0x25E48);
     M2C_FIELD(temp_r31, s32 *, 0x259D8) = (s32) arg0;
     M2C_FIELD(temp_r31, s16 *, 0x259DC) = 1;
+    temp_r31 = &lbl_802CFCA8 + (arg1 * 0x25E48);
 }
 
 u16 fn_800C1F48(u16 arg0, u16 arg1) {
@@ -730,11 +730,11 @@ u16 fn_800C1F48(u16 arg0, u16 arg1) {
     temp_r31 = &lbl_802CFCA8 + (arg1 * 0x25E48);
     M2C_FIELD(temp_r31, s16 *, 0x259DC) = 1;
     M2C_FIELD(temp_r31, u32 *, 0x259D8) = (u32) ((M2C_FIELD(temp_r31, u32 *, 0x259D8) * 0x60C98293) + 0x3039);
-    return (u16) (M2C_FIELD(temp_r31, u32 *, 0x259D8) % (arg0 + 1));
+    return (s16) (M2C_FIELD(temp_r31, u32 *, 0x259D8) % (arg0 + 1));
 }
 
 u16 fn_800C1FC4(void *arg0) {
-    u16 temp_r3;
+    u32 temp_r3;
     u16 temp_r3_2;
     u16 temp_r3_3;
     u16 var_r31;
@@ -754,7 +754,7 @@ loop_6:
                 return temp_r3_3;
             }
         }
-        var_r31 += 1;
+        var_r31 = var_r31 + 1;
         goto loop_6;
     }
     if ((u16) M2C_FIELD(arg0, u16 *, 4) == 2) {
@@ -769,7 +769,7 @@ loop_14:
                 return temp_r3_2;
             }
         }
-        var_r31_2 += 1;
+        var_r31_2 = var_r31_2 + 1;
         goto loop_14;
     }
 block_15:

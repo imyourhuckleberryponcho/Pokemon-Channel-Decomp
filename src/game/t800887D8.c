@@ -311,15 +311,15 @@ s32 scr_method_worldToTelopX(s32 arg0) {
     f32 temp_f30;
     f32 temp_f31;
 
-    temp_f30 = fn_80080764((long)(0), (float)(0), (float)(0));
     temp_f31 = fn_80080764((long)(arg0), (float)(0), (float)(0));
     sp14 = fn_80080764((long)(arg0), (float)(0), (float)(0));
+    temp_f30 = fn_80080764((long)(0), (float)(0), (float)(0));
     sp18 = temp_f31;
     sp1C = temp_f30;
     sp20 = sp14;
     sp24 = sp18;
     sp28 = sp1C;
-    fn_80019808(&sp8, fn_800896C0(arg0, sp18, sp14), &sp20);
+    fn_80019808(&sp8, fn_800896C0(arg0, (u16)sp18, (u16)sp14), &sp20);
     fn_80080698(arg0, sp8);
     return 0;
 }
@@ -344,7 +344,7 @@ s32 scr_method_worldToTelopY(s32 arg0) {
     sp20 = sp14;
     sp24 = sp18;
     sp28 = sp1C;
-    fn_80019808(&sp8, fn_800896C0(arg0, sp18, sp14), &sp20);
+    fn_80019808(&sp8, fn_800896C0(arg0, sp18, (s32)sp14), &sp20);
     fn_80080698(arg0, spC);
     return 0;
 }
@@ -369,7 +369,7 @@ s32 scr_method_worldToTelopZ(s32 arg0) {
     sp20 = sp14;
     sp24 = sp18;
     sp28 = sp1C;
-    fn_80019808(&sp8, fn_800896C0(arg0, sp18, sp14), &sp20);
+    fn_80019808(&sp8, fn_800896C0(arg0, sp18, (s32)sp14), &sp20);
     fn_80080698(arg0, sp10);
     return 0;
 }
@@ -385,15 +385,15 @@ s32 scr_method_telopToWorldX(s32 arg0) {
     f32 temp_f30;
     f32 temp_f31;
 
-    temp_f30 = fn_80080764((long)(0), (float)(0), (float)(0));
     temp_f31 = fn_80080764((long)(arg0), (float)(0), (float)(0));
     sp14 = fn_80080764((long)(arg0), (float)(0), (float)(0));
+    temp_f30 = fn_80080764((long)(0), (float)(0), (float)(0));
     sp18 = temp_f31;
     sp1C = temp_f30;
     sp20 = sp14;
     sp24 = sp18;
     sp28 = sp1C;
-    fn_8001990C(&sp8, fn_800896C0(arg0, sp18, sp14), &sp20);
+    fn_8001990C(&sp8, fn_800896C0(arg0, (u16)sp18, (u16)sp14), &sp20);
     fn_80080698(arg0, sp8);
     return 0;
 }
@@ -418,7 +418,7 @@ s32 scr_method_telopToWorldY(s32 arg0) {
     sp20 = sp14;
     sp24 = sp18;
     sp28 = sp1C;
-    fn_8001990C(&sp8, fn_800896C0(arg0, sp18, sp14), &sp20);
+    fn_8001990C(&sp8, fn_800896C0(arg0, sp18, (s32)sp14), &sp20);
     fn_80080698(arg0, spC);
     return 0;
 }
@@ -443,7 +443,7 @@ s32 scr_method_telopToWorldZ(s32 arg0) {
     sp20 = sp14;
     sp24 = sp18;
     sp28 = sp1C;
-    fn_8001990C(&sp8, fn_800896C0(arg0, sp18, sp14), &sp20);
+    fn_8001990C(&sp8, fn_800896C0(arg0, sp18, (s32)sp14), &sp20);
     fn_80080698(arg0, sp10);
     return 0;
 }

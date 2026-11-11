@@ -166,6 +166,8 @@ loop_4:
     return var_r31;
 }
 
+#pragma push
+#pragma optimize_for_size on
 s32 fn_8015B378(u32 arg0, s32 arg1, u32 *arg2, u8 *arg3, s32 arg4, s32 arg5) {
     s32 saved_reg_r28;
     s32 sp14;
@@ -180,7 +182,7 @@ s32 fn_8015B378(u32 arg0, s32 arg1, u32 *arg2, u8 *arg3, s32 arg4, s32 arg5) {
     s32 var_r5;
     s32 temp_r3_2;
     s32 var_r0;
-    s32 var_r31;
+    u32 var_r31;
     u32 temp_r3;
     u32 temp_r4;
     u32 temp_r4_2;
@@ -191,10 +193,10 @@ s32 fn_8015B378(u32 arg0, s32 arg1, u32 *arg2, u8 *arg3, s32 arg4, s32 arg5) {
     if ((arg1 == 0) || ((u32) *arg2 == 0U)) {
         return 2;
     }
-    var_r25 = 0;
     *arg3 = 0;
     var_r30 = 0U;
     var_r21 = 0;
+    var_r25 = 0;
 loop_47:
     if (var_r25 == 0) {
         temp_r3 = *arg2;
@@ -238,9 +240,11 @@ loop_47:
                         var_r0_2 = 1;
                     }
                     /* draft: did not compile: var_r21 = fn_8015B1D4(spC, &sp14, 5, 3, var_r0_2 == 0); */
-                    if (var_r21 == 0) {
-                        /* draft: did not compile: var_r28 = TRKGetBuffer(sp14); */
-                        TRKSetBufferPosition(2);
+                    switch (var_r21) {
+                    case 0:
+                            /* draft: did not compile: var_r28 = TRKGetBuffer(sp14); */
+                            TRKSetBufferPosition(2);
+                        break;
                     }
                     if (var_r21 == 0) {
                         var_r21 = fn_801579EC(var_r28, &sp8);
@@ -274,13 +278,14 @@ loop_47:
                 }
             }
             TRKReleaseBuffer(sp10);
-            var_r30 += var_r31;
+            var_r30 = var_r30 + var_r31;
             goto loop_47;
         }
     }
     *arg2 = var_r30;
     return var_r21;
 }
+#pragma pop
 
 s32 fn_8015B63C(void) {
     return 0;
@@ -297,11 +302,12 @@ s32 fn_8015B64C(void) {
 s32 fn_8015B654(u8 arg0) { return 0; } /* draft: stub */
 
 void TRK_flush_cache(s32 arg0, s32 arg1) {
-    s32 var_r4;
-    s32 var_r5;
+    s8 var_r4;
+    u8 var_r5;
 
     var_r5 = 0xFFFFFFF1 & arg0;
-    var_r4 = arg1 + (arg0 - var_r5);
+    var_r4 = arg1;
+    var_r4 += (arg0 - var_r5);
     do {
         M2C_DCACHE_CLEAN(var_r5);
         M2C_DCACHE_CLEAN_INVALIDATE(var_r5);

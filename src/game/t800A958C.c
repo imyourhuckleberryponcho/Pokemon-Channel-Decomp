@@ -467,19 +467,20 @@ block_39:
     return 1;
 }
 
+#pragma push
+#pragma dont_inline on
 s32 fn_800AA28C(void *arg0, M2C_UNK arg_sp0) {
-    s32 spC;
+    int spC;
     s32 sp10;
     s32 sp8;
     s32 temp_r25;
-    s32 temp_r26;
+    int temp_r26;
     s32 temp_r27;
     s32 var_r27;
+    u32 var_r29;
     s32 var_r28;
     u32 temp_r0;
-    u32 temp_r24;
     u32 temp_r30;
-    u32 var_r29;
 
     temp_r30 = M2C_FIELD(arg0, u32 *, 0x1C);
     lbl_80350780 = temp_r30;
@@ -508,11 +509,10 @@ loop_32:
             if (var_r27 < 0) {
                 var_r28 -= sp10;
             }
-            temp_r24 = M2C_FIELD(arg0, u32 *, 0x3AC);
             temp_r25 = temp_r26 - sp8;
             temp_r27 = temp_r26 + (spC + 0x14);
-            if ((temp_r24 == 7U) || (fn_800AA064((void *)(arg0), (void *)(&sp8), (long)(temp_r26), (long)(var_r29), (long)(var_r28), (long)(0)) != 0)) {
-                switch ((s32) temp_r24) {           /* irregular */
+            if (((M2C_FIELD(arg0, u32 *, 0x3AC)) == 7U) || (fn_800AA064((void *)((s32)arg0), (void *)(&sp8), (long)(temp_r26), (long)(var_r29), (long)(var_r28), (long)(0)) != 0)) {
+                switch ((s32) (M2C_FIELD(arg0, u32 *, 0x3AC))) {           /* irregular */
                 case 4:
                     if (var_r29 == 0U) {
                         M2C_FIELD(arg0, u32 *, 0x3AC) = 2U;
@@ -585,14 +585,14 @@ loop_32:
     }
     M2C_FIELD(arg0, s32 *, 0x3A4) = 0;
     M2C_FIELD(arg0, s32 *, 0x39C) = 1;
-    if (((s32) M2C_FIELD(arg0, s32 *, 0x39C) != 0) && ((s32) M2C_FIELD(arg0, s32 *, 0x3C8) == 0) && ((s32) lbl_80350770 == 0) && ((s32) lbl_80350778 == 0)) {
+    if (((s32) (u16)M2C_FIELD(arg0, s32 *, 0x39C) != 0) && ((s32) M2C_FIELD(arg0, s32 *, 0x3C8) == 0) && ((s32) lbl_80350770 == 0) && ((s32) lbl_80350778 == 0)) {
 loop_47:
         if (fn_800A94A0(M2C_FIELD(arg0, s32 *, 0x64)) != 0U) {
             if ((s32) M2C_FIELD(arg0, s32 *, 0x3C8) == 0) {
                 goto loop_47;
             }
         }
-        if (((u32) M2C_FIELD(arg0, u32 *, 0x68) != 0U) && ((s32) M2C_FIELD(arg0, s32 *, 0x3C8) == 0)) {
+        if (((u32) M2C_FIELD(arg0, u32 *, 0x68) != 0U) && ((s32) (u16)M2C_FIELD(arg0, s32 *, 0x3C8) == 0)) {
 loop_51:
             if (fn_800A9050(M2C_FIELD(arg0, u32 *, 0x68)) != 0U) {
                 if ((s32) M2C_FIELD(arg0, s32 *, 0x3C8) == 0) {
@@ -611,6 +611,7 @@ loop_54:
     M2C_FIELD(arg0, s32 *, 0x3A0) = 0;
     return 0;
 }
+#pragma pop
 
 s32 fn_800AA658(void *arg0, s32 *arg1) {
     s32 var_r31;

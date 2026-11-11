@@ -780,8 +780,10 @@ s32 HSD_WObjAlloc(void) {
         var_r3 = &lbl_802AA180;
     }
     /* draft: did not compile: temp_r3 = hsdNew(var_r3); */
-    if (temp_r3 == 0) {
-        __assert(&lbl_80350258, 0x257, &lbl_80350264);
+    switch (temp_r3) {
+    case 0:
+            __assert(&lbl_80350258, 0x257, &lbl_80350264);
+        break;
     }
     return temp_r3;
 }
@@ -813,8 +815,8 @@ void fn_80108810(void *arg0) {
     s32 sp20;
     s32 sp1C;
     s32 sp18;
-    s32 sp14;
-    s32 sp34;
+    s8 sp14;
+    u32 sp34;
     f32 sp94;
     f32 sp90;
     f32 sp84;
@@ -835,8 +837,8 @@ void fn_80108810(void *arg0) {
     s32 var_r3;
     s32 temp_r31;
     s32 temp_r3;
-    s32 var_r29;
     s32 var_r28;
+    s32 var_r29;
     void *var_r30;
 
     if (arg0 == NULL) {
@@ -845,8 +847,10 @@ void fn_80108810(void *arg0) {
         return;
     }
     temp_r3 = HSD_CObjGetCurrent();
-    if (temp_r3 == 0) {
-        HSD_Panic(&lbl_80350280, 0x58, &lbl_802AA2A4);
+    switch (temp_r3) {
+    case 0:
+            HSD_Panic(&lbl_80350280, 0x58, &lbl_802AA2A4);
+        break;
     }
     sp8 = M2C_FIELD(arg0, s32 *, 0x18);
     temp_f31 = fn_800F3A10(temp_r3);
@@ -865,7 +869,7 @@ void fn_80108810(void *arg0) {
             } else {
                 var_r3 = -1;
             }
-            var_r29 = (s32) (sp2C + ((sp34 * (f32) (var_r3 + 0x140)) / lbl_8035213C));
+            var_r29 = (s32) (sp2C + ((sp34 * (var_r3 + 0x140)) / lbl_8035213C));
         } else {
             var_r29 = (s32) ((sp34 * lbl_80352140) + sp2C);
         }
@@ -876,7 +880,7 @@ void fn_80108810(void *arg0) {
                 var_r28 = -1U;
             }
         } else {
-            var_r28 = (u16) (s32) sp34;
+            var_r28 = (s32) sp34;
         }
         if (temp_r31 & 4) {
             if (var_r30 != NULL) {
@@ -953,13 +957,13 @@ void HSD_FogInit(void *arg0, void *arg1) {
             M2C_FIELD(arg0, s32 *, 0x18) = (s32) M2C_FIELD(arg1, s32 *, 0x10);
             return;
         }
-        GXGetViewportv(&sp8);
-        M2C_FIELD(arg0, s32 *, 8) = 2;
         M2C_FIELD(arg0, f32 *, 0x10) = sp18;
         M2C_FIELD(arg0, f32 *, 0x14) = sp1C;
         M2C_FIELD(arg0, s32 *, 0x18) = 0xFF;
-        M2C_FIELD(arg0, s8 *, 0x19) = 0xFF;
-        M2C_FIELD(arg0, s8 *, 0x1A) = 0xFF;
-        M2C_FIELD(arg0, s8 *, 0x1B) = 0xFF;
+        M2C_FIELD(arg0, u8 *, 0x19) = 0xFF;
+        M2C_FIELD(arg0, u8 *, 0x1A) = 0xFF;
+        M2C_FIELD(arg0, u8 *, 0x1B) = 0xFF;
+        GXGetViewportv(&sp8);
+        M2C_FIELD(arg0, s32 *, 8) = 2;
     }
 }

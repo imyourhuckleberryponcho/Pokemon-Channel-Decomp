@@ -172,7 +172,7 @@ block_14:
 }
 
 s16 fn_80121374(s32 arg0, u32 arg1, s32 arg2) {
-    u16 var_r0;
+    u32 var_r0;
     u32 temp_r0;
 
     if (arg1 != 0U) {
@@ -180,9 +180,9 @@ s16 fn_80121374(s32 arg0, u32 arg1, s32 arg2) {
     } else {
         temp_r0 = arg2 & 0x1F;
         if (temp_r0 < 0x10U) {
-            var_r0 = (u16) M2C_FIELD((arg0 + ((temp_r0 * 4) & 0x3FC)), s32 *, 0xAC);
+            var_r0 = M2C_FIELD((arg0 + ((temp_r0 * 4) & 0x3FC)), s32 *, 0xAC);
         } else {
-            var_r0 = (u16) M2C_FIELD((&lbl_8032D664 + ((temp_r0 * 4) & 0x3FC)), s32 *, -0x40);
+            var_r0 = M2C_FIELD((&lbl_8032D664 + ((temp_r0 * 4) & 0x3FC)), s32 *, -0x40);
         }
     }
     return (s16) var_r0;
@@ -195,12 +195,11 @@ void fn_801213DC(s32 arg0, void *arg1, u8 arg2, M2C_UNK arg_sp0) {
     u32 temp_r0_3;
     s32 var_r3_3;
     s32 var_r4;
-    u16 var_r0;
+    s32 var_r0;
     u16 var_r3;
     u32 temp_r0;
     u32 temp_r0_2;
     s32 var_r30;
-    u32 temp_r3;
     u32 temp_r3_2;
 
     var_r30 = saved_reg_r30;
@@ -217,23 +216,23 @@ void fn_801213DC(s32 arg0, void *arg1, u8 arg2, M2C_UNK arg_sp0) {
     if (arg2 == 4) {
         var_r3_2 = (s16) ((u32) M2C_FIELD(arg1, u32 *, 4) >> 8U);
     } else {
-        temp_r3 = M2C_FIELD(arg1, u32 *, 4);
-        if ((u8) (temp_r3 >> 8U) != 0) {
+        if ((u8) ((M2C_FIELD(arg1, u32 *, 4)) >> 8U) != 0) {
             var_r0 = fn_8012DA0C(arg0);
         } else {
-            temp_r0_2 = (u8) (temp_r3 >> 0x10U) & 0x1F;
+            temp_r0_2 = (u8) ((M2C_FIELD(arg1, u32 *, 4)) >> 0x10U) & 0x1F;
             if (temp_r0_2 < 0x10U) {
-                var_r0 = (u16) M2C_FIELD((arg0 + ((temp_r0_2 * 4) & 0x3FC)), s32 *, 0xAC);
+                var_r0 = M2C_FIELD((arg0 + ((temp_r0_2 * 4) & 0x3FC)), s32 *, 0xAC);
             } else {
-                var_r0 = (u16) M2C_FIELD((&lbl_8032D664 + ((temp_r0_2 * 4) & 0x3FC)), s32 *, -0x40);
+                var_r0 = M2C_FIELD((&lbl_8032D664 + ((temp_r0_2 * 4) & 0x3FC)), s32 *, -0x40);
             }
         }
-        var_r3_2 = (s16) var_r0;
+        var_r3_2 = var_r0;
     }
     switch ((s32) arg2) {                           /* irregular */
     case 4:
     case 0:
-        var_r30 = (s16) var_r3 + var_r3_2;
+        var_r30 = var_r3_2;
+        var_r30 += (s16) var_r3;
         break;
     case 1:
         var_r30 = (s16) var_r3 - var_r3_2;
@@ -463,9 +462,9 @@ loop_2:
     }
     if (var_r7 == NULL) {
         if (var_r8 == NULL) {
+            M2C_FIELD(arg0, void **, 0x48) = NULL;
             lbl_80350DD8 = arg0;
             M2C_FIELD(arg0, void **, 0x44) = NULL;
-            M2C_FIELD(arg0, void **, 0x48) = NULL;
             return;
         }
         M2C_FIELD(var_r8, void **, 0x44) = arg0;

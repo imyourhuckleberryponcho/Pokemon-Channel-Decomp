@@ -81,28 +81,28 @@ s32 fn_80126AFC(u16 arg0, u16 arg1, s32 arg2, s32 arg3, s32 arg4, M2C_UNK arg_sp
 
 void fn_80124EC8(void) {
     M2C_UNK *var_r3;
-    M2C_UNK *var_r5;
     s32 var_ctr;
     s32 var_ctr_2;
     void *temp_r5;
+    M2C_UNK *var_r5;
 
     var_r5 = &lbl_8033AE40;
     var_ctr = 4;
     do {
-        M2C_FIELD(var_r5, s8 *, 0) = 0xFF;
         M2C_FIELD(var_r5, s8 *, 1) = 0xFF;
         M2C_FIELD(var_r5, s8 *, 2) = 0xFF;
         M2C_FIELD(var_r5, s8 *, 3) = 0xFF;
         M2C_FIELD(var_r5, s8 *, 4) = 0xFF;
         M2C_FIELD(var_r5, s8 *, 5) = 0xFF;
         M2C_FIELD(var_r5, s8 *, 6) = 0xFF;
-        M2C_FIELD(var_r5, s8 *, 7) = 0xFF;
+        M2C_FIELD(var_r5, s8 *, 0) = 0xFF;
         M2C_FIELD(var_r5, s8 *, 8) = 0xFF;
         M2C_FIELD(var_r5, s8 *, 9) = 0xFF;
         M2C_FIELD(var_r5, s8 *, 0xA) = 0xFF;
         M2C_FIELD(var_r5, s8 *, 0xB) = 0xFF;
         M2C_FIELD(var_r5, s8 *, 0xC) = 0xFF;
         M2C_FIELD(var_r5, s8 *, 0xD) = 0xFF;
+        M2C_FIELD(var_r5, s8 *, 7) = 0xFF;
         M2C_FIELD(temp_r5, s8 *, 1) = 0xFF;
         M2C_FIELD(var_r5, s8 *, 0xE) = 0xFF;
         M2C_FIELD(var_r5, s8 *, 0xF) = 0xFF;
@@ -462,7 +462,7 @@ loop_4:
     if (0 /* draft: did not compile */) {
         return 1;
     }
-    var_r31 += 1;
+    var_r31 = var_r31 + 1;
     goto loop_4;
 }
 

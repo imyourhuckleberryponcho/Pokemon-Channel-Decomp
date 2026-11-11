@@ -174,7 +174,7 @@ void fn_80020A10(M2C_UNK **arg0) {
     M2C_UNK *temp_r0;
     M2C_UNK *temp_r5;
     M2C_UNK *var_r4;
-    s32 temp_r4;
+    s8 temp_r4;
 
     var_r4 = M2C_FIELD(*arg0, M2C_UNK **, 4);
     if (var_r4 != NULL) {
@@ -376,7 +376,7 @@ void fn_80021078(void *arg0, void *arg1) {
     s32 temp_r3_4;
     s32 temp_r4;
     s32 temp_r4_2;
-    s32 temp_r4_4;
+    s8 temp_r4_4;
     s32 temp_r5;
     s32 temp_r5_2;
     s32 var_r31;
@@ -810,7 +810,7 @@ u32 fn_80021DA8(void *arg0, u16 *arg1, u32 arg2, u16 *arg3, u32 arg4, M2C_UNK ar
     u32 temp_r31;
     u32 var_ctr;
     u32 var_ctr_3;
-    u32 var_ctr_5;
+    s8 var_ctr_5;
     u32 var_r24;
     u32 var_r24_2;
     u32 var_r5;
@@ -885,8 +885,8 @@ loop_7:
                     } while (var_ctr_3 != 0);
                 }
             }
-            var_r4_3 = &arg1[var_r24];
             var_ctr_4 = arg2 - var_r24;
+            var_r4_3 = &arg1[var_r24];
             if (var_r24 < arg2) {
                 do {
                     *var_r4_3 = 0;
@@ -939,7 +939,7 @@ u32 fn_80022044(void *arg0, u16 *arg1, u32 arg2, u16 *arg3, u32 arg4, M2C_UNK ar
     s32 temp_r0_2;
     s32 temp_r0_3;
     s32 temp_r26;
-    s32 temp_r3;
+    u32 var_ctr_5;
     s8 var_ctr_2;
     s32 var_ctr_4;
     s32 var_ctr_6;
@@ -956,7 +956,7 @@ u32 fn_80022044(void *arg0, u16 *arg1, u32 arg2, u16 *arg3, u32 arg4, M2C_UNK ar
     u32 temp_r31;
     u32 var_ctr;
     u32 var_ctr_3;
-    u32 var_ctr_5;
+    s32 temp_r3;
     u32 var_r26;
     u32 var_r26_2;
     u32 var_r5;

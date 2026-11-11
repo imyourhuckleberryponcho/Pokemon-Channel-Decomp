@@ -52,11 +52,9 @@ void fn_80115A3C(u32 arg0) { } /* draft: stub */
 
 void fn_80116430(void) {
     M2C_UNK **temp_r7_7;
-    u8 var_ctr;
     M2C_UNK *var_r7;
     M2C_UNK *var_r7_2;
     M2C_UNK *var_r8;
-    M2C_UNK **var_r6;
     s32 var_ctr_2;
     u32 var_r9;
     void *temp_r7;
@@ -65,6 +63,8 @@ void fn_80116430(void) {
     void *temp_r7_4;
     void *temp_r7_5;
     void *temp_r7_6;
+    u8 var_ctr;
+    M2C_UNK **var_r6;
 
     var_r7 = &lbl_80320580;
     var_r8 = &lbl_8032C8C0;
@@ -74,8 +74,8 @@ void fn_80116430(void) {
     var_ctr = 8;
     do {
         if (var_r9 == 0) {
-            lbl_80350D24 = var_r7;
             M2C_FIELD(var_r7, void **, 4) = NULL;
+            lbl_80350D24 = var_r7;
         } else {
             M2C_FIELD(var_r7, M2C_UNK **, -0x1868) = var_r7;
             M2C_FIELD(var_r7, void **, 4) = (void *) (&lbl_80320580 + ((var_r9 - 1) * 0x1868));
@@ -180,13 +180,11 @@ s32 synthGetTicksPerSecond(void *arg0) {
 
 void synthInitPortamento(void *arg0) {
     s32 temp_r5;
-    s32 temp_r7;
 
-    temp_r7 = M2C_FIELD(arg0, s32 *, 0x118);
     temp_r5 = M2C_FIELD(arg0, s32 *, 0x114) & 0;
-    if ((((temp_r7 & 0x20000) ^ 0) | (temp_r5 ^ 0)) == 0) {
+    if (((((M2C_FIELD(arg0, s32 *, 0x118)) & 0x20000) ^ 0) | (temp_r5 ^ 0)) == 0) {
         if ((u8) M2C_FIELD(arg0, u8 *, 0x131) == 1) {
-            if ((((temp_r7 & 0x1000) ^ 0) | (temp_r5 ^ 0)) == 0) {
+            if (((((M2C_FIELD(arg0, s32 *, 0x118)) & 0x1000) ^ 0) | (temp_r5 ^ 0)) == 0) {
                 M2C_FIELD(arg0, s32 *, 0x13C) = 0;
             } else {
                 M2C_FIELD(arg0, s32 *, 0x13C) = (s32) M2C_FIELD(arg0, s32 *, 0x134);
@@ -199,14 +197,14 @@ void synthInitPortamento(void *arg0) {
 }
 
 s32 fn_801166C8(u8 arg0, u8 arg1, u8 arg2, s32 arg3, s32 *arg4, M2C_UNK arg_sp0) {
-    s32 saved_reg_r26;
+    s8 saved_reg_r26;
     s32 saved_reg_r24;
     s32 temp_r0;
-    s32 temp_r3;
-    s32 temp_r4;
+    s8 temp_r3;
+    u8 temp_r4;
     s32 temp_r6;
     s32 temp_r6_2;
-    s32 var_r23;
+    u8 var_r23;
     s8 var_r26;
     s32 var_r27;
     s32 var_r30;
@@ -247,7 +245,7 @@ loop_17:
             M2C_FIELD(var_r25, s32 *, 0x138) = (s32) (temp_r6 + (((s8) M2C_FIELD(var_r25, u8 *, 0x12E) << 0x10) / 100));
             M2C_FIELD(var_r25, s8 *, 0x130) = (s8) M2C_FIELD(var_r25, u16 *, 0x12C);
             temp_r5 = M2C_FIELD(var_r25, u8 *, 0x12F);
-            M2C_FIELD(var_r25, u16 *, 0x12C) = (u16) (arg0 + ((u8) M2C_FIELD(var_r25, u16 *, 0x12C) - temp_r5));
+            M2C_FIELD((s32)var_r25, u16 *, 0x12C) = (u16) (arg0 + ((u8) M2C_FIELD(var_r25, u16 *, 0x12C) - temp_r5));
             M2C_FIELD(var_r25, u8 *, 0x12F) = arg0;
             M2C_FIELD(var_r25, u8 *, 0x12E) = 0U;
             M2C_FIELD(var_r25, s32 *, 0x13C) = 0;

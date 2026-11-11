@@ -428,7 +428,7 @@ s32 scr_method_getInterestX(s32 arg0) {
 }
 
 s32 scr_method_getInterestY(s32 arg0) {
-    s32 spC;
+    u32 spC;
     M2C_UNK sp8;
 
     fn_800896C0();

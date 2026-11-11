@@ -386,10 +386,11 @@ void fn_8005F964(void *arg0) {
 
 void fn_8005FA30(void *arg0) {
     u16 temp_r4;
-    u16 temp_r4_2;
+    u32 temp_r4_2;
 
     temp_r4 = M2C_FIELD(arg0, u16 *, 0xE);
-    temp_r4_2 = temp_r4 - temp_r4;
+    temp_r4_2 = temp_r4;
+    temp_r4_2 -= temp_r4;
     if (temp_r4_2 >= 0x10000U) {
         M2C_FIELD(arg0, u8 *, 0x2C) = (u8) (M2C_FIELD(arg0, u8 *, 0x2C) | 2);
     } else {
@@ -613,11 +614,12 @@ void fn_8005FF8C(void *arg0) {
 }
 
 void fn_80060058(void *arg0) {
-    u16 temp_r4;
     u16 temp_r5;
+    u32 temp_r4;
 
     temp_r5 = M2C_FIELD(arg0, u16 *, 0xE);
-    temp_r4 = temp_r5 - temp_r5;
+    temp_r4 = temp_r5;
+    temp_r4 -= temp_r5;
     if (temp_r4 >= 0x10000U) {
         M2C_FIELD(arg0, u8 *, 0x2C) = (u8) (M2C_FIELD(arg0, u8 *, 0x2C) | 2);
     } else {

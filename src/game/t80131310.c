@@ -29,6 +29,8 @@ s32 fn_80131D4C(void *arg0) { return 0; } /* draft: stub */
 
 void fn_80131DBC(void *arg1, s32 arg2, void *arg3) { } /* draft: stub */
 
+#pragma push
+#pragma peephole off
 void fn_80131F00(s32 arg0, s32 arg1, s32 arg2, void *arg3, s32 arg4, M2C_UNK arg_sp0) {
     s32 var_r28;
     s32 var_r31;
@@ -38,8 +40,8 @@ void fn_80131F00(s32 arg0, s32 arg1, s32 arg2, void *arg3, s32 arg4, M2C_UNK arg
 
     var_r28 = arg1;
     var_r31 = arg4 - 1;
-    M2C_FIELD(arg3, u16 *, 0x10) = (u16) *M2C_FIELD(arg3, u16 **, 8);
     M2C_FIELD(arg3, u8 *, 0x14) = (u8) *M2C_FIELD(arg3, u16 **, 8);
+    M2C_FIELD(arg3, u16 *, 0x10) = (u16) *M2C_FIELD(arg3, u16 **, 8);
 loop_2:
     if (var_r31 > 0) {
         M2C_FIELD(arg3, u16 *, 0x12) = (u16) M2C_FIELD(arg3, u16 *, 0x10);
@@ -56,9 +58,10 @@ loop_2:
     temp_r7_3 = M2C_FIELD(arg3, u16 **, 8);
     M2C_FIELD(arg3, u16 **, 8) = (u16 *) (temp_r7_3 + 6);
     /* draft: did not compile: fn_80131DBC(arg0, var_r28, arg2, arg3, temp_r7_3); */
-    M2C_FIELD(arg3, s32 *, 4) = (s32) (M2C_FIELD(arg3, s32 *, 4) + 4);
     M2C_FIELD(arg3, s32 *, 0xC) = (s32) (M2C_FIELD(arg3, s32 *, 0xC) + 4);
+    M2C_FIELD(arg3, s32 *, 4) = (s32) (M2C_FIELD(arg3, s32 *, 4) + 4);
 }
+#pragma pop
 
 void fn_80131FDC(s32 *arg0, s32 arg1, s32 *arg2, M2C_UNK arg_sp0) {
     s32 sp14;
@@ -166,10 +169,10 @@ void fn_8013252C(void *arg0, void *arg1, s32 arg2, s32 arg3, M2C_UNK arg_sp0) {
     s32 temp_r23;
     s32 temp_r6;
     s32 temp_r7;
-    s32 var_r28;
-    s32 var_r29;
+    u32 var_r28;
+    s8 var_r29;
     u16 temp_r4;
-    u8 temp_r26;
+    u16 temp_r26;
     void *var_r30;
     void *var_r31;
 
@@ -178,9 +181,9 @@ void fn_8013252C(void *arg0, void *arg1, s32 arg2, s32 arg3, M2C_UNK arg_sp0) {
     var_r29 = 0;
     do {
         var_r28 = 0;
-        temp_r6 = arg2 >> M2C_FIELD(var_r30, u8 *, 0x30);
-        temp_r7 = arg3 >> M2C_FIELD(var_r30, u8 *, 0x31);
-        temp_r26 = M2C_FIELD(var_r30, u8 *, 0x34);
+        temp_r6 = arg2 >> M2C_FIELD(var_r30, s8 *, 0x30);
+        temp_r7 = arg3 >> M2C_FIELD(var_r30, s8 *, 0x31);
+        temp_r26 = M2C_FIELD(var_r30, s8 *, 0x34);
         temp_r23 = temp_r6 & 1;
         temp_r22 = temp_r7 & 1;
         temp_r21 = (temp_r6 >> 1) + (((temp_r7 >> 1) * M2C_FIELD(var_r30, u16 *, 0x28)) + M2C_FIELD(var_r31, s32 *, 0x18));

@@ -325,7 +325,7 @@ void fn_80123514(void) {
     s32 temp_r0;
     s32 temp_r3;
     s32 var_r9;
-    u32 var_r10;
+    int var_r10;
 
     lbl_80350DDC = 0;
     var_r9 = 0;
@@ -761,7 +761,7 @@ void synthInitAllocationAids(void) {
     void *var_r7_2;
 
     var_r31 = 0;
-    if ((u8) M2C_FIELD(&lbl_8032CC00, u8 *, 0x210) > 0U) {
+    if (M2C_FIELD(&lbl_8032CC00, u8 *, 0x210) > 0U) {
         temp_r4 = M2C_FIELD(&lbl_8032CC00, u8 *, 0x210) - 8;
         if ((u8) M2C_FIELD(&lbl_8032CC00, u8 *, 0x210) > 8U) {
             var_r30 = &lbl_80339F00 + 0xE00;
@@ -902,7 +902,7 @@ void synthInitAllocationAids(void) {
 s32 fn_80124624(s32 arg0) {
     s32 temp_r31;
     s32 temp_r3;
-    s32 temp_r5_2;
+    u16 temp_r5_2;
     void *temp_r4;
     void *temp_r5;
 
@@ -1001,7 +1001,7 @@ void fn_80124720(s32 arg0) {
 }
 
 void fn_80124938(s32 arg0) {
-    s32 temp_r5;
+    u8 temp_r5;
     u16 temp_r0_3;
     u16 temp_r0_4;
     u8 temp_r0;
@@ -1058,8 +1058,8 @@ void fn_80124938(s32 arg0) {
                 M2C_FIELD((&lbl_80339F00 + 0xE00 + (lbl_80350DF8 * 4)), u8 *, 1) = (u8) temp_r3_2;
             } else {
                 M2C_FIELD(temp_r5_2, u8 *, 0) = 0xFFU;
-                lbl_80350DF9 = (u8) temp_r3_2;
                 M2C_FIELD(temp_r5_2, s8 *, 1) = 0xFF;
+                lbl_80350DF9 = (u8) temp_r3_2;
             }
             lbl_80350DF8 = (u8) temp_r3_2;
             if ((u8) M2C_FIELD(temp_r30, u8 *, 0x11D) != 0) {
@@ -1198,6 +1198,8 @@ loop_23:
     }
 }
 
+#pragma push
+#pragma peephole off
 s32 fn_80124D8C(void *arg0) {
     s32 temp_r4;
     u8 temp_r0;
@@ -1209,13 +1211,13 @@ s32 fn_80124D8C(void *arg0) {
         if (temp_r5 != 0xFF) {
             temp_r0 = M2C_FIELD(arg0, u8 *, 0x122);
             if (temp_r0 == 0xFF) {
-                if ((u8) *(&lbl_8033AE00 + (u8) temp_r4) == (u8) temp_r4) {
+                if (*(&lbl_8033AE00 + (u8) temp_r4) == (u8) temp_r4) {
                     return 1;
                 }
                 /* Duplicate return node #7. Try simplifying control flow for better match */
                 return 0;
             }
-            if ((u8) temp_r4 == (u8) *(&lbl_8033AE40 + ((temp_r0 * 0x10) & 0xFF0) + temp_r5)) {
+            if (temp_r4 == *(&lbl_8033AE40 + ((temp_r0 * 0x10) & 0xFF0) + temp_r5)) {
                 return 1;
             }
             /* Duplicate return node #7. Try simplifying control flow for better match */
@@ -1224,9 +1226,10 @@ s32 fn_80124D8C(void *arg0) {
     }
     return 0;
 }
+#pragma pop
 
 void fn_80124E00(void *arg0) {
-    s32 temp_r4;
+    u8 temp_r4;
     u8 temp_r0;
     u8 temp_r5;
 
@@ -1254,7 +1257,7 @@ void fn_80124E54(void *arg0) {
     if (((u32) (temp_r4 + 0x10000) != -1U) && (temp_r5 = M2C_FIELD(arg0, u8 *, 0x121), ((temp_r5 == 0xFF) == 0))) {
         temp_r0 = M2C_FIELD(arg0, u8 *, 0x122);
         if (temp_r0 == 0xFF) {
-            if ((u8) *(&lbl_8033AE00 + (u8) temp_r4) == (u8) temp_r4) {
+            if (*(&lbl_8033AE00 + (u8) temp_r4) == (u8) temp_r4) {
                 *(&lbl_8033AE00 + (u8) temp_r4) = 0xFF;
             }
         } else {

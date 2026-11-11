@@ -81,9 +81,9 @@ void *fn_800704E4(void *arg0) {
     M2C_FIELD(arg0, s32 *, 0) = 0;
     M2C_FIELD(arg0, s32 *, 4) = 0;
     /* draft: did not compile: fn_8014AD98(arg0 + 0x58, fn_80070590, fn_80070554, 0x58, 8); */
+    fn_80070680((void *)(arg0));
     M2C_FIELD(arg0, s32 *, 0x4C) = (s32) lbl_8035064C;
     M2C_FIELD(arg0, s32 *, 0x50) = 1;
-    fn_80070680((void *)(arg0));
     return arg0;
 }
 
@@ -491,13 +491,13 @@ u8 fn_80070CFC(void *arg0) {
 #pragma peephole off
 void fn_80070D60(void *arg0, f32 farg0, f32 farg1, f32 farg2) {
     f32 temp_f31;
-    f32 temp_f28;
-    f32 temp_f29;
     f32 temp_f30;
+    f32 temp_f29;
+    f32 temp_f28;
     f32 temp_f27;
     f32 temp_f4;
-    f32 temp_f7;
     f32 temp_f8;
+    f32 temp_f7;
 
     temp_f31 = (f32) Sin((float)(0));
     temp_f30 = (f32) Cos(farg0);
@@ -523,11 +523,11 @@ void fn_80070D60(void *arg0, f32 farg0, f32 farg1, f32 farg2) {
 #pragma pop
 
 void fn_80070EA8(void *arg0, f32 farg0, f32 farg1, f32 farg2) {
-    f32 temp_f27;
-    f32 temp_f28;
-    f32 temp_f29;
-    f32 temp_f30;
     f32 temp_f31;
+    f32 temp_f30;
+    f32 temp_f29;
+    f32 temp_f28;
+    f32 temp_f27;
     f32 temp_f7;
     f32 temp_f8;
     f32 temp_f8_2;
@@ -595,9 +595,9 @@ f32 fn_800710E4(s32 arg0, s32 arg1) {
 }
 
 s8 fn_80071138(u8 *arg0) {
-    s8 var_r5;
     u8 *var_r4;
-    u8 temp_r3;
+    s32 var_r5;
+    s32 temp_r3;
 
     var_r5 = (s8) *arg0;
     if (var_r5 != 0) {
@@ -714,8 +714,8 @@ s32 fn_80071314(void *arg0, void *arg1, u8 arg2) {
         return 0;
     }
     if (arg2 != 0) {
-        sp10 = M2C_FIELD(arg0, f32 *, 4);
         sp14 = M2C_FIELD(arg0, f32 *, 8);
+        sp10 = M2C_FIELD(arg0, f32 *, 4);
         spC = M2C_FIELD(arg0, f32 *, 0);
     } else {
         PSVECNormalize(arg0, &spC);
@@ -751,7 +751,7 @@ s32 fn_80071314(void *arg0, void *arg1, u8 arg2) {
         var_f1 = temp_f0_2 < var_f1 ? var_f1 : temp_f0_2;
     }
     M2C_FIELD(arg1, f32 *, 4) = (f32) ArcCos(var_f1);
-    if (spC < lbl_803518A4) {
+    if (lbl_803518A4 > spC) {
         M2C_FIELD(arg1, f32 *, 4) = (f32) -M2C_FIELD(arg1, f32 *, 4);
     }
     return 1;
@@ -759,7 +759,7 @@ s32 fn_80071314(void *arg0, void *arg1, u8 arg2) {
 #pragma pop
 
 s32 RanzakI(u32 arg0, u32 arg1) {
-    s32 var_r8;
+    u32 var_r8;
     s32 var_r9;
     u32 var_r3;
 
@@ -840,12 +840,12 @@ s32 fn_800716DC(s32 arg0) {
 }
 
 void fn_8007170C(void *arg0) {
+    M2C_FIELD(arg0, f32 *, 0x10) = (f32) lbl_80351914;
     M2C_FIELD(arg0, f32 *, 8) = (f32) lbl_80351910;
     M2C_FIELD(arg0, f32 *, 4) = (f32) lbl_80351910;
     M2C_FIELD(arg0, f32 *, 0) = (f32) lbl_80351910;
     M2C_FIELD(arg0, f32 *, 0x18) = (f32) lbl_80351914;
     M2C_FIELD(arg0, f32 *, 0x14) = (f32) lbl_80351914;
-    M2C_FIELD(arg0, f32 *, 0x10) = (f32) lbl_80351914;
     M2C_FIELD(arg0, f32 *, 0xC) = (f32) lbl_80351914;
     M2C_FIELD(arg0, f32 *, 0x24) = (f32) lbl_80351914;
     M2C_FIELD(arg0, f32 *, 0x20) = (f32) lbl_80351914;

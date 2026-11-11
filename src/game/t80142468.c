@@ -386,6 +386,8 @@ void fn_801442A8(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     M2C_FIELD(arg0, s32 *, 0) = arg3;
 }
 
+#pragma push
+#pragma peephole off
 s32 fn_80144314(s32 arg0, s32 arg1, s32 arg2) {
     s32 temp_r9;
     s32 var_r8;
@@ -411,3 +413,4 @@ s32 fn_80144314(s32 arg0, s32 arg1, s32 arg2) {
     }
     return var_r8;
 }
+#pragma pop

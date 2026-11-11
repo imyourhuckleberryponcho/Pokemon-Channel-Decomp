@@ -276,16 +276,21 @@ s32 SIEnablePolling(u32 arg0) {
     s32 temp_r4;
     u32 temp_r31_2;
 
-    if (arg0 == 0) {
-        return M2C_FIELD(&Si_802A6C14, s32 *, 4);
+    switch (arg0) {
+
+    case 0:
+            return M2C_FIELD(&Si_802A6C14, s32 *, 4);
+
+        break;
+
     }
     OSDisableInterrupts();
     temp_r31_2 = arg0 >> 0x18U;
     temp_r4 = (temp_r31_2 >> 4U) & 0xF;
-    M2C_FIELD(&Si_802A6C14, s32 *, 4) = (s32) (M2C_FIELD(&Si_802A6C14, s32 *, 4) & ~temp_r4);
-    M2C_FIELD(&Si_802A6C14, s32 *, 4) = (s32) (M2C_FIELD(&Si_802A6C14, s32 *, 4) | (temp_r31_2 & (temp_r4 | 0x03FF0000 | 0xFFF0) & 0xFC0000FF));
     temp_r31 = M2C_FIELD(&Si_802A6C14, s32 *, 4);
+    M2C_FIELD(&Si_802A6C14, s32 *, 4) = (s32) (M2C_FIELD(&Si_802A6C14, s32 *, 4) & ~temp_r4);
     M2C_FIELD((void *)0xCC006400, s32 *, 0x38) = 0x80000000;
+    M2C_FIELD(&Si_802A6C14, s32 *, 4) = (s32) (M2C_FIELD(&Si_802A6C14, s32 *, 4) | (temp_r31_2 & (temp_r4 | 0x03FF0000 | 0xFFF0) & 0xFC0000FF));
     M2C_FIELD((void *)0xCC006400, s32 *, 0x30) = temp_r31;
     OSRestoreInterrupts((long)(0xCC006400));
     return temp_r31;
@@ -294,8 +299,13 @@ s32 SIEnablePolling(u32 arg0) {
 s32 SIDisablePolling(u32 arg0) {
     s32 temp_r31;
 
-    if (arg0 == 0) {
-        return M2C_FIELD(&Si_802A6C14, s32 *, 4);
+    switch (arg0) {
+
+    case 0:
+            return M2C_FIELD(&Si_802A6C14, s32 *, 4);
+
+        break;
+
     }
     OSDisableInterrupts();
     temp_r31 = M2C_FIELD(&Si_802A6C14, s32 *, 4) & ~((arg0 >> 0x18U) & 0xF0);
@@ -364,7 +374,6 @@ s32 SIGetResponse(s32 arg0, void *arg1) {
 void AlarmHandler_800CB2C4(s32 arg0) { } /* draft: stub */
 
 s32 SITransfer(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7) {
-    s32 temp_r21;
     s32 temp_r6_2;
     u32 temp_r4;
     u32 var_r19;
@@ -373,6 +382,7 @@ s32 SITransfer(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 a
     u64 var_r20;
     void *temp_r22;
     void *temp_r6;
+    s32 temp_r21;
 
     temp_r22 = &Packet_8031C450 + (arg0 << 5);
     temp_r21 = OSDisableInterrupts(&Packet_8031C450);
@@ -417,10 +427,11 @@ void GetTypeCallback_800CB4BC(s32 arg0, s32 arg1) {
     M2C_UNK (**var_r31_2)(s32, s32);
     M2C_UNK (*temp_r12)(s32, s32);
     M2C_UNK (*temp_r12_2)(s32, s32);
+    u32 var_r26;
     s32 *temp_r30;
     s32 temp_r28;
     s32 temp_r29;
-    s32 temp_r30_2;
+    u8 temp_r30_2;
     s32 temp_r30_3;
     s32 temp_r3;
     s32 var_r29;
@@ -428,7 +439,6 @@ void GetTypeCallback_800CB4BC(s32 arg0, s32 arg1) {
     u16 temp_r28_2;
     u32 temp_r3_2;
     u32 temp_r4;
-    u32 var_r26;
     u64 temp_ret;
     void *temp_r4_2;
     void *temp_r4_3;
@@ -438,13 +448,13 @@ void GetTypeCallback_800CB4BC(s32 arg0, s32 arg1) {
     temp_r29 = arg0 * 4;
     temp_r30 = &Type_802A6C28 + temp_r29;
     *temp_r30 &= 0xFFFFFF7F;
-    *temp_r30 |= arg1;
     temp_r5 = &Packet_8031C450 + (arg0 * 8);
     temp_ret = __OSGetSystemTime(&Packet_8031C450);
     M2C_FIELD(temp_r5, u32 *, 0x124) = (u32) temp_ret;
     temp_r4 = 0x80000000U >> arg0;
     temp_r3 = lbl_80350920;
     temp_r28 = *temp_r30;
+    *temp_r30 |= arg1;
     lbl_80350920 = temp_r3 & ~temp_r4;
     M2C_FIELD(temp_r5, s32 *, 0x120) = temp_ret;
     if ((arg1 & 0xF) || ((u32) ((temp_r28 & 0x18000000) + 0xF8000000) != 0U) || !(temp_r28 & 0x80000000) || (temp_r28 & 0x04000000)) {
@@ -472,8 +482,7 @@ void GetTypeCallback_800CB4BC(s32 arg0, s32 arg1) {
         return;
     }
     if (temp_r28 & 0x100000) {
-        temp_r3_2 = temp_r28 & 0xCFFF00;
-        if ((u32) (var_r26 & 0xCFFF00) != temp_r3_2) {
+        if ((u32) (var_r26 & 0xCFFF00) != (temp_r3_2 = temp_r28 & 0xCFFF00)) {
             if (!(var_r26 & 0x100000)) {
                 var_r26 = temp_r3_2 | 0x100000;
                 OSSetWirelessID(arg0, (u16) (var_r26 >> 8U));

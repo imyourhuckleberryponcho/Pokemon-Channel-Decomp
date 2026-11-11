@@ -102,8 +102,8 @@ s32 scr_method_setProperty(s32 arg0) {
     s32 temp_cr0_eq_4;
     s32 temp_cr0_eq_5;
     s32 temp_cr0_eq_6;
-    s32 temp_cr0_eq_7;
-    s32 temp_cr0_eq_8;
+    u32 temp_cr0_eq_7;
+    u32 temp_cr0_eq_8;
 
     sp14 = 0;
     if (fn_8007F61C() != 0) {
@@ -188,9 +188,7 @@ s32 scr_method_setProperty(s32 arg0) {
             }
             sp14 = 3;
             var_r0 = get_up_vector_for_viewing_mtx(4);
-            if (var_r0 != NULL) {
-                var_r0 = fn_800208F4(&spC);
-            }
+            var_r0 = var_r0 == NULL ? var_r0 : fn_800208F4(&spC);
             sp10 = var_r0;
         } else {
             fn_80031578(sp10, &spC, 0, -1);
@@ -238,7 +236,7 @@ s32 scr_method_doesPropertyExist(s32 arg0) {
 
     /* draft: did not compile: temp_r31 = fn_80080738(); */
     /* draft: did not compile: fn_800913C0(arg0); */
-    fn_8008065C(arg0, fn_8007A5D0(temp_r31) != 0);
+    fn_8008065C(arg0, (u16)fn_8007A5D0(temp_r31) != 0);
     return 0;
 }
 
@@ -247,7 +245,8 @@ s32 scr_method_eraseProperty(s32 arg0) {
 
     /* draft: did not compile: temp_r31 = fn_80080738(); */
     /* draft: did not compile: fn_800913C0(arg0); */
-    fn_8008065C(arg0, method_eraseProperty(temp_r31));
+    u8 tmp1 = method_eraseProperty(temp_r31);
+    fn_8008065C(arg0, tmp1);
     return 0;
 }
 
@@ -357,9 +356,10 @@ s32 scr_method_playSound(s32 arg0) {
     }
     var_r31 = 0x7F;
     if (temp_r3 > 2) {
-        /* draft: did not compile: var_r31 = fn_80080738(arg0); */
+        M2C_UNK * dc_fn_80080738 = fn_80080738(arg0);
+        /* draft: did not compile: var_r31 = dc_fn_80080738; */
     }
-    /* draft: did not compile: temp_r30 = fn_80080738(arg0); */
+    /* draft: did not compile: temp_r30 = dc_fn_80080738; */
     /* draft: did not compile: fn_800913C0(arg0); */
     fn_8008065C(arg0, method_playSound(temp_r30, var_r31, var_f31));
     return 0;
@@ -374,7 +374,7 @@ s32 scr_method_stopSound(s32 arg0) {
 
 s32 scr_method_recalcSound(s32 arg0) {
     f32 var_f31;
-    s32 temp_r3;
+    s8 temp_r3;
     s32 var_r31;
 
     temp_r3 = fn_8007FC40();
@@ -387,8 +387,8 @@ s32 scr_method_recalcSound(s32 arg0) {
         /* draft: did not compile: var_r31 = fn_80080738(arg0); */
     }
     /* draft: did not compile: fn_800913C0(arg0); */
-    method_recalcSound(var_r31, var_f31);
     fn_8008065C(arg0, 0);
+    method_recalcSound(var_r31, var_f31);
     return 0;
 }
 
@@ -405,9 +405,10 @@ s32 scr_method_playSoundEnv(s32 arg0) {
     }
     var_r31 = 0x7F;
     if (temp_r3 > 2) {
-        /* draft: did not compile: var_r31 = fn_80080738(arg0); */
+        M2C_UNK * dc_fn_80080738 = fn_80080738(arg0);
+        /* draft: did not compile: var_r31 = dc_fn_80080738; */
     }
-    /* draft: did not compile: temp_r30 = fn_80080738(arg0); */
+    /* draft: did not compile: temp_r30 = dc_fn_80080738; */
     /* draft: did not compile: fn_800913C0(arg0); */
     fn_8008065C(arg0, method_playSoundEnv(temp_r30, var_r31, var_f31));
     return 0;

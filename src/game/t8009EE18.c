@@ -223,6 +223,8 @@ void *fn_8009F350(void *arg0, s16 arg1) {
     return arg0;
 }
 
+#pragma push
+#pragma peephole off
 void fn_8009F3B0(void *arg0) {
     u32 temp_r31;
     void *temp_r3;
@@ -256,6 +258,7 @@ loop_8:
     M2C_FIELD(arg0, u32 *, 8) = 0U;
     M2C_FIELD(arg0, s32 *, 0) = 0;
 }
+#pragma pop
 
 void *fn_8009F484(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
@@ -290,6 +293,8 @@ loop_2:
     M2C_FIELD(arg0, s32 *, 0) = 0;
 }
 
+#pragma push
+#pragma dont_inline on
 void *fn_8009F56C(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         fn_8009F4E4((void *)(0));
@@ -302,6 +307,7 @@ void *fn_8009F56C(void *arg0, s16 arg1) {
     }
     return arg0;
 }
+#pragma pop
 
 s32 **fn_8009F5CC(void *arg0, s32 **arg1, s32 **arg2, M2C_UNK arg_sp0) {
     s32 **var_r26;

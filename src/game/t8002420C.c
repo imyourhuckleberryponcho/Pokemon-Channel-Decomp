@@ -291,8 +291,8 @@ void *fn_800250B8(void *arg0) {
     M2C_FIELD(arg0, s8 *, 0x13) = 0;
     var_r0 = get_up_vector_for_viewing_mtx(0x88);
     var_r0 = var_r0 == NULL ? var_r0 : fn_800A163C(0, M2C_FIELD(&lbl_802C0270, s32 *, 8));
-    M2C_FIELD(arg0, void **, 0) = var_r0;
     M2C_FIELD(M2C_FIELD(arg0, void **, 0), s32 *, 0x74) = 0x50;
+    M2C_FIELD(arg0, void **, 0) = var_r0;
     M2C_FIELD((M2C_FIELD(arg0, void **, 0)), s32 *, 0x68) = 2;
     M2C_FIELD((M2C_FIELD(arg0, void **, 0)), s32 *, 0x6C) = 1;
     temp_r11 = M2C_FIELD(arg0, void **, 0);
@@ -364,10 +364,12 @@ void fn_8002554C(void *arg0, u16 arg1, u16 arg2, u16 arg3) { } /* draft: stub */
 
 s32 fn_80025DC0(void **arg0, s32 arg1, u32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, f32 farg0, M2C_UNK arg_sp0) { return 0; } /* draft: stub */
 
+#pragma push
+#pragma optimize_for_size on
 void fn_80026024(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s16 arg5, f32 farg0) {
     s32 temp_r31;
-    s32 temp_r3;
-    u32 temp_r30;
+    u8 temp_r3;
+    u8 temp_r30;
 
     /* draft: did not compile: temp_r30 = ((s32) ((fn_80025DC0(arg3, arg4, 0, arg1, 0, 0U, 0, lbl_803515AC) * 0xC) + 0x1F) / 32) << 5; */
     temp_r31 = temp_r30 * arg5;
@@ -378,3 +380,4 @@ void fn_80026024(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s16 arg5, f
     /* draft: did not compile: fn_80025DC0(arg3, arg4, temp_r3, arg1, arg2, temp_r30 >> 2U, arg5, farg0); */
     DCFlushRange(temp_r3, temp_r31);
 }
+#pragma pop

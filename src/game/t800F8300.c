@@ -240,6 +240,8 @@ void PObjAmnesia(u32 arg0) {
     M2C_FIELD(M2C_FIELD(&lbl_802A9468, void **, 0x14), M2C_UNK (**)(u32, void *), 0x38)(arg0, M2C_FIELD(&lbl_802A9468, void **, 0x14));
 }
 
+#pragma push
+#pragma peephole off
 void fn_800F8A54(void) {
     hsdInitClassInfo(&lbl_802A9468, &lbl_802AA538, &lbl_802A9468 + 0x318, &lbl_802A9468 + 0x330, 0x4C, 0x1C);
     /* draft: did not compile: M2C_FIELD(&lbl_802A9468, M2C_UNK (**)(), 0x30) = PObjRelease; */
@@ -249,6 +251,7 @@ void fn_800F8A54(void) {
     M2C_FIELD(&lbl_802A9468, M2C_UNK **, 0x44) = &fn_800F61C4;
     M2C_FIELD(&lbl_802A9468, M2C_UNK **, 0x48) = &PObjUpdateFunc;
 }
+#pragma pop
 
 void HSD_JObjCheckDepend(void *arg0) {
     s32 var_r3;
@@ -351,6 +354,8 @@ void JObjResetRST(void *arg0, void *arg1) {
     }
 }
 
+#pragma push
+#pragma dont_inline on
 void HSD_JObjResetRST(void *arg0, void *arg1, M2C_UNK arg_sp0) {
     s32 temp_cr0_eq;
     s32 temp_r4;
@@ -489,6 +494,7 @@ loop_41:
         }
     }
 }
+#pragma pop
 
 void HSD_JObjSetupMatrix(void *arg0) {
     s32 temp_cr0_eq;
@@ -521,12 +527,12 @@ void HSD_JObjMakeMatrix(void *arg0) {
     f32 *var_r7_2;
     s32 temp_cr0_eq;
     s32 temp_cr0_eq_2;
-    s32 temp_r4;
+    s32 var_r3_4;
     s32 temp_r4_6;
     u32 var_r3;
     s32 var_r3_2;
     s32 var_r3_3;
-    s32 var_r3_4;
+    s32 temp_r4;
     void *temp_r30;
     void *temp_r30_2;
     void *temp_r3;

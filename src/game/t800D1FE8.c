@@ -246,7 +246,8 @@ void VIConfigure(void *arg0) {
     M2C_FIELD(&lbl_8031C848, s16 *, 0xFE) = (s16) (M2C_FIELD(&lbl_8031C848, u16 *, 0x108) - (var_r7_3 / var_r4));
     temp_r8_2 = (s16) M2C_FIELD(&lbl_8031C848, u16 *, 0xF2) + ((s16) M2C_FIELD(&lbl_8031C848, u16 *, 0xF6) + lbl_80350A22);
     if ((temp_r8_2 - temp_r0_2) > 0) {
-        var_r7_4 = temp_r8_2 - temp_r0_2;
+        var_r7_4 = temp_r8_2;
+        var_r7_4 -= temp_r0_2;
     } else {
         var_r7_4 = 0;
     }
@@ -406,7 +407,7 @@ void VISetNextFrameBuffer(s32 arg0) {
 
 void VISetBlack(s32 arg0) {
     s32 sp8;
-    s32 temp_r3;
+    u8 temp_r3;
 
     temp_r3 = OSDisableInterrupts((long *)(&lbl_8031C848), (long *)(0));
     M2C_FIELD(&lbl_8031C848, s32 *, 0x130) = arg0;
@@ -435,7 +436,7 @@ s32 fn_800D2A30(void) {
 }
 
 s32 fn_800D2A98(void) {
-    s32 var_r31;
+    u8 var_r31;
     u32 temp_r7;
     u32 var_r6;
 
@@ -459,10 +460,10 @@ u32 fn_800D2B40(void) {
     s32 temp_r6;
     u16 temp_r0;
     u32 temp_r5;
-    u32 temp_r7;
-    u32 var_r30;
+    s8 temp_r7;
     u32 var_r6;
     void *temp_r31;
+    u32 var_r30;
 
     temp_r31 = lbl_80350A40;
     OSDisableInterrupts((long *)(0), (long *)(0));
@@ -485,6 +486,8 @@ u32 fn_800D2B40(void) {
 
 void VIGetTvFormat() { } /* draft: stub */
 
+#pragma push
+#pragma peephole off
 s32 VIGetDTVStatus(void) {
     s32 temp_r31;
 
@@ -493,6 +496,7 @@ s32 VIGetDTVStatus(void) {
     OSRestoreInterrupts(0xCC000000);
     return temp_r31 & 1;
 }
+#pragma pop
 
 void UpdateOrigin(s32 arg0) {
     s32 temp_r4;
@@ -606,7 +610,6 @@ void PADTypeAndStatusCallback(s32 arg1) {
     s32 temp_r29;
     s32 temp_r4;
     s32 temp_r5;
-    s32 temp_r6;
     s32 var_r3;
     u32 temp_r28;
 
@@ -623,10 +626,9 @@ void PADTypeAndStatusCallback(s32 arg1) {
             SIGetTypeAsync(lbl_8034FFB4, PADTypeAndStatusCallback);
         }
     } else {
-        temp_r6 = arg1 & 0xFFFFFF00;
-        *(&lbl_8031C990 + temp_r4) = temp_r6;
+        *(&lbl_8031C990 + temp_r4) = (arg1 & 0xFFFFFF00);
         temp_r4 = temp_r29;
-        if (((u32) ((arg1 & 0x18000000) + 0xF8000000) != 0U) || !(temp_r6 & 0x01000000)) {
+        if (((u32) ((arg1 & 0x18000000) + 0xF8000000) != 0U) || !((arg1 & 0xFFFFFF00) & 0x01000000)) {
             if ((s32) (lbl_8034FFB4 = CLZ(lbl_80350A60)) != 0x20) {
                 lbl_80350A60 &= ~(0x80000000U >> lbl_8034FFB4);
                 memset(&lbl_8031C990 + (lbl_8034FFB4 * 0xC) + 0x10, 0, 0xC);
@@ -644,22 +646,22 @@ void PADTypeAndStatusCallback(s32 arg1) {
                 SIGetTypeAsync(lbl_8034FFB4, PADTypeAndStatusCallback);
             }
         } else {
-            if (!(temp_r6 & 0x80000000) || (temp_r6 & 0x04000000)) {
+            if (!((arg1 & 0xFFFFFF00) & 0x80000000) || ((arg1 & 0xFFFFFF00) & 0x04000000)) {
                 if ((u32) (temp_r5 & temp_r28) != 0) {
                     var_r3 = SITransfer(temp_r29, &lbl_8034FFCC, 3, &lbl_8031C990 + (temp_r29 * 0xC) + 0x10, 0xA, PADOriginCallback, 0, 0);
                 } else {
                     var_r3 = SITransfer(temp_r29, &lbl_8034FFC8, 1, &lbl_8031C990 + (temp_r29 * 0xC) + 0x10, 0xA, PADOriginCallback, 0, 0);
                 }
-            } else if ((temp_r6 & 0x100000) && !(temp_r6 & 0x80000) && !(temp_r6 & 0x40000)) {
-                if (temp_r6 & 0x40000000) {
+            } else if (((arg1 & 0xFFFFFF00) & 0x100000) && !((arg1 & 0xFFFFFF00) & 0x80000) && !((arg1 & 0xFFFFFF00) & 0x40000)) {
+                if ((arg1 & 0xFFFFFF00) & 0x40000000) {
                     var_r3 = SITransfer(temp_r29, &lbl_8034FFC8, 1, &lbl_8031C990 + (temp_r29 * 0xC) + 0x10, 0xA, PADOriginCallback, 0, 0);
                 } else {
-                    var_r3 = SITransfer(temp_r29, &lbl_8031C990 + (temp_r4 * 4) + 0x40, 3, &lbl_8031C990 + (temp_r29 * 0xC) + 0x10, 8, PADProbeCallback, 0, 0);
+                    var_r3 = SITransfer(temp_r29, &lbl_8031C990 + (temp_r4 * 4) + 0x40, 3, &lbl_8031C990 + (temp_r29 * 0xC) + 0x10, 8, (u16)PADProbeCallback, 0, 0);
                 }
             }
             if (var_r3 == 0) {
-                lbl_8034FFB4 = CLZ(lbl_80350A60);
                 lbl_80350A70 |= temp_r28;
+                lbl_8034FFB4 = CLZ(lbl_80350A60);
                 if (lbl_8034FFB4 != 0x20) {
                     lbl_80350A60 &= ~(0x80000000U >> lbl_8034FFB4);
                     memset(&lbl_8031C990 + (lbl_8034FFB4 * 0xC) + 0x10, 0, 0xC);
@@ -671,8 +673,7 @@ void PADTypeAndStatusCallback(s32 arg1) {
 }
 
 void fn_800D33A8(s32 arg0, s32 arg1) {
-    s32 temp_r30;
-    s32 temp_r3;
+    u8 temp_r30;
     u16 temp_r5;
     s32 temp_r6;
     s32 temp_r6_2;
@@ -684,18 +685,17 @@ void fn_800D33A8(s32 arg0, s32 arg1) {
         temp_r6 = ~(temp_r29 | temp_r29);
         lbl_80350A68 &= temp_r6;
         lbl_80350A6C &= temp_r6;
-        temp_r3 = arg1 & 0xFFFFFF00;
-        if (!(arg1 & 0xF) && (temp_r3 & 0x80000000) && (temp_r3 & 0x100000) && (temp_r3 & 0x40000000) && !(temp_r3 & 0x04000000) && !(temp_r3 & 0x80000) && !(temp_r3 & 0x40000)) {
+        if (!(arg1 & 0xF) && ((arg1 & 0xFFFFFF00) & 0x80000000) && ((arg1 & 0xFFFFFF00) & 0x100000) && ((arg1 & 0xFFFFFF00) & 0x40000000) && !((arg1 & 0xFFFFFF00) & 0x04000000) && !((arg1 & 0xFFFFFF00) & 0x80000) && !((arg1 & 0xFFFFFF00) & 0x40000)) {
             SITransfer(arg0, &lbl_8034FFC8, 1, &lbl_8031C9A0 + (arg0 * 0xC), 0xA, (u16)fn_800D2EE4, 0, 0);
             return;
         }
+        temp_r8 = ~(temp_r29 | temp_r29);
         temp_r30 = OSDisableInterrupts((long *)(0), (long *)(0));
         SIDisablePolling(temp_r29);
-        temp_r8 = ~(temp_r29 | temp_r29);
-        temp_r7 = lbl_80350A5C & temp_r8;
-        temp_r6_2 = lbl_80350A68 & temp_r8;
-        lbl_80350A5C = temp_r7;
         temp_r5 = lbl_80350A6C & temp_r8;
+        temp_r6_2 = lbl_80350A68 & temp_r8;
+        temp_r7 = lbl_80350A5C & temp_r8;
+        lbl_80350A5C = temp_r7;
         lbl_80350A68 = temp_r6_2;
         lbl_80350A6C = temp_r5;
         lbl_80350A70 &= temp_r8;
@@ -708,14 +708,14 @@ s32 fn_800D34DC(s32 arg0) {
     s32 temp_r30;
     u8 temp_r31;
     s32 temp_r5;
-    s32 temp_r6;
+    u8 temp_r6;
 
     temp_r31 = OSDisableInterrupts((long *)(0), (long *)(0));
     temp_r30 = (arg0 | lbl_80350A70) & ~(lbl_80350A68 | lbl_80350A6C);
     temp_r6 = lbl_80350A60 | temp_r30;
     temp_r5 = lbl_80350A5C;
-    lbl_80350A60 = temp_r6;
     lbl_80350A5C = temp_r5 & ~temp_r30;
+    lbl_80350A60 = temp_r6;
     lbl_80350A70 = 0;
     if ((u32) lbl_8034FFC0 == 4U) {
         lbl_80350A64 |= temp_r30;
@@ -798,7 +798,7 @@ s32 fn_800D35DC(void) {
 s32 fn_800D37F4(void *arg0) {
     s32 sp14;
     s32 temp_r22;
-    s32 temp_r25;
+    u16 temp_r25;
     s32 temp_r25_2;
     s32 temp_r5;
     s32 temp_r6;
@@ -835,7 +835,7 @@ s32 fn_800D37F4(void *arg0) {
                 if ((s32) lbl_8034FFB4 != 0x20) {
                     lbl_80350A60 &= ~(0x80000000U >> lbl_8034FFB4);
                     memset(&lbl_8031C9A0 + (lbl_8034FFB4 * 0xC), 0, 0xC);
-                    SIGetTypeAsync(lbl_8034FFB4, PADTypeAndStatusCallback);
+                    SIGetTypeAsync(lbl_8034FFB4, (s32)PADTypeAndStatusCallback);
                 }
             }
             OSRestoreInterrupts(temp_r25);
@@ -857,7 +857,7 @@ s32 fn_800D37F4(void *arg0) {
                 memset(var_r31, 0, 0xA);
                 if (!(lbl_80350A6C & temp_r23)) {
                     lbl_80350A6C |= temp_r23;
-                    SIGetTypeAsync(var_r21, fn_800D33A8);
+                    SIGetTypeAsync(var_r21, (s32)fn_800D33A8);
                 }
             } else {
                 SIDisablePolling(temp_r23);

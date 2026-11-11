@@ -30,10 +30,13 @@ void SortVoices(s32 arg0, s32 arg1, s32 arg2, void *arg_sp0);
 
 s32 fn_80126C18(u8 arg0, u8 arg1, s32 arg2) { return 0; } /* draft: stub */
 
+#pragma push
+#pragma peephole off
 void salInitHRTFBuffer(void) {
     /* draft: did not compile: memset(lbl_80350E30, 0, 0x100); */
     DCFlushRangeNoSync(lbl_80350E30, 0x100);
 }
+#pragma pop
 
 void salActivateStudio(u8 arg0, s8 arg1, s32 arg2) {
     s32 temp_r31;

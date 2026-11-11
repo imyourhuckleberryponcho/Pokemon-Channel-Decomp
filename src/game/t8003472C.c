@@ -204,17 +204,18 @@ void fn_8003475C(void) {
 
 void SetViewport(s16 arg0, s16 arg1, s16 arg2, s16 arg3) {
     if ((void *) lbl_803504FC == NULL) {
-        /* draft: did not compile: lbl_803504FC = get_up_vector_for_viewing_mtx_inner(8); */
+        void * dc_or_viewing_mtx_inner = get_up_vector_for_viewing_mtx_inner(8);
+        /* draft: did not compile: lbl_803504FC = dc_or_viewing_mtx_inner; */
     }
-    /* draft: did not compile: lbl_80350500 = get_up_vector_for_viewing_mtx_inner(8); */
-    M2C_FIELD(lbl_803504FC, s16 *, 0) = arg0;
-    M2C_FIELD(lbl_803504FC, s16 *, 2) = arg2;
-    M2C_FIELD(lbl_803504FC, s16 *, 4) = arg1;
-    M2C_FIELD(lbl_803504FC, s16 *, 6) = arg3;
-    M2C_FIELD(lbl_80350500, s16 *, 0) = arg0;
-    M2C_FIELD(lbl_80350500, s16 *, 2) = arg2;
-    M2C_FIELD(lbl_80350500, s16 *, 4) = arg1;
-    M2C_FIELD(lbl_80350500, s16 *, 6) = arg3;
+    /* draft: did not compile: lbl_80350500 = dc_or_viewing_mtx_inner; */
+    M2C_FIELD(lbl_803504FC, u16 *, 0) = arg0;
+    M2C_FIELD(lbl_803504FC, u16 *, 2) = arg2;
+    M2C_FIELD(lbl_803504FC, u16 *, 4) = arg1;
+    M2C_FIELD(lbl_803504FC, u16 *, 6) = arg3;
+    M2C_FIELD(lbl_80350500, u16 *, 0) = arg0;
+    M2C_FIELD(lbl_80350500, u16 *, 2) = arg2;
+    M2C_FIELD(lbl_80350500, u16 *, 4) = arg1;
+    M2C_FIELD(lbl_80350500, u16 *, 6) = arg3;
 }
 
 void fn_80034858(M2C_UNK arg_sp0) {
@@ -395,15 +396,16 @@ void fn_80034C64(void) {
     HSD_ImageDescCopyFromEFB(0, 0, 1, 1);
 }
 
+#pragma push
+#pragma peephole off
 s32 fn_80034CC8(s32 arg0) {
-    s32 var_r0;
+    u8 var_r0;
 
     /* draft: did not compile: var_r0 = get_up_vector_for_viewing_mtx((long)(0x298), (void *)(0)); */
-    if (var_r0 != 0) {
-        var_r0 = fn_8009BC78(arg0, 0x7F, -1, -1, -1);
-    }
+    var_r0 = var_r0 == 0 ? var_r0 : fn_8009BC78(arg0, 0x7F, -1, -1, -1);
     return var_r0;
 }
+#pragma pop
 
 void fn_80034D20(void) {
 
@@ -412,9 +414,9 @@ void fn_80034D20(void) {
 void fn_80034D24(void) {
     lbl_8034E958 = fn_8010118C();
     fn_8010129C();
-    M2C_FIELD(lbl_80350554, s32 *, 0x40) = 4;
     M2C_FIELD(lbl_80350554, s32 *, 0x30) = (s32) M2C_FIELD((&lbl_8031D320 + (lbl_8034E958 * 0x60)), s32 *, 0x58);
     M2C_FIELD(lbl_80350554, s32 *, 0x34) = 0x96000;
+    M2C_FIELD(lbl_80350554, s32 *, 0x40) = 4;
 }
 
 void fn_80034D88(void) {

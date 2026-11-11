@@ -84,7 +84,7 @@ block_9:
 }
 
 s32 scr_method_alive(s32 arg0) {
-    s32 var_r4;
+    u8 var_r4;
 
     var_r4 = 0;
     if (fn_80080738() != 0) {
@@ -166,14 +166,16 @@ s32 scr_method_copyPos(s32 arg0) {
     void *temp_r31;
     void *temp_r31_2;
 
-    temp_r31 = fn_80089738((long)(0), (float)(0), (float)(0));
     temp_r31_2 = fn_80089738((long)(arg0), (float)(0), (float)(0));
+    temp_r31 = fn_80089738((long)(0), (float)(0), (float)(0));
     M2C_FIELD(M2C_FIELD(temp_r31, void **, 0x20), M2C_UNK (**)(void *, M2C_UNK *), 0x3C)(temp_r31, &sp8);
     M2C_FIELD(M2C_FIELD(temp_r31_2, void **, 0x20), M2C_UNK (**)(void *, M2C_UNK *), 0x38)(temp_r31_2, &sp8);
     fn_8008065C(arg0, 0);
     return 0;
 }
 
+#pragma push
+#pragma peephole off
 s32 fn_800936D0(s32 arg0, s32 arg1) {
     s32 sp10;
     s32 spC;
@@ -181,8 +183,8 @@ s32 fn_800936D0(s32 arg0, s32 arg1) {
     f32 sp8;
     f32 var_f31;
 
-    var_f31 = saved_reg_f31;
     M2C_FIELD(M2C_FIELD(fn_80089738(), void **, 0x20), M2C_UNK (**)(f32 *), 0x3C)(&sp8);
+    var_f31 = saved_reg_f31;
     switch (arg1) {                                 /* irregular */
     case 0:
         var_f31 = sp8;
@@ -197,6 +199,7 @@ s32 fn_800936D0(s32 arg0, s32 arg1) {
     fn_80080698(arg0, var_f31);
     return 0;
 }
+#pragma pop
 
 void scr_method_getPosX(void) {
     fn_800936D0((long)(0), (long)(0));
@@ -327,7 +330,7 @@ s32 scr_method_getNormalizedRotateX(s32 arg0) {
 }
 
 s32 scr_method_getNormalizedRotateY(s32 arg0) {
-    s32 spC;
+    s8 spC;
     M2C_UNK sp8;
 
     /* draft: did not compile: fn_80093AF0(&sp8); */
@@ -381,7 +384,7 @@ s32 scr_method_localToWorldX(s32 arg0) {
 }
 
 s32 scr_method_localToWorldY(s32 arg0) {
-    s32 spC;
+    s8 spC;
     M2C_UNK sp8;
 
     /* draft: did not compile: fn_80093C40(&sp8); */
@@ -390,7 +393,7 @@ s32 scr_method_localToWorldY(s32 arg0) {
 }
 
 s32 scr_method_localToWorldZ(s32 arg0) {
-    s32 sp10;
+    s8 sp10;
     M2C_UNK sp8;
 
     /* draft: did not compile: fn_80093C40(&sp8); */

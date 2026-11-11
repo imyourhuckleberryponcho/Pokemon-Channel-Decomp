@@ -158,8 +158,8 @@ s32 fn_8009CC88(void *arg0) {
 }
 
 void fn_8009CCBC(void *arg0, void *arg1) {
-    s32 sp28;
-    s32 sp24;
+    u32 sp28;
+    u32 sp24;
     f32 sp20;
     f32 sp1C;
     f32 sp18;
@@ -182,8 +182,8 @@ void fn_8009CCBC(void *arg0, void *arg1) {
         sp10 = sp1C;
     }
     M2C_FIELD(arg0, f32 *, 0) = sp8;
-    M2C_FIELD(arg0, f32 *, 4) = spC;
     M2C_FIELD(arg0, f32 *, 8) = sp10;
+    M2C_FIELD(arg0, f32 *, 4) = spC;
 }
 
 s32 *fn_8009CD58(s32 *arg0, s32 arg1) {

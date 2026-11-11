@@ -91,14 +91,16 @@ u16 fn_800C61A8(u16 arg0) {
     s32 var_r3_3;
     s32 var_r0;
 
-    if (fn_800C6344() == 1) {
+    s32 cmpv = fn_800C6344();
+
+    if (cmpv == 1) {
         if ((arg0 >= 0x20U) && (arg0 <= 0xDFU)) {
             return M2C_FIELD((&lbl_802A6020 + (arg0 * 2)), u16 *, -0x40);
         }
         if ((arg0 > -0x7762U) && (arg0 <= -0x678EU)) {
             var_r3_3 = 0;
             var_r0 = 0;
-            if (((u8) arg0 >= 0x40U) && ((u8) arg0 <= 0xFCU)) {
+            if (((u8) arg0 >= 0x40U) && (arg0 <= 0xFCU)) {
                 var_r0 = 1;
             }
             if ((var_r0 != 0) && ((u8) arg0 != 0x7F)) {
@@ -111,7 +113,7 @@ u16 fn_800C61A8(u16 arg0) {
             if (var_r3_2 >= 0x40) {
                 var_r3_2 -= 1;
             }
-            return ((((s32) arg0 >> 8) - 0x88) * 0xBC) + (var_r3_2 + 0x2BE);
+            return (((arg0 >> 8) - 0x88) * 0xBC) + (var_r3_2 + 0x2BE);
         }
         if ((arg0 >= -0x7EC0U) && (arg0 < -0x7862U)) {
             var_r3_4 = 0;
@@ -142,7 +144,7 @@ block_33:
 
 u16 fn_800C6344(void) {
     s32 temp_r0;
-    u16 var_r0;
+    s8 var_r0;
 
     if ((u16) lbl_8034FF48 > 1U) {
         temp_r0 = *(s32 *)0x800000CC;
@@ -243,7 +245,7 @@ void *fn_800C6544(void *arg0, s32 *arg1) {
     s32 var_r4;
     s32 var_r5;
     s32 var_r5_2;
-    u16 var_r0;
+    s8 var_r0;
     u8 temp_r0;
     u8 temp_r4;
     u8 var_r3;
@@ -338,9 +340,9 @@ void __OSInterruptInit(void) {
     InterruptHandlerTable_803508A0 = 0x80003040;
     /* draft: did not compile: memset(InterruptHandlerTable_803508A0, 0, 0x80); */
     *(s32 *)0x800000C4 = 0;
+    __OSMaskInterrupts((long)(-0x20));
     *(s32 *)0x800000C8 = 0;
     M2C_FIELD((void *)0xCC003000, s32 *, 4) = 0xF0;
-    __OSMaskInterrupts((long)(-0x20));
     __OSSetExceptionHandler(4, ExternalInterruptHandler);
 }
 
@@ -349,7 +351,7 @@ s32 SetInterruptMask(s32 arg0, s32 arg1) {
     s32 var_r5_2;
     s32 var_r5_3;
     s32 var_r5_4;
-    s32 var_r6_2;
+    u8 var_r6_2;
     s32 var_r7;
     s32 var_r5;
     s32 var_r6;
@@ -371,9 +373,7 @@ s32 SetInterruptMask(s32 arg0, s32 arg1) {
                     if ((u32) (arg1 & 0x40000000) == 0) {
                         var_r5 = var_r5 | 2;
                     }
-                    if ((u32) (arg1 & 0x20000000) == 0) {
-                        var_r5 = var_r5 | 4;
-                    }
+                    var_r5 = !((u32) (arg1 & 0x20000000) == 0) ? var_r5 : var_r5 | 4;
                     if ((u32) (arg1 & 0x10000000) == 0) {
                         var_r5 = var_r5 | 8;
                     }
@@ -443,8 +443,10 @@ s32 SetInterruptMask(s32 arg0, s32 arg1) {
     }
     if (temp_r0 < 0x1B) {
         var_r5_4 = 0xF0;
-        if ((u32) (arg1 & 0x4000) == 0) {
-            var_r5_4 = 0xF0 | 0x800;
+        switch ((u32) (arg1 & 0x4000)) {
+        case 0:
+                var_r5_4 = 0xF0 | 0x800;
+            break;
         }
         if ((u32) (arg1 & 0x800) == 0) {
             var_r5_4 = var_r5_4 | 8;
@@ -805,18 +807,16 @@ void __OSInitMemoryProtection(void) {
 
 void __OSUnlockAllMutex(void *arg0) {
     void *temp_r4;
-    void *temp_r5;
 
 loop_5:
     temp_r4 = M2C_FIELD(arg0, void **, 0x2F4);
     if (temp_r4 != NULL) {
-        temp_r5 = M2C_FIELD(temp_r4, void **, 0x10);
-        if (temp_r5 == NULL) {
+        if ((M2C_FIELD(temp_r4, void **, 0x10)) == NULL) {
             M2C_FIELD(arg0, s32 *, 0x2F8) = 0;
         } else {
-            M2C_FIELD(temp_r5, s32 *, 0x14) = 0;
+            M2C_FIELD((M2C_FIELD(temp_r4, void **, 0x10)), s32 *, 0x14) = 0;
         }
-        M2C_FIELD(arg0, void **, 0x2F4) = temp_r5;
+        M2C_FIELD(arg0, void **, 0x2F4) = (M2C_FIELD(temp_r4, void **, 0x10));
         M2C_FIELD(temp_r4, s32 *, 0xC) = 0;
         M2C_FIELD(temp_r4, s32 *, 8) = 0;
         OSWakeupThread(temp_r4);
@@ -869,9 +869,9 @@ void __OSReboot(void) {
     *(s8 *)0x800030E2 = 1;
     *(s32 *)0x812FDFF0 = lbl_803508B8;
     *(s32 *)0x812FDFEC = lbl_803508BC;
+    DVDInit();
     OSClearContext(&spA0, 0x81300000, lbl_803508B8, 1);
     OSSetCurrentContext(&spA0);
-    DVDInit();
     fn_800D0458(1);
     DVDResume();
     lbl_803508C0 = 0;

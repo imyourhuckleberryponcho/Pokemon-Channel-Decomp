@@ -461,14 +461,14 @@ void fn_8002F104(void **arg0, s32 *arg1, void ***arg2, s32 arg3, M2C_UNK arg_sp0
     /* draft: did not compile: sp8 = arg1 + 4; */
     spC = temp_r3;
     /* draft: did not compile: fn_8002F1CC(arg1, temp_r3 + 8, arg3); */
+    *temp_r4 = temp_r3;
     temp_r4 = *arg2;
     spC = NULL;
     M2C_FIELD(*temp_r4, void **, 4) = temp_r3;
     M2C_FIELD(temp_r3, void **, 0) = (void *) *temp_r4;
-    *temp_r4 = temp_r3;
+    *arg0 = temp_r3;
     M2C_FIELD(temp_r3, void ***, 4) = temp_r4;
     *arg1 += 1;
-    *arg0 = temp_r3;
 }
 
 void fn_8002F1CC(u32 arg1, s32 arg2) {
@@ -644,7 +644,6 @@ void fn_8002F774(void **arg0, s32 *arg1, void ***arg2, s32 **arg3, M2C_UNK arg_s
     void *spC;
     s32 sp8;
     s32 *temp_r4;
-    void **temp_r4_2;
     void *temp_r3;
     void *temp_r5;
 
@@ -662,13 +661,12 @@ void fn_8002F774(void **arg0, s32 *arg1, void ***arg2, s32 **arg3, M2C_UNK arg_s
             *temp_r4 += 1;
         }
     }
-    temp_r4_2 = *arg2;
+    M2C_FIELD(temp_r5, void ***, 4) = (*arg2);
+    M2C_FIELD(temp_r5, void **, 0) = (void *) *(*arg2);
     temp_r5 = spC;
     spC = NULL;
-    M2C_FIELD(*temp_r4_2, void **, 4) = temp_r5;
-    M2C_FIELD(temp_r5, void **, 0) = (void *) *temp_r4_2;
-    *temp_r4_2 = temp_r5;
-    M2C_FIELD(temp_r5, void ***, 4) = temp_r4_2;
+    M2C_FIELD(*(*arg2), void **, 4) = temp_r5;
+    *(*arg2) = temp_r5;
     *arg1 += 1;
     *arg0 = temp_r5;
 }

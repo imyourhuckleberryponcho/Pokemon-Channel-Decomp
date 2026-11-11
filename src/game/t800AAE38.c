@@ -441,7 +441,6 @@ void **fn_800AB93C(void **arg0, void *arg1) {
 M2C_UNK *fn_800AB970(M2C_UNK *arg0, M2C_UNK *arg1) {
     M2C_UNK *var_r6;
     M2C_UNK *var_r7;
-    s32 temp_r5;
     s32 temp_r5_2;
 
     var_r7 = arg0;
@@ -458,9 +457,8 @@ loop_3:
     M2C_FIELD(arg1, M2C_UNK **, 0) = var_r6;
     if (var_r7 != NULL) {
         M2C_FIELD(var_r7, M2C_UNK **, 0) = arg1;
-        temp_r5 = M2C_FIELD(arg1, s32 *, 8);
-        if ((void *) (arg1 + temp_r5) == var_r7) {
-            M2C_FIELD(arg1, s32 *, 8) = (s32) (temp_r5 + M2C_FIELD(var_r7, s32 *, 8));
+        if ((void *) (arg1 + (M2C_FIELD(arg1, s32 *, 8))) == var_r7) {
+            M2C_FIELD(arg1, s32 *, 8) = (s32) ((M2C_FIELD(arg1, s32 *, 8)) + M2C_FIELD(var_r7, s32 *, 8));
             var_r7 = M2C_FIELD(var_r7, M2C_UNK **, 4);
             M2C_FIELD(arg1, M2C_UNK **, 4) = var_r7;
             if (var_r7 != NULL) {

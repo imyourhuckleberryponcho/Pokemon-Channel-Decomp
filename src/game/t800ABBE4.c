@@ -156,14 +156,13 @@ void fn_800ABC64(s32 arg0, s32 arg1, s32 arg2) {
 
 s32 fn_800ABCC4(s32 arg0) {
     u32 *temp_r3;
-    s32 var_r10;
-    s32 var_r11;
-    u32 *temp_r3_2;
+    u32 var_r10;
     u32 *temp_r3_3;
     u32 *var_r5;
     u32 *var_r9;
-    u32 temp_r5;
+    u8 temp_r5;
     void *temp_r9;
+    s32 var_r11;
 
     var_r10 = 0;
     var_r11 = 0;
@@ -209,7 +208,6 @@ loop_51:
             OSReport(&lbl_8022ABC8 + 0x11C, 0x39F);
             goto block_55;
         }
-        temp_r3_2 = M2C_FIELD(var_r9, u32 **, 4);
         if (0 /* draft: did not compile */) {
             OSReport(&lbl_8022ABC8 + 0x154, 0x3A0);
             goto block_55;
@@ -223,7 +221,7 @@ loop_51:
             OSReport(&lbl_8022ABC8 + 0x1D4, 0x3A2);
             goto block_55;
         }
-        if ((temp_r3_2 != NULL) && ((void *) (var_r9 + temp_r5) >= temp_r3_2)) {
+        if (((M2C_FIELD(var_r9, u32 **, 4)) != NULL) && ((void *) (var_r9 + temp_r5) >= (M2C_FIELD(var_r9, u32 **, 4)))) {
             OSReport(&lbl_8022ABC8 + 0x298, 0x3A3);
             goto block_55;
         }
@@ -233,7 +231,7 @@ loop_51:
             OSReport(&lbl_8022ABC8 + 0x214, 0x3A7);
             goto block_55;
         }
-        var_r9 = temp_r3_2;
+        var_r9 = (M2C_FIELD(var_r9, u32 **, 4));
         goto loop_51;
     }
     if (0 /* draft: did not compile */) {
@@ -307,13 +305,13 @@ void fn_800ABFD4(void *arg0, s32 arg1, s32 arg2, f32 farg0, f32 farg1, f32 farg2
         GXSetVtxAttrFmt(0, 9, 1, 4, 0);
         GXSetVtxAttrFmt(0, 0xB, 1, 5, 0);
         GXSetVtxAttrFmt(0, 0xD, 1, 0, 0);
+        *(f32 *)0xCC008000 = farg2;
         GXLoadPosMtxImm(&lbl_802A9F68, 0);
         GXSetCurrentMtx(0);
         GXSetVtxDesc(9, 1);
         GXSetVtxDesc(0xB, 1);
         GXSetVtxDesc(0xD, 1);
         GXBegin(0x80, 0, 4);
-        *(f32 *)0xCC008000 = farg2;
         *(f32 *)0xCC008000 = farg0;
         *(f32 *)0xCC008000 = farg4;
         *(f32 *)0xCC008000 = (u8) M2C_FIELD(arg0, s32 *, 0);
@@ -359,19 +357,19 @@ void fn_800ABFD4(void *arg0, s32 arg1, s32 arg2, f32 farg0, f32 farg1, f32 farg2
 }
 
 void fn_800AC3B4(void *arg0, void *arg1, s32 arg2) {
-    s32 saved_reg_f30;
-    s32 saved_reg_f29;
-    s32 saved_reg_f28;
+    u32 saved_reg_f30;
+    u32 saved_reg_f29;
+    u32 saved_reg_f28;
     u32 saved_reg_f27;
     s32 sp8;
     f32 temp_f1;
     f32 temp_f31;
     f32 temp_f31_2;
     f32 temp_f4;
-    f32 var_f27;
+    f32 var_f30;
     f32 var_f29;
     f32 var_f28;
-    f32 var_f30;
+    f32 var_f27;
     s32 temp_r3;
 
     var_f27 = saved_reg_f27;
@@ -380,7 +378,8 @@ void fn_800AC3B4(void *arg0, void *arg1, s32 arg2) {
     var_f30 = saved_reg_f30;
     if (((u8) M2C_FIELD(arg1, u8 *, 3) != 0) || (arg2 != 0)) {
         temp_f31 = fn_800F3A10(arg0);
-        temp_f1 = fn_800F39E8(arg0) + temp_f31;
+        temp_f1 = fn_800F39E8(arg0);
+        temp_f1 += temp_f31;
         temp_f31_2 = (f32) (lbl_80351CC0 * (f64) temp_f1);
         temp_r3 = HSD_CObjGetProjectionType(arg0, temp_f1);
         switch (temp_r3) {                          /* irregular */
@@ -665,6 +664,6 @@ void CardECleanup(void) {
 }
 
 void fn_800AD920(void) {
-    hsdInitClassInfo(&lbl_8022B688, &lbl_802A8AA0, &lbl_8022B688 + 0x54, &lbl_8022B688 + 0x70, 0x54, 0x20);
     M2C_FIELD(&lbl_8022B688, M2C_UNK **, 0x44) = &fn_800AD97C;
+    hsdInitClassInfo(&lbl_8022B688, &lbl_802A8AA0, &lbl_8022B688 + 0x54, &lbl_8022B688 + 0x70, 0x54, 0x20);
 }

@@ -255,10 +255,13 @@ void fn_8001D3C8(void *arg0) {
     M2C_FIELD(arg0, s32 *, 0x1D0) = 0;
 }
 
+#pragma push
+#pragma dont_inline on
 void method_setPickObject(void *arg0, s32 arg1) {
     fn_8001D3C8((void *)(0));
     M2C_FIELD(arg0, s32 *, 0x1CC) = arg1;
 }
+#pragma pop
 
 s32 fn_8001D46C(void *arg0) {
     return M2C_FIELD(arg0, s32 *, 0x1D0);
@@ -268,11 +271,14 @@ s32 fn_8001D474(void *arg0) {
     return M2C_FIELD(arg0, s32 *, 0x1CC);
 }
 
+#pragma push
+#pragma dont_inline on
 void method_setCarryingObject(void *arg0, s32 arg1) {
     fn_8001D3C8((void *)(0));
     M2C_FIELD(arg0, s32 *, 0x1CC) = 0;
     M2C_FIELD(arg0, s32 *, 0x1D0) = arg1;
 }
+#pragma pop
 
 void method_setCarryingObjectRelPos(void *arg0, void *arg1) {
     M2C_FIELD(arg0, f32 *, 0x1D4) = (f32) M2C_FIELD(arg1, f32 *, 0);
@@ -294,8 +300,9 @@ s32 fn_8001D500(s32 arg0) {
     return arg0 + 0x1E0;
 }
 
+#pragma push
+#pragma peephole off
 s32 method_getActIdByGA(void *arg0, u32 arg1) {
-    s32 temp_r0;
     s32 temp_r3;
     s32 var_ctr;
     s32 var_r6;
@@ -305,9 +312,8 @@ s32 method_getActIdByGA(void *arg0, u32 arg1) {
     var_r7 = 0;
     var_r6 = 0;
     temp_r5 = M2C_FIELD(M2C_FIELD(arg0, void **, 0x5C), void **, 8);
-    temp_r0 = M2C_FIELD(temp_r5, s32 *, 0x70);
-    var_ctr = temp_r0;
-    if (temp_r0 > 0) {
+    var_ctr = (M2C_FIELD(temp_r5, s32 *, 0x70));
+    if ((M2C_FIELD(temp_r5, s32 *, 0x70)) > 0) {
 loop_1:
         temp_r3 = M2C_FIELD(temp_r5, s32 *, 0x6C);
         if (0 /* draft: did not compile */) {
@@ -316,14 +322,17 @@ loop_1:
         var_r6 += 0x38;
         var_r7 += 1;
         var_ctr -= 1;
-        if (var_ctr == 0) {
-            /* Duplicate return node #4. Try simplifying control flow for better match */
-            return 0x08000000;
+        switch (var_ctr) {
+        case 0:
+                /* Duplicate return node #4. Try simplifying control flow for better match */
+                return 0x08000000;
+            break;
         }
         goto loop_1;
     }
     return 0x08000000;
 }
+#pragma pop
 
 s32 method_getPlayingActId(void *arg0) {
     if (0 /* draft: did not compile */) {

@@ -290,14 +290,14 @@ s32 OSCreateThread(void *arg0, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6)
     if ((arg5 < 0) || (arg5 > 0x1F)) {
         return 0;
     }
-    M2C_FIELD(arg0, s16 *, 0x2C8) = 1;
     temp_r7 = arg3 & 0xFFFFFFF8;
     M2C_FIELD(arg0, s16 *, 0x2CA) = (s16) (arg6 & 1);
     M2C_FIELD(arg0, s32 *, 0x2D4) = arg5;
-    M2C_FIELD(arg0, s32 *, 0x2D0) = arg5;
-    M2C_FIELD(arg0, s32 *, 0x2CC) = 1;
-    M2C_FIELD(arg0, s32 *, 0x2D8) = -1;
+    M2C_FIELD(arg0, s16 *, 0x2C8) = 1;
     M2C_FIELD(arg0, s32 *, 0x2F0) = 0;
+    M2C_FIELD(arg0, s32 *, 0x2D8) = -1;
+    M2C_FIELD(arg0, s32 *, 0x2CC) = 1;
+    M2C_FIELD(arg0, s32 *, 0x2D0) = arg5;
     M2C_FIELD(arg0, s32 *, 0x2E8) = 0;
     M2C_FIELD(arg0, s32 *, 0x2F8) = 0;
     M2C_FIELD(arg0, s32 *, 0x2F4) = 0;
@@ -309,13 +309,13 @@ s32 OSCreateThread(void *arg0, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6)
     /* draft: did not compile: temp_r4 = arg3 - arg4; */
     M2C_FIELD(arg0, s32 *, 0xC) = arg2;
     M2C_FIELD(arg0, s32 *, 0x304) = arg3;
-    M2C_FIELD(arg0, s32 **, 0x308) = temp_r4;
     temp_r3 = M2C_FIELD(arg0, s32 **, 0x308);
     *temp_r3 = 0xDEADBABE;
     M2C_FIELD(arg0, s32 *, 0x30C) = 0;
     M2C_FIELD(arg0, s32 *, 0x310) = 0;
     M2C_FIELD(arg0, s32 *, 0x314) = 0;
     OSDisableInterrupts(temp_r3, temp_r4);
+    M2C_FIELD(arg0, s32 **, 0x308) = temp_r4;
     if ((u32) M2C_FIELD(&__OSErrorTable, u32 *, 0x40) != 0U) {
         var_ctr = 4;
         var_r5 = arg0;
@@ -409,7 +409,7 @@ void OSExitThread(s32 arg0) {
 }
 
 void OSCancelThread(void *arg0) {
-    s32 temp_r31;
+    u8 temp_r31;
     u16 temp_r0;
     void *temp_r3;
     void *temp_r4;
@@ -942,11 +942,11 @@ loop_4:
         var_r5 -= 1;
         goto loop_4;
     }
-    M2C_FIELD(arg1, u32 *, 0x14) = var_r5;
     temp_r0_2 = arg0 - temp_r0;
     M2C_FIELD(arg1, s32 *, 0x1C) = temp_r0_2;
-    var_r7 = 1;
+    M2C_FIELD(arg1, u32 *, 0x14) = var_r5;
     var_r8 = 0;
+    var_r7 = 1;
     if (((s32) (var_r5 % 4) == 0) && ((s32) (var_r5 % 100) != 0)) {
         var_r8 = 1;
     }
@@ -1093,12 +1093,15 @@ loop_26:
     return var_r25;
 }
 
+#pragma push
+#pragma optimize_for_size on
 s32 SIBusy(void) {
     if ((s32) Si_802A6C14 != -1) {
         return 1;
     }
     return 0;
 }
+#pragma pop
 
 s32 SIIsChanBusy(s32 arg0) {
     s32 var_r5;
@@ -1121,7 +1124,7 @@ u32 CompleteTransfer(void) {
     s32 var_ctr_4;
     s32 var_r4_2;
     u32 temp_r3;
-    u32 temp_r6;
+    int temp_r6;
     u32 temp_r7;
     u32 temp_r7_2;
     u32 var_ctr;
@@ -1266,8 +1269,8 @@ s32 SIEnablePollingInterrupt(s32 arg0) {
         var_r5 = temp_r5 & 0xF7FFFFFF;
     }
     temp_r5_2 = var_r5 & 0x7FFFFFFE;
-    M2C_FIELD((s32 *)0xCC000000, s32 *, 0x6434) = temp_r5_2;
     OSRestoreInterrupts(temp_r5_2);
+    M2C_FIELD((s32 *)0xCC000000, s32 *, 0x6434) = temp_r5_2;
     return var_r30;
 }
 

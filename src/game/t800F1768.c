@@ -202,6 +202,8 @@ void fn_800F1960(u32 arg0) {
     M2C_FIELD(M2C_FIELD(&lbl_802A9168, void **, 0x14), M2C_UNK (**)(void *), 0x38)(M2C_FIELD(&lbl_802A9168, void **, 0x14));
 }
 
+#pragma push
+#pragma peephole off
 void fn_800F19C0(void) {
     hsdInitClassInfo(&lbl_802A9168, &lbl_802AA3D0, &lbl_802A9168 + 0x13C, &lbl_802A9168 + 0x154, 0x44, 0xD4);
     /* draft: did not compile: M2C_FIELD(&lbl_802A9168, M2C_UNK (**)(), 0x30) = LObjRelease; */
@@ -209,6 +211,7 @@ void fn_800F19C0(void) {
     M2C_FIELD(&lbl_802A9168, M2C_UNK **, 0x3C) = &LObjLoad;
     M2C_FIELD(&lbl_802A9168, M2C_UNK **, 0x40) = &LObjUpdateFunc;
 }
+#pragma pop
 
 void HSD_CObjEraseScreen(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 saved_reg_f30;
@@ -216,7 +219,6 @@ void HSD_CObjEraseScreen(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 saved_reg_f28;
     s32 saved_reg_f27;
     f32 temp_f1;
-    f32 temp_f31;
     f32 temp_f31_2;
     f32 temp_f4;
     f32 var_f30;
@@ -233,8 +235,7 @@ void HSD_CObjEraseScreen(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
         if ((arg1 == 0) && (arg2 == 0) && (arg3 == 0)) {
             return;
         }
-        temp_f31 = fn_800F3A10(arg0);
-        temp_f1 = fn_800F39E8(arg0) + temp_f31;
+        temp_f1 = fn_800F39E8(arg0) + (f32)(fn_800F3A10(arg0));
         temp_f31_2 = (f32) (lbl_80351E98 * (f64) temp_f1);
         temp_r3 = HSD_CObjGetProjectionType(arg0, temp_f1);
         switch (temp_r3) {                          /* irregular */
@@ -505,7 +506,7 @@ f32 fn_800F2BFC(void *arg0, s32 arg1) {
         }
         HSD_WObjGetPosition(M2C_FIELD(arg0, u32 *, 0x28), &sp14);
         PSVECSubtract(&sp14, &sp8, &sp20);
-        if ((fabs(sp20) <= (f32) lbl_80351ED0) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(sp24) == lbl_80351ED0) != 0)) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(sp28) == lbl_80351ED0) != 0))) {
+        if ((lbl_80351ED0 >= fabs(sp20)) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(sp24) == lbl_80351ED0) != 0)) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(sp28) == lbl_80351ED0) != 0))) {
             var_r0_2 = -1;
         } else {
             PSVECNormalize(&sp20, &sp20);
@@ -531,7 +532,7 @@ f32 fn_800F2BFC(void *arg0, s32 arg1) {
 }
 
 s32 fn_800F2DE4(void *arg0, f32 *arg1, f32 farg0) {
-    s32 sp48;
+    M2C_UNK sp1C;
     s32 sp44;
     M2C_UNK sp4C;
     f32 sp40;
@@ -539,7 +540,7 @@ s32 fn_800F2DE4(void *arg0, f32 *arg1, f32 farg0) {
     f32 sp38;
     f32 sp34;
     f32 sp28;
-    M2C_UNK sp1C;
+    s32 sp48;
     M2C_UNK sp10;
     f32 spC;
     f32 sp8;
@@ -575,7 +576,7 @@ s32 fn_800F2DE4(void *arg0, f32 *arg1, f32 farg0) {
         HSD_WObjGetPosition(M2C_FIELD(arg0, u32 *, 0x28), &sp1C);
         PSVECSubtract(&sp1C, &sp10, &sp40);
         M2C_ERROR(/* unknown instruction: cror eq, lt, eq */);
-        if ((fabs(sp40) == lbl_80351ED0) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(sp44) == (f32) lbl_80351ED0) != 0)) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(sp48) == (f32) lbl_80351ED0) != 0))) {
+        if ((fabs(sp40) == lbl_80351ED0) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(sp44) == lbl_80351ED0) != 0)) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(sp48) == lbl_80351ED0) != 0))) {
             var_r0_2 = -1;
         } else {
             PSVECNormalize(&sp40, &sp40);
@@ -586,7 +587,7 @@ s32 fn_800F2DE4(void *arg0, f32 *arg1, f32 farg0) {
     if (var_r0 == 0) {
         return 0;
     }
-    if ((f32) (lbl_80351EE8 - (f64) (f32) fabs(sp44)) < (f32) lbl_80351EF0) {
+    if ((lbl_80351EE8 - (f64) (f32) fabs(sp44)) < (f32) lbl_80351EF0) {
         var_f4 = (sp44 * sp44) + (sp48 * sp48);
         if (var_f4 > lbl_80351EA8) {
             temp_f1 = __frsqrte(var_f4);
@@ -610,7 +611,7 @@ s32 fn_800F2DE4(void *arg0, f32 *arg1, f32 farg0) {
         }
         sp38 = var_f4_2;
         temp_f2_2 = -sp44 / (f32) var_f4_2;
-        sp34 = sp40 * temp_f2_2;
+        sp34 = temp_f2_2 * sp40;
         sp3C = sp48 * temp_f2_2;
     }
     fn_800CC2C4(&sp4C, &sp40, -farg0);
@@ -639,9 +640,9 @@ void fn_800F3130(void *arg0, f32 *arg1) {
     s32 sp3C;
     M2C_UNK sp44;
     f32 sp38;
-    f32 sp2C;
-    f32 sp20;
     M2C_UNK sp14;
+    f32 sp20;
+    f32 sp2C;
     M2C_UNK sp8;
     f32 var_f1;
     s32 var_r0;
@@ -655,8 +656,7 @@ void fn_800F3130(void *arg0, f32 *arg1) {
         }
         if (M2C_FIELD(arg0, s32 *, 8) & 1) {
             if (arg1 != NULL) {
-                M2C_ERROR(/* unknown instruction: cror eq, lt, eq */);
-                if ((fabs(M2C_FIELD(arg1, f32 *, 0)) == (f32) lbl_80351ED0) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(M2C_FIELD(arg1, f32 *, 4)) == (f32) lbl_80351ED0) != 0)) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(M2C_FIELD(arg1, f32 *, 8)) == (f32) lbl_80351ED0) != 0))) {
+                if ((fabs(M2C_FIELD(arg1, f32 *, 0)) <= lbl_80351ED0) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(M2C_FIELD(arg1, f32 *, 4)) == (f32) lbl_80351ED0) != 0)) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(M2C_FIELD(arg1, f32 *, 8)) == (f32) lbl_80351ED0) != 0))) {
                     var_r0 = -1;
                 } else {
                     PSVECNormalize(arg1, &sp38);
@@ -694,8 +694,7 @@ void fn_800F3130(void *arg0, f32 *arg1) {
                 }
                 HSD_WObjGetPosition(M2C_FIELD(arg0, u32 *, 0x28), &sp14);
                 PSVECSubtract(&sp14, &sp8, &sp2C);
-                M2C_ERROR(/* unknown instruction: cror eq, lt, eq */);
-                if ((fabs(sp2C) == (f32) lbl_80351ED0) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(sp30) == lbl_80351ED0) != 0)) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(sp34) == (f32) lbl_80351ED0) != 0))) {
+                if ((fabs(sp2C) <= lbl_80351ED0) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(sp30) == lbl_80351ED0) != 0)) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(sp34) == lbl_80351ED0) != 0))) {
                     var_r0_3 = -1;
                 } else {
                     PSVECNormalize(&sp2C, &sp2C);
@@ -710,9 +709,8 @@ void fn_800F3130(void *arg0, f32 *arg1) {
             } else {
                 C_MTXLookAt(&sp44, &lbl_802A92C8 + 0xD8, &lbl_802A92C8 + 0xE4, &sp2C);
                 PSMTXMultVecSR(&sp44, arg1, &sp20);
-                if (lbl_80351EA8 == sp24) {
-                    M2C_ERROR(/* unknown instruction: cror eq, gt, eq */);
-                    if (-lbl_80351EA8 == sp20) {
+                if (sp24 == lbl_80351EA8) {
+                    if (-lbl_80351EA8 >= sp20) {
                         var_f1 = lbl_80351EDC;
                     } else {
                         var_f1 = lbl_80351EE0;

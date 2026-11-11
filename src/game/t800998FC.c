@@ -203,7 +203,7 @@ s32 scr_method_destroyTT(void *arg0) {
     u8 sp14;
     s32 sp10;
     s32 spC;
-    s32 temp_r31;
+    u8 temp_r31;
     void *temp_r5;
 
     /* draft: did not compile: temp_r31 = fn_80080738(); */
@@ -230,13 +230,13 @@ s32 scr_ShowTextTelop(void *arg0) {
     f32 temp_f30;
     f32 temp_f31;
     s32 temp_r25;
-    s32 temp_r26;
+    u8 temp_r26;
     s32 temp_r27;
     s32 temp_r28;
     s32 temp_r31;
     s32 temp_r4;
-    void *temp_r5;
     void *temp_r6;
+    void *temp_r5;
     void *var_r30;
 
     temp_f29 = fn_80080764((long)(0));
@@ -252,13 +252,13 @@ s32 scr_ShowTextTelop(void *arg0) {
         var_r30 = fn_800A163C(M2C_FIELD(arg0, void **, 0x2E0), M2C_FIELD(&lbl_802C0270, s32 *, 8));
     }
     /* draft: did not compile: fn_80012CF8(var_r30 + 0x50, temp_r25, strlen(temp_r25)); */
+    M2C_FIELD(var_r30, f32 *, 0x48) = (f32) (lbl_80351B18 * temp_f31 * lbl_80351B1C);
+    M2C_FIELD(var_r30, f32 *, 0x4C) = (f32) (lbl_80351B18 * temp_f30 * lbl_80351B1C);
     fn_800A17A8(var_r30);
     sp24 = temp_r26 ^ 0x80000000;
     sp20 = 0x43300000;
     M2C_FIELD(var_r30, f32 *, 0x40) = (f32) temp_r27;
     M2C_FIELD(var_r30, f32 *, 0x44) = (f32) temp_r26;
-    M2C_FIELD(var_r30, f32 *, 0x48) = (f32) (lbl_80351B18 * temp_f31 * lbl_80351B1C);
-    M2C_FIELD(var_r30, f32 *, 0x4C) = (f32) (lbl_80351B18 * temp_f30 * lbl_80351B1C);
     M2C_ERROR(/* unknown instruction: cror eq, gt, eq */);
     if (temp_f29 == lbl_80351B10) {
         M2C_FIELD(var_r30, s32 *, 0x58) = (s32) (lbl_80351B14 * temp_f29);
@@ -266,13 +266,13 @@ s32 scr_ShowTextTelop(void *arg0) {
     temp_r6 = &lbl_801CB330 + (temp_r28 * 4);
     temp_r5 = &lbl_801CB330 + (temp_r31 * 4);
     M2C_FIELD(var_r30, u8 *, 4) = (u8) M2C_FIELD(temp_r6, u8 *, 0);
-    M2C_FIELD(var_r30, u8 *, 5) = (u8) M2C_FIELD(temp_r6, u8 *, 1);
     M2C_FIELD(var_r30, u8 *, 6) = (u8) M2C_FIELD(temp_r6, u8 *, 2);
     M2C_FIELD(var_r30, u8 *, 7) = (u8) M2C_FIELD(temp_r6, u8 *, 3);
     M2C_FIELD(var_r30, u8 *, 0xC) = (u8) M2C_FIELD(temp_r5, u8 *, 0);
     M2C_FIELD(var_r30, u8 *, 0xD) = (u8) M2C_FIELD(temp_r5, u8 *, 1);
     M2C_FIELD(var_r30, u8 *, 0xE) = (u8) M2C_FIELD(temp_r5, u8 *, 2);
     M2C_FIELD(var_r30, u8 *, 0xF) = (u8) M2C_FIELD(temp_r5, u8 *, 3);
+    M2C_FIELD(var_r30, u8 *, 5) = (u8) M2C_FIELD(temp_r6, u8 *, 1);
     M2C_FIELD(var_r30, u8 *, 0x10) = 1U;
     if ((u8) M2C_FIELD(var_r30, u8 *, 0x10) == 0) {
         M2C_FIELD(var_r30, s32 *, 0x58) = -1;
@@ -381,17 +381,23 @@ s32 fn_8009A198(s32 arg0, s32 arg1) {
     return 0;
 }
 
+#pragma push
+#pragma dont_inline on
 void scr_method_getScreenCenterPosX(void) {
     fn_8009A198((long)(0), (long)(0));
 }
+#pragma pop
 
 void scr_method_getScreenCenterPosY(void) {
     fn_8009A198((long)(1), (long)(0));
 }
 
+#pragma push
+#pragma dont_inline on
 void scr_method_getScreenCenterPosZ(void) {
     fn_8009A198((long)(2), (long)(0));
 }
+#pragma pop
 
 s32 scr_IsProgressiveQueryNeeded(s32 arg0) {
     if ((u8) lbl_8035056C == 0) {
@@ -402,13 +408,13 @@ s32 scr_IsProgressiveQueryNeeded(s32 arg0) {
 }
 
 s32 scr_SetProgressiveMode(s32 arg0) {
-    s32 temp_r3;
+    u8 temp_r3;
 
     lbl_8035056C = 0;
     /* draft: did not compile: temp_r3 = fn_80080738(); */
-    OSSetProgressiveMode(temp_r3 != 0);
-    lbl_8035056D = temp_r3 != 0;
     fn_8003472C();
+    lbl_8035056D = temp_r3 != 0;
+    OSSetProgressiveMode(temp_r3 != 0);
     fn_8008065C(arg0, 0);
     return 0;
 }
@@ -465,6 +471,8 @@ void *fn_8009A314(void *arg0, s32 arg1) {
     return arg0;
 }
 
+#pragma push
+#pragma peephole off
 void *fn_8009A49C(void *arg0, s16 arg1) {
     void *temp_r3;
     void *temp_r4;
@@ -499,6 +507,7 @@ void *fn_8009A49C(void *arg0, s16 arg1) {
     }
     return arg0;
 }
+#pragma pop
 
 s32 fn_8009A594(void *arg0) {
     void *temp_r3;

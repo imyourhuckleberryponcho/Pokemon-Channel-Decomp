@@ -127,12 +127,17 @@ void fn_80005A58(void *arg0, void *arg1) {
 }
 
 void fn_80005A98(void *arg0, u8 arg1, s32 arg2) {
-    if (arg2 == 0) {
-        M2C_FIELD(arg0, u8 *, 0) = (u8) (arg1 >> 0x18U);
-        M2C_FIELD(arg0, u8 *, 1) = (u8) (arg1 >> 0x10U);
-        M2C_FIELD(arg0, u8 *, 2) = (u8) (arg1 >> 8U);
-        M2C_FIELD(arg0, u8 *, 3) = arg1;
-        return;
+    switch (arg2) {
+
+    case 0:
+            M2C_FIELD(arg0, u8 *, 0) = (u8) (arg1 >> 0x18U);
+            M2C_FIELD(arg0, u8 *, 1) = (u8) (arg1 >> 0x10U);
+            M2C_FIELD(arg0, u8 *, 2) = (u8) (arg1 >> 8U);
+            M2C_FIELD(arg0, u8 *, 3) = arg1;
+            return;
+
+        break;
+
     }
     M2C_FIELD(arg0, u8 *, 0) = arg1;
     M2C_FIELD(arg0, u8 *, 1) = (u8) (arg1 >> 8U);
@@ -202,14 +207,14 @@ s32 fn_80005B88(M2C_UNK *arg0, u32 arg1, s32 *arg2, M2C_UNK arg_sp0) {
 
 s32 fn_80005C50(void *arg0, s32 arg1, u16 arg2, M2C_UNK arg_sp0) {
     s32 var_r28;
-    s32 var_r29;
+    u16 var_r29;
     u16 temp_r30;
 
     /* draft: did not compile: temp_r30 = fn_80005B58(arg1, M2C_FIELD(arg0, s32 *, 0xB4)); */
     var_r29 = 0;
     var_r28 = arg1 + 2;
 loop_4:
-    if (var_r29 >= (s32) temp_r30) {
+    if (var_r29 >= temp_r30) {
         return 0;
     }
     if (0 /* draft: did not compile */) {
@@ -392,7 +397,7 @@ block_14:
 void fn_80006344(void *arg0, s32 arg3, u8 *arg4) { } /* draft: stub */
 
 void fn_800064C8(s32 arg0, s32 arg1, s32 arg2) {
-    s32 temp_cr0_eq;
+    s8 temp_cr0_eq;
 
     temp_cr0_eq = arg2 == 0;
     if (temp_cr0_eq == 0) {
@@ -404,7 +409,7 @@ void fn_800064C8(s32 arg0, s32 arg1, s32 arg2) {
 }
 
 void fn_80006530(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 temp_cr0_eq;
+    s8 temp_cr0_eq;
 
     temp_cr0_eq = arg3 == 0;
     if (temp_cr0_eq == 0) {

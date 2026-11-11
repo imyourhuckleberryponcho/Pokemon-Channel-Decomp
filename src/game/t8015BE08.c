@@ -149,11 +149,11 @@ s32 fn_8015C06C(s32 arg0, s32 arg1, s32 arg2) {
     if (arg2 != 0) {
         return 0x703;
     }
+    M2C_FIELD(&gTRKCPUState, s32 *, 0x1F8) = (s32) (M2C_FIELD(&gTRKCPUState, s32 *, 0x1F8) | 0x400);
     M2C_FIELD(&lbl_802B0F24, s8 *, 4) = 1;
-    M2C_FIELD(&lbl_802B0F24, s32 *, 0xC) = arg0;
     M2C_FIELD(&lbl_802B0F24, s32 *, 0x10) = arg1;
     M2C_FIELD(&lbl_802B0F24, s32 *, 0) = 1;
-    M2C_FIELD(&gTRKCPUState, s32 *, 0x1F8) = (s32) (M2C_FIELD(&gTRKCPUState, s32 *, 0x1F8) | 0x400);
+    M2C_FIELD(&lbl_802B0F24, s32 *, 0xC) = arg0;
     if ((1U == 0U) || (1U == 0x10U)) {
         M2C_FIELD(&lbl_802B0F24, s32 *, 8) = (s32) (M2C_FIELD(&lbl_802B0F24, s32 *, 8) - 1);
     }
@@ -165,11 +165,11 @@ s32 fn_8015C0E8(s32 arg0, s32 arg1) {
     if (arg1 != 0) {
         return 0x703;
     }
-    M2C_FIELD(&lbl_802B0F24, s8 *, 4) = 0;
-    M2C_FIELD(&lbl_802B0F24, s32 *, 8) = arg0;
     M2C_FIELD(&lbl_802B0F24, s32 *, 0) = 1;
+    M2C_FIELD(&lbl_802B0F24, s8 *, 4) = 0;
     M2C_FIELD(&gTRKCPUState, s32 *, 0x1F8) = (s32) (M2C_FIELD(&gTRKCPUState, s32 *, 0x1F8) | 0x400);
     M2C_FIELD(&lbl_802B0F24, s32 *, 8) = (s32) (M2C_FIELD(&lbl_802B0F24, s32 *, 8) - 1);
+    M2C_FIELD(&lbl_802B0F24, s32 *, 8) = arg0;
     M2C_FIELD(&gTRKState, s32 *, 0x98) = 0;
     return 0;
 }
@@ -598,7 +598,7 @@ loop_7:
 s32 TRKTargetAccessDefault(s32 arg0, u32 arg1, s32 arg2, s32 *arg3, s32 arg4) {
     u8 sp14;
     u8 sp10;
-    s32 spC;
+    u8 spC;
     s32 sp8;
     s32 temp_r12;
     s32 var_r3;
@@ -608,9 +608,9 @@ s32 TRKTargetAccessDefault(s32 arg0, u32 arg1, s32 arg2, s32 *arg3, s32 arg4) {
     }
     temp_r12 = (arg1 - arg0) + 1;
     sp14 = M2C_FIELD(&gTRKExceptionStatus_802B0F14, s32 *, 0xC);
+    spC = M2C_FIELD(&gTRKExceptionStatus_802B0F14, s32 *, 4);
     M2C_FIELD(&gTRKExceptionStatus_802B0F14, u8 *, 0xD) = 0U;
     sp8 = M2C_FIELD(&gTRKExceptionStatus_802B0F14, s32 *, 0);
-    spC = M2C_FIELD(&gTRKExceptionStatus_802B0F14, s32 *, 4);
     sp10 = M2C_FIELD(&gTRKExceptionStatus_802B0F14, s32 *, 8);
     *arg3 = temp_r12 * 4;
     if (arg4 != 0) {
@@ -868,10 +868,10 @@ void TRK_main(void) {
 }
 
 void TRKLoadContext(void *arg0, s32 arg1) {
-    s32 arg7;
-    s32 arg6;
-    s32 arg5;
-    s32 arg4;
+    u8 arg7;
+    u8 arg6;
+    u8 arg5;
+    u8 arg4;
     s32 temp_r6;
     u16 var_r5;
 

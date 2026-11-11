@@ -174,8 +174,8 @@ s32 __GXShutdown(s32 arg0) {
             lbl_80350B40 = (temp_r4 << 0x10) | M2C_FIELD(__memReg, u16 *, 0x50);
             temp_ret = OSGetTime();
             lbl_80350B4C = (u32) temp_ret;
-            lbl_80350B50 = 1U;
             lbl_80350B48 = temp_ret;
+            lbl_80350B50 = 1U;
             return 0;
         }
         temp_ret_2 = OSGetTime();
@@ -461,9 +461,9 @@ void fn_800DFBB0(M2C_UNK *arg1) {
 }
 
 void GXInitFifoBase(void *arg0, s32 arg1, u32 arg2) {
+    M2C_FIELD(arg0, u32 *, 8) = arg2;
     M2C_FIELD(arg0, s32 *, 0) = arg1;
     M2C_FIELD(arg0, s32 *, 4) = (s32) (arg1 + (arg2 - 4));
-    M2C_FIELD(arg0, u32 *, 8) = arg2;
     M2C_FIELD(arg0, s32 *, 0x1C) = 0;
     /* draft: did not compile: fn_800DFDC0(arg2 - 0x4000, (arg2 >> 1U) & 0x7FFFFFE0); */
     GXInitFifoPtrs(arg0, arg1, arg1);
@@ -567,7 +567,7 @@ s32 fn_800E0054(s32 arg0) {
 #pragma pop
 
 void __GXFifoInit(void) {
-    __OSSetInterruptHandler(0x11, fn_800DFBB0);
+    __OSSetInterruptHandler(0x11, (u16)fn_800DFBB0);
     __OSUnmaskInterrupts(0x4000);
     lbl_80350B60 = fn_800C8A78();
     lbl_80350B68 = 0;
@@ -585,6 +585,8 @@ void fn_800E0108(void) {
     M2C_FIELD(__cpReg, s16 *, 2) = (s16) M2C_FIELD(gx, s32 *, 8);
 }
 
+#pragma push
+#pragma optimize_for_size on
 void fn_800E0128(u8 arg0) {
     s32 var_r0;
 
@@ -596,6 +598,7 @@ void fn_800E0128(u8 arg0) {
     M2C_FIELD(gx, s32 *, 8) = (s32) ((M2C_FIELD(gx, s32 *, 8) & 0xFFFFFFEF) | (var_r0 * 0x10));
     M2C_FIELD(__cpReg, s16 *, 2) = (s16) M2C_FIELD(gx, s32 *, 8);
 }
+#pragma pop
 
 void fn_800E0164(s32 arg0, s32 arg1) {
     M2C_FIELD(gx, s32 *, 8) = (s32) ((M2C_FIELD(gx, s32 *, 8) & 0xFFFFFFFB) | ((arg0 * 4) & 0x3FC));
@@ -702,8 +705,8 @@ void fn_800E068C(void) {
     *(s8 *)0xCC008000 = 0x50;
     temp_r3 = M2C_FIELD(gx, s32 *, 0x14);
     *(s8 *)0xCC008000 = temp_r3;
-    *(s8 *)0xCC008000 = 8;
     *(s8 *)0xCC008000 = 0x60;
+    *(s8 *)0xCC008000 = 8;
     *(s8 *)0xCC008000 = (s32) M2C_FIELD(gx, s32 *, 0x18);
     fn_800E01E4();
 }
@@ -711,12 +714,12 @@ void fn_800E068C(void) {
 void __GXCalculateVLim(void) {
     s32 var_r8;
     u32 temp_r4;
-    u32 temp_r9;
+    s16 temp_r9;
 
     if ((u16) M2C_FIELD(gx, u16 *, 4) != 0) {
         temp_r9 = M2C_FIELD(gx, u32 *, 0x14);
         temp_r4 = M2C_FIELD(gx, u32 *, 0x18);
-        if ((s32) (((u32) M2C_FIELD(gx, u32 *, 0x1C) >> 9U) & 1) == 1) {
+        if ((((u32) M2C_FIELD(gx, u32 *, 0x1C) >> 9U) & 1) == 1) {
             var_r8 = 3;
         } else {
             var_r8 = 1;

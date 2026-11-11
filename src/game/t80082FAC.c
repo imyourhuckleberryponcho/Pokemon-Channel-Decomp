@@ -249,7 +249,6 @@ void fn_800832FC(void ***arg0, s32 *arg1, void ***arg2) {
 void fn_800833DC(void **arg0, s32 *arg1, void ***arg2, void **arg3, M2C_UNK arg_sp0) {
     void *spC;
     s32 sp8;
-    void **temp_r4_2;
     void *temp_r3;
     void *temp_r4;
     void *temp_r5;
@@ -268,13 +267,12 @@ void fn_800833DC(void **arg0, s32 *arg1, void ***arg2, void **arg3, M2C_UNK arg_
             M2C_FIELD(temp_r4, s32 *, 8) = (s32) (M2C_FIELD(temp_r4, s32 *, 8) + 1);
         }
     }
-    temp_r4_2 = *arg2;
+    M2C_FIELD(temp_r5, void ***, 4) = (*arg2);
+    M2C_FIELD(temp_r5, void **, 0) = (void *) *(*arg2);
     temp_r5 = spC;
     spC = NULL;
-    M2C_FIELD(*temp_r4_2, void **, 4) = temp_r5;
-    M2C_FIELD(temp_r5, void **, 0) = (void *) *temp_r4_2;
-    *temp_r4_2 = temp_r5;
-    M2C_FIELD(temp_r5, void ***, 4) = temp_r4_2;
+    M2C_FIELD(*(*arg2), void **, 4) = temp_r5;
+    *(*arg2) = temp_r5;
     *arg1 += 1;
     *arg0 = temp_r5;
 }
@@ -330,6 +328,8 @@ void fn_80083584(void ***arg0, s32 *arg1, void ***arg2) {
     *arg0 = *arg2;
 }
 
+#pragma push
+#pragma optimize_for_size on
 void fn_80083600(void **arg0, s32 *arg1, void ***arg2, s32 *arg3, M2C_UNK arg_sp0) {
     void *spC;
     s32 sp8;
@@ -357,6 +357,7 @@ void fn_80083600(void **arg0, s32 *arg1, void ***arg2, s32 *arg3, M2C_UNK arg_sp
     *arg1 += 1;
     *arg0 = temp_r5;
 }
+#pragma pop
 
 void fn_800836C8(void *arg0) {
     void *temp_r4;
@@ -608,9 +609,7 @@ void fn_80083EF4(M2C_UNK *********arg0, void *arg1, u32 arg2) {
     s32 var_ctr_4;
     s32 var_ctr_6;
     s32 var_ctr_8;
-    s32 var_r4;
     s32 var_r4_2;
-    s32 var_r4_3;
     u32 temp_r0;
     u32 temp_r0_2;
     u32 temp_r0_5;
@@ -621,6 +620,8 @@ void fn_80083EF4(M2C_UNK *********arg0, void *arg1, u32 arg2) {
     u32 var_ctr_5;
     u32 var_ctr_7;
     u32 var_r5;
+    s32 var_r4;
+    s32 var_r4_3;
 
     var_r5 = arg2;
     temp_r6 = M2C_FIELD(arg1, u32 *, 0);
@@ -844,17 +845,19 @@ void *fn_800842A0(void *arg0, s16 arg1) {
     temp_cr0_eq = arg0 == NULL;
     if (temp_cr0_eq == 0) {
         M2C_FIELD(arg0, M2C_UNK **, 4) = &lbl_802256C4;
-        if (temp_cr0_eq == 0) {
-            M2C_FIELD(arg0, M2C_UNK **, 4) = &lbl_80225604;
-            spC = arg0;
-            temp_r31 = M2C_FIELD(arg0, void **, 0);
-            fn_80082CB0(&sp14, temp_r31, &spC);
-            sp10 = sp14;
-            if (0 /* draft: did not compile */) {
-                sp8 = sp14;
-                fn_80082FCC(temp_r31, &sp8);
-                M2C_FIELD(temp_r31, s32 *, 0x10) = (s32) (M2C_FIELD(temp_r31, s32 *, 0x10) + 1);
-            }
+        switch (temp_cr0_eq) {
+        case 0:
+                M2C_FIELD(arg0, M2C_UNK **, 4) = &lbl_80225604;
+                spC = arg0;
+                temp_r31 = M2C_FIELD(arg0, void **, 0);
+                fn_80082CB0(&sp14, temp_r31, &spC);
+                sp10 = sp14;
+                if (0 /* draft: did not compile */) {
+                    sp8 = sp14;
+                    fn_80082FCC(temp_r31, &sp8);
+                    M2C_FIELD(temp_r31, s32 *, 0x10) = (s32) (M2C_FIELD(temp_r31, s32 *, 0x10) + 1);
+                }
+            break;
         }
         if (arg1 > 0) {
             fn_80005888(arg0);

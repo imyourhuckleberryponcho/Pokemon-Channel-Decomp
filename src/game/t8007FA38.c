@@ -175,7 +175,7 @@ void fn_8007FF18(u8 *arg0, u8 arg1) {
     f32 temp_f1;
     f32 temp_f31;
     f32 var_f30;
-    s32 temp_r28;
+    u8 temp_r28;
     s32 temp_r3;
     s32 var_r31;
     u8 temp_r0;
@@ -183,9 +183,9 @@ void fn_8007FF18(u8 *arg0, u8 arg1) {
     u8 var_r4;
     u8 var_r4_2;
 
-    var_r31 = saved_reg_r31;
     var_f30 = saved_reg_f30;
     fn_8007F508((unsigned char *)(&sp18), (unsigned char *)(0));
+    var_r31 = saved_reg_r31;
     var_r4 = 1;
     temp_r0 = sp18 - 3;
     if (((u32) ((1 | ~temp_r0) - ((u32) (1 - temp_r0) >> 1U)) >> 0x1FU) == 0) {
@@ -405,6 +405,8 @@ void fn_8008088C(s32 arg0, s32 arg1) {
 
 s32 fn_800808D0(void *arg0, u8 arg1) { return 0; } /* draft: stub */
 
+#pragma push
+#pragma dont_inline on
 s32 fn_80081280(void *arg0) {
     void *sp10;
     s32 spC;
@@ -432,6 +434,7 @@ block_6:
     /* draft: did not compile: fn_80024E80(&sp8, arg0 + 0x2B8, &spC, &sp10, temp_r7); */
     return M2C_FIELD(arg0, s32 *, 0xC);
 }
+#pragma pop
 
 void fn_80081324(void **arg0, s32 *arg1) {
     if (arg0 != NULL) {

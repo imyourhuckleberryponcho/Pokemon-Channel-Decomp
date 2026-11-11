@@ -49,23 +49,23 @@ void TExp2TevDesc(void *arg0, void *arg1, s32 *arg2, s32 *arg3, M2C_UNK arg_sp0)
     s32 var_r0;
     u32 temp_r0;
     u32 temp_r0_2;
-    s32 var_r0_10;
-    s32 var_r0_11;
-    s32 var_r0_12;
+    u32 var_r0_10;
+    u32 var_r0_11;
+    u32 var_r0_12;
     u32 var_r0_13;
-    s32 var_r0_14;
-    s32 var_r0_15;
-    s32 var_r0_16;
+    u32 var_r0_14;
+    u32 var_r0_15;
+    u32 var_r0_16;
     s32 var_r0_17;
     s32 var_r0_18;
-    s32 var_r0_2;
-    s32 var_r0_3;
-    s32 var_r0_4;
-    s32 var_r0_5;
-    s32 var_r0_6;
-    s32 var_r0_7;
-    s32 var_r0_8;
-    s32 var_r0_9;
+    u32 var_r0_2;
+    u32 var_r0_3;
+    u32 var_r0_4;
+    u32 var_r0_5;
+    u32 var_r0_6;
+    u32 var_r0_7;
+    u32 var_r0_8;
+    u32 var_r0_9;
 
     if (arg0 == NULL) {
         __assert(&lbl_80350300, 0x509, &lbl_80350308);

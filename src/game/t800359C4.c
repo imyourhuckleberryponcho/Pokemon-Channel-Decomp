@@ -239,7 +239,7 @@ void method_probeMCard(void *arg0) {
 s32 method_getSectorSize(void *arg0) {
     s32 temp_r3;
 
-    if ((s32) M2C_FIELD(arg0, s32 *, 4) == 0) {
+    if (M2C_FIELD(arg0, s32 *, 4) == 0) {
         /* draft: did not compile: M2C_FIELD(arg0, s32 *, 0xC) = fn_800D89A8(M2C_FIELD(arg0, s32 *, 0), arg0 + 4); */
         temp_r3 = M2C_FIELD(arg0, s32 *, 0xC);
         if (temp_r3 < 0) {

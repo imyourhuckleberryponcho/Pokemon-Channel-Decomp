@@ -303,8 +303,8 @@ void *method_addDebugMenu(s32 arg0, s32 arg1, s32 arg2, s32 arg3, M2C_UNK arg_sp
         M2C_FIELD(temp_r3, s32 *, 8) = 0;
         M2C_FIELD(temp_r3, M2C_UNK **, 4) = &lbl_802255EC;
         M2C_FIELD(temp_r3, s32 *, 0x14) = arg3;
-        M2C_FIELD(temp_r3, s32 *, 0xC) = arg0;
         M2C_FIELD(temp_r3, s32 *, 0x10) = arg2;
+        M2C_FIELD(temp_r3, s32 *, 0xC) = arg0;
         fn_80078F84(M2C_FIELD(temp_r3, s32 *, 0x10), 1);
     }
     sp1C = temp_r3;
@@ -507,7 +507,7 @@ s32 fn_80082598(void *arg0, s32 arg1, u8 arg2) {
 
 s32 method_removeLL(s32 arg1) {
     u32 sp14;
-    u32 sp10;
+    u8 sp10;
     u32 spC;
     s32 sp8;
 

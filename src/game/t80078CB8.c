@@ -196,7 +196,7 @@ void fn_800791B0(void *arg0, s32 arg1, void *arg2) {
     void *sp8;
     s32 temp_cr0_eq;
     s32 temp_cr0_eq_2;
-    s32 temp_r31;
+    u8 temp_r31;
     s32 var_r4;
 
     temp_r31 = M2C_FIELD(arg0, s32 *, 4);
@@ -246,7 +246,7 @@ void fn_800792DC(void *arg0, s32 arg1, void *arg2, void *arg3) {
     s32 temp_cr0_eq_2;
     s32 temp_cr0_eq_3;
     s32 temp_cr0_eq_4;
-    s32 temp_r31;
+    u8 temp_r31;
     s32 var_r4;
 
     temp_r31 = M2C_FIELD(arg0, s32 *, 4);
@@ -255,9 +255,7 @@ void fn_800792DC(void *arg0, s32 arg1, void *arg2, void *arg3) {
     sp14 = 1;
     sp10 = arg3;
     /* draft: did not compile: var_r4 = get_up_vector_for_viewing_mtx(0x28); */
-    if (var_r4 != 0) {
-        var_r4 = fn_80078A48(1, -1, arg1, 0, 2, &sp8);
-    }
+    var_r4 = var_r4 == 0 ? var_r4 : fn_80078A48(1, -1, arg1, 0, 2, &sp8);
     fn_80081AB8(temp_r31, var_r4);
     if (&sp10 != NULL) {
         switch ((s32) sp14) {                       /* switch 1; irregular */
@@ -373,6 +371,8 @@ void fn_8007963C(void) {
     fn_800791B0((void *)(0), (long)(0), (void *)(0));
 }
 
+#pragma push
+#pragma dont_inline on
 void fn_8007965C(void *arg0, s32 arg1) {
     M2C_UNK sp8;
     s32 temp_r31;
@@ -382,6 +382,7 @@ void fn_8007965C(void *arg0, s32 arg1) {
     fn_80081F04(temp_r31, &sp8);
     fn_80078F20(&sp8, -1);
 }
+#pragma pop
 
 void fn_800796D0(void *arg0, void *arg1, void *arg2, M2C_UNK arg_sp0) {
     void *sp10;
@@ -605,8 +606,8 @@ loop_93:
     if (var_r4 != NULL) {
         /* draft: did not compile: var_r4 = fn_80078A48(1, -1, 0x89, 0, temp_r28, temp_r3_2); */
     }
-    fn_80081AB8(temp_r30, var_r4);
     __destroy_new_array(temp_r3_2, &fn_8002F3CC);
+    fn_80081AB8(temp_r30, var_r4);
 }
 
 void fn_80079B1C(void *arg0, void *arg1, void *arg2) {

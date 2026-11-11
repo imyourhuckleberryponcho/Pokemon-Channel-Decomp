@@ -62,6 +62,8 @@ loop_2:
     }
 }
 
+#pragma push
+#pragma peephole off
 s32 TRKDispatchMessage(s32 arg0) {
     u8 sp8;
     s32 var_r31;
@@ -74,6 +76,7 @@ s32 TRKDispatchMessage(s32 arg0) {
     }
     return var_r31;
 }
+#pragma pop
 
 s32 TRKInitializeDispatcher(void) {
     lbl_8034B968 = 0x20;

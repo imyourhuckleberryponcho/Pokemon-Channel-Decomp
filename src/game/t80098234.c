@@ -645,7 +645,7 @@ s32 scr_ResetTimer(void *arg0) {
 }
 
 s32 scr_GetTimer(void *arg0) {
-    s32 temp_r4;
+    u32 temp_r4;
 
     temp_r4 = M2C_FIELD(arg0, s32 *, 0x2E8);
     fn_80080698(temp_r4, (f32) temp_r4 / lbl_80351AF8);
@@ -658,7 +658,7 @@ s32 scr_GetTimerCount(void *arg0) {
 }
 
 s32 scr_GetWorkingTime(void *arg0) {
-    s32 temp_r4;
+    u32 temp_r4;
 
     temp_r4 = M2C_FIELD(arg0, s32 *, 0x2EC);
     fn_80080698(temp_r4, (f32) temp_r4 / lbl_80351AF8);
@@ -679,22 +679,25 @@ s32 MkTime(u32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
     return arg5 + ((arg4 + ((arg3 + (((var_r10 + (((arg0 - 0x7D0) * 0x16D) + *(&lbl_801DA4D0 + (arg1 * 4))) + arg2) - 0x4758) * 0x18)) * 0x3C)) * 0x3C);
 }
 
+#pragma push
+#pragma dont_inline on
 s32 scr_MkTime(s32 arg0, M2C_UNK arg_sp0) {
-    s32 temp_r27;
     s32 temp_r28;
-    s32 temp_r29;
     s32 temp_r30;
+    s32 temp_r29;
     s32 temp_r31;
+    s32 temp_r27;
 
-    temp_r31 = fn_80080738((long)(0));
+    temp_r28 = fn_80080738(arg0);
     temp_r30 = fn_80080738(arg0);
     temp_r29 = fn_80080738(arg0);
-    temp_r28 = fn_80080738(arg0);
+    temp_r31 = fn_80080738((long)(0));
     temp_r27 = fn_80080738(arg0);
     fn_80080738(arg0);
     fn_8008065C(arg0, MkTime((unsigned long)(temp_r27), (long)(temp_r28), (long)(temp_r29), (long)(temp_r30), (long)(temp_r31), (long)(0)));
     return 0;
 }
+#pragma pop
 
 s32 scr_DiffTime(s32 arg0) {
     s32 temp_r31;
@@ -728,13 +731,10 @@ s32 scr_DiffTimeEx(s32 arg0) {
     s32 var_r4;
 
     temp_r31 = fn_80080738((long)(0));
-    temp_r3 = fn_80080738(arg0);
-    temp_r6 = (((temp_r3 >> 0x1F) - (temp_r31 >> 0x1F)) - !M2C_CARRY) ^ 0x80000000;
-    if (-((temp_r6 - temp_r6) - !M2C_CARRY) != 0) {
+    if (-(((temp_r6 = ((((temp_r3 = fn_80080738(arg0)) >> 0x1F) - (temp_r31 >> 0x1F)) - !M2C_CARRY) ^ 0x80000000) - temp_r6) - !M2C_CARRY) != 0) {
         var_r4 = 0x80000001;
     } else {
-        temp_r4 = 0 ^ 0x80000000;
-        if (-((temp_r4 - temp_r4) - !M2C_CARRY) != 0) {
+        if (-(((temp_r4 = 0 ^ 0x80000000) - temp_r4) - !M2C_CARRY) != 0) {
             var_r4 = 0x7FFFFFFF;
         } else {
             var_r4 = temp_r3 - temp_r31;
@@ -747,25 +747,24 @@ s32 scr_DiffTimeEx(s32 arg0) {
 s32 scr_SumTime(s32 arg0) {
     s32 temp_r31;
     s32 temp_r3;
-    s32 temp_r5;
+    u8 temp_r5;
     s32 temp_r5_2;
     s32 temp_r8;
     s32 temp_r9;
     s32 var_r4;
 
-    temp_r31 = fn_80080738((long)(0));
     temp_r3 = fn_80080738(arg0);
+    temp_r31 = fn_80080738((long)(0));
     temp_r9 = temp_r3 + temp_r31;
     temp_r8 = (temp_r3 >> 0x1F) + (temp_r31 >> 0x1F) + M2C_CARRY;
-    temp_r5 = 0 ^ 0x80000000;
-    if (-((temp_r5 - temp_r5) - !M2C_CARRY) != 0) {
+    if (-(((temp_r5 = 0 ^ 0x80000000) - temp_r5) - !M2C_CARRY) != 0) {
         var_r4 = 0x7FFFFFFF;
     } else {
-        temp_r5_2 = temp_r8 ^ 0x80000000;
-        if (-((temp_r5_2 - temp_r5_2) - !M2C_CARRY) != 0) {
+        if (-(((temp_r5_2 = temp_r8 ^ 0x80000000) - temp_r5_2) - !M2C_CARRY) != 0) {
             var_r4 = 0x80000000;
         } else {
-            var_r4 = temp_r3 + temp_r31;
+            var_r4 = temp_r31;
+            var_r4 += temp_r3;
         }
     }
     fn_8008065C(arg0, var_r4);
@@ -856,6 +855,8 @@ loop_2:
     return 0;
 }
 
+#pragma push
+#pragma peephole off
 s32 scr_method_getTTWidth(s32 arg0) {
     f32 temp_f1;
     void *temp_r3;
@@ -865,6 +866,7 @@ s32 scr_method_getTTWidth(s32 arg0) {
     fn_8008065C(arg0, (s32) (temp_f1 * M2C_FIELD(temp_r3, f32 *, 0x48)), temp_r3, temp_f1);
     return 0;
 }
+#pragma pop
 
 s32 scr_method_getTTHeight(s32 arg0) {
     f32 temp_f1;

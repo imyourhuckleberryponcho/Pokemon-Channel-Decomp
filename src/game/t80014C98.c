@@ -361,7 +361,10 @@ u8 PitchBendSound(s32 arg1) {
     return fn_80119A98(0x80, arg1);
 }
 
+#pragma push
+#pragma peephole off
 u8 fn_8001569C(s32 arg0, u8 arg1) {
     fn_80119A38(0x83, (u8) ((s8) (u8) (arg1 >> 8U) + 0x40));
     return fn_80119A38((long)(arg0), (long)(0xAU));
 }
+#pragma pop

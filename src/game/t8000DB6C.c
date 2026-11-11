@@ -516,12 +516,12 @@ void fn_8000E7D4(f32 *arg0, s32 arg1, s32 arg2) {
     f32 temp_f24;
     f32 temp_f25;
     f32 temp_f25_2;
-    f32 temp_f26;
+    f64 temp_f29;
     f32 temp_f26_2;
     f32 temp_f30;
     f32 temp_f31;
     f64 temp_f27;
-    f64 temp_f29;
+    f32 temp_f26;
     s32 var_r29;
 
     temp_f31 = *arg0;
@@ -535,8 +535,8 @@ void fn_8000E7D4(f32 *arg0, s32 arg1, s32 arg2) {
         temp_f26 = (f32) (temp_f27 * (f64) var_r29 * temp_f29);
         temp_f25 = (f32) (temp_f27 * (f64) (var_r29 + 1) * temp_f29);
         temp_f26_2 = temp_f31 * (f32) Cos(temp_f26);
-        temp_f24 = temp_f31 * (f32) Sin((u16)temp_f26);
         temp_f25_2 = temp_f31 * (f32) Cos(temp_f25);
+        temp_f24 = temp_f31 * (f32) Sin((u16)temp_f26);
         temp_f0 = (f32) Sin((u16)temp_f25);
         sp10 = temp_f26_2;
         sp14 = temp_f24;
@@ -622,8 +622,8 @@ void fn_8000EBBC(void *arg0, s32 arg1, s32 arg2, s32 *arg3, s16 arg4, s16 arg5, 
     f32 temp_f1;
 
     GXInvalidateTexAll();
-    GXLoadTexObj(arg1, 0);
     GXLoadTexObj(arg2, 1);
+    GXLoadTexObj(arg1, 0);
     fn_800E0804();
     if (arg7 != 0) {
         GXSetBlendMode(1, 4, 5, 0);
@@ -647,7 +647,7 @@ void fn_8000EBBC(void *arg0, s32 arg1, s32 arg2, s32 *arg3, s16 arg4, s16 arg5, 
     GXLoadTexMtxImm(&sp3C, 0x1E, 1);
     fn_800E41D8(1);
     fn_800E40C4(0, 0, 1);
-    fn_800E3F48(0, arg4, arg5);
+    fn_800E3F48(0, (s32)arg4, arg5);
     if (arg6 == 3) {
         sp24 = M2C_FIELD(&lbl_8015EAC0, s32 *, 0);
         sp28 = M2C_FIELD(&lbl_8015EAC0, s32 *, 4);
@@ -678,11 +678,11 @@ void fn_8000EBBC(void *arg0, s32 arg1, s32 arg2, s32 *arg3, s16 arg4, s16 arg5, 
     *(f32 *)0xCC008000 = M2C_FIELD(arg0, f32 *, 0x10);
     *(f32 *)0xCC008000 = lbl_80351138;
     *(f32 *)0xCC008000 = lbl_80351128;
+    temp_f1 = M2C_FIELD(arg0, f32 *, 0x28);
     *(f32 *)0xCC008000 = M2C_FIELD(arg0, f32 *, 0x18);
     *(f32 *)0xCC008000 = M2C_FIELD(arg0, f32 *, 0x1C);
     *(f32 *)0xCC008000 = lbl_80351138;
     *(f32 *)0xCC008000 = lbl_80351138;
-    temp_f1 = M2C_FIELD(arg0, f32 *, 0x28);
     *(f32 *)0xCC008000 = M2C_FIELD(arg0, f32 *, 0x24);
     *(f32 *)0xCC008000 = temp_f1;
     *(f32 *)0xCC008000 = lbl_80351128;
@@ -709,18 +709,18 @@ void fn_8000EEFC(void *arg0, void *arg2) {
     fn_800E4B50(1);
     GXBegin(0x80, 0, 4);
     temp_r3 = M2C_FIELD(arg0, void **, 0);
+    *(f32 *)0xCC008000 = M2C_FIELD(temp_r3, f32 *, 8);
     *(f32 *)0xCC008000 = M2C_FIELD(temp_r3, f32 *, 0);
     *(f32 *)0xCC008000 = M2C_FIELD(temp_r3, f32 *, 4);
-    *(f32 *)0xCC008000 = M2C_FIELD(temp_r3, f32 *, 8);
     *(f32 *)0xCC008000 = (u8) M2C_FIELD(arg2, u8 *, 0);
     *(f32 *)0xCC008000 = (u8) M2C_FIELD(arg2, u8 *, 1);
     *(f32 *)0xCC008000 = (u8) M2C_FIELD(arg2, u8 *, 2);
     *(f32 *)0xCC008000 = 0xFF;
     temp_r3_2 = M2C_FIELD(arg0, void **, 4);
+    *(f32 *)0xCC008000 = M2C_FIELD(temp_r3_2, f32 *, 8);
     *(f32 *)0xCC008000 = M2C_FIELD(temp_r3_2, f32 *, 0);
     *(f32 *)0xCC008000 = M2C_FIELD(temp_r3_2, f32 *, 4);
     *(f32 *)0xCC008000 = 0xFF;
-    *(f32 *)0xCC008000 = M2C_FIELD(temp_r3_2, f32 *, 8);
     *(f32 *)0xCC008000 = (u8) M2C_FIELD(arg2, u8 *, 4);
     *(f32 *)0xCC008000 = (u8) M2C_FIELD(arg2, u8 *, 5);
     *(f32 *)0xCC008000 = (u8) M2C_FIELD(arg2, u8 *, 6);
@@ -737,8 +737,8 @@ void fn_8000EEFC(void *arg0, void *arg2) {
     *(f32 *)0xCC008000 = M2C_FIELD(temp_r3_4, f32 *, 8);
     *(f32 *)0xCC008000 = (u8) M2C_FIELD(arg2, u8 *, 0xC);
     *(f32 *)0xCC008000 = 0xFF;
-    *(f32 *)0xCC008000 = (u8) M2C_FIELD(arg2, u8 *, 0xD);
     *(f32 *)0xCC008000 = (u8) M2C_FIELD(arg2, u8 *, 0xE);
+    *(f32 *)0xCC008000 = (u8) M2C_FIELD(arg2, u8 *, 0xD);
     *(f32 *)0xCC008000 = 0xFF;
 }
 
@@ -795,16 +795,16 @@ s32 fn_8000F258(void *arg0, void *arg1, s32 arg2, s32 arg3) {
     s8 spB;
     s8 spA;
     s8 sp9;
-    s8 sp8;
+    u8 sp8;
     s32 temp_r0;
     s32 temp_r3;
     s32 temp_r4;
-    s32 temp_r5;
+    s8 temp_r5;
     s32 var_r10;
     s32 var_r7;
     s32 var_r8;
     s32 var_r9;
-    u8 temp_r11;
+    s8 temp_r11;
     u8 temp_r12;
     u8 temp_r30;
     u8 temp_r31;

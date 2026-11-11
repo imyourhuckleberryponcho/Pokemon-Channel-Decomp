@@ -197,12 +197,12 @@ void fn_8007C9E4(s32 arg0, void *arg1, f32 farg0, f32 farg1) {
     var_f31 = lbl_803519BC;
 loop_1:
     /* draft: did not compile: fn_8007CB84(arg0, 0); */
+    sp18 = 0;
     temp_r4 = M2C_FIELD(arg1, s32 *, 0xC);
     sp14 = temp_r4;
     temp_r27 = HSD_AObjLoadDesc(arg1, temp_r4);
     HSD_AObjSetRate(var_f31);
     HSD_AObjReqAnim(temp_r27, lbl_803519A8);
-    sp18 = 0;
 loop_2:
     HSD_AObjInterpretAnim(temp_r27, &sp8, fn_8007C92C);
     temp_r3 = M2C_FIELD(temp_r27, s32 *, 0);

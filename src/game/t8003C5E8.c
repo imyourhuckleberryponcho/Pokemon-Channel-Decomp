@@ -130,7 +130,7 @@ void fn_8003DBA0(void *arg0, M2C_UNK arg_sp0) { } /* draft: stub */
 
 void fn_8003DD6C(void *arg0) {
     u8 temp_r0;
-    u8 temp_r4;
+    s32 temp_r4;
 
     temp_r0 = M2C_FIELD(arg0, u8 *, 0xF);
     temp_r4 = temp_r0 ^ temp_r0;

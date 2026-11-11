@@ -83,12 +83,15 @@ void HSD_MtxInitAllocData(void) {
     HSD_ObjAllocInit(&lbl_8031EBD4, 0x30, 4);
 }
 
+#pragma push
+#pragma optimize_for_size on
 void HSD_MulColor(void *arg0, void *arg1, void *arg2) {
     M2C_FIELD(arg2, u8 *, 0) = (u8) ((M2C_FIELD(arg0, u8 *, 0) * M2C_FIELD(arg1, u8 *, 0)) / 255);
     M2C_FIELD(arg2, u8 *, 1) = (u8) ((M2C_FIELD(arg0, u8 *, 1) * M2C_FIELD(arg1, u8 *, 1)) / 255);
     M2C_FIELD(arg2, u8 *, 2) = (u8) ((M2C_FIELD(arg0, u8 *, 2) * M2C_FIELD(arg1, u8 *, 2)) / 255);
     M2C_FIELD(arg2, u8 *, 3) = (u8) ((M2C_FIELD(arg0, u8 *, 3) * M2C_FIELD(arg1, u8 *, 3)) / 255);
 }
+#pragma pop
 
 s32 HSD_GetNbBits(s32 arg0) {
     s32 temp_r6;
@@ -671,9 +674,9 @@ loop_40:
             sp8 = (f32) ((f64) var_f1_2 * (lbl_803520E0 * temp_f2_6 * -(((f64) var_f1_2 * (temp_f2_6 * temp_f2_6)) - lbl_80352100)));
             var_f1_2 = sp8;
         }
+        temp_f2_7 = sp4C * sp64;
         PSVECScale(&sp10, &sp10, var_f1_2);
         PSVECCrossProduct(&sp10, &sp4C, &sp58);
-        temp_f2_7 = sp4C * sp64;
         temp_f1 = sp50 * sp64;
         sp1C = temp_f2_7;
         sp20 = temp_f1;
@@ -863,7 +866,8 @@ loop_34:
                 temp_f2_2 = M2C_FIELD(temp_r3_2, f32 *, 0x54);
                 temp_f0 = M2C_FIELD(temp_r3_2, f32 *, 0x44);
                 temp_f3_2 = M2C_FIELD(temp_r3_2, f32 *, 0x64);
-                var_f5 = (temp_f3_2 * temp_f3_2) + ((temp_f2_2 * temp_f2_2) + (temp_f0 * temp_f0));
+                var_f5 = (temp_f3_2 * temp_f3_2);
+                var_f5 += ((temp_f2_2 * temp_f2_2) + (temp_f0 * temp_f0));
                 if (var_f5 > temp_f31) {
                     temp_f2_3 = __frsqrte(var_f5);
                     temp_f2_4 = lbl_803520E0 * temp_f2_3 * -(((f64) var_f5 * (temp_f2_3 * temp_f2_3)) - lbl_80352100);

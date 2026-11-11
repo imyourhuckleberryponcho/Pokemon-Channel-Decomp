@@ -29,9 +29,9 @@ void fn_8003C1B8(void *arg0, M2C_UNK arg_sp0);
 void fn_8003C3D4(void *arg0, M2C_UNK arg_sp0);
 
 void fn_8003A72C(void *arg0, u8 *arg1, u8 arg2) {
-    s32 temp_r0;
-    s32 temp_r10;
     s32 temp_r9;
+    s32 temp_r10;
+    s32 temp_r0;
     u16 temp_r5;
     u16 temp_r6_3;
     u16 temp_r6_4;
@@ -42,7 +42,7 @@ void fn_8003A72C(void *arg0, u8 *arg1, u8 arg2) {
     s8 temp_r7;
     u8 var_r0;
     u8 var_r5;
-    u8 var_r5_3;
+    s32 var_r5_3;
     u8 var_r9;
 
     var_r5 = arg2;
@@ -51,8 +51,8 @@ void fn_8003A72C(void *arg0, u8 *arg1, u8 arg2) {
     var_r0 = temp_r6_2;
     if (temp_r6 & 0x20) {
         var_r5 = (var_r5 * 0x10) & 0xF0;
-        *arg1 = (*arg1 * 0x10) & 0xF0;
         var_r0 = (temp_r6_2 * 0x10) & 0xF0;
+        *arg1 = (*arg1 * 0x10) & 0xF0;
     }
     if ((M2C_FIELD((s32)arg0, u8 *, 0x2C) & 0x10) && (temp_r7 = *arg1, temp_r9 = temp_r7 & 0xF, ((temp_r9 < 0xA) != 0)) && ((s32) (temp_r7 & 0xF0) < 0xA0) && (temp_r10 = var_r5 & 0xF, ((temp_r10 < 0xA) != 0)) && ((s32) (var_r5 & 0xF0) < 0xA0)) {
         temp_r6_3 = temp_r9 + (((s32) temp_r7 >> 4) * 0xA);
@@ -73,7 +73,8 @@ void fn_8003A72C(void *arg0, u8 *arg1, u8 arg2) {
         M2C_FIELD(arg0, u8 *, 0x2C) = (u8) (M2C_FIELD(arg0, u8 *, 0x2C) & 0xFFFFFFFB);
     } else {
         var_r9 = 0;
-        temp_r6_4 = ((s8) *arg1 - (s8) var_r5) - var_r0;
+        temp_r6_4 = ((s8) *arg1 - (s8) var_r5);
+        temp_r6_4 -= var_r0;
         if (((s16) temp_r6_4 > 0x7F) || ((s16) temp_r6_4 < -0x80)) {
             var_r9 = 1;
         }

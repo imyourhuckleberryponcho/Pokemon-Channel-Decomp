@@ -149,6 +149,8 @@ loop_4:
     return 0;
 }
 
+#pragma push
+#pragma optimize_for_size on
 s32 scr_ReleaseModelIndeed(void *arg0, M2C_UNK arg_sp0) {
     void *sp14;
     void *sp10;
@@ -156,18 +158,16 @@ s32 scr_ReleaseModelIndeed(void *arg0, M2C_UNK arg_sp0) {
     void *sp8;
     M2C_UNK var_r31;
     s32 temp_r3;
-    u8 var_r25;
-    u8 var_r26;
+    s32 var_r25;
+    s8 var_r26;
     void *temp_r3_2;
     void *temp_r3_3;
     void *temp_r3_4;
     void *var_r28;
     void *var_r29;
 
+    var_r26 = var_r25 = var_r31 = 0;
     temp_r3 = fn_80080738();
-    var_r26 = 0;
-    var_r25 = 0;
-    var_r31 = 0;
     if (temp_r3 != 0x19D) {
         if ((u8) (temp_r3 == 0) != 0) {
             var_r29 = M2C_FIELD(arg0, void **, 0x2FC);
@@ -217,6 +217,7 @@ loop_8:
     fn_8008065C(arg0, var_r31);
     return 0;
 }
+#pragma pop
 
 s32 scr_UnloadIfPossible(s32 arg0) {
     s32 var_r31;

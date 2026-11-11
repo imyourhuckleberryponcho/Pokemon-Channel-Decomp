@@ -137,8 +137,8 @@ void HSD_LObjGetLightVector(s32 arg0, void *arg1) {
 
     sp18 = M2C_FIELD(&lbl_801DA898, s32 *, 4);
     sp1C = M2C_FIELD(&lbl_801DA898, s32 *, 8);
-    sp8 = M2C_FIELD(&lbl_801DA8A4, s32 *, 0);
     sp14 = M2C_FIELD(&lbl_801DA898, s32 *, 0);
+    sp8 = M2C_FIELD(&lbl_801DA8A4, s32 *, 0);
     spC = M2C_FIELD(&lbl_801DA8A4, s32 *, 4);
     sp10 = M2C_FIELD(&lbl_801DA8A4, s32 *, 8);
     if (arg0 != 0) {
@@ -149,7 +149,7 @@ void HSD_LObjGetLightVector(s32 arg0, void *arg1) {
         if ((temp_cr0_eq != 0) || (temp_cr0_eq != 0)) {
             var_r0 = -1;
         } else {
-            if ((fabs(M2C_FIELD(arg1, f32 *, 0)) <= (f32) lbl_80351E80) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(M2C_FIELD(arg1, f32 *, 4)) == lbl_80351E80) != 0)) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(M2C_FIELD(arg1, f32 *, 8)) == lbl_80351E80) != 0))) {
+            if ((fabs(M2C_FIELD(arg1, f32 *, 0)) <= lbl_80351E80) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(M2C_FIELD(arg1, f32 *, 4)) == lbl_80351E80) != 0)) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(M2C_FIELD(arg1, f32 *, 8)) == lbl_80351E80) != 0))) {
                 var_r0 = -1;
             } else {
                 PSVECNormalize(arg1, arg1);

@@ -187,8 +187,10 @@ void fn_8012C018(s32 arg0, s32 arg1, s32 arg2) {
 
 void fn_8012C03C(u8 arg0, u8 arg1, u8 arg2, u8 arg3, M2C_UNK arg_sp0) { } /* draft: stub */
 
+#pragma push
+#pragma dont_inline on
 void fn_8012C644(u8 arg0, u8 arg1, s32 arg2, u16 arg3) {
-    u8 temp_r30;
+    s32 temp_r30;
     u8 temp_r31;
     u8 temp_r31_2;
 
@@ -199,7 +201,7 @@ void fn_8012C644(u8 arg0, u8 arg1, s32 arg2, u16 arg3) {
             fn_8012C03C((unsigned char)((u8) (temp_r30 + 0x20)), (unsigned char)(arg1), (unsigned char)(arg2), (unsigned char)(arg3 & 0x7F), (long)(0));
             return;
         }
-        switch (arg0) {                             /* irregular */
+        switch ((s32)arg0) {                             /* irregular */
         case 0x80:
         case 0x81:
             temp_r31 = arg0 & 0xFE;
@@ -218,6 +220,7 @@ void fn_8012C644(u8 arg0, u8 arg1, s32 arg2, u16 arg3) {
         }
     }
 }
+#pragma pop
 
 void fn_8012C768(u8 arg0, u8 arg1, u32 arg2) {
     M2C_UNK *var_r6;
@@ -334,8 +337,13 @@ u16 fn_8012C858(u8 arg0, u8 arg1, u8 arg2) {
 }
 
 void *fn_8012CB1C(u8 arg0, u8 arg1) {
-    if (arg1 == 0xFF) {
-        return &lbl_803439F0 + arg0;
+    switch (arg1) {
+
+    case 0xFF:
+            return &lbl_803439F0 + arg0;
+
+        break;
+
     }
     return &lbl_803417F0 + ((arg1 * 0x10) & 0xFF0) + arg0;
 }
@@ -400,9 +408,9 @@ void fn_8012CC24(u8 arg0, void *arg1, void *arg2) {
     if (arg0 < 0x40U) {
         temp_r6 = (u8) temp_r0 * 0x86;
         temp_r5 = arg0 & 0x1F;
-        temp_r7 = (u8) temp_r4 * 0x86;
         temp_r8 = &lbl_80341870 + 0x20;
         *(&lbl_80341870 + temp_r7 + temp_r5) = *(&lbl_80341870 + temp_r6 + temp_r5);
+        temp_r7 = (u8) temp_r4 * 0x86;
         /* draft: did not compile: *(temp_r8 + (temp_r7 + temp_r5)) = *(temp_r8 + (temp_r6 + temp_r5)); */
         return;
     }
@@ -411,7 +419,8 @@ void fn_8012CC24(u8 arg0, void *arg1, void *arg2) {
     case 0x81:
         temp_r6_2 = (u8) temp_r0 * 0x86;
         temp_r5_2 = arg0 & 0xFE;
-        temp_r7_2 = (u8) temp_r4 * 0x86;
+        temp_r7_2 = 0x86;
+        temp_r7_2 *= (u8) temp_r4;
         temp_r8_2 = &lbl_80341870 + 1;
         *(&lbl_80341870 + temp_r7_2 + temp_r5_2) = *(&lbl_80341870 + temp_r6_2 + temp_r5_2);
         /* draft: did not compile: *(temp_r8_2 + (temp_r7_2 + temp_r5_2)) = *(temp_r8_2 + (temp_r6_2 + temp_r5_2)); */

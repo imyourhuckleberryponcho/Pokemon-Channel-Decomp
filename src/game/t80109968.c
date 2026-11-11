@@ -971,6 +971,8 @@ void hsdFreeMemPiece(M2C_UNK *arg0, s32 arg1) {
     }
 }
 
+#pragma push
+#pragma dont_inline on
 void _hsdClassAlloc(void *arg0) {
     u32 temp_r4;
 
@@ -982,6 +984,7 @@ void _hsdClassAlloc(void *arg0) {
         }
     }
 }
+#pragma pop
 
 s32 fn_8010B4F4(void) {
     return 0;
@@ -1004,16 +1007,16 @@ void _hsdClassAmnesia(void *arg0) {
 }
 
 void _hsdClassInfoInit(void) {
-    M2C_FIELD(&lbl_802AA538, s32 *, 4) = 1;
     M2C_FIELD(&lbl_802AA538, void **, 8) = (void *) (&lbl_802AA538 + 0x114);
-    M2C_FIELD(&lbl_802AA538, void **, 0xC) = (void *) (&lbl_802AA538 + 0x12C);
-    M2C_FIELD(&lbl_802AA538, s16 *, 0x10) = 4;
-    M2C_FIELD(&lbl_802AA538, s16 *, 0x12) = 0x3C;
-    M2C_FIELD(&lbl_802AA538, s32 *, 0x14) = 0;
-    M2C_FIELD(&lbl_802AA538, s32 *, 0x1C) = 0;
-    M2C_FIELD(&lbl_802AA538, s32 *, 0x18) = 0;
     M2C_FIELD(&lbl_802AA538, s32 *, 0x20) = 0;
+    M2C_FIELD(&lbl_802AA538, s32 *, 0x1C) = 0;
+    M2C_FIELD(&lbl_802AA538, void **, 0xC) = (void *) (&lbl_802AA538 + 0x12C);
+    M2C_FIELD(&lbl_802AA538, s32 *, 0x14) = 0;
     M2C_FIELD(&lbl_802AA538, s32 *, 0x24) = 0;
+    M2C_FIELD(&lbl_802AA538, s32 *, 0x18) = 0;
+    M2C_FIELD(&lbl_802AA538, s32 *, 4) = 1;
+    M2C_FIELD(&lbl_802AA538, s16 *, 0x12) = 0x3C;
+    M2C_FIELD(&lbl_802AA538, s16 *, 0x10) = 4;
     /* draft: did not compile: M2C_FIELD(&lbl_802AA538, M2C_UNK (**)(), 0x28) = _hsdClassAlloc; */
     M2C_FIELD(&lbl_802AA538, M2C_UNK (**)(), 0x2C) = fn_8010B4F4;
     /* draft: did not compile: M2C_FIELD(&lbl_802AA538, M2C_UNK (**)(), 0x30) = fn_8010B4FC; */

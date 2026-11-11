@@ -33,18 +33,14 @@ void fn_8006325C(void *arg0) {
     u8 temp_r5;
     u8 temp_r5_4;
     u8 temp_r7;
-    void *temp_r5_3;
-    void *temp_r5_6;
-    void *temp_r6;
     void *temp_r6_2;
     void *temp_r6_3;
 
     if ((s32) M2C_FIELD(arg0, s32 *, 0x1C) != 0) {
         M2C_FIELD(arg0, u8 *, 0x20) = (u8) ((M2C_FIELD(arg0, u8 *, 0x20) * 2) & 0xFE);
         M2C_FIELD(arg0, s32 *, 0x1C) = (s32) (M2C_FIELD(arg0, s32 *, 0x1C) - 1);
-        temp_r6 = M2C_FIELD(arg0, void **, 0xC);
-        temp_r7 = M2C_FIELD(temp_r6, u8 *, 2);
-        M2C_FIELD(arg0, u8 *, 0x20) = (u8) (M2C_FIELD(arg0, u8 *, 0x20) + ((((M2C_FIELD(temp_r6, u8 *, 0) & ~temp_r7) | (M2C_FIELD(temp_r6, u8 *, 1) & temp_r7)) & 4) != 0));
+        temp_r7 = M2C_FIELD((M2C_FIELD(arg0, void **, 0xC)), u8 *, 2);
+        M2C_FIELD(arg0, u8 *, 0x20) = (u8) (M2C_FIELD(arg0, u8 *, 0x20) + ((((M2C_FIELD((M2C_FIELD(arg0, void **, 0xC)), u8 *, 0) & ~temp_r7) | (M2C_FIELD((M2C_FIELD(arg0, void **, 0xC)), u8 *, 1) & temp_r7)) & 4) != 0));
         if ((s32) M2C_FIELD(arg0, s32 *, 0x1C) == 0) {
             temp_r6_2 = M2C_FIELD(arg0, void **, 8);
             temp_r5 = M2C_FIELD(temp_r6_2, u8 *, 2);
@@ -63,9 +59,8 @@ void fn_8006325C(void *arg0) {
             if (M2C_FIELD(arg0, s32 *, 0x14) & 1) {
                 /* draft: did not compile: var_r4_2 = fn_80063948; */
             }
-            temp_r5_3 = M2C_FIELD(arg0, void **, 8);
-            M2C_FIELD(temp_r5_3, M2C_UNK (**)(), 0x1C) = var_r4_2;
-            M2C_FIELD(temp_r5_3, void **, 0x3C) = arg0;
+            M2C_FIELD((M2C_FIELD(arg0, void **, 8)), M2C_UNK (**)(), 0x1C) = var_r4_2;
+            M2C_FIELD((M2C_FIELD(arg0, void **, 8)), void **, 0x3C) = arg0;
         }
     } else {
         temp_r6_3 = M2C_FIELD(arg0, void **, 8);
@@ -84,9 +79,8 @@ void fn_8006325C(void *arg0) {
             if (M2C_FIELD(arg0, s32 *, 0x14) & 1) {
                 /* draft: did not compile: var_r4_4 = fn_80063948; */
             }
-            temp_r5_6 = M2C_FIELD(arg0, void **, 8);
-            M2C_FIELD(temp_r5_6, M2C_UNK (**)(), 0x1C) = var_r4_4;
-            M2C_FIELD(temp_r5_6, void **, 0x3C) = arg0;
+            M2C_FIELD((M2C_FIELD(arg0, void **, 8)), M2C_UNK (**)(), 0x1C) = var_r4_4;
+            M2C_FIELD((M2C_FIELD(arg0, void **, 8)), void **, 0x3C) = arg0;
         }
         fn_80062EA4();
     }
@@ -147,30 +141,26 @@ void fn_80063A40(void *arg0, M2C_UNK arg_sp0) {
     s8 var_r27;
     s32 var_r27_2;
     s32 var_r28;
-    s32 temp_r0;
-    u8 temp_r3;
+    u8 temp_r0;
     u8 temp_r4;
-    u8 temp_r5;
     u8 temp_r5_2;
     void *temp_r31;
-    void *temp_r4_2;
-    void *temp_r4_3;
     void *temp_r5_3;
     void *var_r25;
     void *var_r25_2;
+    u8 temp_r3;
 
-    if ((s32) M2C_FIELD(arg0, s32 *, 0x1C) != 0) {
+    if ((s32) (s16)M2C_FIELD(arg0, s32 *, 0x1C) != 0) {
         /* draft: did not compile: fn_8006364C(M2C_FIELD(arg0, u8 *, 0x20) & 0x80); */
         M2C_FIELD(arg0, u8 *, 0x20) = (u8) ((M2C_FIELD(arg0, u8 *, 0x20) * 2) & 0xFE);
         M2C_FIELD(arg0, s32 *, 0x1C) = (s32) (M2C_FIELD(arg0, s32 *, 0x1C) - 1);
         return;
     }
     temp_r31 = M2C_FIELD(arg0, void **, 0x10);
-    temp_r5 = M2C_FIELD(temp_r31, u8 *, 2);
     temp_r5_2 = M2C_FIELD(temp_r31, u8 *, 2);
     temp_r0 = (M2C_FIELD(temp_r31, u8 *, 0) & ~temp_r5_2) | (M2C_FIELD(temp_r31, u8 *, 1) & temp_r5_2);
-    M2C_FIELD(temp_r31, u8 *, 2) = (u8) (temp_r5 | 4);
-    temp_r3 = (u8) ((M2C_FIELD(temp_r31, u8 *, 0) & ~temp_r5) | (M2C_FIELD(temp_r31, u8 *, 1) & temp_r5)) ^ temp_r0;
+    M2C_FIELD(temp_r31, u8 *, 2) = (u8) ((M2C_FIELD(temp_r31, u8 *, 2)) | 4);
+    temp_r3 = (u8) ((M2C_FIELD(temp_r31, u8 *, 0) & ~(M2C_FIELD(temp_r31, u8 *, 2))) | (M2C_FIELD(temp_r31, u8 *, 1) & (M2C_FIELD(temp_r31, u8 *, 2)))) ^ temp_r0;
     if (temp_r3 != 0) {
         if (((u32) M2C_FIELD(temp_r31, u32 *, 0x50) != 0U) && (((M2C_UNK (*)(u32)) M2C_FIELD(temp_r31, M2C_UNK (**)(u32), 0x54)) != NULL)) {
             var_r25 = temp_r31;
@@ -195,7 +185,7 @@ void fn_80063A40(void *arg0, M2C_UNK arg_sp0) {
             var_r27_2 = 0;
             var_r28 = 1;
             do {
-                if (temp_r3 & var_r28) {
+                if (var_r28 & temp_r3) {
                     temp_r12_2 = M2C_FIELD(var_r25_2, M2C_UNK (**)(void *, s32), 0x10);
                     if ((temp_r12_2 != NULL) && (var_r28 & (temp_r0 ^ M2C_FIELD(temp_r31, u8 *, 5)))) {
                         temp_r12_2(temp_r31, M2C_FIELD(var_r25_2, s32 *, 0x30));
@@ -215,9 +205,8 @@ void fn_80063A40(void *arg0, M2C_UNK arg_sp0) {
         if (M2C_FIELD(arg0, s32 *, 0x14) & 1) {
             /* draft: did not compile: var_r3 = fn_80063A1C; */
         }
-        temp_r4_2 = M2C_FIELD(arg0, void **, 8);
-        M2C_FIELD(temp_r4_2, M2C_UNK (**)(), 0x1C) = var_r3;
-        M2C_FIELD(temp_r4_2, void **, 0x3C) = arg0;
+        M2C_FIELD((M2C_FIELD(arg0, void **, 8)), M2C_UNK (**)(), 0x1C) = var_r3;
+        M2C_FIELD((M2C_FIELD(arg0, void **, 8)), void **, 0x3C) = arg0;
         return;
     }
     /* draft: did not compile: var_r3_2 = fn_80063238; */
@@ -225,9 +214,8 @@ void fn_80063A40(void *arg0, M2C_UNK arg_sp0) {
     if (M2C_FIELD(arg0, s32 *, 0x14) & 1) {
         /* draft: did not compile: var_r3_2 = fn_80063948; */
     }
-    temp_r4_3 = M2C_FIELD(arg0, void **, 8);
-    M2C_FIELD(temp_r4_3, M2C_UNK (**)(), 0x1C) = var_r3_2;
-    M2C_FIELD(temp_r4_3, void **, 0x3C) = arg0;
+    M2C_FIELD((M2C_FIELD(arg0, void **, 8)), M2C_UNK (**)(), 0x1C) = var_r3_2;
+    M2C_FIELD((M2C_FIELD(arg0, void **, 8)), void **, 0x3C) = arg0;
 }
 
 void fn_80063C7C(void) {

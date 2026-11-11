@@ -398,8 +398,8 @@ loop_33:
     M2C_FIELD(&lbl_802BFD38, M2C_UNK **, 0x24) = temp_r3_8;
     fn_80008DE4(0, &lbl_802BFD38);
     M2C_FIELD(&lbl_802BFD60, s32 *, 8) = 0;
-    M2C_FIELD(&lbl_802BFD60, s32 *, 4) = (s32) M2C_FIELD(&lbl_802BFD60, s32 *, 0);
     M2C_FIELD(&lbl_802BFD60, s32 *, 0) = (s32) (M2C_FIELD(&lbl_802BFD60, s32 *, 0) + 1);
+    M2C_FIELD(&lbl_802BFD60, s32 *, 4) = (s32) M2C_FIELD(&lbl_802BFD60, s32 *, 0);
 }
 
 void fn_800117EC() { } /* draft: stub */
@@ -506,6 +506,8 @@ void fn_80012A5C(void) {
     M2C_FIELD(&lbl_802BFD60, s32 *, 8) = (s32) (M2C_FIELD(&lbl_802BFD60, s32 *, 8) + 1);
 }
 
+#pragma push
+#pragma dont_inline on
 void fn_80012AA0(void) {
     lbl_803502D0 = &lbl_803502CC;
     if ((s32) lbl_802BFD60 != 1) {
@@ -513,6 +515,7 @@ void fn_80012AA0(void) {
     }
     fn_80012170((long)(0));
 }
+#pragma pop
 
 void fn_80012ADC(s32 arg0) {
     M2C_UNK sp8;
@@ -600,17 +603,16 @@ void **fn_80012CF8(void **arg0, s32 arg1, s32 arg2) {
 #pragma push
 #pragma peephole off
 void fn_80012D5C(u32 **arg0, u32 arg1, u8 arg2, M2C_UNK arg_sp0) {
-    u32 sp8;
+    u32 *var_r31;
     s32 temp_r4;
     u32 *temp_r26;
     u32 *temp_r26_2;
-    u32 *temp_r30;
     u32 *temp_r3;
     u32 *temp_r3_2;
     u32 *temp_r3_3;
     u32 *temp_r3_4;
     u32 *temp_r3_5;
-    u32 *var_r31;
+    u32 sp8;
     u32 *var_r3;
     u32 temp_r0;
     u32 temp_r0_2;
@@ -620,6 +622,7 @@ void fn_80012D5C(u32 **arg0, u32 arg1, u8 arg2, M2C_UNK arg_sp0) {
     u32 var_r0;
     u32 var_r3_2;
     u32 var_r4;
+    u32 *temp_r30;
 
     if (arg1 > -2U) {
         fn_8014F858(&__files + 0xA0, &lbl_801DB7C8, &__files);
@@ -706,9 +709,7 @@ loop_21:
     M2C_FIELD(*arg0, u32 *, 0) = arg1;
     temp_r3_5 = *arg0;
     temp_r4_3 = M2C_FIELD(temp_r3_5, u32 *, 8);
-    if (temp_r4_3 != 0U) {
-        var_r0 = temp_r4_3;
-    }
+    var_r0 = temp_r4_3 == 0U ? var_r0 : temp_r4_3;
     M2C_FIELD(temp_r3_5, u32 *, 8) = var_r0;
 }
 #pragma pop

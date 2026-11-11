@@ -923,8 +923,8 @@ s32 fn_80101384(s32 arg0) {
 
 void HSD_VISetConfigure(void *arg0) {
     M2C_FIELD(&lbl_8031D320, s32 *, 0) = (s32) M2C_FIELD(arg0, s32 *, 0);
-    M2C_FIELD(&lbl_8031D320, s32 *, 4) = (s32) M2C_FIELD(arg0, s32 *, 4);
     M2C_STRUCT_COPY(&lbl_8031D320, arg0, 0x30);
+    M2C_FIELD(&lbl_8031D320, s32 *, 4) = (s32) M2C_FIELD(arg0, s32 *, 4);
     M2C_FIELD(&lbl_8031D320, s32 *, 0x38) = (s32) M2C_FIELD(arg0, s32 *, 0x38);
     M2C_FIELD(&lbl_8031D320, s8 *, 0x54) = 1;
 }

@@ -59,7 +59,8 @@ void fn_80048924(void *arg0) {
 void fn_80048938(void *arg0) {
     u8 temp_r4;
 
-    temp_r4 = M2C_FIELD(arg0, u8 *, 0xE) - 1;
+    temp_r4 = M2C_FIELD(arg0, u8 *, 0xE);
+    temp_r4 -= 1;
     M2C_FIELD(arg0, u8 *, 0xE) = temp_r4;
     if ((u8) (temp_r4 == 0) != 0) {
         M2C_FIELD(arg0, u8 *, 0x2C) = (u8) (M2C_FIELD(arg0, u8 *, 0x2C) | 1);
@@ -68,7 +69,7 @@ void fn_80048938(void *arg0) {
     }
     if (!(M2C_FIELD(arg0, u8 *, 0x2C) & 1)) {
         M2C_FIELD(arg0, u8 *, 0x21) = (u8) M2C_FIELD(arg0, u8 *, 0x1C);
-        M2C_FIELD(arg0, u16 *, 0x1E) = (u16) (((s8) M2C_FIELD(arg0, u8 *, 0x37) + M2C_FIELD(arg0, u16 *, 0x1E)) - 1);
+        M2C_FIELD(arg0, u16 *, 0x1E) = (u16) (((u8) M2C_FIELD(arg0, u8 *, 0x37) + M2C_FIELD(arg0, u16 *, 0x1E)) - 1);
     }
 }
 
@@ -99,26 +100,35 @@ void fn_80048D6C(void) {
     fn_80048D8C((long *)(0));
 }
 
+#pragma push
+#pragma dont_inline on
 void fn_80048D8C(s32 *arg0) {
     fn_80045D8C(arg0 + 0x2C);
     *arg0 |= 1;
     fn_80048CFC(arg0);
 }
+#pragma pop
 
 void fn_80048DD0(void) {
     fn_80048DF0((void *)(0));
 }
 
+#pragma push
+#pragma dont_inline on
 void fn_80048DF0(void *arg0) {
     fn_80048CFC((void *)(0));
     M2C_FIELD(arg0, u16 *, 0x1E) = (u16) (M2C_FIELD(arg0, u16 *, 0x1E) + 2);
 }
+#pragma pop
 
+#pragma push
+#pragma peephole off
 void fn_80048E28(void *arg0) {
     /* draft: did not compile: fn_8004658C(arg0 + 0x38); */
-    M2C_FIELD(arg0, u8 *, 0x39) = (u8) M2C_FIELD(arg0, u8 *, 0x11);
     fn_80048554(arg0, (u16) M2C_FIELD(arg0, s32 *, 0x38));
+    M2C_FIELD(arg0, s8 *, 0x39) = (s8) M2C_FIELD(arg0, s8 *, 0x11);
 }
+#pragma pop
 
 void fn_80048E70(void *arg0) {
     /* draft: did not compile: fn_80048E94(M2C_FIELD(arg0, u8 *, 0x37)); */

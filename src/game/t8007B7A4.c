@@ -293,6 +293,8 @@ f32 PadGetNormalStickY(s32 arg0) {
     return var_f31;
 }
 
+#pragma push
+#pragma dont_inline on
 f32 PadGetNormalSubStickX(s32 arg0) {
     f32 var_f31;
 
@@ -302,6 +304,7 @@ f32 PadGetNormalSubStickX(s32 arg0) {
     }
     return var_f31;
 }
+#pragma pop
 
 f32 PadGetNormalSubStickY(s32 arg0) {
     f32 var_f31;

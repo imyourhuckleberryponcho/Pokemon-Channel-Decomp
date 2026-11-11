@@ -84,6 +84,8 @@ void fn_80076DC8(void *arg0, u8 *arg1) {
     /* draft: did not compile: M2C_FIELD(arg0, s32 *, 0xC) = (s32) (arg0 + 4); */
 }
 
+#pragma push
+#pragma optimize_for_size on
 void fn_80076DE8(void *arg0) {
     u32 temp_r5;
     u32 temp_r6;
@@ -99,7 +101,10 @@ void fn_80076DE8(void *arg0) {
     }
     M2C_FIELD(arg0, s32 *, 4) = 0;
 }
+#pragma pop
 
+#pragma push
+#pragma optimize_for_size on
 void *fn_80076E24(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         fn_80076DE8((void *)(0));
@@ -112,7 +117,10 @@ void *fn_80076E24(void *arg0, s16 arg1) {
     }
     return arg0;
 }
+#pragma pop
 
+#pragma push
+#pragma optimize_for_size on
 void fn_80076E84(void *arg0) {
     u32 temp_r5;
     u32 temp_r6;
@@ -128,7 +136,10 @@ void fn_80076E84(void *arg0) {
     }
     M2C_FIELD(arg0, s32 *, 4) = 0;
 }
+#pragma pop
 
+#pragma push
+#pragma optimize_for_size on
 void *fn_80076EC0(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         fn_80076E84((void *)(0));
@@ -141,6 +152,7 @@ void *fn_80076EC0(void *arg0, s16 arg1) {
     }
     return arg0;
 }
+#pragma pop
 
 void fn_80076F20(void *arg0, u32 arg1) { } /* draft: stub */
 
@@ -321,7 +333,7 @@ s32 fn_80078768(s32 *arg0) {
 }
 
 s32 fn_8007877C(s32 *arg0) {
-    *arg0 &= 0xDFFFFFFF;
+    *arg0 &= (u8)0xDFFFFFFF;
     return 1;
 }
 

@@ -186,8 +186,8 @@ s32 __CARDUnlock(s32 arg0, void *arg1) {
     lbl_8034FFF8 = OSGetTick(temp_r3, temp_r5);
     temp_r4 = lbl_8034FFF8;
     temp_r3_2 = temp_r4 * 0x41C64E6D;
-    lbl_8034FFF8 = temp_r3_2 + 0x3039;
-    var_r25 = (0x7FEC8000 | (((u32) lbl_8034FFF8 >> 0x10U) & 0x7FFF)) & 0xFFFFF000;
+    lbl_8034FFF8 = temp_r3_2;
+    var_r25 = (0x7FEC8000 | (((u32) (lbl_8034FFF8 + 0x3039) >> 0x10U) & 0x7FFF)) & 0xFFFFF000;
     temp_r3_3 = DummyLen();
     if (0 /* draft: did not compile */) {
         return -3;
@@ -371,14 +371,14 @@ s32 __CARDUnlock(s32 arg0, void *arg1) {
 
 void InitCallback(u32 arg0) {
     M2C_UNK *var_r4;
-    s32 temp_r31;
+    u8 temp_r31;
 
     var_r4 = &lbl_8031C9E0;
     if (0 /* draft: did not compile */) {
         var_r4 = &lbl_8031C9E0 + 0x110;
     }
-    temp_r31 = M2C_FIELD(var_r4, s32 *, 0x80);
     fn_800D6D90(0xFF000000);
+    temp_r31 = M2C_FIELD(var_r4, s32 *, 0x80);
     do {
 
     } while (fn_800D6D58() != 0U);
@@ -500,16 +500,16 @@ void fn_800DA0E8(s32 arg0, s32 arg1) { } /* draft: stub */
 
 s32 __CARDAllocBlock(s32 arg0, u32 arg1) {
     s32 saved_reg_r31;
-    u16 *temp_r7;
+    u16 var_r4;
     u16 temp_r0;
     u16 temp_r10;
     u16 var_r12;
-    u16 var_r30;
+    u16 var_r11;
     u16 var_r31;
-    u16 var_r4;
+    u16 *temp_r7;
     void *temp_r8;
     void *temp_r9;
-    u16 var_r11;
+    u16 var_r30;
 
     var_r31 = saved_reg_r31;
     var_r4 = arg1;
@@ -548,18 +548,18 @@ loop_15:
         } else {
             /* draft: did not compile: *(temp_r8 + ((var_r31 * 2) & 0x1FFFE)) = var_r11; */
         }
-        *temp_r7 = 0xFFFF;
         var_r31 = var_r11;
         var_r4 = var_r4 - 1;
+        *temp_r7 = 0xFFFF;
     }
     goto loop_15;
 }
 
 s32 __CARDFreeBlock(s32 arg0, u16 arg1) {
+    u32 var_r4;
     u16 *temp_r6;
-    u16 var_r4;
-    void *temp_r8;
     void *temp_r9;
+    void *temp_r8;
 
     var_r4 = arg1;
     temp_r9 = &lbl_8031C9E0 + (arg0 * 0x110);
@@ -697,6 +697,8 @@ block_4:
     }
 }
 
+#pragma push
+#pragma peephole off
 s32 VerifyID(void *arg0) {
     s32 temp_r0;
     s32 temp_r0_2;
@@ -704,7 +706,7 @@ s32 VerifyID(void *arg0) {
     s32 var_ctr_2;
     s32 var_r26;
     s32 var_r28;
-    s32 var_r31;
+    u8 var_r31;
     s32 var_r3;
     u16 *temp_r3;
     u16 *var_r25;
@@ -720,7 +722,7 @@ s32 VerifyID(void *arg0) {
     u16 temp_r5_9;
     u16 var_r6;
     u32 var_r7;
-    u32 temp_r4;
+    s8 temp_r4;
     u64 temp_ret;
     u64 temp_ret_2;
     u8 *var_r29;
@@ -804,3 +806,4 @@ loop_17:
     }
     goto loop_17;
 }
+#pragma pop

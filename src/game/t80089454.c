@@ -81,21 +81,24 @@ s32 scr_method_getGoalDistance(s32 arg0);
 s32 scr_method_getGoalDistanceXZ(s32 arg0);
 void fn_80089FF8(s32 arg0, s32 *arg1, void **arg2, s32 *arg3, s32 *arg4, f32 *arg5, M2C_UNK arg_sp0);
 
+#pragma push
+#pragma optimize_for_size on
 s32 scr_method_setViewport(s32 arg0, M2C_UNK arg_sp0) {
+    f32 temp_f31;
+    f32 temp_f30;
     f32 temp_f28;
     f32 temp_f29;
-    f32 temp_f30;
-    f32 temp_f31;
 
-    temp_f31 = fn_80080764((long)(0));
     temp_f30 = fn_80080764(arg0);
-    temp_f29 = fn_80080764(arg0);
     temp_f28 = fn_80080764(arg0);
+    temp_f29 = fn_80080764(arg0);
+    temp_f31 = fn_80080764((long)(0));
     /* draft: did not compile: fn_800896C0(arg0); */
     method_setViewport(temp_f28, temp_f29, temp_f30, temp_f31);
     fn_8008065C(arg0, 0);
     return 0;
 }
+#pragma pop
 
 #pragma push
 #pragma optimize_for_size on
@@ -220,13 +223,18 @@ void fn_8008982C(s32 arg0) {
     fn_800AD554(lbl_803506BC, &lbl_8034FC2C, 0x45, &lbl_8022A028, lbl_8034FC28, arg0);
 }
 
+#pragma push
+#pragma dont_inline on
 s32 scr_MyRunThread(s32 arg0) {
     fn_80080738((long)(0));
     fn_8008982C((long)(0));
     fn_8008065C(arg0, 0);
     return 0;
 }
+#pragma pop
 
+#pragma push
+#pragma dont_inline on
 s32 scr_MyProbeGBA(s32 arg0) {
     if ((u32) (SIProbe(1) + 0xFFFC0000) == 0U) {
         lbl_803506BC = 1;
@@ -235,6 +243,7 @@ s32 scr_MyProbeGBA(s32 arg0) {
     fn_8008065C(arg0, 0);
     return 0;
 }
+#pragma pop
 
 s32 scr_GetgbaChan(void) {
     fn_8008065C((long)(lbl_803506BC), (long)(0));

@@ -24,6 +24,8 @@ s32 __GBATransfer(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 void fn_80136A34();
 s32 fn_80137D24(void);
 
+#pragma push
+#pragma peephole off
 void GBAWrite(s32 arg0, s32 arg1, s32 arg2) {
     s32 var_r3;
     void *temp_r31;
@@ -44,6 +46,7 @@ void GBAWrite(s32 arg0, s32 arg1, s32 arg2) {
     }
     __GBASync(arg0);
 }
+#pragma pop
 
 void __GBAHandler(s32 arg0, s32 arg1, M2C_UNK *arg2) {
     M2C_UNK sp18;
@@ -81,8 +84,8 @@ void __GBASyncCallback(s32 arg0) {
 
 s32 __GBASync(s32 arg0) {
     s32 temp_r30;
-    s32 temp_r31;
-    s32 temp_r3;
+    u8 temp_r31;
+    s8 temp_r3;
     void *temp_r31_2;
 
     temp_r3 = arg0 << 8;
@@ -102,15 +105,15 @@ void TypeAndStatusCallback(s32 arg0, u8 arg1) { } /* draft: stub */
 
 s32 __GBATransfer(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 temp_r3;
-    s32 temp_r7;
+    s8 temp_r7;
     void *temp_r30;
 
     temp_r7 = arg0 << 8;
-    temp_r30 = &lbl_803470C0 + temp_r7;
     temp_r3 = OSDisableInterrupts(&lbl_803470C0, temp_r7);
     M2C_FIELD(temp_r30, s32 *, 0x38) = arg3;
     M2C_FIELD(temp_r30, s32 *, 0xC) = arg1;
     M2C_FIELD(temp_r30, s32 *, 0x10) = arg2;
+    temp_r30 = &lbl_803470C0 + temp_r7;
     SIGetTypeAsync(arg0, TypeAndStatusCallback);
     OSRestoreInterrupts(temp_r3);
     return 0;
@@ -148,8 +151,8 @@ s32 fn_80137D24(void) {
     temp_r0 = M2C_FIELD(temp_r31, s32 *, 0);
     temp_r3_8 = M2C_FIELD(temp_r31, s32 *, 4);
     temp_cr0_eq = temp_r0 == 4;
-    temp_cr0_lt = temp_r0 < 4;
     lbl_80350EE0 = ((temp_r3_7 << 5) | (temp_r3_7 >> 0x1BU)) + temp_r5;
+    temp_cr0_lt = temp_r0 < 4;
     if (temp_cr0_eq == 0) {
         if (temp_cr0_lt != 0) {
             if (temp_r0 != 2) {

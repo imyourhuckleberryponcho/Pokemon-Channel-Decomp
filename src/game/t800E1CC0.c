@@ -74,24 +74,24 @@ void fn_800E1DA4(void) {
 }
 
 void GXSetDispCopySrc(u16 arg0, s32 arg1, u16 arg2, u16 arg3) {
+    M2C_FIELD(gx, s32 *, 0x1E4) = 0;
     M2C_FIELD(gx, s32 *, 0x1E0) = 0;
     M2C_FIELD(gx, s32 *, 0x1E0) = (s32) ((M2C_FIELD(gx, s32 *, 0x1E0) & 0xFFFFFC00) | arg0);
     M2C_FIELD(gx, s32 *, 0x1E0) = (s32) ((M2C_FIELD(gx, s32 *, 0x1E0) & 0xFFF003FF) | ((arg1 << 0xA) & 0x03FFFC00));
     M2C_FIELD(gx, s32 *, 0x1E0) = (s32) ((M2C_FIELD(gx, s32 *, 0x1E0) & 0xFFFFFF) | 0x49000000);
-    M2C_FIELD(gx, s32 *, 0x1E4) = 0;
-    M2C_FIELD(gx, s32 *, 0x1E4) = (s32) ((M2C_FIELD(gx, s32 *, 0x1E4) & 0xFFFFFC00) | (arg2 - 1));
     M2C_FIELD(gx, s32 *, 0x1E4) = (s32) ((M2C_FIELD(gx, s32 *, 0x1E4) & 0xFFF003FF) | ((arg3 - 1) << 0xA));
+    M2C_FIELD(gx, s32 *, 0x1E4) = (s32) ((M2C_FIELD(gx, s32 *, 0x1E4) & 0xFFFFFC00) | (arg2 - 1));
     M2C_FIELD(gx, s32 *, 0x1E4) = (s32) ((M2C_FIELD(gx, s32 *, 0x1E4) & 0xFFFFFF) | 0x4A000000);
 }
 
 void GXSetTexCopySrc(u16 arg0, s32 arg1, u16 arg2, u16 arg3) {
+    M2C_FIELD(gx, s32 *, 0x1F4) = 0;
     M2C_FIELD(gx, s32 *, 0x1F0) = 0;
     M2C_FIELD(gx, s32 *, 0x1F0) = (s32) ((M2C_FIELD(gx, s32 *, 0x1F0) & 0xFFFFFC00) | arg0);
     M2C_FIELD(gx, s32 *, 0x1F0) = (s32) ((M2C_FIELD(gx, s32 *, 0x1F0) & 0xFFF003FF) | ((arg1 << 0xA) & 0x03FFFC00));
     M2C_FIELD(gx, s32 *, 0x1F0) = (s32) ((M2C_FIELD(gx, s32 *, 0x1F0) & 0xFFFFFF) | 0x49000000);
-    M2C_FIELD(gx, s32 *, 0x1F4) = 0;
-    M2C_FIELD(gx, s32 *, 0x1F4) = (s32) ((M2C_FIELD(gx, s32 *, 0x1F4) & 0xFFFFFC00) | (arg2 - 1));
     M2C_FIELD(gx, s32 *, 0x1F4) = (s32) ((M2C_FIELD(gx, s32 *, 0x1F4) & 0xFFF003FF) | ((arg3 - 1) << 0xA));
+    M2C_FIELD(gx, s32 *, 0x1F4) = (s32) ((M2C_FIELD(gx, s32 *, 0x1F4) & 0xFFFFFC00) | (arg2 - 1));
     M2C_FIELD(gx, s32 *, 0x1F4) = (s32) ((M2C_FIELD(gx, s32 *, 0x1F4) & 0xFFFFFF) | 0x4A000000);
 }
 
@@ -319,8 +319,8 @@ void GXInitLightColor(void *arg0, s32 *arg1) {
 f32 GXLoadLightObjImm(void *arg0, s32 arg1, s32 arg3) {
     s32 temp_r6;
 
-    *(s8 *)0xCC008000 = 0x10;
     *(s8 *)0xCC008000 = (s32) (((((0x1F - CLZ(arg1)) * 0x10) & 0x70) + 0x600) | 0xF0000);
+    *(s8 *)0xCC008000 = 0x10;
     temp_r6 = arg3 ^ arg3;
     /* draft: did not compile: *(0xCC010000 - 0x8000) = temp_r6; */
     /* draft: did not compile: *(0xCC010000 - 0x8000) = temp_r6; */
@@ -338,22 +338,22 @@ void fn_800E2CA4(u8 arg0) {
     M2C_FIELD(gx, s32 *, 0x204) = (s32) ((M2C_FIELD(gx, s32 *, 0x204) & 0xFFFFFF8F) | ((arg0 * 0x10) & 0xFF0));
     *(s8 *)0xCC008000 = 0x10;
     *(s8 *)0xCC008000 = 0x1009;
-    *(s8 *)0xCC008000 = (s32) arg0;
     M2C_FIELD(gx, s32 *, 0x4F4) = (s32) (M2C_FIELD(gx, s32 *, 0x4F4) | 4);
+    *(s8 *)0xCC008000 = (s32) arg0;
 }
 
 void GXSetChanCtrl(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6) {
     s32 temp_r6;
-    s32 var_r8;
+    u8 var_r8;
 
     var_r8 = arg5;
-    if (arg6 == 0) {
+    if (arg6 == 0U) {
         var_r8 = 0;
     }
-    *(s8 *)0xCC008000 = 0x10;
     temp_r6 = ((((((((((((((arg1 * 2) & 0x1FE) | arg3) & 0xFFFFFFBF) | (arg2 << 6)) & 0xFFFFFE7F) | (var_r8 << 7)) & 0xFFFFFDFF) | ((arg6 != 2) << 9)) & 0xFFFFFBFF) | ((arg6 != 0) << 0xA)) & 0xFFFFFFC3 & ~0x3C) | ((arg4 << 2) & 0x3C)) & 0xFFFF87FF & ~0x7800) | ((arg4 << 7) & 0x7800);
-    *(s8 *)0xCC008000 = (s32) ((arg0 & 3) + 0x100E);
+    *(s8 *)0xCC008000 = 0x10;
     *(s8 *)0xCC008000 = temp_r6;
+    *(s8 *)0xCC008000 = (s32) ((arg0 & 3) + 0x100E);
     if (arg0 == 4) {
         *(s8 *)0xCC008000 = 0x10;
         *(s8 *)0xCC008000 = 0x1010;
@@ -372,8 +372,11 @@ void __GetImageTileCount() { } /* draft: stub */
 
 void GXInitTexObj() { } /* draft: stub */
 
+#pragma push
+#pragma dont_inline on
 void GXInitTexObjCI(void *arg0, s32 arg_sp8) {
     GXInitTexObj();
     M2C_FIELD(arg0, u8 *, 0x1F) = (u8) (M2C_FIELD(arg0, u8 *, 0x1F) & 0xFFFFFFFD);
     M2C_FIELD(arg0, s32 *, 0x18) = arg_sp8;
 }
+#pragma pop

@@ -53,6 +53,8 @@ void fn_8006259C(void *arg0) {
     fn_80045A54(arg0, M2C_FIELD(arg0, u8 *, 0x2A));
 }
 
+#pragma push
+#pragma peephole off
 void fn_800625FC(void *arg0) {
     /* draft: did not compile: fn_80045A0C(arg0 + 0xC); */
     /* draft: did not compile: fn_80045A0C(arg0, arg0 + 0x10); */
@@ -63,6 +65,7 @@ void fn_800625FC(void *arg0) {
     fn_80045A54(arg0, M2C_FIELD(arg0, u8 *, 0x15));
     fn_80045A54(arg0, M2C_FIELD(arg0, u8 *, 0x19));
 }
+#pragma pop
 
 void fn_80062680(s32 arg0) {
     fn_80045D8C(arg0 + 0x2A);

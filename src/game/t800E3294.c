@@ -122,11 +122,11 @@ void fn_800E3430(void *arg0, void *arg1, s32 arg2) {
     *(s8 *)0xCC008000 = (s32) M2C_FIELD(arg0, s32 *, 0);
     *(s8 *)0xCC008000 = (s32) M2C_FIELD(arg0, s32 *, 4);
     *(s8 *)0xCC008000 = 0x61;
+    *(s8 *)0xCC008000 = 0x61;
+    *(s8 *)0xCC008000 = 0x61;
+    *(s8 *)0xCC008000 = 0x61;
     *(s8 *)0xCC008000 = (s32) M2C_FIELD(arg0, s32 *, 8);
-    *(s8 *)0xCC008000 = 0x61;
     *(s8 *)0xCC008000 = (s32) M2C_FIELD(arg1, s32 *, 0);
-    *(s8 *)0xCC008000 = 0x61;
-    *(s8 *)0xCC008000 = 0x61;
     *(s8 *)0xCC008000 = (s32) M2C_FIELD(arg1, s32 *, 4);
     *(s8 *)0xCC008000 = (s32) M2C_FIELD(arg0, s32 *, 0xC);
     if (!(M2C_FIELD(arg0, u8 *, 0x1F) & 2)) {
@@ -465,6 +465,8 @@ void fn_800E41D8(s32 arg0) {
     M2C_FIELD(gx, s32 *, 0x4F4) = (s32) (M2C_FIELD(gx, s32 *, 0x4F4) | 6);
 }
 
+#pragma push
+#pragma dont_inline on
 void GXSetTevDirect(void) {
     s32 spC;
     s32 sp8;
@@ -473,7 +475,10 @@ void GXSetTevDirect(void) {
     spC = 0;
     fn_800E3D4C((long)(0), (long)(0), (long)(0), (long)(0), (long)(0), (long)(0), (long)(0), (long)(0), (unsigned char)(0), (long)(0));
 }
+#pragma pop
 
+#pragma push
+#pragma peephole off
 void fn_800E4248(u8 arg2, u8 arg3) {
     s32 spC;
     s32 sp8;
@@ -494,6 +499,7 @@ void fn_800E4248(u8 arg2, u8 arg3) {
     spC = 0;
     fn_800E3D4C((long)(0), (long)(var_r6_2), (long)(var_r6), (long)(0), (long)(0), (long)(0), (long)(0), (long)(0), (unsigned char)(0), (long)(0));
 }
+#pragma pop
 
 void fn_800E42AC(s32 arg2) {
     s32 temp_r3;
@@ -561,12 +567,12 @@ void GXSetTevOp(s32 arg0, s32 arg1) {
         var_r9 = &lbl_802A7FD8 + temp_r4 + 0x3C;
     }
     /* draft: did not compile: temp_r6 = gx + (arg0 * 4); */
+    temp_r3 = (*var_r5 & 0xFFFFFF) | (M2C_FIELD(temp_r6, s32 *, 0x130) & 0xFF000000 & ~0xFFFFFF);
     *(s8 *)0xCC008000 = 0x61;
-    temp_r3 = (M2C_FIELD(temp_r6, s32 *, 0x130) & 0xFF000000 & ~0xFFFFFF) | (*var_r5 & 0xFFFFFF);
     *(s8 *)0xCC008000 = temp_r3;
-    M2C_FIELD(temp_r6, s32 *, 0x130) = temp_r3;
     *(s8 *)0xCC008000 = 0x61;
-    temp_r8 = (M2C_FIELD(temp_r6, s32 *, 0x170) & 0xFF00000F & ~0xFFFFF0) | (*var_r9 & 0xFFFFF0);
+    M2C_FIELD(temp_r6, s32 *, 0x130) = temp_r3;
+    temp_r8 = (*var_r9 & 0xFFFFF0) | (M2C_FIELD(temp_r6, s32 *, 0x170) & 0xFF00000F & ~0xFFFFF0);
     *(s8 *)0xCC008000 = temp_r8;
     M2C_FIELD(temp_r6, s32 *, 0x170) = temp_r8;
     M2C_FIELD(gx, s16 *, 2) = 0;
@@ -577,10 +583,10 @@ void GXSetTevColorIn(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     void *temp_r8;
 
     /* draft: did not compile: temp_r8 = gx + (arg0 * 4); */
-    *(s8 *)0xCC008000 = 0x61;
     temp_r4 = (((((((M2C_FIELD(temp_r8, s32 *, 0x130) & ~0xF000) | ((arg1 << 0xC) & 0xF000)) & ~0xF00) | ((arg2 << 8) & 0xF00)) & ~0xF0) | ((arg3 << 4) & 0xF0)) & ~0xF) | (arg4 & 0xF);
-    *(s8 *)0xCC008000 = temp_r4;
+    *(s8 *)0xCC008000 = 0x61;
     M2C_FIELD(temp_r8, s32 *, 0x130) = temp_r4;
+    *(s8 *)0xCC008000 = temp_r4;
     M2C_FIELD(gx, s16 *, 2) = 0;
 }
 
@@ -589,10 +595,10 @@ void GXSetTevAlphaIn(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     void *temp_r8;
 
     /* draft: did not compile: temp_r8 = gx + (arg0 * 4); */
-    *(s8 *)0xCC008000 = 0x61;
     temp_r4 = (((((((M2C_FIELD(temp_r8, s32 *, 0x170) & ~0xE000) | ((arg1 << 0xD) & 0xE000)) & ~0x1C00) | ((arg2 << 0xA) & 0x1C00)) & ~0x380) | ((arg3 << 7) & 0x380)) & ~0x70) | ((arg4 << 4) & 0x70);
-    *(s8 *)0xCC008000 = temp_r4;
+    *(s8 *)0xCC008000 = 0x61;
     M2C_FIELD(temp_r8, s32 *, 0x170) = temp_r4;
+    *(s8 *)0xCC008000 = temp_r4;
     M2C_FIELD(gx, s16 *, 2) = 0;
 }
 

@@ -281,8 +281,8 @@ M2C_UNK *fn_8009DC80(void *arg0) {
 }
 
 void *fn_8009DC98(void *arg0) {
-    M2C_FIELD(arg0, s32 *, 0) = 0;
     M2C_FIELD(arg0, s32 *, 4) = 0;
+    M2C_FIELD(arg0, s32 *, 0) = 0;
     /* draft: did not compile: memset(arg0 + 8, 0, 0x18); */
     /* draft: did not compile: memset(arg0 + 0x20, 0, 0x10); */
     /* draft: did not compile: memset(arg0 + 0x30, 0, 0x10); */
@@ -325,6 +325,8 @@ void fn_8009DD68(void *arg0, s32 arg1) {
     M2C_FIELD(arg0, s8 *, 0x3B) = 0;
 }
 
+#pragma push
+#pragma peephole off
 void *fn_8009DDC8(void *arg0, s16 arg1) {
     void *temp_r3;
     void *temp_r4;
@@ -362,6 +364,7 @@ void *fn_8009DDC8(void *arg0, s16 arg1) {
     }
     return arg0;
 }
+#pragma pop
 
 u32 fn_8009DEDC(s32 *arg0) {
     s32 *sp8;
@@ -586,7 +589,7 @@ loop_22:
         var_r3 = 0;
         var_r5 = 0;
 loop_27:
-        temp_r4_2 = M2C_FIELD(arg0, void **, 8);
+        temp_r4_2 = M2C_FIELD((s32)arg0, void **, 8);
         if (var_r7 < (s32) M2C_FIELD(temp_r4_2, s32 *, 0x78)) {
             /* draft: did not compile: temp_r6 = M2C_FIELD(temp_r4_2, s32 *, 0x74) + var_r5; */
             if ((u32) (*temp_r6 + 0xF0000000) != 0U) {
@@ -605,15 +608,15 @@ loop_27:
 s32 fn_8009E540(void *arg0, M2C_UNK arg_sp0) {
     void *spC;
     void *sp8;
-    s32 var_r26;
-    s32 var_r27;
+    void *temp_r29;
+    u32 var_r0;
     s32 var_r29;
     s32 var_r30;
     s32 var_r31;
     u32 temp_r26;
-    u32 var_r0;
+    s32 var_r27;
     u32 var_r0_2;
-    void *temp_r29;
+    s32 var_r26;
     void *temp_r3;
     void *temp_r3_2;
     void *temp_r3_3;

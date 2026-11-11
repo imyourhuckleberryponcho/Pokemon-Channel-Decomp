@@ -162,7 +162,8 @@ void HSD_CObjSetRoll(void *arg0, f32 farg0) {
                     }
                     sp50 = var_f4_2;
                     temp_f2_2 = -sp44 / (f32) var_f4_2;
-                    sp4C = sp40 * temp_f2_2;
+                    sp4C = temp_f2_2;
+                    sp4C *= sp40;
                     sp54 = sp48 * temp_f2_2;
                 }
                 fn_800CC2C4(&sp70, &sp40, -farg0);
@@ -558,8 +559,8 @@ void PObjInfoInit(void) {
     M2C_FIELD(&lbl_802A92C8, M2C_UNK (**)(), 0x2C) = CObjInit;
     /* draft: did not compile: M2C_FIELD(&lbl_802A92C8, M2C_UNK (**)(), 0x30) = CObjRelease; */
     /* draft: did not compile: M2C_FIELD(&lbl_802A92C8, M2C_UNK (**)(), 0x38) = fn_800F413C; */
-    M2C_FIELD(&lbl_802A92C8, M2C_UNK (**)(), 0x3C) = CObjLoad;
     M2C_FIELD(&lbl_802A92C8, M2C_UNK **, 0x40) = &CObjUpdateFunc;
+    M2C_FIELD(&lbl_802A92C8, M2C_UNK (**)(), 0x3C) = CObjLoad;
 }
 
 void HSD_FObjInitAllocData(void) {

@@ -106,8 +106,8 @@ void HSD_MObjUnset(void);
 void fn_800EC404(void *arg0, s8 arg1, s8 arg2, s8 arg3);
 
 void HSD_RenderInitAllocData(void) {
-    HSD_ObjAllocInit(&lbl_8031D1B0, 0x1C, 4);
     HSD_ObjAllocInit(&lbl_8031D1B0 + 0x2C, 0x14, 4);
+    HSD_ObjAllocInit(&lbl_8031D1B0, 0x1C, 4);
     HSD_ObjAllocInit(&lbl_8031D1B0 + 0x58, 0x30, 4);
 }
 
@@ -231,9 +231,9 @@ block_31:
         temp_r31_2 = (temp_r3 & 3) * 0x30;
         temp_r30 = &lbl_802A88E0 + temp_r31_2;
         if ((((u8) M2C_FIELD(arg0, u8 *, 0x14) != (u8) M2C_FIELD(temp_r30, u8 *, 0x14)) || (temp_r5_3 = &lbl_802A88E0 + temp_r31_2, (((s32) M2C_FIELD(arg0, s32 *, 0x18) == (s32) M2C_FIELD(temp_r5_3, s32 *, 0x18)) == 0)) || ((s32) M2C_FIELD(arg0, s32 *, 0x1C) != (s32) M2C_FIELD(temp_r5_3, s32 *, 0x1C)) || ((s32) M2C_FIELD(arg0, s32 *, 0x20) != (s32) M2C_FIELD(temp_r5_3, s32 *, 0x20)) || ((s32) M2C_FIELD(arg0, s32 *, 0x24) != (s32) M2C_FIELD(temp_r5_3, s32 *, 0x24)) || ((s32) M2C_FIELD(arg0, s32 *, 0x28) != (s32) M2C_FIELD(temp_r5_3, s32 *, 0x28))) && ((GXSetChanCtrl(temp_r3, M2C_FIELD(arg0, s32 *, 0x18), M2C_FIELD(arg0, s32 *, 0x1C), M2C_FIELD(arg0, s32 *, 0x20), M2C_FIELD(arg0, s32 *, 0x24), M2C_FIELD(arg0, s32 *, 0x28)), M2C_FIELD(temp_r30, u8 *, 0x14) = (u8) M2C_FIELD(arg0, u8 *, 0x14), temp_r3_10 = &lbl_802A88E0 + temp_r31_2, M2C_FIELD(temp_r3_10, s32 *, 0x18) = (s32) M2C_FIELD(arg0, s32 *, 0x18), M2C_FIELD(temp_r3_10, s32 *, 0x1C) = (s32) M2C_FIELD(arg0, s32 *, 0x1C), M2C_FIELD(temp_r3_10, s32 *, 0x20) = (s32) M2C_FIELD(arg0, s32 *, 0x20), M2C_FIELD(temp_r3_10, s32 *, 0x24) = (s32) M2C_FIELD(arg0, s32 *, 0x24), M2C_FIELD(temp_r3_10, s32 *, 0x28) = (s32) M2C_FIELD(arg0, s32 *, 0x28), ((temp_r3 == 4) != 0)) || (temp_r3 == 5))) {
-            temp_r3_11 = &lbl_802A88E0 + temp_r31_2;
             M2C_FIELD(temp_r3_11, u8 *, 0x74) = (u8) M2C_FIELD(arg0, u8 *, 0x14);
             M2C_FIELD(temp_r3_11, s32 *, 0x78) = (s32) M2C_FIELD(arg0, s32 *, 0x18);
+            temp_r3_11 = &lbl_802A88E0 + temp_r31_2;
             M2C_FIELD(temp_r3_11, s32 *, 0x7C) = (s32) M2C_FIELD(arg0, s32 *, 0x1C);
             M2C_FIELD(temp_r3_11, s32 *, 0x80) = (s32) M2C_FIELD(arg0, s32 *, 0x20);
             M2C_FIELD(temp_r3_11, s32 *, 0x84) = (s32) M2C_FIELD(arg0, s32 *, 0x24);
@@ -244,7 +244,7 @@ block_31:
 
 void HSD_DisableChannelLighting(s32 arg0) {
     s32 temp_r0;
-    int temp_r5;
+    u8 temp_r5;
     s32 temp_r6;
     s32 temp_r6_2;
     s32 temp_r6_3;
@@ -265,18 +265,18 @@ void HSD_DisableChannelLighting(s32 arg0) {
         temp_r8 = &lbl_802A88E0 + temp_r6;
         if (((u8) M2C_FIELD(temp_r8, u8 *, 0x14) != 0) || ((u8) M2C_FIELD((&lbl_802A88E0 + temp_r6), u8 *, 0x74) != 0)) {
             temp_r10 = &lbl_802A88E0 + temp_r6;
+            temp_r8_2 = M2C_FIELD(temp_r10, s32 *, 0x24);
             M2C_FIELD(temp_r10, s8 *, 0x74) = 0;
             M2C_FIELD(temp_r8, u8 *, 0x14) = 0U;
             M2C_FIELD(temp_r10, s32 *, 0x80) = 0;
             M2C_FIELD(temp_r10, s32 *, 0x20) = 0;
             temp_r5 = M2C_FIELD(temp_r10, s32 *, 0x18);
             temp_r6_2 = M2C_FIELD(temp_r10, s32 *, 0x1C);
-            temp_r8_2 = M2C_FIELD(temp_r10, s32 *, 0x24);
             temp_r9 = M2C_FIELD(temp_r10, s32 *, 0x28);
             M2C_FIELD(temp_r10, s32 *, 0x78) = temp_r5;
             M2C_FIELD(temp_r10, s32 *, 0x7C) = temp_r6_2;
-            M2C_FIELD(temp_r10, s32 *, 0x84) = temp_r8_2;
             M2C_FIELD(temp_r10, s32 *, 0x88) = temp_r9;
+            M2C_FIELD(temp_r10, s32 *, 0x84) = temp_r8_2;
             GXSetChanCtrl((long)(0), (long)(temp_r5), (long)(temp_r6_2), (long)(0), (long)(temp_r8_2), (long)(temp_r9));
         }
     } else {
@@ -417,6 +417,8 @@ s32 HSD_TexCoordID2Num(s32 arg0) {
     }
 }
 
+#pragma push
+#pragma peephole off
 void _HSD_StateInvalidateColorChannel(void) {
     memcpy(&lbl_802A88E0, &lbl_802A89E0, 0xC0);
     M2C_FIELD(&lbl_80350BF8, s32 *, 0) = 1;
@@ -425,6 +427,7 @@ void _HSD_StateInvalidateColorChannel(void) {
     M2C_FIELD(&lbl_80350BF0, s32 *, 4) = 1;
     lbl_80350BEC = -1;
 }
+#pragma pop
 
 void fn_800EAFA8(void) {
     lbl_80350C00 = 0;

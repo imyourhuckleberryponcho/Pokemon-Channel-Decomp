@@ -391,8 +391,8 @@ void fn_800FE0CC(u32 arg0) {
 }
 
 void fn_800FE130(void) {
-    hsdInitClassInfo(&lbl_802A97A8, &lbl_802AA3D0, &lbl_802A97A8 + 0x39C, &lbl_802A97A8 + 0x3B4, 0x54, 0x88);
     M2C_FIELD(&lbl_802A97A8, M2C_UNK **, 0x2C) = &JObjInit;
+    hsdInitClassInfo(&lbl_802A97A8, &lbl_802AA3D0, &lbl_802A97A8 + 0x39C, &lbl_802A97A8 + 0x3B4, 0x54, 0x88);
     /* draft: did not compile: M2C_FIELD(&lbl_802A97A8, M2C_UNK (**)(), 0x30) = JObjRelease; */
     /* draft: did not compile: M2C_FIELD(&lbl_802A97A8, M2C_UNK (**)(), 0x38) = fn_800FE0CC; */
     M2C_FIELD(&lbl_802A97A8, M2C_UNK **, 0x40) = &HSD_JObjMakeMatrix;
@@ -499,11 +499,11 @@ void mkVBillBoardMtx(void *arg0, void *arg1, void *arg2) {
         temp_f31 = var_f31 / temp_f1_9;
         PSVECCrossProduct((float *)(&sp40), (float *)(&sp1C), (float *)(&sp28), (long)(0), (float)(0), (long *)(0));
         temp_f1_10 = lbl_80351FAC + PSVECMag(&sp28);
+        M2C_FIELD(arg2, f32 *, 4) = sp34;
         M2C_FIELD(arg2, f32 *, 0) = (f32) (temp_f31 * sp40);
         temp_f1_11 = var_f30 / temp_f1_10;
         M2C_FIELD(arg2, f32 *, 0x10) = (f32) (temp_f31 * sp44);
         M2C_FIELD(arg2, f32 *, 0x20) = (f32) (temp_f31 * sp48);
-        M2C_FIELD(arg2, f32 *, 4) = sp34;
         M2C_FIELD(arg2, f32 *, 0x14) = sp38;
         M2C_FIELD(arg2, f32 *, 0x24) = sp3C;
         M2C_FIELD(arg2, f32 *, 8) = (f32) (temp_f1_11 * sp28);
@@ -622,8 +622,8 @@ void mkHBillBoardMtx(void *arg0, void *arg1, void *arg2) {
         temp_f1_16 = var_f31 / temp_f1_15;
         M2C_FIELD(arg2, f32 *, 0x10) = sp3C;
         M2C_FIELD(arg2, f32 *, 4) = (f32) (temp_f1_16 * sp2C);
-        M2C_FIELD(arg2, f32 *, 0x20) = sp40;
         M2C_FIELD(arg2, f32 *, 0x14) = (f32) (temp_f1_16 * sp30);
+        M2C_FIELD(arg2, f32 *, 0x20) = sp40;
         M2C_FIELD(arg2, f32 *, 0x24) = (f32) (temp_f1_16 * sp34);
         M2C_FIELD(arg2, f32 *, 8) = (f32) (temp_f30 * sp20);
         M2C_FIELD(arg2, f32 *, 0x18) = (f32) (temp_f30 * sp24);
@@ -704,9 +704,9 @@ void mkBillBoardMtx(void *arg0, void *arg1, void *arg2) {
     sp30 = M2C_FIELD(arg1, f32 *, 0x14);
     sp34 = M2C_FIELD(arg1, f32 *, 0x24);
     var_f29 = PSVECMag(&sp2C);
-    sp14 = M2C_FIELD(arg1, f32 *, 0xC);
     sp18 = M2C_FIELD(arg1, f32 *, 0x1C);
     sp1C = M2C_FIELD(arg1, f32 *, 0x2C);
+    sp14 = M2C_FIELD(arg1, f32 *, 0xC);
     if (M2C_FIELD(arg0, s32 *, 0x14) & 0x2000) {
         PSVECScale(&sp14, &sp20, lbl_80351FC8 / (lbl_80351FAC + PSVECMag(&sp14)), lbl_80351FAC);
     } else {
@@ -800,7 +800,8 @@ void mkRBillBoardMtx(void *arg0, void *arg1, s32 arg2) {
     temp_f2_5 = M2C_FIELD(arg1, f32 *, 0x14);
     temp_f0 = M2C_FIELD(arg1, f32 *, 4);
     temp_f4 = M2C_FIELD(arg1, f32 *, 0x24);
-    var_f2 = (temp_f4 * temp_f4) + ((temp_f2_5 * temp_f2_5) + (temp_f0 * temp_f0));
+    var_f2 = (temp_f4 * temp_f4);
+    var_f2 += ((temp_f2_5 * temp_f2_5) + (temp_f0 * temp_f0));
     if (var_f2 > lbl_80351FB0) {
         temp_f3_2 = __frsqrte(var_f2);
         temp_f3_3 = lbl_80351FB8 * temp_f3_2 * -(((f64) var_f2 * (temp_f3_2 * temp_f3_2)) - lbl_80351FC0);
@@ -1170,8 +1171,8 @@ loop_9:
 }
 
 void fn_800FF734(s8 arg0, s8 arg1, s8 arg2, s8 arg3) {
-    M2C_FIELD(&lbl_803501A0, s8 *, 0) = arg0;
     M2C_FIELD(&lbl_803501A0, s8 *, 1) = arg1;
+    M2C_FIELD(&lbl_803501A0, s8 *, 0) = arg0;
     M2C_FIELD(&lbl_803501A0, s8 *, 2) = arg2;
     M2C_FIELD(&lbl_803501A0, s8 *, 3) = arg3;
 }

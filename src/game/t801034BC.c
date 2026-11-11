@@ -301,8 +301,8 @@ s32 HSD_MtxInverseConcat(void *arg0, void *arg1, void *arg2) {
     temp_f30 = lbl_8035209C / temp_f25;
     temp_f13 = M2C_FIELD(arg0, f32 *, 0xC);
     temp_f31 = M2C_FIELD(arg0, f32 *, 0x2C);
-    temp_f3_2 = temp_f30 * ((temp_f1 * temp_f4) - (temp_f5 * temp_f7));
     temp_f4_2 = temp_f30 * -((temp_f23 * temp_f4) - (temp_f5 * temp_f2));
+    temp_f3_2 = temp_f30 * ((temp_f1 * temp_f4) - (temp_f5 * temp_f7));
     temp_f5_2 = temp_f30 * -((temp_f3 * temp_f4) - (temp_f24 * temp_f7));
     temp_f9_2 = temp_f30 * ((temp_f6 * temp_f4) - (temp_f24 * temp_f2));
     temp_f29_2 = temp_f30 * ((temp_f3 * temp_f5) - temp_f9);
@@ -311,8 +311,8 @@ s32 HSD_MtxInverseConcat(void *arg0, void *arg1, void *arg2) {
     temp_f1_2 = temp_f30 * -((temp_f6 * temp_f7) - temp_f0);
     temp_f2_2 = temp_f30 * (temp_f11 - temp_f10);
     temp_f6_2 = -((temp_f0_2 * temp_f31) - ((-temp_f3_2 * temp_f13) - (temp_f4_2 * temp_f12)));
-    temp_f7_2 = -((temp_f1_2 * temp_f31) - ((-temp_f5_2 * temp_f13) - (temp_f9_2 * temp_f12)));
     temp_f8_2 = -((temp_f2_2 * temp_f31) - ((-temp_f29_2 * temp_f13) - (temp_f28 * temp_f12)));
+    temp_f7_2 = -((temp_f1_2 * temp_f31) - ((-temp_f5_2 * temp_f13) - (temp_f9_2 * temp_f12)));
     if ((arg0 == arg2) || (arg1 == arg2)) {
         temp_f10_2 = M2C_FIELD(arg1, f32 *, 0x10);
         temp_f13_2 = M2C_FIELD(arg1, f32 *, 0);
@@ -683,11 +683,11 @@ void HSD_MkRotationMtx(void *arg0, void *arg1) {
     M2C_FIELD(arg0, f32 *, 0x20) = (f32) -temp_f29;
     M2C_FIELD(arg0, f32 *, 4) = (f32) ((temp_f6 * temp_f7) - (temp_f30 * temp_f27));
     M2C_FIELD(arg0, f32 *, 0x14) = (f32) ((temp_f27 * temp_f7) + (temp_f30 * temp_f6));
-    M2C_FIELD(arg0, f32 *, 0x24) = (f32) (temp_f31 * temp_f28);
+    M2C_FIELD(arg0, f32 *, 0xC) = (f32) lbl_80352098;
     M2C_FIELD(arg0, f32 *, 8) = (f32) ((temp_f6 * temp_f7_2) + (temp_f31 * temp_f27));
+    M2C_FIELD(arg0, f32 *, 0x24) = (f32) (temp_f31 * temp_f28);
     M2C_FIELD(arg0, f32 *, 0x18) = (f32) ((temp_f27 * temp_f7_2) - (temp_f31 * temp_f6));
     M2C_FIELD(arg0, f32 *, 0x28) = (f32) (temp_f30 * temp_f28);
-    M2C_FIELD(arg0, f32 *, 0xC) = (f32) lbl_80352098;
     M2C_FIELD(arg0, f32 *, 0x1C) = (f32) lbl_80352098;
     M2C_FIELD(arg0, f32 *, 0x2C) = (f32) lbl_80352098;
 }
@@ -699,23 +699,23 @@ void HSD_MtxSRT(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4) {
     f32 temp_f1;
     f32 var_f23;
     f32 temp_f31;
-    f32 temp_f28;
+    f32 temp_f30;
     f32 temp_f29;
     f32 temp_f2;
-    f32 temp_f30;
+    f32 temp_f28;
     f32 temp_f27;
-    f32 temp_f12;
-    f32 temp_f4;
-    f32 temp_f8;
     f32 var_f0;
-    f32 var_f10;
+    f32 temp_f4;
+    f32 var_f5;
+    f32 temp_f12;
+    f32 var_f7;
     f32 var_f22;
     f32 temp_f21;
-    f32 var_f5;
-    f32 var_f6;
-    f32 var_f7;
-    f32 var_f11;
+    f32 temp_f8;
     f32 var_f9;
+    f32 var_f10;
+    f32 var_f11;
+    f32 var_f6;
 
     temp_f31 = (f32) Sin(M2C_FIELD(arg2, f32 *, 0));
     temp_f30 = (f32) Cos(M2C_FIELD(arg2, f32 *, 0));
@@ -728,14 +728,13 @@ void HSD_MtxSRT(void *arg0, void *arg1, void *arg2, void *arg3, void *arg4) {
     temp_f12 = M2C_FIELD(arg1, f32 *, 8);
     var_f7 = var_f10;
     temp_f4 = var_f10;
-    temp_f8 = var_f11;
-    var_f5 = var_f11;
+    var_f5 = temp_f8 = var_f11;
     var_f9 = temp_f12;
     var_f6 = temp_f12;
     if (arg4 != NULL) {
         temp_f3 = M2C_FIELD(arg4, f32 *, 0);
         if (temp_f3 >= lbl_80352098) {
-            var_f0 = lbl_8035209C / (lbl_803520D8 + temp_f3);
+            var_f0 = lbl_8035209C / (temp_f3 + lbl_803520D8);
         } else {
             var_f0 = lbl_8035209C / (temp_f3 - lbl_803520D8);
         }

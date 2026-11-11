@@ -89,11 +89,11 @@ s32 TRKPostEvent(s32 arg0) {
 s32 TRKGetNextEvent(s32 arg0) { return 0; } /* draft: stub */
 
 s32 TRKInitializeEventQueue(void) {
+    M2C_FIELD(&lbl_80349F70, s32 *, 0x24) = 0x100;
     fn_8015B64C(&lbl_80349F70);
     fn_8015B644((long *)(&lbl_80349F70), (long *)(0));
     M2C_FIELD(&lbl_80349F70, s32 *, 4) = 0;
     M2C_FIELD(&lbl_80349F70, s32 *, 8) = 0;
-    M2C_FIELD(&lbl_80349F70, s32 *, 0x24) = 0x100;
     fn_8015B63C((long *)(&lbl_80349F70));
     return 0;
 }
@@ -161,7 +161,7 @@ void fn_80157420(void *arg0) {
     s32 temp_r9;
     s8 var_ctr_2;
     s32 var_r3_2;
-    u32 temp_r4;
+    u8 var_r5;
     u32 temp_r8;
     u32 var_ctr;
     u32 var_r29;
@@ -169,7 +169,7 @@ void fn_80157420(void *arg0) {
     u8 temp_r0_2;
     u8 var_r28;
     u8 var_r28_2;
-    u8 var_r5;
+    u32 temp_r4;
     void *temp_r9_2;
 
     var_r5 = 0;
@@ -182,10 +182,10 @@ void fn_80157420(void *arg0) {
             if (temp_r4 > 0U) {
                 do {
                     temp_r9 = var_r3 + 0x10;
-                    var_r3 += 8;
+                    var_r3 = var_r3 + 8;
                     /* draft: did not compile: temp_r9_2 = arg0 + temp_r9; */
                     var_r5 = (u8) ((u8) ((u8) ((u8) ((u8) ((u8) ((var_r5 + M2C_FIELD(temp_r9_2, u8 *, 0)) + M2C_FIELD(temp_r9_2, u8 *, 1)) + M2C_FIELD(temp_r9_2, u8 *, 2)) + M2C_FIELD(temp_r9_2, u8 *, 3)) + M2C_FIELD(temp_r9_2, u8 *, 4)) + M2C_FIELD(temp_r9_2, u8 *, 5)) + M2C_FIELD(temp_r9_2, u8 *, 6)) + M2C_FIELD(temp_r9_2, u8 *, 7);
-                    var_ctr -= 1;
+                    var_ctr = var_ctr - 1;
                 } while (var_ctr != 0);
             }
         }
@@ -193,9 +193,9 @@ void fn_80157420(void *arg0) {
         if (var_r3 < temp_r8) {
             do {
                 temp_r0 = var_r3 + 0x10;
-                var_r3 += 1;
+                var_r3 = var_r3 + 1;
                 /* draft: did not compile: var_r5 += *(arg0 + temp_r0); */
-                var_ctr_2 -= 1;
+                var_ctr_2 = var_ctr_2 - 1;
             } while (var_ctr_2 != 0);
         }
     }
@@ -209,7 +209,7 @@ loop_13:
             if (((var_r28 != 0x7E) && (var_r28 != 0x7D)) || (var_r3_2 = fn_8015D7CC(0x7D), var_r28 ^= 0x20, ((var_r3_2 == 0) != 0))) {
                 var_r3_2 = fn_8015D7CC((s8) var_r28);
                 if (var_r3_2 == 0) {
-                    var_r29 += 1;
+                    var_r29 = var_r29 + 1;
                     goto loop_13;
                 }
             }
@@ -404,7 +404,7 @@ s32 fn_801579EC(void *arg0, s32 arg1) {
 
     var_r31 = 0;
     var_r30 = 1U;
-    temp_r5 = M2C_FIELD(arg0, s32 *, 0xC);
+    temp_r5 = M2C_FIELD((s32)arg0, s32 *, 0xC);
     temp_r0 = M2C_FIELD(arg0, s32 *, 8) - temp_r5;
     if (temp_r0 < 1U) {
         var_r31 = 0x302;
@@ -570,7 +570,7 @@ s32 TRKReadBuffer(void *arg0, s32 arg1, u32 arg2) {
     if (var_r30 == 0U) {
         return 0;
     }
-    temp_r4 = M2C_FIELD(arg0, s32 *, 0xC);
+    temp_r4 = M2C_FIELD((s32)arg0, s32 *, 0xC);
     temp_r0 = M2C_FIELD(arg0, s32 *, 8) - temp_r4;
     if (var_r30 > temp_r0) {
         var_r31 = 0x302;
@@ -701,6 +701,8 @@ void TRKProcessInput(s32 arg0) {
     /* draft: did not compile: TRKPostEvent(&sp8, &lbl_8034B954); */
 }
 
+#pragma push
+#pragma dont_inline on
 void TRKGetInput(void) {
     s32 sp14;
     M2C_UNK spC;
@@ -723,6 +725,7 @@ void TRKGetInput(void) {
         TRKReleaseBuffer(temp_r3);
     }
 }
+#pragma pop
 
 #pragma push
 #pragma dont_inline on
@@ -792,8 +795,8 @@ block_39:
                 }
                 if (var_r5 != 0) {
                     temp_r3 = M2C_FIELD(&lbl_8034B954, s32 *, 0);
-                    M2C_FIELD(&lbl_8034B954, void **, 4) = NULL;
                     M2C_FIELD(&lbl_8034B954, s32 *, 0) = -1;
+                    M2C_FIELD(&lbl_8034B954, void **, 4) = NULL;
                     M2C_FIELD(&lbl_8034B954, u8 *, 8) = 0U;
                     return temp_r3;
                 }

@@ -91,6 +91,8 @@ void fn_80084608(void ***arg0, s32 *arg1, void ***arg2) {
     *arg0 = *arg2;
 }
 
+#pragma push
+#pragma optimize_for_size on
 void fn_80084684(void **arg0, s32 *arg1, void ***arg2, s32 *arg3, M2C_UNK arg_sp0) {
     void *spC;
     s32 sp8;
@@ -118,6 +120,7 @@ void fn_80084684(void **arg0, s32 *arg1, void ***arg2, s32 *arg3, M2C_UNK arg_sp
     *arg1 += 1;
     *arg0 = temp_r5;
 }
+#pragma pop
 
 void fn_8008474C(void *arg0, s32 arg1) {
     M2C_UNK sp8;
@@ -285,11 +288,11 @@ void *fn_8008531C(void *arg0) {
     s32 temp_cr0_eq;
     s32 temp_cr0_eq_2;
 
-    M2C_FIELD(arg0, s32 *, 0) = 0;
-    M2C_FIELD(arg0, s32 *, 4) = 0;
     M2C_FIELD(arg0, s32 *, 8) = 0;
     spC = 0;
+    M2C_FIELD(arg0, s32 *, 4) = 0;
     fn_80086C58(&sp8);
+    M2C_FIELD(arg0, s32 *, 0) = 0;
     switch ((s32) spC) {                            /* irregular */
     case 3:
         fn_800146F0(sp8, 1);
@@ -525,7 +528,7 @@ s32 scr_ACount(s32 arg0, M2C_UNK arg_sp0) {
     s32 var_r4;
     u32 *temp_r3_2;
     u32 *var_r26;
-    u32 temp_r0_2;
+    u8 temp_r0_2;
     u32 temp_r27_3;
     u32 var_ctr;
     u8 temp_r0;

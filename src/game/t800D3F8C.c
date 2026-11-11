@@ -318,7 +318,7 @@ s32 __PADDisableRecalibration(s32 arg0) {
 }
 
 s32 fn_800D4648(s32 arg0) {
-    s32 temp_r31;
+    u8 temp_r31;
 
     temp_r31 = lbl_80350A84;
     OSDisableInterrupts();
@@ -340,7 +340,7 @@ void AIInitDMA(u16 arg0, u32 arg1) {
     M2C_FIELD(temp_r5, s16 *, 0x30) = (s16) ((*(u16 *)0xCC005030 & 0xFFFFFC00) | (arg0 >> 0x10U));
     M2C_FIELD(temp_r6, u16 *, 0x32) = (u16) ((M2C_FIELD(temp_r6, u16 *, 0x32) & 0xFFFF001F) | arg0);
     temp_r4 = M2C_FIELD(temp_r7, u16 *, 0x36) & 0xFFFF8000;
-    M2C_FIELD(temp_r7, u16 *, 0x36) = (u16) (temp_r4 | (u16) (arg1 >> 5U));
+    M2C_FIELD(temp_r7, u16 *, 0x36) = (u16) (temp_r4 | (arg1 >> 5U));
     OSRestoreInterrupts((long)(temp_r4));
 }
 
@@ -555,7 +555,7 @@ loop_15:
 }
 
 s32 fn_800D4F14(s32 arg0) {
-    s32 temp_r31;
+    u8 temp_r31;
 
     temp_r31 = lbl_80350AC0;
     OSDisableInterrupts();

@@ -293,11 +293,11 @@ loop_3:
 }
 
 s32 *fn_8001A114(void *arg0, s32 arg1, s32 arg2) {
-    s32 *var_r7;
     s32 temp_r0;
     s32 temp_r0_2;
     s32 temp_r6;
     void *var_r3;
+    s32 *var_r7;
 
     var_r3 = arg0;
     var_r7 = NULL;
@@ -314,13 +314,15 @@ loop_9:
     return var_r7;
 }
 
+#pragma push
+#pragma optimize_for_size on
 void *fn_8001A184(s32 arg1, s32 arg2) {
-    s32 *temp_r5;
-    s32 *var_r4;
+    void *temp_r6;
     s32 var_r3;
     s32 var_r7;
     void *temp_r3;
-    void *temp_r6;
+    s32 *temp_r5;
+    s32 *var_r4;
 
     /* draft: did not compile: temp_r3 = fn_8001A0E8(6); */
     if (temp_r3 != NULL) {
@@ -337,13 +339,14 @@ loop_6:
             return temp_r5 + (var_r7 * 0xC);
         }
         var_r3 += 0xC;
-        var_r4 += 0xC;
         var_r7 += 1;
+        var_r4 += 0xC;
         goto loop_6;
     }
 block_7:
     return NULL;
 }
+#pragma pop
 
 s32 fn_8001A220(s32 arg0) {
     fn_8001A2B0((long *)(0));
@@ -370,6 +373,8 @@ void fn_8001A2BC(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     M2C_FIELD(arg0, s32 *, 8) = arg3;
 }
 
+#pragma push
+#pragma dont_inline on
 void fn_8001A2CC(void *arg0, void *arg1, s32 arg2, u32 arg3, s32 arg4, M2C_UNK arg_sp0) {
     s32 temp_r4;
 
@@ -381,6 +386,7 @@ void fn_8001A2CC(void *arg0, void *arg1, s32 arg2, u32 arg3, s32 arg4, M2C_UNK a
         M2C_FIELD(arg0, s32 *, 8) = arg4;
     }
 }
+#pragma pop
 
 s32 fn_8001A354(s32 *arg0) {
     return *arg0 > 0;

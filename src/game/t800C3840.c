@@ -144,14 +144,13 @@ s32 __OSGetExceptionHandler(u8 arg0) {
 }
 
 static void OSExceptionVector(s32 arg0, s32 arg2) {
-    s32 saved_reg_lr;
+    u8 saved_reg_lr;
     s32 temp_r3;
     void *temp_r4;
 
     M2C_ERROR(/* unknown instruction: mtsprg 0x0, $r4 */);
     temp_r4 = *(void **)0xC0;
     M2C_FIELD(temp_r4, s32 *, 0xC) = arg0;
-    M2C_FIELD(temp_r4, s32 *, 0x10) = (s32) M2C_ERROR(/* unknown instruction: mfsprg $r3, 0x0 */);
     M2C_FIELD(temp_r4, s32 *, 0x14) = arg2;
     M2C_FIELD(temp_r4, u16 *, 0x1A2) = (u16) (M2C_FIELD(temp_r4, u16 *, 0x1A2) | 2);
     M2C_FIELD(temp_r4, s32 *, 0x80) = (s32) M2C_ERROR(/* unknown instruction: mfcr $r3 */);
@@ -161,6 +160,7 @@ static void OSExceptionVector(s32 arg0, s32 arg2) {
     M2C_FIELD(temp_r4, s32 *, 0x198) = (s32) M2C_ERROR(/* unknown instruction: mfsrr0 $r3 */);
     temp_r3 = M2C_ERROR(/* unknown instruction: mfsrr1 $r3 */);
     M2C_FIELD(temp_r4, s32 *, 0x19C) = temp_r3;
+    M2C_FIELD(temp_r4, s32 *, 0x10) = (s32) M2C_ERROR(/* unknown instruction: mfsprg $r3, 0x0 */);
     M2C_ERROR(/* unknown instruction: mfmsr $r3 */);
     M2C_ERROR(/* unknown instruction: mtsrr1 $r3 */);
     if (!(temp_r3 & 2)) {
@@ -223,7 +223,7 @@ void OSCreateAlarm(void *arg0) {
 }
 
 static void InsertAlarm(void *arg0, s32 arg2, s32 arg3, s32 arg4) {
-    s32 temp_r26;
+    u32 temp_r26;
     s32 temp_r27;
     s32 temp_r3;
     s32 temp_r4;
@@ -285,8 +285,8 @@ loop_13:
             M2C_FIELD(temp_r4_4, void **, 0x14) = arg0;
             return;
         }
-        M2C_FIELD(&AlarmQueue_80350880, void **, 4) = arg0;
         M2C_FIELD(&AlarmQueue_80350880, void **, 0) = arg0;
+        M2C_FIELD(&AlarmQueue_80350880, void **, 4) = arg0;
         temp_ret_3 = __OSGetSystemTime(var_r5);
         temp_r6_2 = ((M2C_FIELD(arg0, s32 *, 8) - temp_ret_3) - !M2C_CARRY) ^ 0x80000000;
         if (-((temp_r6_2 - temp_r6_2) - !M2C_CARRY) != 0) {
@@ -312,8 +312,7 @@ loop_13:
         }
         M2C_FIELD(&AlarmQueue_80350880, void **, 0) = arg0;
         temp_ret_4 = __OSGetSystemTime();
-        temp_r6_3 = ((M2C_FIELD(arg0, s32 *, 8) - temp_ret_4) - !M2C_CARRY) ^ 0x80000000;
-        if (-((temp_r6_3 - temp_r6_3) - !M2C_CARRY) != 0) {
+        if (-(((temp_r6_3 = ((M2C_FIELD(arg0, s32 *, 8) - temp_ret_4) - !M2C_CARRY) ^ 0x80000000) - temp_r6_3) - !M2C_CARRY) != 0) {
             PPCMtdec(0);
             return;
         }
@@ -332,10 +331,10 @@ void OSSetAlarm(void *arg0, s32 arg2, s32 arg3, s32 arg4) {
     s32 temp_r3;
     u64 temp_ret;
 
-    temp_r3 = OSDisableInterrupts();
     M2C_FIELD(arg0, s32 *, 0x1C) = 0;
     M2C_FIELD(arg0, s32 *, 0x18) = 0;
     temp_ret = __OSGetSystemTime();
+    temp_r3 = OSDisableInterrupts();
     InsertAlarm(arg0, arg2 + temp_ret + M2C_CARRY, arg3 + (u32) temp_ret, arg4);
     OSRestoreInterrupts(temp_r3);
 }
@@ -485,9 +484,9 @@ void OSSetArenaLo(s32 arg0) {
 }
 
 s32 OSAllocFromArenaLo(s32 arg0, s32 arg1) {
-    s32 temp_r4;
     s32 temp_r5;
-    s32 temp_r6;
+    s32 temp_r4;
+    u8 temp_r6;
 
     temp_r4 = arg1 - 1;
     temp_r5 = ~(temp_r4 | temp_r4);

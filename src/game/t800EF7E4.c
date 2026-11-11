@@ -339,7 +339,6 @@ s32 LObjLoad(void *arg0, void *arg1) {
     void *temp_r3_2;
     void *temp_r3_3;
     void *temp_r3_4;
-    void *temp_r3_5;
     void *temp_r4_11;
     void *temp_r4_12;
     void *temp_r4_2;
@@ -486,10 +485,9 @@ s32 LObjLoad(void *arg0, void *arg1) {
                 M2C_FIELD(arg0, f32 *, 0x28) = (f32) M2C_FIELD(temp_r3_4, f32 *, 8);
                 M2C_FIELD(arg0, f32 *, 0x30) = (f32) M2C_FIELD(temp_r3_4, f32 *, 0x10);
             }
-            temp_r3_5 = M2C_FIELD(arg1, void **, 0x18);
             if (arg0 != NULL) {
-                M2C_FIELD(arg0, f32 *, 0x20) = (f32) M2C_FIELD(temp_r3_5, f32 *, 0);
-                M2C_FIELD(arg0, f32 *, 0x24) = (f32) M2C_FIELD(temp_r3_5, f32 *, 4);
+                M2C_FIELD(arg0, f32 *, 0x20) = (f32) M2C_FIELD((M2C_FIELD(arg1, void **, 0x18)), f32 *, 0);
+                M2C_FIELD(arg0, f32 *, 0x24) = (f32) M2C_FIELD((M2C_FIELD(arg1, void **, 0x18)), f32 *, 4);
             }
         }
         break;

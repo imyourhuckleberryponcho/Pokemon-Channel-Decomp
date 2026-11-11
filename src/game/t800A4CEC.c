@@ -241,12 +241,12 @@ void fn_800A51AC(s32 *arg0, void *arg1) {
 
     var_r5 = arg1;
 loop_1:
-    if ((s8) M2C_FIELD(var_r5, u8 *, 0) != 0) {
+    if (M2C_FIELD(var_r5, s8 *, 0) != 0) {
 block_4:
         /* draft: did not compile: var_r5 += 1; */
         goto loop_1;
     }
-    if ((s8) M2C_FIELD(var_r5, u8 *, 1) != 0) {
+    if ((s8) M2C_FIELD(var_r5, s8 *, 1) != 0) {
         goto block_4;
     }
     *arg0 = 0;
@@ -349,9 +349,7 @@ void fn_800A54F8(s32 arg0, s32 arg1, s32 arg2) {
 
     temp_r0 = arg1 * 4;
     var_r4 = &lbl_801DA6A0 + 0x10 + temp_r0;
-    if (arg2 == 0) {
-        var_r4 = &lbl_801DA6A0 + temp_r0;
-    }
+    var_r4 = arg2 != 0 ? var_r4 : &lbl_801DA6A0 + temp_r0;
     fn_8001DFA4(var_r4);
     fn_8001DFDC(arg0, &lbl_801DA6A0 + 0x20 + (arg1 * 4));
 }
@@ -417,16 +415,16 @@ s32 fn_800A5588(void *arg0, s32 *arg1) {
 }
 
 void fn_800A56EC(void *arg0, void *arg1, M2C_UNK arg_sp0) {
-    M2C_UNK *var_r4;
+    s32 var_r28;
+    u32 *var_r27_2;
     s32 temp_r3;
     s32 temp_r4;
     s32 temp_r6;
-    s32 var_r25;
-    s32 var_r27;
-    s32 var_r28;
-    s32 var_r5;
-    u32 *var_r27_2;
     u8 var_r26;
+    s32 var_r27;
+    s32 var_r5;
+    M2C_UNK *var_r4;
+    s32 var_r25;
     void *temp_r31;
 
     temp_r31 = M2C_FIELD(arg1, void **, 0);
@@ -444,7 +442,8 @@ void fn_800A56EC(void *arg0, void *arg1, M2C_UNK arg_sp0) {
     }
     fn_8001E0D0(temp_r31, var_r4);
     temp_r4 = M2C_FIELD(arg0, s32 *, 4);
-    var_r28 = -(temp_r4 + 1) + 1;
+    var_r28 = -(temp_r4 + 1);
+    var_r28 += 1;
     if (temp_r4 >= 0) {
         var_r28 = temp_r4;
     }
@@ -452,7 +451,7 @@ void fn_800A56EC(void *arg0, void *arg1, M2C_UNK arg_sp0) {
     /* draft: did not compile: var_r27_2 = &lbl_801DA6D0 + 0x24; */
     var_r25 = 9;
     do {
-        if ((s32) M2C_FIELD(arg0, s32 *, 8) == var_r25) {
+        if ((s32) M2C_FIELD((s32)arg0, s32 *, 8) == var_r25) {
             /* draft: did not compile: fn_800A54F8(temp_r31, 1, 1); */
         } else {
             /* draft: did not compile: fn_800A54F8(temp_r31, 0, 1); */
@@ -462,9 +461,7 @@ void fn_800A56EC(void *arg0, void *arg1, M2C_UNK arg_sp0) {
             var_r26 = 1;
         }
         var_r5 = 0x20;
-        if (var_r26 != 0) {
-            var_r5 = temp_r6 + 0x30;
-        }
+        var_r5 = var_r26 == 0 ? var_r5 : temp_r6 + 0x30;
         fn_8001E014(temp_r31, &lbl_8034FE20, var_r5);
         var_r25 -= 1;
         var_r27_2 -= 4;
@@ -617,7 +614,7 @@ s16 fn_800A5F5C(void *arg0, f32 farg0, f32 farg1) {
     f32 temp_f5;
     f32 temp_f6;
     f32 temp_f7;
-    s16 temp_r0;
+    u16 temp_r0;
     s32 temp_r5;
     void *temp_r3;
     void *temp_r3_2;
@@ -659,18 +656,18 @@ loop_14:
         }
         goto loop_14;
     }
-    return M2C_FIELD(var_r7, s16 *, 2);
-}
+    temp_f0 = M2C_FIELD(var_r7, s16 *, 2);
+    return temp_f0;}
 
 f32 fn_800A6074(void *arg0, s32 arg1, f32 farg0, f32 farg1) {
-    f32 temp_f6_3;
-    f32 temp_f11;
+    f32 temp_f10;
+    f32 temp_f5_2;
     f32 temp_f4;
     f32 temp_f5;
-    f32 temp_f5_2;
+    f32 temp_f11;
     f32 temp_f6;
     f32 temp_f6_2;
-    f32 temp_f10;
+    f32 temp_f6_3;
     f32 temp_f7;
     f32 temp_f8;
     f32 temp_f9;
@@ -698,10 +695,10 @@ f32 fn_800A6074(void *arg0, s32 arg1, f32 farg0, f32 farg1) {
     temp_f10 = farg0 - temp_f5_2;
     temp_f6_3 = -M2C_FIELD(temp_r4, f32 *, 8) - temp_f6_2;
     temp_f8 = -M2C_FIELD(temp_r3, f32 *, 8) - temp_f6_2;
-    temp_f5 = (temp_f7 * temp_f6_3) - (temp_f8 * temp_f9);
+    temp_f5 = (temp_f6_3 * temp_f7) - (temp_f9 * temp_f8);
     temp_f6 = (temp_f10 * temp_f6_3);
     temp_f6 -= (temp_f11 * temp_f9);
-    temp_f4 = (temp_f7 * temp_f11) - (temp_f8 * temp_f10);
+    temp_f4 = (temp_f7 * temp_f11) - (temp_f10 * temp_f8);
     return ((temp_f4 * M2C_FIELD(temp_r4, f32 *, 4)) + ((((temp_f5 - temp_f6) - temp_f4) * M2C_FIELD(temp_r4_2, f32 *, 4)) + (temp_f6 * M2C_FIELD(temp_r3, f32 *, 4)))) / temp_f5;
 }
 
@@ -713,7 +710,7 @@ void fn_800A61C4(void *arg0, void *arg1, s32 arg2) {
     s32 sp40;
     s32 sp3C;
     s32 sp10;
-    s32 spC;
+    s8 spC;
     s32 sp1C;
     s8 sp18;
     s32 sp58;
@@ -763,14 +760,14 @@ void fn_800A61C4(void *arg0, void *arg1, s32 arg2) {
     if (fn_80070CFC(&sp38) != 0) {
         sp20 = lbl_80351C30;
         sp24 = lbl_80351C34;
-        sp28 = lbl_80351C30;
         M2C_FIELD(arg0, f32 *, 0) = sp20;
         M2C_FIELD(arg0, f32 *, 4) = sp24;
+        sp28 = lbl_80351C30;
         M2C_FIELD(arg0, f32 *, 8) = sp28;
         return;
     }
-    PSVECNormalize(&sp38, &sp38);
     M2C_FIELD(arg0, f32 *, 0) = sp38;
+    PSVECNormalize(&sp38, &sp38);
     M2C_FIELD(arg0, f32 *, 4) = sp3C;
     M2C_FIELD(arg0, f32 *, 8) = sp40;
 }
@@ -784,7 +781,7 @@ void fn_800A65A4(void *arg0) {
     s32 temp_r5_2;
     u32 *var_r9;
     u32 temp_r7;
-    u32 temp_r8;
+    unsigned int temp_r8;
     u32 var_r6;
     void *temp_r4;
     void *temp_r5_3;

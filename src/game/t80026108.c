@@ -220,9 +220,9 @@ void fn_8002725C(void *arg0) {
     M2C_FIELD(arg0, s32 *, 4) = 0xB0000;
     M2C_FIELD(arg0, s32 *, 0x28) = 5;
     M2C_FIELD(arg0, s32 *, 8) = (s32) (M2C_FIELD(arg0, s32 *, 8) | 2);
-    M2C_FIELD(arg0, M2C_UNK **, 0x20) = &lbl_802220F4;
     M2C_FIELD(arg0, s32 *, 0xC) = 0;
     M2C_FIELD(arg0, s32 *, 0x5C) = 0;
+    M2C_FIELD(arg0, M2C_UNK **, 0x20) = &lbl_802220F4;
     M2C_FIELD(arg0, s32 *, 8) = (s32) (M2C_FIELD(arg0, s32 *, 8) | 0x10000);
     M2C_FIELD(arg0, s32 *, 0x28) = 1;
 }

@@ -227,8 +227,8 @@ loop_5:
 void scr_GetPokemonProperty() { } /* draft: stub */
 
 s32 fn_800954DC(s32 arg0) {
-    s32 var_r30;
     s32 var_r31;
+    s32 var_r30;
 
     var_r31 = 0;
     var_r30 = 0;

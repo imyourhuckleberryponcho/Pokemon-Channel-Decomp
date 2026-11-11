@@ -201,17 +201,17 @@ void fn_80038034(void) {
 }
 
 void fn_80038038(s32 arg0) {
-    M2C_UNK sp14;
+    u32 temp_r5;
     M2C_UNK *sp10;
     M2C_UNK spC;
     M2C_UNK *temp_r31_3;
     s32 temp_r29;
     s8 temp_r30;
-    s32 temp_r31_2;
+    u8 temp_r31_2;
     s32 temp_r3;
     u32 temp_r31;
     u32 temp_r4;
-    u32 temp_r5;
+    M2C_UNK sp14;
     u32 var_r29;
     u32 var_r30;
     s32 sp8;
@@ -231,13 +231,13 @@ void fn_80038038(s32 arg0) {
     }
     var_r29 = temp_r3 & 0xFFFFFFE0;
     temp_r30 = (temp_r31 + 0x1F) & 0xFFFFFFE0;
+    lbl_803505E4 = var_r29;
     fn_80038034();
-    temp_r31_2 = fn_800ABB74(temp_r30, var_r29, 2);
+    temp_r31_2 = fn_800ABB74((u16)temp_r30, var_r29, 2);
     OSSetArenaLo();
     var_r30 = temp_r31_2 + 0x16C060;
     OSSetArenaHi(var_r30);
     lbl_803505E0 = var_r30;
-    lbl_803505E4 = var_r29;
     if (sp8 < 0) {
         sp8 = (var_r29 - var_r30) - -sp8;
     }

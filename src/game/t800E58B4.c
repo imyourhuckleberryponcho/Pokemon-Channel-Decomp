@@ -80,18 +80,18 @@ void *_HSD_TObjGetCurrentByType(void *arg0, u32 arg1);
 void HSD_TexMapID2PTTexMtx();
 
 void fn_800E58B4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    s32 temp_r10;
     s32 temp_r9;
+    s32 temp_r10;
 
     temp_r9 = arg0 + 0x156;
     temp_r10 = arg1 + 0x156;
-    M2C_FIELD(gx, s32 *, 0xF8) = (s32) ((M2C_FIELD(gx, s32 *, 0xF8) & 0xFFFFF800) | temp_r10);
-    M2C_FIELD(gx, s32 *, 0xF8) = (s32) ((M2C_FIELD(gx, s32 *, 0xF8) & 0xFF800FFF) | (temp_r9 << 0xC));
+    M2C_FIELD(gx, s32 *, 0xF8) = (s32) ((temp_r9 << 0xC) | (M2C_FIELD(gx, s32 *, 0xF8) & 0xFF800FFF));
     M2C_FIELD(gx, s32 *, 0xFC) = (s32) ((M2C_FIELD(gx, s32 *, 0xFC) & 0xFFFFF800) | (temp_r10 + (arg3 - 1)));
     M2C_FIELD(gx, s32 *, 0xFC) = (s32) ((M2C_FIELD(gx, s32 *, 0xFC) & 0xFF800FFF) | ((temp_r9 + (arg2 - 1)) << 0xC));
     *(s8 *)0xCC008000 = 0x61;
-    *(s8 *)0xCC008000 = (s32) M2C_FIELD(gx, s32 *, 0xF8);
+    M2C_FIELD(gx, s32 *, 0xF8) = (s32) ((M2C_FIELD(gx, s32 *, 0xF8) & 0xFFFFF800) | temp_r10);
     *(s8 *)0xCC008000 = 0x61;
+    *(s8 *)0xCC008000 = (s32) M2C_FIELD(gx, s32 *, 0xF8);
     *(s8 *)0xCC008000 = (s32) M2C_FIELD(gx, s32 *, 0xFC);
     M2C_FIELD(gx, s16 *, 2) = 0;
 }
@@ -105,22 +105,20 @@ void fn_800E5944(s32 arg0, s32 arg1) {
 void GXSetClipMode(s32 arg0) {
     *(s8 *)0xCC008000 = 0x10;
     *(s8 *)0xCC008000 = 0x1005;
-    *(s8 *)0xCC008000 = arg0;
     M2C_FIELD(gx, s16 *, 2) = 1;
+    *(s8 *)0xCC008000 = arg0;
 }
 
 void __GXSetMatrixIndex(s32 arg0) {
-    s32 temp_r4;
     s32 temp_r4_2;
 
     if (arg0 < 5) {
         *(s8 *)0xCC008000 = 8;
         *(s8 *)0xCC008000 = 0x30;
-        temp_r4 = M2C_FIELD(gx, s32 *, 0x80);
-        *(s8 *)0xCC008000 = temp_r4;
         *(s8 *)0xCC008000 = 0x10;
+        *(s8 *)0xCC008000 = (M2C_FIELD(gx, s32 *, 0x80));
         *(s8 *)0xCC008000 = 0x1018;
-        *(s8 *)0xCC008000 = temp_r4;
+        *(s8 *)0xCC008000 = (M2C_FIELD(gx, s32 *, 0x80));
     } else {
         /* draft: did not compile: *(void *)0xCC008000 = 8; */
         /* draft: did not compile: *(void *)0xCC008000 = 0x40; */
@@ -327,8 +325,10 @@ s32 HSD_CObjAlloc(void) {
         var_r3 = &lbl_802A8160;
     }
     /* draft: did not compile: temp_r3 = hsdNew(var_r3); */
-    if (temp_r3 == 0) {
-        __assert(&lbl_80350060, 0x214, &lbl_8035006C);
+    switch (temp_r3) {
+    case 0:
+            __assert(&lbl_80350060, 0x214, &lbl_8035006C);
+        break;
     }
     return temp_r3;
 }
@@ -394,6 +394,8 @@ void DObjAmnesia(u32 arg0) {
     M2C_FIELD(M2C_FIELD(&lbl_802A8160, void **, 0x14), M2C_UNK (**)(void *), 0x38)(M2C_FIELD(&lbl_802A8160, void **, 0x14));
 }
 
+#pragma push
+#pragma peephole off
 void CObjInfoInit(void) {
     hsdInitClassInfo(&lbl_802A8160, &lbl_802AA538, &lbl_802A8160 + 0xFC, &lbl_802A8160 + 0x114, 0x48, 0x18);
     /* draft: did not compile: M2C_FIELD(&lbl_802A8160, M2C_UNK (**)(), 0x30) = DObjRelease; */
@@ -401,6 +403,7 @@ void CObjInfoInit(void) {
     /* draft: did not compile: M2C_FIELD(&lbl_802A8160, M2C_UNK (**)(), 0x3C) = HSD_DObjDisp; */
     M2C_FIELD(&lbl_802A8160, M2C_UNK (**)(), 0x40) = DObjLoad;
 }
+#pragma pop
 
 void HSD_TObjRemoveAnimAll(void *arg0) {
     void *var_r30;
@@ -477,8 +480,10 @@ void **HSD_TObjLoadDesc(u32 *arg0) {
     return NULL;
 }
 
+#pragma push
+#pragma peephole off
 s32 HSD_TlutLoadDesc(s32 arg0) {
-    s32 temp_r31;
+    u8 temp_r31;
 
     if (arg0 != 0) {
         temp_r31 = HSD_TlutAlloc();
@@ -487,6 +492,7 @@ s32 HSD_TlutLoadDesc(s32 arg0) {
     }
     return 0;
 }
+#pragma pop
 
 s32 HSD_TObjTevLoadDesc(s32 arg0) {
     s32 temp_r31;

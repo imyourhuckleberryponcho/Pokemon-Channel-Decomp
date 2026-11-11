@@ -255,9 +255,9 @@ void MObjInfoInit(void) {
     M2C_FIELD(&lbl_802A8280, M2C_UNK (**)(), 0x2C) = TObjInit;
     /* draft: did not compile: M2C_FIELD(&lbl_802A8280, M2C_UNK (**)(), 0x30) = TObjRelease; */
     /* draft: did not compile: M2C_FIELD(&lbl_802A8280, M2C_UNK (**)(), 0x38) = CObjAmnesia; */
-    M2C_FIELD(&lbl_802A8280, M2C_UNK **, 0x40) = &TObjLoad;
     M2C_FIELD(&lbl_802A8280, M2C_UNK **, 0x44) = &TObjMakeTExp;
     M2C_FIELD(&lbl_802A8280, M2C_UNK **, 0x3C) = &MakeTextureMtx;
+    M2C_FIELD(&lbl_802A8280, M2C_UNK **, 0x40) = &TObjLoad;
     M2C_FIELD(&lbl_802A8280, M2C_UNK **, 0x48) = &fn_800E6BC4;
 }
 
@@ -416,20 +416,14 @@ void HSD_SetMaterialColor(s32 *arg0, s32 *arg1, s32 *arg2, f32 farg0) {
     f32 var_f2;
 
     var_f2 = lbl_80351E40;
-    M2C_FIELD(&lbl_8031D198, s32 *, 0) = (s32) *arg0;
     M2C_FIELD(&lbl_8031D198, s32 *, 4) = (s32) *arg1;
+    M2C_FIELD(&lbl_8031D198, s32 *, 0) = (s32) *arg0;
     M2C_FIELD(&lbl_8031D198, s32 *, 8) = (s32) *arg2;
-    M2C_ERROR(/* unknown instruction: cror eq, lt, eq */);
-    if (farg0 == var_f2) {
+    if (farg0 <= var_f2) {
 
     } else {
         var_f2 = lbl_80351E44;
-        M2C_ERROR(/* unknown instruction: cror eq, gt, eq */);
-        if (farg0 == var_f2) {
-
-        } else {
-            var_f2 = farg0;
-        }
+        var_f2 = farg0 >= var_f2 ? var_f2 : farg0;
     }
     M2C_FIELD(&lbl_8031D198, s8 *, 0xC) = (s8) (lbl_80351E48 * var_f2);
 }

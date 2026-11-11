@@ -839,8 +839,8 @@ s32 fn_8002BB24(void *arg0) {
 #pragma push
 #pragma dont_inline on
 void OpenSystemMenu(void *arg0) {
-    void *sp10;
     void *spC;
+    void *sp10;
     void *sp8;
     s32 temp_r29;
     u32 var_r28;
@@ -905,9 +905,9 @@ void OpenSystemMenu(void *arg0) {
 void fn_8002BD98(void *arg0) {
     u8 temp_r31;
     u8 temp_r30;
-    s32 var_r25;
-    u8 temp_r28;
     u8 temp_r29;
+    u8 temp_r28;
+    s32 var_r25;
     f32 temp_f31;
     f32 temp_f30;
     void *temp_r27;
@@ -919,10 +919,10 @@ void fn_8002BD98(void *arg0) {
     var_r26 = arg0;
     temp_r29 = M2C_FIELD(&lbl_801CB330, u8 *, 0x21);
     temp_f31 = lbl_80351678;
-    temp_f30 = lbl_80351674;
     var_r25 = 0;
     temp_r30 = M2C_FIELD(&lbl_801CB330, u8 *, 0x22);
     temp_r31 = M2C_FIELD(&lbl_801CB330, u8 *, 0x23);
+    temp_f30 = lbl_80351674;
     do {
         temp_r27 = M2C_FIELD(var_r26, void **, 0x68);
         /* draft: did not compile: fn_80012CF8(temp_r27 + 0x50, &lbl_8034E85C, strlen(&lbl_8034E85C)); */

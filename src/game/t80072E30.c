@@ -180,8 +180,8 @@ u32 fn_800733BC(void *arg0) {
 }
 
 u32 fn_8007341C(void *arg0) {
-    u32 temp_r3;
-    u32 temp_r3_2;
+    u8 temp_r3;
+    u8 temp_r3_2;
     u32 temp_r3_3;
     void *var_r31;
 
@@ -232,7 +232,7 @@ loop_8:
 }
 
 u32 fn_80073500(void *arg0) {
-    u32 var_r0;
+    u8 var_r0;
 
     if (arg0 == NULL) {
         return 0U;
@@ -246,9 +246,11 @@ u32 fn_80073500(void *arg0) {
     return var_r0;
 }
 
+#pragma push
+#pragma peephole off
 u32 fn_8007354C(void *arg0) {
-    u32 temp_r3;
-    u32 temp_r3_2;
+    u8 temp_r3;
+    u8 temp_r3_2;
 
     /* draft: did not compile: temp_r3_2 = fn_80073500(M2C_FIELD(arg0, s32 *, 4)); */
     if (temp_r3_2 != 0U) {
@@ -258,8 +260,9 @@ u32 fn_8007354C(void *arg0) {
     if (temp_r3 != 0U) {
         return temp_r3;
     }
-    return M2C_FIELD(arg0, u32 *, 0);
-}
+    temp_r3 = M2C_FIELD(arg0, u32 *, 0);
+    return temp_r3;}
+#pragma pop
 
 void fn_800735A0() { } /* draft: stub */
 
@@ -409,6 +412,8 @@ void method_resetAnishape(void *arg0) { } /* draft: stub */
 
 s32 fn_80074024(void *arg0, void *arg2) { return 0; } /* draft: stub */
 
+#pragma push
+#pragma dont_inline on
 s32 fn_80074084(void *arg1, void *arg2) {
     if (arg2 != NULL) {
         if ((s32) M2C_FIELD(arg1, s32 *, 0x10) != (s32) M2C_FIELD(arg1, s32 *, 8)) {
@@ -421,6 +426,7 @@ s32 fn_80074084(void *arg1, void *arg2) {
     /* draft: did not compile: method_setShapeMotion(0x38000000, lbl_80351938); */
     return 0;
 }
+#pragma pop
 
 void method_setShapeMotion(void *arg0, s32 arg1, f32 farg0) {
     void *spC;
@@ -634,7 +640,8 @@ s32 method_requestNextMotion(void *arg0, s32 arg1) {
 
 void method_resetMotion(void *arg0) {
     /* draft: did not compile: method_requestMotionUrgently(0x38000000, lbl_80351938); */
-    HSD_JObjResetRST(M2C_FIELD(arg0, s32 *, 0x64), M2C_FIELD(M2C_FIELD(arg0, void **, 0x5C), s32 *, 0x10));
+    u16 tmp1 = M2C_FIELD(M2C_FIELD(arg0, void **, 0x5C), s32 *, 0x10);
+    HSD_JObjResetRST(M2C_FIELD(arg0, s32 *, 0x64), tmp1);
     /* draft: did not compile: fn_80071748(arg0 + 0xAC, M2C_FIELD(arg0, s32 *, 0x64)); */
     /* draft: did not compile: fn_8007518C(arg0, arg0 + 0xAC); */
 }

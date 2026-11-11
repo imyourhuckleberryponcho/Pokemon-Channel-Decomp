@@ -85,7 +85,6 @@ void fn_8007E31C(void *arg0, void *arg1, u32 arg2, void *arg3, M2C_UNK arg_sp0) 
 
 void fn_8007E9D0(void *arg0, u32 arg1) {
     u8 sp10;
-    s32 spC;
     u32 sp8;
     s32 temp_r3_4;
     u32 temp_r3;
@@ -94,14 +93,14 @@ void fn_8007E9D0(void *arg0, u32 arg1) {
     u32 temp_r4;
     u32 var_ctr;
     u32 var_r6;
+    s32 spC;
 
     if (arg1 > (u32) M2C_FIELD(arg0, u32 *, 0)) {
         if (arg1 > 0x0AAAAAAAU) {
             fn_8014F858(&__files + 0xA0, &lbl_80223EA4, &__files);
             fn_8014BB10();
         }
-        sp8 = 0;
-        spC = 0;
+        sp8 = spC = 0;
         sp10 = 0U;
         temp_r3 = get_up_vector_for_viewing_mtx(arg1 * 0x18);
         if (temp_r3 == 0U) {
@@ -139,6 +138,8 @@ void fn_8007E9D0(void *arg0, u32 arg1) {
     }
 }
 
+#pragma push
+#pragma optimize_for_size on
 void fn_8007EB58(void *arg0) {
     u32 temp_r5;
     u32 temp_r6;
@@ -154,6 +155,7 @@ void fn_8007EB58(void *arg0) {
     }
     M2C_FIELD(arg0, s32 *, 4) = 0;
 }
+#pragma pop
 
 void *fn_8007EB94(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
@@ -168,6 +170,8 @@ void *fn_8007EB94(void *arg0, s16 arg1) {
     return arg0;
 }
 
+#pragma push
+#pragma optimize_for_size on
 void fn_8007EBF4(void *arg0) {
     u32 temp_r5;
     u32 temp_r6;
@@ -183,6 +187,7 @@ void fn_8007EBF4(void *arg0) {
     }
     M2C_FIELD(arg0, s32 *, 4) = 0;
 }
+#pragma pop
 
 void *fn_8007EC30(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
@@ -225,11 +230,13 @@ loop_4:
     *arg0 = temp_r0;
 }
 
+#pragma push
+#pragma peephole off
 void fn_8007ED40(void **arg0, s32 *arg1, void ***arg2, s32 arg3, M2C_UNK arg_sp0) {
-    void *spC;
+    void *temp_r3;
     s32 sp8;
     void **temp_r4_2;
-    void *temp_r3;
+    void *spC;
     void *temp_r4;
     void *temp_r5;
 
@@ -244,16 +251,17 @@ void fn_8007ED40(void **arg0, s32 *arg1, void ***arg2, s32 arg3, M2C_UNK arg_sp0
     if (temp_r4 != NULL) {
         /* draft: did not compile: M2C_STRUCT_COPY(temp_r4, arg3, 0x18); */
     }
-    temp_r4_2 = *arg2;
     temp_r5 = spC;
     spC = NULL;
     M2C_FIELD(*temp_r4_2, void **, 4) = temp_r5;
+    temp_r4_2 = *arg2;
+    *arg0 = temp_r5;
     M2C_FIELD(temp_r5, void **, 0) = (void *) *temp_r4_2;
     *temp_r4_2 = temp_r5;
     M2C_FIELD(temp_r5, void ***, 4) = temp_r4_2;
     *arg1 += 1;
-    *arg0 = temp_r5;
 }
+#pragma pop
 
 void fn_8007EE30(void *arg0) {
     void *temp_r4;
@@ -354,8 +362,8 @@ void *fn_8007F05C(void *arg0, s32 arg1) {
     /* draft: did not compile: fn_800831EC(arg0 + 0x2C4); */
     /* draft: did not compile: fn_800834BC(arg0 + 0x2D4); */
     M2C_FIELD(arg0, s32 *, 0x2E4) = 0;
-    M2C_FIELD(arg0, s32 *, 0x2E0) = 0;
     M2C_FIELD(arg0, s32 *, 0x2F0) = 0;
+    M2C_FIELD(arg0, s32 *, 0x2E0) = 0;
     /* draft: did not compile: fn_8002F854(arg0 + 0x2F4); */
     if ((u8) lbl_80350698 == 0) {
         M2C_FIELD(&lbl_802CD2CC, s8 *, 0x201) = 0;
@@ -471,7 +479,7 @@ void fn_8007F708(void *arg0) { } /* draft: stub */
 void fn_8007F72C(void *arg0) { } /* draft: stub */
 
 void fn_8007F758(s32 arg0, s32 *arg1) {
-    s32 sp8;
+    u8 sp8;
 
     /* draft: did not compile: memcpy(&sp8, arg0); */
     *arg1 = sp8;
@@ -487,8 +495,8 @@ void fn_8007F794(s32 *arg0, s32 arg1) {
 s32 fn_8007F7C4(u8 *arg0) {
     f32 spC;
     f32 sp8;
-    u8 temp_r4;
     u8 var_r0;
+    u8 temp_r4;
 
     var_r0 = 0;
     temp_r4 = *arg0;
@@ -507,9 +515,14 @@ f32 fn_8007F848(u8 *arg0) {
     f32 spC;
     f32 sp8;
 
-    if ((u8) *arg0 == 1) {
-        /* draft: did not compile: fn_8007F758(arg0 + 1, &spC, 4); */
-        return spC;
+    switch ((u8) *arg0) {
+
+    case 1:
+            /* draft: did not compile: fn_8007F758(arg0 + 1, &spC, 4); */
+            return spC;
+
+        break;
+
     }
     /* draft: did not compile: fn_8007F758(arg0 + 1, &sp8, 4); */
     return (f32) sp8;

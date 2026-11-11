@@ -347,7 +347,7 @@ void fn_8012FFBC(void) {
     s32 var_ctr;
     s32 var_ctr_2;
     s32 var_ctr_3;
-    s32 var_ctr_4;
+    s8 var_ctr_4;
     s32 var_r11;
     s32 var_r31;
     s32 var_r6;
@@ -499,7 +499,7 @@ void fn_801301D8(void *arg0, s32 arg1, u8 arg2, u8 arg3) {
 }
 
 s16 fn_801302E4(s32 *arg0, void *arg1, M2C_UNK arg_sp0) {
-    s16 var_r3;
+    u32 *temp_r3_2;
     s16 var_r3_2;
     s16 var_r3_3;
     s16 var_r3_4;
@@ -526,15 +526,15 @@ s16 fn_801302E4(s32 *arg0, void *arg1, M2C_UNK arg_sp0) {
     s32 temp_r7;
     s32 temp_r7_2;
     s32 temp_r7_3;
-    s32 var_r4;
+    u32 *temp_r3_3;
     s32 var_r4_2;
     s32 var_r4_4;
     s32 var_r6;
     s32 var_r6_2;
     s32 var_r6_3;
     u32 *temp_r3;
-    u32 *temp_r3_2;
-    u32 *temp_r3_3;
+    s16 var_r3;
+    s32 var_r4;
     u32 *temp_r4_2;
     u32 *temp_r4_4;
     u32 *temp_r4_5;
@@ -792,22 +792,22 @@ void fn_80130E58(void *arg0, s32 arg1, s32 arg2) {
     s32 var_r6_2;
     s32 var_r7_2;
     s32 var_r9;
-    u16 temp_r0_12;
-    u16 temp_r0_8;
-    u16 temp_r4;
-    u16 temp_r6;
-    u16 temp_r7;
-    u16 temp_r8;
-    u16 temp_r9;
-    u16 var_ctr_10;
-    u16 var_ctr_2;
-    u16 var_ctr_8;
-    u16 var_r11;
-    u16 var_r29;
-    u16 var_r5;
-    u16 var_r5_2;
-    u16 var_r5_5;
-    u16 var_r5_6;
+    s32 temp_r0_12;
+    s32 temp_r0_8;
+    s32 temp_r4;
+    s32 temp_r6;
+    s32 temp_r7;
+    s32 temp_r8;
+    u8 temp_r9;
+    s32 var_ctr_10;
+    s32 var_ctr_2;
+    s32 var_ctr_8;
+    s32 var_r11;
+    s32 var_r29;
+    s32 var_r5;
+    s32 var_r5_2;
+    s32 var_r5_5;
+    s32 var_r5_6;
     u32 temp_r0;
     u32 temp_r0_13;
     u32 temp_r0_4;
@@ -823,12 +823,12 @@ void fn_80130E58(void *arg0, s32 arg1, s32 arg2) {
     u8 *var_r6;
     u8 *var_r7;
     u8 *var_r8;
-    u8 temp_r0_10;
-    u8 temp_r0_11;
-    u8 temp_r0_2;
-    u8 temp_r0_3;
-    u8 temp_r0_5;
-    u8 temp_r0_6;
+    s32 temp_r0_10;
+    s32 temp_r0_11;
+    s32 temp_r0_2;
+    s32 temp_r0_3;
+    s32 temp_r0_5;
+    s32 temp_r0_6;
 
     temp_r8 = M2C_FIELD(arg0, u16 *, 0xC);
     temp_r7 = M2C_FIELD(arg0, u16 *, 8);

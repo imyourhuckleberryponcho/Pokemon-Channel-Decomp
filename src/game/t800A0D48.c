@@ -90,8 +90,8 @@ void *fn_800A0D48(void *arg0, void *arg1, void *arg2, M2C_UNK arg_sp0) { } /* dr
 void fn_800A0ECC(void *arg0, void *arg1, u32 arg2, void *arg3, M2C_UNK arg_sp0) { } /* draft: stub */
 
 void *fn_800A13DC(void *arg0) {
-    M2C_FIELD(arg0, s32 *, 0) = 0;
     M2C_FIELD(arg0, M2C_UNK **, 8) = &lbl_801DB8B0;
+    M2C_FIELD(arg0, s32 *, 0) = 0;
     M2C_FIELD(arg0, s16 *, 4) = 0;
     M2C_FIELD(arg0, s16 *, 6) = 0;
     M2C_FIELD(arg0, M2C_UNK **, 8) = &lbl_8022A728;
@@ -161,6 +161,7 @@ void *fn_800A163C(void *arg0, s32 arg1, s32 arg2) {
     M2C_UNK sp8;
 
     M2C_FIELD(arg0, s32 *, 4) = (s32) M2C_FIELD(&lbl_801CB330, s32 *, 0x3C);
+    M2C_FIELD(arg0, f32 *, 0x40) = (f32) lbl_80351B48;
     M2C_FIELD(arg0, s32 *, 8) = (s32) M2C_FIELD(&lbl_801CB330, s32 *, 4);
     M2C_FIELD(arg0, s32 *, 0xC) = (s32) M2C_FIELD(&lbl_801CB330, s32 *, 4);
     M2C_FIELD(arg0, s8 *, 0x10) = 0;
@@ -169,15 +170,14 @@ void *fn_800A163C(void *arg0, s32 arg1, s32 arg2) {
     M2C_FIELD(arg0, s32 *, 0x2C) = 0;
     M2C_FIELD(arg0, s32 *, 0x30) = 0;
     M2C_FIELD(arg0, s32 *, 0x34) = 0;
-    M2C_FIELD(arg0, f32 *, 0x40) = (f32) lbl_80351B48;
     M2C_FIELD(arg0, f32 *, 0x44) = (f32) lbl_80351B48;
     M2C_FIELD(arg0, f32 *, 0x48) = (f32) lbl_80351B4C;
     M2C_FIELD(arg0, f32 *, 0x4C) = (f32) lbl_80351B4C;
     /* draft: did not compile: fn_80015F5C(arg0 + 0x50, &sp8, M2C_FIELD(&lbl_801CB330, s32 *, 4), lbl_80351B48); */
     M2C_FIELD(arg0, s32 *, 0x54) = 0;
+    M2C_FIELD(arg0, f32 *, 0x60) = (f32) lbl_80351B50;
     M2C_FIELD(arg0, s32 *, 0x58) = -1;
     M2C_FIELD(arg0, s32 *, 0x5C) = 0;
-    M2C_FIELD(arg0, f32 *, 0x60) = (f32) lbl_80351B50;
     M2C_FIELD(arg0, s32 *, 0x68) = 0;
     M2C_FIELD(arg0, s32 *, 0x70) = 0;
     M2C_FIELD(arg0, s32 *, 0x74) = 0;

@@ -306,8 +306,7 @@ void EXIIntrruptHandler(s16 arg0, M2C_UNK *arg1) {
 void TCIntrruptHandler(s16 arg0, M2C_UNK *arg1) {
     M2C_UNK sp20;
     M2C_UNK (*temp_r0)(u32, M2C_UNK *);
-    s32 temp_r3;
-    s32 temp_r4;
+    s8 temp_r4;
     s32 temp_r7;
     s32 temp_r7_2;
     s32 var_ctr_2;
@@ -317,6 +316,7 @@ void TCIntrruptHandler(s16 arg0, M2C_UNK *arg1) {
     u32 temp_r30;
     u32 var_ctr;
     void *temp_r31;
+    s32 temp_r3;
 
     __OSMaskInterrupts((unsigned long)(0x80000000U >> arg0));
     temp_r30 = (arg0 - 0xA) / 3;
@@ -343,9 +343,9 @@ void TCIntrruptHandler(s16 arg0, M2C_UNK *arg1) {
                                     M2C_FIELD(var_r5, s8 *, 0) = (s8) (temp_r0_2 >> ((3 - var_r4) * 8));
                                     M2C_FIELD(var_r5, s8 *, 1) = (s8) (temp_r0_2 >> ((3 - (var_r4 + 1)) * 8));
                                     M2C_FIELD(var_r5, s8 *, 2) = (s8) (temp_r0_2 >> ((3 - (var_r4 + 2)) * 8));
-                                    M2C_FIELD(var_r5, s8 *, 3) = (s8) (temp_r0_2 >> (var_r4 * -8));
                                     M2C_FIELD(var_r5, s8 *, 4) = (s8) (temp_r0_2 >> ((3 - (var_r4 + 4)) * 8));
                                     M2C_FIELD(var_r5, s8 *, 5) = (s8) (temp_r0_2 >> ((3 - (var_r4 + 5)) * 8));
+                                    M2C_FIELD(var_r5, s8 *, 3) = (s8) (temp_r0_2 >> (var_r4 * -8));
                                     M2C_FIELD(var_r5, s8 *, 6) = (s8) (temp_r0_2 >> ((3 - (var_r4 + 6)) * 8));
                                     M2C_FIELD(var_r5, s8 *, 7) = (s8) (temp_r0_2 >> ((3 - (var_r4 + 7)) * 8));
                                     var_r5 += 8;
@@ -376,26 +376,29 @@ void TCIntrruptHandler(s16 arg0, M2C_UNK *arg1) {
     }
 }
 
+#pragma push
+#pragma peephole off
 void EXTIntrruptHandler(s16 arg0, M2C_UNK *arg1) {
     M2C_UNK sp10;
     M2C_UNK (*temp_r28)(u32, M2C_UNK *);
-    u32 temp_r30;
     void *temp_r29;
+    u8 temp_r30;
 
     temp_r30 = (arg0 - 0xB) / 3;
     __OSMaskInterrupts(0x500000U >> (temp_r30 * 3));
     temp_r29 = &lbl_802CF930 + (temp_r30 << 6);
-    temp_r28 = M2C_FIELD(temp_r29, M2C_UNK (**)(u32, M2C_UNK *), 8);
     M2C_FIELD(temp_r29, s32 *, 0xC) = (s32) (M2C_FIELD(temp_r29, s32 *, 0xC) & 0xFFFFFFF7);
+    temp_r28 = M2C_FIELD(temp_r29, M2C_UNK (**)(u32, M2C_UNK *), 8);
     if (temp_r28 != NULL) {
         OSClearContext(&sp10);
-        OSSetCurrentContext(&sp10);
         M2C_FIELD(temp_r29, M2C_UNK (**)(u32, M2C_UNK *), 8) = NULL;
+        OSSetCurrentContext(&sp10);
         temp_r28(temp_r30, arg1);
         OSClearContext(&sp10);
         OSSetCurrentContext(arg1);
     }
 }
+#pragma pop
 
 void EXIInit(void) {
     do {
@@ -481,7 +484,7 @@ s32 EXIGetID(s32 arg0, u32 arg1, u32 *arg2) {
     M2C_UNK (*var_r5)();
     s32 temp_r0;
     s8 temp_r0_2;
-    s32 temp_r23;
+    s32 var_r30;
     s32 temp_r23_2;
     s32 temp_r28;
     s32 temp_r28_2;
@@ -494,7 +497,7 @@ s32 EXIGetID(s32 arg0, u32 arg1, u32 *arg2) {
     s32 var_r0;
     s32 var_r0_2;
     s32 var_r29;
-    s32 var_r30;
+    s32 temp_r23;
     void *temp_r31;
 
     var_r29 = saved_reg_r29;
@@ -542,15 +545,17 @@ block_17:
         var_r5 = NULL;
     }
     /* draft: did not compile: var_r30 = EXILock(arg0, arg1, var_r5) == 0; */
-    if (var_r30 == 0) {
+    if (var_r30 == 0U) {
         var_r30 = EXISelect(arg0, arg1, 0) == 0;
-        if (var_r30 == 0) {
-            sp1C = 0U;
-            temp_r30 = var_r30 | (EXIImm(arg0, &sp1C, 2, 1, 0) == 0);
-            temp_r30_2 = temp_r30 | (EXISync(arg0) == 0);
-            temp_r30_3 = temp_r30_2 | (EXIImm(arg0, arg2, 4, 0, 0) == 0);
-            temp_r30_4 = temp_r30_3 | (EXISync(arg0) == 0);
-            var_r30 = temp_r30_4 | (EXIDeselect(arg0) == 0);
+        switch (var_r30) {
+        case 0:
+                sp1C = 0U;
+                temp_r30 = var_r30 | (EXIImm(arg0, &sp1C, 2, 1, 0) == 0);
+                temp_r30_2 = temp_r30 | (EXISync(arg0) == 0);
+                temp_r30_3 = temp_r30_2 | (EXIImm(arg0, arg2, 4, 0, 0) == 0);
+                temp_r30_4 = temp_r30_3 | (EXISync(arg0) == 0);
+                var_r30 = temp_r30_4 | (EXIDeselect(arg0) == 0);
+            break;
         }
         temp_r23 = OSDisableInterrupts();
         if (!(M2C_FIELD(temp_r31, s32 *, 0xC) & 0x10)) {
@@ -662,9 +667,8 @@ u16 fn_800B0B58(void) {
     s32 temp_r6_2;
     s32 temp_r8;
     u32 temp_r0_2;
-    u8 temp_r28;
+    s32 temp_r28;
     u8 temp_r29;
-    u8 temp_r29_2;
 
     *(&lbl_803507F4 + (lbl_803507F8 * 2)) = 0;
     if (0 /* draft: did not compile */) {
@@ -704,11 +708,10 @@ u16 fn_800B0B58(void) {
         return *(&lbl_803507E0 + (lbl_803507F8 * 2));
     }
     temp_r29 = M2C_FIELD((&lbl_802CF9F0 + (lbl_803507F8 * 0x12)), u8 *, 0x6B);
-    temp_r29_2 = temp_r29 & 7;
-    if (temp_r29_2 > 3U) {
+    if ((temp_r29 & 7) > 3U) {
         *(&lbl_803507F4 + (lbl_803507F8 * 2)) = 0;
     } else {
-        temp_r28 = *(&lbl_801DA7A0 + ((((temp_r29 >> 3U) & 0xF) * 4) & 0x3FC) + temp_r29_2);
+        temp_r28 = *(&lbl_801DA7A0 + ((((temp_r29 >> 3U) & 0xF) * 4) & 0x3FC) + (temp_r29 & 7));
         if ((u16) temp_r28 == 0xFF) {
             *(&lbl_803507F4 + (lbl_803507F8 * 2)) = 0;
         } else {
@@ -729,8 +732,8 @@ u16 fn_800B0B58(void) {
     temp_r6_2 = lbl_803507F8 * 4;
     *(&lbl_803507C8 + temp_r6_2) = (u32) *(&lbl_803507C8 + temp_r6_2) / (u32) *(&lbl_803507E4 + (lbl_803507F8 * 4));
     sp8 = (((u8) M2C_FIELD((&lbl_802CF9F0 + (lbl_803507F8 * 0x12)), u8 *, 0x70) >> 6U) & 3) + ((M2C_FIELD((&lbl_802CF9F0 + (lbl_803507F8 * 0x12)), u8 *, 0x6F) * 4) + ((M2C_FIELD((&lbl_802CF9F0 + (lbl_803507F8 * 0x12)), u8 *, 0x6E) << 0xA) & 0xC00) + 1);
-    sp8 *= 4 << ((((u8) M2C_FIELD((&lbl_802CF9F0 + (lbl_803507F8 * 0x12)), u8 *, 0x72) >> 7U) & 1 & ~6) | ((M2C_FIELD((&lbl_802CF9F0 + (lbl_803507F8 * 0x12)), u8 *, 0x71) << 1) & 6));
-    sp8 <<= (((u8) M2C_FIELD((&lbl_802CF9F0 + (lbl_803507F8 * 0x12)), u8 *, 0x75) >> 6U) & 3 & ~0xC) | ((M2C_FIELD((&lbl_802CF9F0 + (lbl_803507F8 * 0x12)), u8 *, 0x74) << 2) & 0xC);
+    sp8 = sp8 * (4 << ((((u8) M2C_FIELD((&lbl_802CF9F0 + (lbl_803507F8 * 0x12)), u8 *, 0x72) >> 7U) & 1 & ~6) | ((M2C_FIELD((&lbl_802CF9F0 + (lbl_803507F8 * 0x12)), u8 *, 0x71) << 1) & 6)));
+    sp8 = sp8 << ((((u8) M2C_FIELD((&lbl_802CF9F0 + (lbl_803507F8 * 0x12)), u8 *, 0x75) >> 6U) & 3 & ~0xC) | ((M2C_FIELD((&lbl_802CF9F0 + (lbl_803507F8 * 0x12)), u8 *, 0x74) << 2) & 0xC));
     temp_r0_2 = sp8 / (u32) *(&lbl_803507E4 + (lbl_803507F8 * 4));
     sp8 = temp_r0_2;
     temp_r5_2 = lbl_803507F8 * 4;
@@ -784,8 +787,8 @@ u16 fn_800B11A4(s32 arg0, s32 arg1, s32 arg2, void *arg4) {
     s32 sp10;
     s32 spC;
     s32 sp8;
-    s32 var_r31;
-    u32 var_r30;
+    u8 var_r31;
+    s32 var_r30;
 
     sp8 = arg0;
     spC = arg1;
@@ -796,7 +799,7 @@ u16 fn_800B11A4(s32 arg0, s32 arg1, s32 arg2, void *arg4) {
     if ((fn_800B15DC((unsigned char)(0x12), (long)(arg2 * *(&lbl_803507E4 + (lbl_803507F8 * 4)))) == 0) && (fn_800B169C() == 0)) {
         var_r30 = 0U;
 loop_5:
-        if (var_r30 < (u32) (spC - 1)) {
+        if (var_r30 < (spC - 1)) {
             if (fn_800B4778(var_r31, (u16) *(&lbl_803507E4 + (lbl_803507F8 * 4))) == 0) {
                 var_r31 += *(&lbl_803507E4 + (lbl_803507F8 * 4));
                 var_r30 += 1;

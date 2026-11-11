@@ -66,7 +66,7 @@ s32 fn_8006977C(void *arg0);
 s32 fn_80067A9C(void *arg0, s32 arg2, s32 arg3, M2C_UNK arg_sp0) { return 0; } /* draft: stub */
 
 void fn_800684D4(void *arg0, void *arg1, s32 arg2) {
-    s32 temp_r5;
+    u8 temp_r5;
     s32 temp_r5_2;
     s8 temp_r6_2;
     u8 temp_r7;
@@ -193,19 +193,19 @@ void fn_80068678(void *arg0) {
 
 u32 fn_800687A0(s16 *arg0, u32 arg1) {
     s32 sp18;
-    s32 sp14;
+    u8 sp14;
     s32 sp10;
-    u32 spC;
-    s32 sp8;
+    u8 spC;
+    s8 sp8;
     f32 var_f9_2;
     f64 temp_f4;
     f64 temp_f4_2;
     f64 temp_f5;
     f64 temp_f7;
     f64 var_f9;
-    s16 *var_r4;
     s16 *var_r5;
     s32 var_r6;
+    s16 *var_r4;
     u8 var_ctr;
     u32 var_ctr_2;
 
@@ -216,7 +216,7 @@ u32 fn_800687A0(s16 *arg0, u32 arg1) {
     sp8 = spC = sp10 = sp14 = sp18 = 0;
     /* draft: did not compile: fn_800684D4(lbl_80350600 + 0x86830, &sp8); */
     if ((sp8 == 0) || (sp18 == 0) || (spC == 0)) {
-        if ((f32) lbl_80350618 != (f32) lbl_80351838) {
+        if (lbl_80350618 != lbl_80351838) {
             var_r4 = arg0;
             var_r6 = 0;
             var_ctr = arg1;
@@ -224,7 +224,7 @@ u32 fn_800687A0(s16 *arg0, u32 arg1) {
 loop_7:
                 var_f9 = (f64) (f32) lbl_80350624 * (lbl_80351840 - (lbl_80350618 / lbl_80350628));
                 if ((s32) lbl_80350624 < 0) {
-                    if ((f32) (lbl_80351848 + lbl_80350618) > (f32) lbl_80350628) {
+                    if ((f32) (lbl_80351848 + lbl_80350618) > lbl_80350628) {
                         var_r6 += 1;
                         lbl_80350618 = lbl_80351838;
                     } else {
@@ -232,7 +232,7 @@ loop_7:
                     }
                 } else {
                     temp_f5 = lbl_80350628 * lbl_80350630;
-                    if ((f32) (lbl_80351848 + lbl_80350618) > (f32) temp_f5) {
+                    if ((lbl_80351848 + lbl_80350618) > (f32) temp_f5) {
                         lbl_80350624 = -lbl_80350624;
                         var_f9 = (lbl_80351850 * (lbl_80351858 * (temp_f5 - lbl_80350618))) - lbl_80351840;
                     }
@@ -263,9 +263,9 @@ block_12:
                 var_f9_2 = (f32) lbl_80350624;
                 if ((s32) lbl_80350624 < 0) {
                     temp_f4 = lbl_80351848 + lbl_80350618;
-                    if (temp_f4 > (f32) lbl_80350628) {
+                    if (temp_f4 > lbl_80350628) {
                         temp_f7 = lbl_80350628 * lbl_80350630;
-                        if ((temp_f4 - lbl_80350628) > (f32) temp_f7) {
+                        if ((temp_f4 - lbl_80350628) > temp_f7) {
                             var_f9_2 = (f32) ((lbl_80351850 * (lbl_80351858 * temp_f7)) - lbl_80351840);
                         } else {
                             lbl_80350624 = -lbl_80350624;

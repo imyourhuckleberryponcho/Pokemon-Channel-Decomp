@@ -105,8 +105,8 @@ void fn_800CE6D0(u32 arg0);
 s32 DVDLowWaitCoverClose(s32 arg0) {
     Callback_80350940 = arg0;
     WaitingCoverClose_80350954 = 1;
-    StopAtNextInt_80350938 = 0;
     M2C_FIELD((void *)0xCC006000, s32 *, 4) = 2;
+    StopAtNextInt_80350938 = 0;
     return 1;
 }
 
@@ -115,8 +115,8 @@ s32 DVDLowReadDiskID(s32 arg0, s32 arg1) {
 
     Callback_80350940 = arg1;
     StopAtNextInt_80350938 = 0;
-    *(s32 *)0xCC006008 = 0xA8000040;
     M2C_FIELD((void *)0xCC006000, s32 *, 0xC) = 0;
+    *(s32 *)0xCC006008 = 0xA8000040;
     M2C_FIELD((void *)0xCC006000, s32 *, 0x10) = 0x20;
     M2C_FIELD((void *)0xCC006000, s32 *, 0x14) = arg0;
     M2C_FIELD((void *)0xCC006000, s32 *, 0x18) = 0x20;
@@ -130,12 +130,12 @@ s32 DVDLowReadDiskID(s32 arg0, s32 arg1) {
 s32 DVDLowStopMotor(s32 arg0) {
     s32 temp_r30;
 
-    Callback_80350940 = arg0;
     StopAtNextInt_80350938 = 0;
-    *(s32 *)0xCC006008 = 0xE3000000;
     M2C_FIELD((void *)0xCC006000, s32 *, 0x1C) = 1;
+    *(s32 *)0xCC006008 = 0xE3000000;
     temp_r30 = ((u32) *(u32 *)0x800000F8 >> 2U) * 0xA;
     OSCreateAlarm(&AlarmForTimeout_8031C6B8, 0x80000000);
+    Callback_80350940 = arg0;
     OSSetAlarm(&AlarmForTimeout_8031C6B8, 0, temp_r30, &AlarmHandlerForTimeout_800CCFAC);
     return 1;
 }
@@ -143,12 +143,12 @@ s32 DVDLowStopMotor(s32 arg0) {
 s32 fn_800CD634(s32 arg0) {
     s32 temp_r30;
 
-    Callback_80350940 = arg0;
     StopAtNextInt_80350938 = 0;
-    *(s32 *)0xCC006008 = 0xE0000000;
     M2C_FIELD((void *)0xCC006000, s32 *, 0x1C) = 1;
+    *(s32 *)0xCC006008 = 0xE0000000;
     temp_r30 = ((u32) *(u32 *)0x800000F8 >> 2U) * 0xA;
     OSCreateAlarm(&AlarmForTimeout_8031C6B8, 0x80000000);
+    Callback_80350940 = arg0;
     OSSetAlarm(&AlarmForTimeout_8031C6B8, 0, temp_r30, &AlarmHandlerForTimeout_800CCFAC);
     return 1;
 }
@@ -159,30 +159,33 @@ s32 DVDLowInquiry(s32 arg0, s32 arg1) {
     Callback_80350940 = arg1;
     StopAtNextInt_80350938 = 0;
     *(s32 *)0xCC006008 = 0x12000000;
-    M2C_FIELD((void *)0xCC006000, s32 *, 0x10) = 0x20;
     M2C_FIELD((void *)0xCC006000, s32 *, 0x14) = arg0;
     M2C_FIELD((void *)0xCC006000, s32 *, 0x18) = 0x20;
     M2C_FIELD((void *)0xCC006000, s32 *, 0x1C) = 3;
     temp_r30 = ((u32) *(u32 *)0x800000F8 >> 2U) * 0xA;
     OSCreateAlarm(&AlarmForTimeout_8031C6B8, &AlarmForTimeout_8031C6B8, 0x80000000, 0x20, 0xCC006000);
     OSSetAlarm(&AlarmForTimeout_8031C6B8, 0, temp_r30, &AlarmHandlerForTimeout_800CCFAC);
+    M2C_FIELD((void *)0xCC006000, s32 *, 0x10) = 0x20;
     return 1;
 }
 
+#pragma push
+#pragma peephole off
 s32 DVDLowAudioStream(s32 arg0, s32 arg1, u32 arg2, s32 arg3) {
     s32 temp_r30;
 
     Callback_80350940 = arg3;
-    StopAtNextInt_80350938 = 0;
     M2C_FIELD((void *)0xCC006000, s32 *, 8) = (s32) (arg0 | 0xE1000000);
-    M2C_FIELD((void *)0xCC006000, u32 *, 0xC) = (u32) (arg2 >> 2U);
     M2C_FIELD((void *)0xCC006000, s32 *, 0x10) = arg1;
     M2C_FIELD((void *)0xCC006000, s32 *, 0x1C) = 1;
+    StopAtNextInt_80350938 = 0;
     temp_r30 = ((u32) *(u32 *)0x800000F8 >> 2U) * 0xA;
     OSCreateAlarm(&AlarmForTimeout_8031C6B8, 0x80000000, 0xCC006000);
+    M2C_FIELD((void *)0xCC006000, u32 *, 0xC) = (u32) (arg2 >> 2U);
     OSSetAlarm(&AlarmForTimeout_8031C6B8, 0, temp_r30, &AlarmHandlerForTimeout_800CCFAC);
     return 1;
 }
+#pragma pop
 
 s32 DVDLowRequestAudioStatus(s32 arg0, s32 arg1) {
     s32 temp_r30;
@@ -224,9 +227,9 @@ void DVDLowReset(void) {
     u64 temp_ret_2;
 
     *(s32 *)0xCC006004 = 2;
+    temp_ret = __OSGetSystemTime(0xCC000000);
     temp_r30 = *(s32 *)0xCC003024;
     M2C_FIELD((void *)0xCC003000, s32 *, 0x24) = (s32) ((temp_r30 & 0xFFFFFFFB) | 1);
-    temp_ret = __OSGetSystemTime(0xCC000000);
     temp_r26 = (u32) temp_ret;
     temp_r27 = temp_ret;
     temp_r28 = (u32) ((*(u32 *)0x800000F8 / 500000) * 0xC) >> 3U;
@@ -284,9 +287,11 @@ s32 DVDClose(void) {
 
 u32 fn_800CDED4(u32 arg0, s32 arg1, u32 arg2) { return 0; } /* draft: stub */
 
+#pragma push
+#pragma dont_inline on
 s32 DVDGetCurrentDir(s32 arg0, u32 arg1) {
-    s32 temp_r31;
-    s32 var_r0;
+    s8 temp_r31;
+    s8 var_r0;
     s32 var_r0_2;
     u32 var_r3;
 
@@ -318,6 +323,7 @@ block_9:
     }
     return var_r0;
 }
+#pragma pop
 
 s32 DVDReadAsyncPrio(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
     s32 temp_r4;
@@ -330,7 +336,7 @@ s32 DVDReadAsyncPrio(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg
         fn_800C5B7C((long *)(&lbl_8034FF70), (long)(0x2EC), (long *)(&lbl_802A6E98), (unsigned char *)(0));
     }
     M2C_FIELD(arg0, s32 *, 0x38) = arg4;
-    DVDReadAbsAsyncPrio(arg0, arg1, arg2, M2C_FIELD(arg0, s32 *, 0x30) + arg3, fn_800CE1B8, arg5);
+    DVDReadAbsAsyncPrio(arg0, arg1, arg2, M2C_FIELD(arg0, s32 *, 0x30) + arg3, (u16)fn_800CE1B8, arg5);
     return 1;
 }
 
@@ -424,9 +430,11 @@ void fn_800CE3F4(void) {
     if ((u32) M2C_FIELD(bootInfo_803509A8, u32 *, 0x3C) < (u32) M2C_FIELD(&BB2_8031C720, u32 *, 8)) {
         fn_800C5B7C((long *)(&lbl_8034FF84), (long)(0x287), (long *)(&lbl_802A6F54), (unsigned char *)(0));
     }
-    DVDLowRead(M2C_FIELD(bootInfo_803509A8, s32 *, 0x38), (M2C_FIELD(&BB2_8031C720, u32 *, 8) + 0x1F) & 0xFFFFFFE0, M2C_FIELD(&BB2_8031C720, s32 *, 4), fn_800CE488, bootInfo_803509A8);
+    DVDLowRead(M2C_FIELD(bootInfo_803509A8, s32 *, 0x38), (M2C_FIELD(&BB2_8031C720, u32 *, 8) + 0x1F) & 0xFFFFFFE0, M2C_FIELD(&BB2_8031C720, s32 *, 4), (u16)fn_800CE488, bootInfo_803509A8);
 }
 
+#pragma push
+#pragma dont_inline on
 void fn_800CE488(u32 arg0) {
     M2C_UNK (*temp_r12)(M2C_UNK);
     M2C_UNK *temp_r4;
@@ -451,6 +459,7 @@ void fn_800CE488(u32 arg0) {
     }
     fn_800CE5F4();
 }
+#pragma pop
 
 void cbForStateError_800CE514(u32 arg0) {
     M2C_UNK (*temp_r12)(M2C_UNK, M2C_UNK *);

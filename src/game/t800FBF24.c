@@ -780,8 +780,8 @@ loop_28:
         M2C_FIELD(arg0, f32 *, 0x44) = (f32) (sp64 * sp7C);
         M2C_FIELD(arg0, f32 *, 0x54) = (f32) (sp68 * sp7C);
         M2C_FIELD(arg0, f32 *, 0x64) = (f32) (sp6C * sp7C);
-        PSVECCrossProduct(&sp4C, &sp64, &sp28, sp7C);
         M2C_FIELD(arg0, f32 *, 0x48) = (f32) (sp28 * sp80);
+        PSVECCrossProduct(&sp4C, &sp64, &sp28, sp7C);
         M2C_FIELD(arg0, f32 *, 0x58) = (f32) (sp2C * sp80);
         M2C_FIELD(arg0, f32 *, 0x68) = (f32) (sp30 * sp80);
         M2C_FIELD(arg0, f32 *, 0x4C) = (f32) (sp4C * sp84);
@@ -840,7 +840,7 @@ void resolveIKJoint2(void *arg0) {
     f64 temp_f2_8;
     f64 temp_f2_9;
     s32 temp_r30;
-    s32 var_r27;
+    u32 var_r27;
     void *temp_r28;
     void *temp_r29;
     void *temp_r3_2;

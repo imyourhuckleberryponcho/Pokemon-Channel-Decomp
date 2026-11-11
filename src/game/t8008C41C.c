@@ -171,6 +171,8 @@ s32 scr_ForceBalloonModel(s32 arg0) {
     return 0;
 }
 
+#pragma push
+#pragma optimize_for_size on
 s32 scr_CreatePointLight(void *arg0) {
     f32 sp24;
     f32 sp20;
@@ -185,15 +187,16 @@ s32 scr_CreatePointLight(void *arg0) {
     s8 sp8;
     f32 temp_f30;
     f32 temp_f31;
-    s32 temp_r28;
+    u8 temp_r28;
     s32 var_r4;
     s8 temp_r29;
     s8 temp_r30;
     s8 temp_r31;
 
     /* draft: did not compile: temp_r29 = fn_80080738(); */
-    /* draft: did not compile: temp_r30 = fn_80080738(arg0); */
-    /* draft: did not compile: temp_r31 = fn_80080738(arg0); */
+    M2C_UNK * dc_fn_80080738 = fn_80080738(arg0);
+    /* draft: did not compile: temp_r30 = dc_fn_80080738; */
+    /* draft: did not compile: temp_r31 = dc_fn_80080738; */
     temp_f30 = fn_80080764(arg0);
     temp_f31 = fn_80080764(arg0);
     sp10 = fn_80080764(arg0);
@@ -215,6 +218,7 @@ s32 scr_CreatePointLight(void *arg0) {
     fn_8008065C(arg0, fn_800A6F74(temp_r28, var_r4));
     return 0;
 }
+#pragma pop
 
 s32 scr_CreateAmbientLight(void *arg0) {
     s8 spF;
@@ -272,7 +276,7 @@ s32 scr_CreateSpotLight(void *arg0) {
     s8 spF;
     s8 spE;
     s8 spD;
-    s8 spC;
+    u32 spC;
     s32 sp8;
     f32 temp_f30;
     f32 temp_f31;
@@ -297,7 +301,7 @@ s32 scr_CreateSpotLight(void *arg0) {
         sp8 = (s32) spC;
         var_r4 = CreateSpotLight(&sp8, sp1C, sp20, sp24);
     }
-    fn_8008065C(arg0, fn_800A6F74(temp_r31, var_r4));
+    fn_8008065C(arg0, fn_800A6F74((u16)temp_r31, var_r4));
     return 0;
 }
 
@@ -332,8 +336,8 @@ s32 scr_method_setColor(void *arg0) {
 }
 
 s32 fn_8008D318(s32 arg0, s32 arg1) {
-    f32 temp_f30;
     f32 temp_f31;
+    f32 temp_f30;
 
     temp_f31 = fn_80080764();
     temp_f30 = fn_80080764(arg0);

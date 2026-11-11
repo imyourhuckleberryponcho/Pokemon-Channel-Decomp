@@ -351,13 +351,13 @@ s32 fn_80074FD8(void *arg0, void *arg1) {
 
 void method_setRotateRel(void *arg0, void *arg1) {
     s32 sp1C;
-    s32 sp18;
+    u32 sp18;
     s32 sp2C;
     s32 sp28;
     M2C_UNK sp60;
+    f32 sp14;
     M2C_UNK sp30;
     f32 sp24;
-    f32 sp14;
     f32 sp10;
     f32 spC;
     f32 sp8;
@@ -375,19 +375,19 @@ void method_setRotateRel(void *arg0, void *arg1) {
 
 void fn_800750E0(void *arg0, void *arg1) {
     /* draft: did not compile: fn_800717C8(arg0 + 0xDC, M2C_FIELD(arg0, s32 *, 0x64)); */
+    M2C_FIELD(arg0, s32 *, 0x114) = (s32) M2C_FIELD(arg1, s32 *, 0xC);
     M2C_FIELD(arg0, s32 *, 0x108) = (s32) M2C_FIELD(arg1, s32 *, 0);
     M2C_FIELD(arg0, s32 *, 0x10C) = (s32) M2C_FIELD(arg1, s32 *, 4);
     M2C_FIELD(arg0, s32 *, 0x110) = (s32) M2C_FIELD(arg1, s32 *, 8);
-    M2C_FIELD(arg0, s32 *, 0x114) = (s32) M2C_FIELD(arg1, s32 *, 0xC);
     M2C_FIELD(arg0, s32 *, 0x118) = (s32) M2C_FIELD(arg1, s32 *, 0x10);
-    M2C_FIELD(arg0, s32 *, 0x11C) = (s32) M2C_FIELD(arg1, s32 *, 0x14);
     M2C_FIELD(arg0, s32 *, 0x120) = (s32) M2C_FIELD(arg1, s32 *, 0x18);
-    M2C_FIELD(arg0, s32 *, 0x124) = (s32) M2C_FIELD(arg1, s32 *, 0x1C);
     M2C_FIELD(arg0, s32 *, 0x128) = (s32) M2C_FIELD(arg1, s32 *, 0x20);
     M2C_FIELD(arg0, s32 *, 0x12C) = (s32) M2C_FIELD(arg1, s32 *, 0x24);
     M2C_FIELD(arg0, s32 *, 0x130) = (s32) M2C_FIELD(arg1, s32 *, 0x28);
     M2C_FIELD(arg0, f32 *, 0x134) = (f32) M2C_FIELD(arg0, f32 *, 0xD8);
     M2C_FIELD(arg0, s32 *, 0x60) = (s32) (M2C_FIELD(arg0, s32 *, 0x60) & 0xFFFFFFFD);
+    M2C_FIELD(arg0, s32 *, 0x124) = (s32) M2C_FIELD(arg1, s32 *, 0x1C);
+    M2C_FIELD(arg0, s32 *, 0x11C) = (s32) M2C_FIELD(arg1, s32 *, 0x14);
 }
 
 void fn_8007518C(void *arg0, void *arg1) {
@@ -627,6 +627,8 @@ f32 method_getCollSize(void *arg0, s32 arg1, u32 arg2) {
 
 void fn_80075778(void *arg0) { } /* draft: stub */
 
+#pragma push
+#pragma optimize_for_size on
 s32 fn_80075AFC(void *arg0) {
     void *temp_r3;
 
@@ -644,3 +646,4 @@ s32 fn_80075AFC(void *arg0) {
     M2C_ERROR(/* unknown instruction: cror eq, lt, eq */);
     return ((u32) M2C_ERROR(/* unknown instruction: mfcr $r0 */) >> 0x1DU) & 1;
 }
+#pragma pop
