@@ -1,0 +1,7 @@
+# Blank-slate setup: no symbol map, dtk performs automatic analysis and splitting.
+object_base: orig/GPAE01
+object: sys/main.dol
+hash: 3523501ee45ea3d84e12096616cb05c1b9733c21
+symbols: config/GPAE01/symbols.txt
+splits: config/GPAE01/splits.txt
+mw_comment_version: 10

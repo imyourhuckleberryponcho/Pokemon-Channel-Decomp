@@ -1,0 +1,686 @@
+Sections:
+	.init       type:code align:4
+	extab       type:rodata align:4
+	extabindex  type:rodata align:4
+	.text       type:code align:4
+	.ctors      type:rodata align:8
+	.dtors      type:rodata align:32
+	.rodata     type:rodata align:32
+	.data       type:data align:32
+	.bss        type:bss align:16
+	.sdata      type:data align:32
+	.sbss       type:bss align:32
+	.sdata2     type:rodata align:16
+	.sbss2      type:bss align:32
+
+game/t80005840.c:
+	.text       start:0x80005840 end:0x800069B8
+
+game/t800069B8.c:
+	.text       start:0x800069B8 end:0x800089A0
+
+game/t800089A0.c:
+	.text       start:0x800089A0 end:0x8000A424
+
+game/t8000A424.c:
+	.text       start:0x8000A424 end:0x8000BD08
+
+game/t8000BD08.c:
+	.text       start:0x8000BD08 end:0x8000DB6C
+
+game/t8000DB6C.c:
+	.text       start:0x8000DB6C end:0x8000FB58
+
+game/t8000FB58.c:
+	.text       start:0x8000FB58 end:0x80011184
+
+game/t80011184.c:
+	.text       start:0x80011184 end:0x80013144
+
+game/t80013144.c:
+	.text       start:0x80013144 end:0x80014C98
+
+game/t80014C98.c:
+	.text       start:0x80014C98 end:0x800156FC
+
+game/t8001573C.c:
+	.text       start:0x8001573C end:0x80016CB8
+
+game/t80016CB8.c:
+	.text       start:0x80016CB8 end:0x80017D3C
+
+game/t80017D3C.c:
+	.text       start:0x80017D3C end:0x80019B9C
+
+game/t80019B9C.c:
+	.text       start:0x80019B9C end:0x8001A884
+
+game/t8001A884.c:
+	.text       start:0x8001A884 end:0x8001C18C
+
+game/t8001C18C.c:
+	.text       start:0x8001C18C end:0x8001D700
+
+game/t8001D700.c:
+	.text       start:0x8001D700 end:0x8001E644
+
+game/t8001E644.c:
+	.text       start:0x8001E644 end:0x80020580
+
+game/t80020580.c:
+	.text       start:0x80020580 end:0x80022280
+
+game/t80022280.c:
+	.text       start:0x80022280 end:0x8002420C
+
+game/t8002420C.c:
+	.text       start:0x8002420C end:0x80026108
+
+game/t80026108.c:
+	.text       start:0x80026108 end:0x800280F8
+
+game/t800280F8.c:
+	.text       start:0x800280F8 end:0x8002A080
+
+game/t8002A080.c:
+	.text       start:0x8002A080 end:0x8002BEC0
+
+game/t8002BEC0.c:
+	.text       start:0x8002BEC0 end:0x8002DA1C
+
+game/t8002DA1C.c:
+	.text       start:0x8002DA1C end:0x8002FA14
+
+game/t8002FA14.c:
+	.text       start:0x8002FA14 end:0x800319F0
+
+game/t800319F0.c:
+	.text       start:0x800319F0 end:0x800339E0
+
+game/t800339E0.c:
+	.text       start:0x800339E0 end:0x8003472C
+
+game/t8003472C.c:
+	.text       start:0x8003472C end:0x800359C4
+
+game/t800359C4.c:
+	.text       start:0x800359C4 end:0x800379C4
+
+game/t800379C4.c:
+	.text       start:0x800379C4 end:0x800387CC
+
+game/t800387CC.c:
+	.text       start:0x800387CC end:0x8003A72C
+
+game/t8003A72C.c:
+	.text       start:0x8003A72C end:0x8003C5E8
+
+game/t8003C5E8.c:
+	.text       start:0x8003C5E8 end:0x8003E4D0
+
+game/t8003E4D0.c:
+	.text       start:0x8003E4D0 end:0x800402C8
+
+game/t800402C8.c:
+	.text       start:0x800402C8 end:0x80042208
+
+game/t80042208.c:
+	.text       start:0x80042208 end:0x800441A0
+
+game/t800441A0.c:
+	.text       start:0x800441A0 end:0x80045990
+
+game/t80045990.c:
+	.text       start:0x80045990 end:0x8004658C
+
+game/t8004658C.c:
+	.text       start:0x8004658C end:0x80047924
+
+game/t80047924.c:
+	.text       start:0x80047924 end:0x800488E4
+
+game/t800488E4.c:
+	.text       start:0x800488E4 end:0x8004A850
+
+game/t8004A850.c:
+	.text       start:0x8004A850 end:0x8004C540
+
+game/t8004C540.c:
+	.text       start:0x8004C540 end:0x8004E2B8
+
+game/t8004E2B8.c:
+	.text       start:0x8004E2B8 end:0x80050094
+
+game/t80050094.c:
+	.text       start:0x80050094 end:0x80051F00
+
+game/t80051F00.c:
+	.text       start:0x80051F00 end:0x80053D10
+
+game/t80053D10.c:
+	.text       start:0x80053D10 end:0x80055D08
+
+game/t80055D08.c:
+	.text       start:0x80055D08 end:0x80057B24
+
+game/t80057B24.c:
+	.text       start:0x80057B24 end:0x80059918
+
+game/t80059918.c:
+	.text       start:0x80059918 end:0x8005B82C
+
+game/t8005B82C.c:
+	.text       start:0x8005B82C end:0x8005D810
+
+game/t8005D810.c:
+	.text       start:0x8005D810 end:0x8005E21C
+
+game/t8005E21C.c:
+	.text       start:0x8005E21C end:0x8005F118
+
+game/t8005F118.c:
+	.text       start:0x8005F118 end:0x80060108
+
+game/t80060108.c:
+	.text       start:0x80060108 end:0x80061918
+
+game/t80061918.c:
+	.text       start:0x80061918 end:0x80062578
+
+game/t80062578.c:
+	.text       start:0x80062578 end:0x80062BA8
+
+game/t80062BA8.c:
+	.text       start:0x80062BA8 end:0x80063040
+
+game/t80063040.c:
+	.text       start:0x80063040 end:0x80063ED0
+
+game/t80063ED0.c:
+	.text       start:0x80063ED0 end:0x80065D98
+
+game/t80065D98.c:
+	.text       start:0x80065D98 end:0x80067A9C
+
+game/t80067A9C.c:
+	.text       start:0x80067A9C end:0x8006988C
+
+game/t8006988C.c:
+	.text       start:0x8006988C end:0x8006B72C
+
+game/t8006B72C.c:
+	.text       start:0x8006B72C end:0x8006CBDC
+
+game/t8006CBDC.c:
+	.text       start:0x8006CBDC end:0x8006EB64
+
+game/t8006EB64.c:
+	.text       start:0x8006EB64 end:0x80070488
+
+game/t800704AC.c:
+	.text       start:0x800704AC end:0x80071748
+
+game/t80071748.c:
+	.text       start:0x80071748 end:0x80072E30
+
+game/t80072E30.c:
+	.text       start:0x80072E30 end:0x800747B0
+
+game/t800747B0.c:
+	.text       start:0x800747B0 end:0x80075B78
+
+game/t80075B78.c:
+	.text       start:0x80075B78 end:0x80076D4C
+
+game/t80076D4C.c:
+	.text       start:0x80076D4C end:0x80078CB8
+
+game/t80078CB8.c:
+	.text       start:0x80078CB8 end:0x8007A934
+
+game/t8007A934.c:
+	.text       start:0x8007A934 end:0x8007B7A4
+
+game/t8007B7A4.c:
+	.text       start:0x8007B7A4 end:0x8007C4EC
+
+game/t8007C4EC.c:
+	.text       start:0x8007C4EC end:0x8007E31C
+
+game/t8007E31C.c:
+	.text       start:0x8007E31C end:0x8007FA38
+
+game/t8007FA38.c:
+	.text       start:0x8007FA38 end:0x800815F0
+
+game/t800815F0.c:
+	.text       start:0x800815F0 end:0x80082FAC
+
+game/t80082FAC.c:
+	.text       start:0x80082FAC end:0x80084608
+
+game/t80084608.c:
+	.text       start:0x80084608 end:0x800865F8
+
+game/t800865F8.c:
+	.text       start:0x800865F8 end:0x80087BC8
+
+game/t80087BC8.c:
+	.text       start:0x80087BC8 end:0x800887D8
+
+game/t800887D8.c:
+	.text       start:0x800887D8 end:0x80089454
+
+game/t80089454.c:
+	.text       start:0x80089454 end:0x8008A128
+
+game/t8008A128.c:
+	.text       start:0x8008A128 end:0x8008AD1C
+
+game/t8008AD1C.c:
+	.text       start:0x8008AD1C end:0x8008B6C0
+
+game/t8008B6C0.c:
+	.text       start:0x8008B6C0 end:0x8008C41C
+
+game/t8008C41C.c:
+	.text       start:0x8008C41C end:0x8008D514
+
+game/t8008D514.c:
+	.text       start:0x8008D514 end:0x8008E0A8
+
+game/t8008E0A8.c:
+	.text       start:0x8008E0A8 end:0x8008ECE0
+
+game/t8008ECE0.c:
+	.text       start:0x8008ECE0 end:0x8008F848
+
+game/t8008F848.c:
+	.text       start:0x8008F848 end:0x80090630
+
+game/t80090630.c:
+	.text       start:0x80090630 end:0x800915CC
+
+game/t800915CC.c:
+	.text       start:0x800915CC end:0x800921A4
+
+game/t800921A4.c:
+	.text       start:0x800921A4 end:0x80093360
+
+game/t80093360.c:
+	.text       start:0x80093360 end:0x8009403C
+
+game/t8009403C.c:
+	.text       start:0x8009403C end:0x80094E28
+
+game/t80094E28.c:
+	.text       start:0x80094E28 end:0x80095CF0
+
+game/t80095CF0.c:
+	.text       start:0x80095CF0 end:0x80096FDC
+
+game/t80096FDC.c:
+	.text       start:0x80096FDC end:0x80098234
+
+game/t80098234.c:
+	.text       start:0x80098234 end:0x800998FC
+
+game/t800998FC.c:
+	.text       start:0x800998FC end:0x8009AA38
+
+game/t8009AA38.c:
+	.text       start:0x8009AA38 end:0x8009C9A4
+
+game/t8009C9A4.c:
+	.text       start:0x8009C9A4 end:0x8009D6F8
+
+game/t8009D6F8.c:
+	.text       start:0x8009D6F8 end:0x8009EE18
+
+game/t8009EE18.c:
+	.text       start:0x8009EE18 end:0x800A0D48
+
+game/t800A0D48.c:
+	.text       start:0x800A0D48 end:0x800A2D28
+
+game/t800A2D28.c:
+	.text       start:0x800A2D28 end:0x800A4CEC
+
+game/t800A4CEC.c:
+	.text       start:0x800A4CEC end:0x800A67E4
+
+game/t800A67E4.c:
+	.text       start:0x800A67E4 end:0x800A8608
+
+game/t800A8608.c:
+	.text       start:0x800A8608 end:0x800A958C
+
+game/t800A958C.c:
+	.text       start:0x800A958C end:0x800AAE38
+
+game/t800AAE38.c:
+	.text       start:0x800AAE38 end:0x800ABBE4
+
+game/t800ABBE4.c:
+	.text       start:0x800ABBE4 end:0x800AD97C
+
+game/t800AD97C.c:
+	.text       start:0x800AD97C end:0x800AF904
+
+game/t800AF904.c:
+	.text       start:0x800AF904 end:0x800B1898
+
+game/t800B1898.c:
+	.text       start:0x800B1898 end:0x800B33A4
+
+game/t800B33A4.c:
+	.text       start:0x800B33A4 end:0x800B4E20
+
+game/t800B4E20.c:
+	.text       start:0x800B4E20 end:0x800B6DA0
+
+game/t800B6DA0.c:
+	.text       start:0x800B6DA0 end:0x800B8D3C
+
+game/t800B8D3C.c:
+	.text       start:0x800B8D3C end:0x800BACB0
+
+game/t800BACB0.c:
+	.text       start:0x800BACB0 end:0x800BCC1C
+
+game/t800BCC1C.c:
+	.text       start:0x800BCC1C end:0x800BEAE0
+
+game/t800BEAE0.c:
+	.text       start:0x800BEAE0 end:0x800C09F8
+
+game/t800C09F8.c:
+	.text       start:0x800C09F8 end:0x800C28E4
+
+game/t800C28E4.c:
+	.text       start:0x800C28E4 end:0x800C3840
+
+game/t800C3840.c:
+	.text       start:0x800C3840 end:0x800C4B3C
+
+game/t800C4B3C.c:
+	.text       start:0x800C4B3C end:0x800C61A8
+
+game/t800C61A8.c:
+	.text       start:0x800C61A8 end:0x800C772C
+
+game/t800C772C.c:
+	.text       start:0x800C772C end:0x800C8B6C
+
+game/t800C8B6C.c:
+	.text       start:0x800C8B6C end:0x800CAB64
+
+game/t800CAB64.c:
+	.text       start:0x800CAB64 end:0x800CC164
+
+game/t800CC164.c:
+	.text       start:0x800CC164 end:0x800CD4D8
+
+game/t800CD4D8.c:
+	.text       start:0x800CD4D8 end:0x800CE964
+
+game/t800CE964.c:
+	.text       start:0x800CE964 end:0x800D0734
+
+game/t800D0734.c:
+	.text       start:0x800D0734 end:0x800D1FE8
+
+game/t800D1FE8.c:
+	.text       start:0x800D1FE8 end:0x800D3F8C
+
+game/t800D3F8C.c:
+	.text       start:0x800D3F8C end:0x800D51A0
+
+game/t800D51A0.c:
+	.text       start:0x800D51A0 end:0x800D6F28
+
+game/t800D6F28.c:
+	.text       start:0x800D6F28 end:0x800D8C80
+
+game/t800D8C80.c:
+	.text       start:0x800D8C80 end:0x800DAAA8
+
+game/t800DAAA8.c:
+	.text       start:0x800DAAA8 end:0x800DCA2C
+
+game/t800DCA2C.c:
+	.text       start:0x800DCA2C end:0x800DE8CC
+
+game/t800DE8CC.c:
+	.text       start:0x800DE8CC end:0x800E083C
+
+game/t800E083C.c:
+	.text       start:0x800E083C end:0x800E1CC0
+
+game/t800E1CC0.c:
+	.text       start:0x800E1CC0 end:0x800E3294
+
+game/t800E3294.c:
+	.text       start:0x800E3294 end:0x800E4748
+
+game/t800E4748.c:
+	.text       start:0x800E4748 end:0x800E58B4
+
+game/t800E58B4.c:
+	.text       start:0x800E58B4 end:0x800E7514
+
+game/t800E7514.c:
+	.text       start:0x800E7514 end:0x800E94D8
+
+game/t800E94D8.c:
+	.text       start:0x800E94D8 end:0x800EA5F8
+
+game/t800EA5F8.c:
+	.text       start:0x800EA5F8 end:0x800EC434
+
+game/t800EC434.c:
+	.text       start:0x800EC434 end:0x800EE298
+
+game/t800EE298.c:
+	.text       start:0x800EE298 end:0x800EF7E4
+
+game/t800EF7E4.c:
+	.text       start:0x800EF7E4 end:0x800F1768
+
+game/t800F1768.c:
+	.text       start:0x800F1768 end:0x800F3550
+
+game/t800F3550.c:
+	.text       start:0x800F3550 end:0x800F4448
+
+game/t800F4448.c:
+	.text       start:0x800F4448 end:0x800F6400
+
+game/t800F6400.c:
+	.text       start:0x800F6400 end:0x800F8300
+
+game/t800F8300.c:
+	.text       start:0x800F8300 end:0x800F9F94
+
+game/t800F9F94.c:
+	.text       start:0x800F9F94 end:0x800FBF24
+
+game/t800FBF24.c:
+	.text       start:0x800FBF24 end:0x800FDB60
+
+game/t800FDB60.c:
+	.text       start:0x800FDB60 end:0x800FFA90
+
+game/t800FFA90.c:
+	.text       start:0x800FFA90 end:0x801014F8
+
+game/t801014F8.c:
+	.text       start:0x801014F8 end:0x801034BC
+
+game/t801034BC.c:
+	.text       start:0x801034BC end:0x80105498
+
+game/t80105498.c:
+	.text       start:0x80105498 end:0x8010748C
+
+game/t8010748C.c:
+	.text       start:0x8010748C end:0x80108C34
+
+game/t80108C34.c:
+	.text       start:0x80108C34 end:0x80109968
+
+game/t80109968.c:
+	.text       start:0x80109968 end:0x8010B874
+
+game/t8010B874.c:
+	.text       start:0x8010B874 end:0x8010D810
+
+game/t8010D810.c:
+	.text       start:0x8010D810 end:0x8010F7FC
+
+game/t8010F7FC.c:
+	.text       start:0x8010F7FC end:0x8011083C
+
+game/t8011083C.c:
+	.text       start:0x8011083C end:0x801126D0
+
+game/t801126D0.c:
+	.text       start:0x801126D0 end:0x80113C28
+
+game/t80113C28.c:
+	.text       start:0x80113C28 end:0x80115A3C
+
+game/t80115A3C.c:
+	.text       start:0x80115A3C end:0x801173E0
+
+game/t801173E0.c:
+	.text       start:0x801173E0 end:0x80119368
+
+game/t80119368.c:
+	.text       start:0x80119368 end:0x8011B1D4
+
+game/t8011B1D4.c:
+	.text       start:0x8011B1D4 end:0x8011D124
+
+game/t8011D124.c:
+	.text       start:0x8011D124 end:0x8011F058
+
+game/t8011F058.c:
+	.text       start:0x8011F058 end:0x80120F18
+
+game/t80120F18.c:
+	.text       start:0x80120F18 end:0x80122ED8
+
+game/t80122ED8.c:
+	.text       start:0x80122ED8 end:0x80124EC8
+
+game/t80124EC8.c:
+	.text       start:0x80124EC8 end:0x80126C18
+
+game/t80126C18.c:
+	.text       start:0x80126C18 end:0x80127904
+
+game/t80127904.c:
+	.text       start:0x80127904 end:0x80129ABC
+
+game/t80129ABC.c:
+	.text       start:0x80129ABC end:0x8012B53C
+
+game/t8012B53C.c:
+	.text       start:0x8012B53C end:0x8012D520
+
+game/t8012D520.c:
+	.text       start:0x8012D520 end:0x8012E5EC
+
+game/t8012E5EC.c:
+	.text       start:0x8012E5EC end:0x8012F40C
+
+game/t8012F40C.c:
+	.text       start:0x8012F40C end:0x80131310
+
+game/t80131310.c:
+	.text       start:0x80131310 end:0x80132A20
+
+game/t80132A20.c:
+	.text       start:0x80132A20 end:0x801346DC
+
+game/t801346DC.c:
+	.text       start:0x801346DC end:0x8013665C
+
+game/t8013665C.c:
+	.text       start:0x8013665C end:0x80137FC8
+
+game/t80137FC8.c:
+	.text       start:0x80137FC8 end:0x80139DA8
+
+game/t80139DA8.c:
+	.text       start:0x80139DA8 end:0x8013A7FC
+
+game/t8013A7FC.c:
+	.text       start:0x8013A7FC end:0x8013BEC4
+
+game/t8013BEC4.c:
+	.text       start:0x8013BEC4 end:0x8013DE4C
+
+game/t8013DE4C.c:
+	.text       start:0x8013DE4C end:0x8013F170
+
+game/t8013F170.c:
+	.text       start:0x8013F170 end:0x8014068C
+
+game/t8014068C.c:
+	.text       start:0x8014068C end:0x80142468
+
+game/t80142468.c:
+	.text       start:0x80142468 end:0x80144390
+
+game/t80144390.c:
+	.text       start:0x80144390 end:0x80146160
+
+game/t80149074.c:
+	.text       start:0x80149074 end:0x80149094
+
+game/t8014AB7C.c:
+	.text       start:0x8014AB7C end:0x8014AC44
+
+game/t8014AC8C.c:
+	.text       start:0x8014AC8C end:0x8014ACA4
+
+game/t8014B048.c:
+	.text       start:0x8014B048 end:0x8014B754
+
+game/t8014B7C8.c:
+	.text       start:0x8014B7C8 end:0x8014D7BC
+
+game/t8014D7BC.c:
+	.text       start:0x8014D7BC end:0x8014F768
+
+game/t8014F768.c:
+	.text       start:0x8014F768 end:0x8015126C
+
+game/t8015126C.c:
+	.text       start:0x8015126C end:0x801531EC
+
+game/t801531EC.c:
+	.text       start:0x801531EC end:0x80155140
+
+game/t80155140.c:
+	.text       start:0x80155140 end:0x801570B4
+
+game/t801570B4.c:
+	.text       start:0x801570B4 end:0x801583F8
+
+game/t801583F8.c:
+	.text       start:0x801583F8 end:0x8015A100
+
+game/t8015A100.c:
+	.text       start:0x8015A100 end:0x8015BE08
+
+game/t8015BE08.c:
+	.text       start:0x8015BE08 end:0x8015D654
+
+game/t8015D654.c:
+	.text       start:0x8015D654 end:0x8015E920
+
+game/t8015E920.c:
+	.text       start:0x8015E920 end:0x8015E95C
