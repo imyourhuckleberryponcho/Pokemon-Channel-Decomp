@@ -10,7 +10,7 @@ copy of the game to build it.
 
 ## Progress
 
-[![Progress map: one square per source file, sized by code size. Green = fully matched, blue = in progress.](progress.svg)](progress.svg)
+[![Progress map: one square per source file, sized by code size. Green = fully matched, blue = in progress.](progress.svg)](https://imyourhuckleberryponcho.github.io/Pokemon-Channel-Decomp/progress.html)
 
 Each square is one source file, sized by how much code it contains. Click the map for an interactive
 version where hovering a square shows the file name and how much of it matches.
