@@ -158,7 +158,7 @@ s32 scr_ReleaseModelIndeed(void *arg0, M2C_UNK arg_sp0) {
     void *sp8;
     M2C_UNK var_r31;
     s32 temp_r3;
-    s32 var_r25;
+    s16 var_r25;
     s8 var_r26;
     void *temp_r3_2;
     void *temp_r3_3;

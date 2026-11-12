@@ -453,8 +453,8 @@ void fn_8012FFBC(void) {
         /* draft: did not compile: var_r12 += 0x20; */
         var_ctr_3 -= 1;
     } while (var_ctr_3 != 0);
-    var_ctr_4 = 0x200 - var_r31;
     var_r3 = &lbl_80346460 + (var_r31 * 4) + 0x240;
+    var_ctr_4 = 0x200 - var_r31;
     if (var_r31 < 0x200) {
         do {
             temp_r0_3 = 0x1000 / var_r31;
@@ -499,7 +499,7 @@ void fn_801301D8(void *arg0, s32 arg1, u8 arg2, u8 arg3) {
 }
 
 s16 fn_801302E4(s32 *arg0, void *arg1, M2C_UNK arg_sp0) {
-    u32 *temp_r3_2;
+    s32 temp_r30;
     s16 var_r3_2;
     s16 var_r3_3;
     s16 var_r3_4;
@@ -519,7 +519,7 @@ s16 fn_801302E4(s32 *arg0, void *arg1, M2C_UNK arg_sp0) {
     s32 temp_r25_4;
     s32 temp_r28;
     s32 temp_r28_2;
-    s32 temp_r30;
+    u32 *temp_r3_2;
     s32 temp_r6;
     s32 temp_r6_2;
     s32 temp_r6_3;
@@ -792,7 +792,7 @@ void fn_80130E58(void *arg0, s32 arg1, s32 arg2) {
     s32 var_r6_2;
     s32 var_r7_2;
     s32 var_r9;
-    s32 temp_r0_12;
+    u32 temp_r0_12;
     s32 temp_r0_8;
     s32 temp_r4;
     s32 temp_r6;

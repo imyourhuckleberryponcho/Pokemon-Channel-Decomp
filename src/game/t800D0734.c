@@ -688,9 +688,9 @@ void fn_800D1E48(u16 arg0, u16 arg1, u8 arg2, u16 arg3, s32 arg4, s32 arg5, s32 
         temp_r29_2 = var_r29 * arg0;
         temp_r30_2 = var_r29 * (((var_r12 * arg3) - arg1) - arg0);
         var_r0 = arg5 + temp_r29_2;
-        var_r6 = arg7 + temp_r30_2;
         var_r3 = arg4 + temp_r29_2;
         var_r7 = arg6 + temp_r30_2;
+        var_r6 = arg7 + temp_r30_2;
     }
     var_r4 = (u16) ((s32) arg1 / (s32) var_r12);
     if (arg_sp8 != 0) {

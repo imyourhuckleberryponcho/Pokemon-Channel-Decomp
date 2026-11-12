@@ -191,11 +191,11 @@ s32 DVDLowRequestAudioStatus(s32 arg0, s32 arg1) {
     s32 temp_r30;
 
     Callback_80350940 = arg1;
-    StopAtNextInt_80350938 = 0;
-    M2C_FIELD((void *)0xCC006000, s32 *, 8) = (s32) (arg0 | 0xE2000000);
     M2C_FIELD((void *)0xCC006000, s32 *, 0x1C) = 1;
+    StopAtNextInt_80350938 = 0;
     temp_r30 = ((u32) *(u32 *)0x800000F8 >> 2U) * 0xA;
     OSCreateAlarm(&AlarmForTimeout_8031C6B8, 0x80000000);
+    M2C_FIELD((void *)0xCC006000, s32 *, 8) = (s32) (arg0 | 0xE2000000);
     OSSetAlarm(&AlarmForTimeout_8031C6B8, 0, temp_r30, &AlarmHandlerForTimeout_800CCFAC);
     return 1;
 }

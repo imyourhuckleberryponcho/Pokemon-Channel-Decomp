@@ -240,7 +240,6 @@ s32 HSD_MtxInverseConcat(void *arg0, void *arg1, void *arg2) {
     f32 temp_f1;
     f32 temp_f1_2;
     f32 temp_f1_3;
-    f32 temp_f23;
     f32 temp_f24;
     f32 temp_f24_2;
     f32 temp_f24_3;
@@ -277,6 +276,7 @@ s32 HSD_MtxInverseConcat(void *arg0, void *arg1, void *arg2) {
     f32 temp_f9;
     f32 temp_f9_2;
     f32 temp_f9_3;
+    f32 temp_f23;
 
     temp_f7 = M2C_FIELD(arg0, f32 *, 0x18);
     temp_f23 = M2C_FIELD(arg0, f32 *, 4);

@@ -319,7 +319,7 @@ s32 fn_80139C84(void *arg0, s32 arg1) {
     u32 temp_r7_3;
     s32 temp_r5;
     s32 temp_r6;
-    s32 var_ctr;
+    u32 temp_r8_2;
     s32 var_r9;
     s32 var_r5;
     s32 var_r10;
@@ -327,7 +327,7 @@ s32 fn_80139C84(void *arg0, s32 arg1) {
     u32 temp_r7;
     s32 temp_r0;
     u32 temp_r8;
-    u32 temp_r8_2;
+    s32 var_ctr;
     u32 var_r4;
     void *var_r6;
 

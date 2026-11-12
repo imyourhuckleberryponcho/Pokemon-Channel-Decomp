@@ -712,9 +712,9 @@ void fn_8000EEFC(void *arg0, void *arg2) {
     *(f32 *)0xCC008000 = M2C_FIELD(temp_r3, f32 *, 8);
     *(f32 *)0xCC008000 = M2C_FIELD(temp_r3, f32 *, 0);
     *(f32 *)0xCC008000 = M2C_FIELD(temp_r3, f32 *, 4);
-    *(f32 *)0xCC008000 = (u8) M2C_FIELD(arg2, u8 *, 0);
     *(f32 *)0xCC008000 = (u8) M2C_FIELD(arg2, u8 *, 1);
     *(f32 *)0xCC008000 = (u8) M2C_FIELD(arg2, u8 *, 2);
+    *(f32 *)0xCC008000 = (u8) M2C_FIELD(arg2, u8 *, 0);
     *(f32 *)0xCC008000 = 0xFF;
     temp_r3_2 = M2C_FIELD(arg0, void **, 4);
     *(f32 *)0xCC008000 = M2C_FIELD(temp_r3_2, f32 *, 8);
@@ -814,7 +814,8 @@ s32 fn_8000F258(void *arg0, void *arg1, s32 arg2, s32 arg3) {
     temp_r12 = M2C_FIELD(arg0, u8 *, 1);
     temp_r31 = M2C_FIELD(arg0, u8 *, 2);
     temp_r30 = M2C_FIELD(arg0, u8 *, 3);
-    temp_r5 = temp_r11 + ((s32) (arg2 * (M2C_FIELD(arg1, u8 *, 0) - temp_r11)) / arg3);
+    temp_r5 = ((s32) (arg2 * (M2C_FIELD(arg1, u8 *, 0) - temp_r11)) / arg3);
+    temp_r5 += temp_r11;
     temp_r4 = temp_r12 + ((s32) (arg2 * (M2C_FIELD(arg1, u8 *, 1) - temp_r12)) / arg3);
     temp_r3 = temp_r31 + ((s32) (arg2 * (M2C_FIELD(arg1, u8 *, 2) - temp_r31)) / arg3);
     temp_r0 = temp_r30 + ((s32) (arg2 * (M2C_FIELD(arg1, u8 *, 3) - temp_r30)) / arg3);

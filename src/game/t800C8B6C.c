@@ -1198,9 +1198,9 @@ u32 CompleteTransfer(void) {
                             M2C_FIELD(var_r5, s8 *, 0) = (s8) (temp_r6 >> ((3 - var_r4_2) * 8));
                             M2C_FIELD(var_r5, s8 *, 1) = (s8) (temp_r6 >> ((3 - (var_r4_2 + 1)) * 8));
                             M2C_FIELD(var_r5, s8 *, 2) = (s8) (temp_r6 >> ((3 - (var_r4_2 + 2)) * 8));
-                            M2C_FIELD(var_r5, s8 *, 3) = (s8) (temp_r6 >> (var_r4_2 * -8));
                             M2C_FIELD(var_r5, s8 *, 4) = (s8) (temp_r6 >> ((3 - (var_r4_2 + 4)) * 8));
                             M2C_FIELD(var_r5, s8 *, 5) = (s8) (temp_r6 >> ((3 - (var_r4_2 + 5)) * 8));
+                            M2C_FIELD(var_r5, s8 *, 3) = (s8) (temp_r6 >> (var_r4_2 * -8));
                             M2C_FIELD(var_r5, s8 *, 6) = (s8) (temp_r6 >> ((3 - (var_r4_2 + 6)) * 8));
                             M2C_FIELD(var_r5, s8 *, 7) = (s8) (temp_r6 >> ((3 - (var_r4_2 + 7)) * 8));
                             var_r5 += 8;

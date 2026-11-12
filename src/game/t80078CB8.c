@@ -479,7 +479,7 @@ void fn_800796D0(void *arg0, void *arg1, void *arg2, M2C_UNK arg_sp0) {
     case 4:                                         /* switch 2 */
         temp_r24 = M2C_FIELD(temp_r3_2, void **, 0);
         temp_cr0_eq_3 = temp_r24 == NULL;
-        if (temp_cr0_eq_3 == 0) {
+        if (temp_cr0_eq_3 == 0U) {
             if (temp_cr0_eq_3 == 0) {
                 fn_8002FCC0(temp_r24, 0);
             }

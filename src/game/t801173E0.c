@@ -120,7 +120,7 @@ void fn_80117B24(s32 arg0) {
     s32 temp_r3;
     s32 temp_r3_2;
     s32 temp_r3_3;
-    s32 temp_r5;
+    u16 temp_r5;
     s32 temp_r5_2;
     s32 temp_r6;
     s32 temp_r7;
@@ -538,10 +538,10 @@ block_51:
                 M2C_FIELD(var_r29_3, u8 *, 0x2C) = arg3;
                 M2C_FIELD(var_r29_3, s32 *, 0x28) = -1;
                 if (sp8 != 0) {
+                    M2C_FIELD(var_r29_3, f32 *, 0x10) = (f32) (lbl_8035221C / (f32) sp8);
                     M2C_FIELD(var_r29_3, f32 *, 8) = (f32) M2C_FIELD(var_r29_3, f32 *, 0);
                     M2C_FIELD(var_r29_3, f32 *, 4) = temp_f31_3;
                     M2C_FIELD(var_r29_3, f32 *, 0xC) = (f32) lbl_803521F0;
-                    M2C_FIELD(var_r29_3, f32 *, 0x10) = (f32) (lbl_8035221C / (f32) sp8);
                 } else {
                     M2C_FIELD(var_r29_3, f32 *, 4) = temp_f31_3;
                     M2C_FIELD(var_r29_3, f32 *, 0) = temp_f31_3;

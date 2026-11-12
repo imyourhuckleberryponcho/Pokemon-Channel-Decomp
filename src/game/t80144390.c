@@ -300,7 +300,8 @@ loop_24:
                     temp_r9_3 = ~(temp_r6_2 | temp_r6_2);
                     sp3E = temp_r0_3;
                     temp_r5_2 = temp_r5 & temp_r9_3;
-                    temp_r8_3 = temp_r8_2 + 2;
+                    temp_r8_3 = temp_r8_2;
+                    temp_r8_3 += 2;
                     sp3C = temp_r5_2;
                     temp_r6_3 = 3 << temp_r8_3;
                     temp_r0_4 = temp_r0_3 & temp_r9_3;
@@ -689,7 +690,8 @@ loop_29:
                     temp_r0_5 = temp_r0_4 & temp_r9_3;
                     sp3E = temp_r0_5;
                     temp_r9_4 = ~(temp_r6_3 | temp_r6_3);
-                    temp_r8_4 = temp_r8_3 + 2;
+                    temp_r8_4 = temp_r8_3;
+                    temp_r8_4 += 2;
                     temp_r5_3 = temp_r5_2 & temp_r9_4;
                     temp_r6_4 = 3 << temp_r8_4;
                     sp3C = temp_r5_3;
@@ -982,7 +984,6 @@ void fn_80145374(u8 *arg0, s32 arg1, s32 arg2, M2C_UNK arg_sp0) {
     s32 temp_r4_2;
     s32 temp_r9;
     s32 temp_r9_6;
-    s32 var_ctr_2;
     s32 var_ctr_3;
     u32 temp_r0;
     u32 temp_r0_2;
@@ -1020,6 +1021,7 @@ void fn_80145374(u8 *arg0, s32 arg1, s32 arg2, M2C_UNK arg_sp0) {
     u8 temp_r3_3;
     u8 temp_r3_4;
     u8 temp_r3_5;
+    s32 var_ctr_2;
 
     var_r3 = arg0;
     sp8 = 1;
@@ -1278,7 +1280,7 @@ loop_4:
                     temp_r29 = ((temp_r12 << 4) | (temp_r12 >> 0x1CU)) + temp_r27_2;
                     temp_r0_3 = (temp_r11 << 0x1C) - temp_r11_2;
                     temp_r10 = var_r4 + 4;
-                    temp_r27_3 = ((temp_r0_3 << 4) | (temp_r0_3 >> 0x1CU)) + temp_r11_2;
+                    temp_r27_3 = ((temp_r0_3 << 4) | (temp_r0_3 >> 0x1CU));
                     temp_r9_2 = var_r4 + 5;
                     temp_r12_2 = temp_r10 >> 0x1FU;
                     (&sp8)[temp_r29] += M2C_FIELD(var_r5, u8 *, 2);
@@ -1288,7 +1290,7 @@ loop_4:
                     temp_r10_2 = (temp_r9_2 << 0x1C) - temp_r11_3;
                     temp_r8_2 = var_r4 + 6;
                     temp_r7_3 = var_r4 + 7;
-                    (&sp8)[temp_r27_3] += M2C_FIELD(var_r5, u8 *, 3);
+                    (&sp8)[(temp_r27_3 + temp_r11_2)] += M2C_FIELD(var_r5, u8 *, 3);
                     temp_r11_4 = ((temp_r10_2 << 4) | (temp_r10_2 >> 0x1CU)) + temp_r11_3;
                     temp_r9_3 = temp_r8_2 >> 0x1FU;
                     temp_r8_3 = (temp_r8_2 << 0x1C) - temp_r9_3;

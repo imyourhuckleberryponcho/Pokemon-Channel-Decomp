@@ -536,12 +536,12 @@ s32 fn_800F2DE4(void *arg0, f32 *arg1, f32 farg0) {
     s32 sp44;
     M2C_UNK sp4C;
     f32 sp40;
-    f32 sp3C;
+    M2C_UNK sp10;
     f32 sp38;
     f32 sp34;
     f32 sp28;
     s32 sp48;
-    M2C_UNK sp10;
+    f32 sp3C;
     f32 spC;
     f32 sp8;
     f32 temp_f2;
@@ -656,7 +656,7 @@ void fn_800F3130(void *arg0, f32 *arg1) {
         }
         if (M2C_FIELD(arg0, s32 *, 8) & 1) {
             if (arg1 != NULL) {
-                if ((fabs(M2C_FIELD(arg1, f32 *, 0)) <= lbl_80351ED0) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(M2C_FIELD(arg1, f32 *, 4)) == (f32) lbl_80351ED0) != 0)) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(M2C_FIELD(arg1, f32 *, 8)) == (f32) lbl_80351ED0) != 0))) {
+                if ((fabs(M2C_FIELD(arg1, f32 *, 0)) <= lbl_80351ED0) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(M2C_FIELD(arg1, f32 *, 4)) == lbl_80351ED0) != 0)) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(M2C_FIELD(arg1, f32 *, 8)) == lbl_80351ED0) != 0))) {
                     var_r0 = -1;
                 } else {
                     PSVECNormalize(arg1, &sp38);
@@ -670,8 +670,8 @@ void fn_800F3130(void *arg0, f32 *arg1) {
                 __assert(&lbl_80350120, 0x3D6, &lbl_80350130);
             }
             if ((M2C_FIELD(arg0, f32 *, 0x2C) != sp38) || (M2C_FIELD(arg0, f32 *, 0x30) != sp3C) || (M2C_FIELD(arg0, f32 *, 0x34) != sp40)) {
-                HSD_CObjSetMtxDirty(arg0);
                 M2C_FIELD(arg0, f32 *, 0x2C) = sp38;
+                HSD_CObjSetMtxDirty(arg0);
                 M2C_FIELD(arg0, f32 *, 0x30) = sp3C;
                 M2C_FIELD(arg0, f32 *, 0x34) = sp40;
             }
@@ -694,7 +694,7 @@ void fn_800F3130(void *arg0, f32 *arg1) {
                 }
                 HSD_WObjGetPosition(M2C_FIELD(arg0, u32 *, 0x28), &sp14);
                 PSVECSubtract(&sp14, &sp8, &sp2C);
-                if ((fabs(sp2C) <= lbl_80351ED0) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(sp30) == lbl_80351ED0) != 0)) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(sp34) == lbl_80351ED0) != 0))) {
+                if ((lbl_80351ED0 >= fabs(sp2C)) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(sp30) == lbl_80351ED0) != 0)) && (M2C_ERROR(/* unknown instruction: cror eq, lt, eq */), ((fabs(sp34) == lbl_80351ED0) != 0))) {
                     var_r0_3 = -1;
                 } else {
                     PSVECNormalize(&sp2C, &sp2C);

@@ -604,9 +604,9 @@ void fn_800CF8D8(u32 arg0) {
                 ResumeFromHere_803509C8 = 0;
                 temp_r30_3 = executing_803509A0;
                 lbl_803509C0 = 0U;
-                executing_803509A0 = &BB2_8031C720 + 0x40;
                 M2C_FIELD(temp_r30_3, s32 *, 0xC) = 0xA;
                 temp_r12_3 = M2C_FIELD(temp_r30_3, M2C_UNK (**)(M2C_UNK, void *), 0x28);
+                executing_803509A0 = &BB2_8031C720 + 0x40;
                 if (temp_r12_3 != NULL) {
                     temp_r12_3(-3, temp_r30_3);
                 }

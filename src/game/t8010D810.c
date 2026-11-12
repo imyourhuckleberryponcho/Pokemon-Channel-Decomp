@@ -56,7 +56,7 @@ void TExp2TevDesc(void *arg0, void *arg1, s32 *arg2, s32 *arg3, M2C_UNK arg_sp0)
     u32 var_r0_14;
     u32 var_r0_15;
     u32 var_r0_16;
-    s32 var_r0_17;
+    u32 var_r0_17;
     s32 var_r0_18;
     u32 var_r0_2;
     u32 var_r0_3;

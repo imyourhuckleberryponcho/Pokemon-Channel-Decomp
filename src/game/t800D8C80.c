@@ -172,8 +172,8 @@ s32 __CARDUnlock(s32 arg0, void *arg1) {
     u32 var_r3;
     u32 var_r3_2;
     u32 var_r3_3;
-    void *temp_r30;
     void *temp_r31;
+    void *temp_r30;
     void *temp_r3;
 
     temp_r5 = arg0 * 0x110;
@@ -621,6 +621,8 @@ void fn_800DA4E8(s32 arg0, s32 arg1) { } /* draft: stub */
 
 s32 __CARDUpdateDir(s32 arg0, s32 arg1) { return 0; } /* draft: stub */
 
+#pragma push
+#pragma optimize_for_size on
 void __CARDCheckSum(u16 *arg0, s32 arg1, u16 *arg2, u16 *arg3) {
     u8 temp_r0;
     s32 var_ctr;
@@ -696,6 +698,7 @@ block_4:
         *arg3 = 0;
     }
 }
+#pragma pop
 
 #pragma push
 #pragma peephole off
@@ -711,7 +714,7 @@ s32 VerifyID(void *arg0) {
     u16 *temp_r3;
     u16 *var_r25;
     u16 *var_r4;
-    u16 temp_r5;
+    u8 temp_r5;
     u16 temp_r5_2;
     u16 temp_r5_3;
     u16 temp_r5_4;

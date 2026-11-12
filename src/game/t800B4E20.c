@@ -95,8 +95,8 @@ u16 fn_800B4E20(u8 *arg0, u16 arg1) {
     u8 temp_r4_4;
     u8 temp_r4_7;
 
-    temp_r23 = *(&lbl_803507F4 + (lbl_803507F8 * 2));
     *(&lbl_803507D0 + (lbl_803507F8 * 4)) = 0;
+    temp_r23 = *(&lbl_803507F4 + (lbl_803507F8 * 2));
     if (EXILock(lbl_803507F8, 0, &fn_800B2F7C, &fn_800B2F7C) == 0) {
         do {
 
@@ -342,8 +342,8 @@ block_15:
     var_r30_3 = 0;
 loop_27:
     if (var_r30_3 >= 0x14) {
-        EXIDeselect((unsigned short)(lbl_803507F8), (unsigned char)(0));
         *(&lbl_803507E0 + (lbl_803507F8 * 2)) = 0;
+        EXIDeselect((unsigned short)(lbl_803507F8), (unsigned char)(0));
         if (EXISelect(lbl_803507F8, 0, *(&lbl_803507F4 + (lbl_803507F8 * 2))) == 0) {
             temp_r4_4 = lbl_803507F8 * 2;
             *(&lbl_803507E0 + temp_r4_4) = *(&lbl_803507E0 + temp_r4_4) | 0xB0;
@@ -405,7 +405,7 @@ loop_27:
 u16 fn_800B5A64(u8 *arg0, u16 arg1) {
     u8 sp30;
     u8 sp10;
-    s32 temp_r4;
+    u8 temp_r4;
     s32 temp_r4_10;
     s32 temp_r4_11;
     s32 temp_r4_12;
@@ -535,7 +535,7 @@ u16 fn_800B5E8C(u8 *arg0, u16 arg1) {
     s32 temp_r4_10;
     s32 temp_r4_11;
     s32 temp_r4_12;
-    s32 temp_r4_13;
+    u8 temp_r4_13;
     s32 temp_r4_14;
     s32 temp_r4_15;
     s32 temp_r4_16;

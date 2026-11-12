@@ -210,7 +210,7 @@ void fn_80046CBC(void *arg0) {
 #pragma pop
 
 void fn_80046CE8(void *arg0) {
-    s32 sp8;
+    u8 sp8;
 
     sp8 = M2C_FIELD(arg0, s32 *, 0x14);
     fn_800469A4((void *)(&sp8), (long *)(0));

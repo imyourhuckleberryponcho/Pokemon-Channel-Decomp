@@ -184,11 +184,11 @@ s32 scr_CreatePointLight(void *arg0) {
     s8 spB;
     s8 spA;
     s8 sp9;
-    s8 sp8;
+    u16 sp8;
     f32 temp_f30;
     f32 temp_f31;
-    u8 temp_r28;
     s32 var_r4;
+    u8 temp_r28;
     s8 temp_r29;
     s8 temp_r30;
     s8 temp_r31;

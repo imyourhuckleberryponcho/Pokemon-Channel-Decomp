@@ -163,9 +163,9 @@ void fn_80038E34(void *arg0, s32 arg1, u32 arg2, s32 arg3, M2C_UNK arg_sp0) {
     s32 var_r27;
     s32 var_r27_2;
     s32 var_r29;
-    s32 var_r31;
-    s32 var_r4;
+    u8 var_r31;
     u32 temp_r5;
+    s32 var_r4;
     u32 var_r0;
     u32 var_r30;
 
@@ -176,7 +176,7 @@ void fn_80038E34(void *arg0, s32 arg1, u32 arg2, s32 arg3, M2C_UNK arg_sp0) {
         temp_r5 = var_r30 + var_r31;
         if (temp_r5 >= 0x2100U) {
             var_r0 = 0x80000U;
-            var_r4 = M2C_FIELD(arg0, s32 *, 0x80030);
+            var_r4 = M2C_FIELD((s32)arg0, s32 *, 0x80030);
             if ((s32) temp_r5 <= 0x80000) {
                 var_r0 = temp_r5;
             }

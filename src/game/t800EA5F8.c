@@ -178,8 +178,7 @@ block_17:
                     break;
                 default:                            /* switch 1 */
                     temp_r4_3 = M2C_FIELD(arg0, u8 *, 0xF);
-                    temp_r3_5 = &lbl_802A88E0 + (temp_r31 * 0x30);
-                    if (temp_r4_3 != (u8) M2C_FIELD(temp_r3_5, u8 *, 0xF)) {
+                    if (temp_r4_3 != (u8) M2C_FIELD((temp_r3_5 = &lbl_802A88E0 + (temp_r31 * 0x30)), u8 *, 0xF)) {
                         M2C_FIELD(temp_r3_5, u8 *, 0xF) = temp_r4_3;
                         goto block_17;
                     }
@@ -273,8 +272,8 @@ void HSD_DisableChannelLighting(s32 arg0) {
             temp_r5 = M2C_FIELD(temp_r10, s32 *, 0x18);
             temp_r6_2 = M2C_FIELD(temp_r10, s32 *, 0x1C);
             temp_r9 = M2C_FIELD(temp_r10, s32 *, 0x28);
-            M2C_FIELD(temp_r10, s32 *, 0x78) = temp_r5;
             M2C_FIELD(temp_r10, s32 *, 0x7C) = temp_r6_2;
+            M2C_FIELD(temp_r10, s32 *, 0x78) = temp_r5;
             M2C_FIELD(temp_r10, s32 *, 0x88) = temp_r9;
             M2C_FIELD(temp_r10, s32 *, 0x84) = temp_r8_2;
             GXSetChanCtrl((long)(0), (long)(temp_r5), (long)(temp_r6_2), (long)(0), (long)(temp_r8_2), (long)(temp_r9));

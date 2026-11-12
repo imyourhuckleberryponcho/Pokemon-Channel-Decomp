@@ -823,8 +823,8 @@ void synthInitAllocationAids(void) {
     M2C_FIELD(&lbl_80339F00, s8 *, 0xE00) = 0xFF;
     lbl_80350DF9 = 0;
     var_r6_2 = 0;
-    M2C_FIELD((&lbl_80339F00 + 0xE00 + (M2C_FIELD(&lbl_8032CC00, u8 *, 0x210) * 4)), s8 *, -3) = 0xFF;
     lbl_80350DF8 = M2C_FIELD(&lbl_8032CC00, u8 *, 0x210) - 1;
+    M2C_FIELD((&lbl_80339F00 + 0xE00 + (M2C_FIELD(&lbl_8032CC00, u8 *, 0x210) * 4)), s8 *, -3) = 0xFF;
     if ((u8) M2C_FIELD(&lbl_8032CC00, u8 *, 0x210) > 0U) {
         temp_r5_2 = M2C_FIELD(&lbl_8032CC00, u8 *, 0x210) - 8;
         if ((u8) M2C_FIELD(&lbl_8032CC00, u8 *, 0x210) > 8U) {

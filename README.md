@@ -19,11 +19,11 @@ version where hovering a square shows the file name and how much of it matches.
 |---|---|
 | Functions that match byte for byte | 937 of 5264 |
 | Code matched (bytes in those functions) | 3.0% |
-| Overall similarity of the drafted code to the original ("fuzzy" match) | 35.7% |
+| Overall similarity of the drafted code to the original ("fuzzy" match) | 35.8% |
 | Functions with a real name | 1983 of 5264 |
 | Complete files linked into the build | none yet |
 
-Last updated 2026-11-11.
+Last updated 2026-11-12.
 
 ## How this code was produced
 

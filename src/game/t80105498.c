@@ -537,8 +537,8 @@ void resolveCnsDirUp(void *arg0, void *arg1, M2C_UNK (*arg2)(void *, M2C_UNK, f3
     void *temp_r3;
     void *temp_r3_2;
     void *temp_r5;
-    void *var_r28;
     void *var_r29_2;
+    void *var_r28;
 
     var_r29 = 0;
     sp64 = M2C_FIELD(&lbl_801DA8F8, f32 *, 0xC);

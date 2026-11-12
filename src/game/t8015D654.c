@@ -653,7 +653,7 @@ loop_4:
     var_r30 = 0U;
 loop_30:
     if (var_r27_2 < (u32) arg1) {
-        if (var_r30 < (u32) ((((u32) arg1 >> 2U) + var_r3_2) - 1)) {
+        if (var_r30 < (u32) (((arg1 >> 2U) + var_r3_2) - 1)) {
             var_r4 = 4;
         } else if ((u32) (temp_r4 + (arg1 & 1)) == 2U) {
             var_r4 = 2;

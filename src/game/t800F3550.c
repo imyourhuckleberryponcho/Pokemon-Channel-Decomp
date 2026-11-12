@@ -138,7 +138,7 @@ void HSD_CObjSetRoll(void *arg0, f32 farg0) {
                 var_r0 = var_r0_2 == 0;
             }
             if (var_r0 != 0) {
-                if ((f32) (lbl_80351EE8 - (f64) (f32) fabs(sp44)) < (f32) lbl_80351EF0) {
+                if ((lbl_80351EE8 - (f64) (f32) fabs(sp44)) < (f32) lbl_80351EF0) {
                     var_f4 = (sp44 * sp44) + (sp48 * sp48);
                     if (var_f4 > lbl_80351EA8) {
                         temp_f1 = __frsqrte(var_f4);

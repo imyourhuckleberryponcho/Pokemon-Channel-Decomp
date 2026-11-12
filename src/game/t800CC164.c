@@ -204,15 +204,15 @@ void C_MTXLookAt(void *arg0, void *arg1, f32 *arg2, void *arg3) {
     sp30 = M2C_FIELD(arg1, f32 *, 0) - M2C_FIELD(arg3, f32 *, 0);
     sp34 = M2C_FIELD(arg1, f32 *, 4) - M2C_FIELD(arg3, f32 *, 4);
     temp_f1 = M2C_FIELD(arg1, f32 *, 8);
-    sp38 = temp_f1 - M2C_FIELD(arg3, f32 *, 8);
     PSVECNormalize();
     PSVECCrossProduct((void *)(arg2), (void *)(&sp30));
     PSVECNormalize();
     PSVECCrossProduct((void *)(&sp30), (void *)(&sp24));
     M2C_FIELD(arg0, f32 *, 0) = sp24;
     M2C_FIELD(arg0, f32 *, 4) = sp28;
-    M2C_FIELD(arg0, f32 *, 8) = sp2C;
+    sp38 = temp_f1 - M2C_FIELD(arg3, f32 *, 8);
     M2C_FIELD(arg0, f32 *, 0xC) = (f32) -((M2C_FIELD(arg1, f32 *, 8) * sp2C) + ((M2C_FIELD(arg1, f32 *, 0) * sp24) + (M2C_FIELD(arg1, f32 *, 4) * sp28)));
+    M2C_FIELD(arg0, f32 *, 8) = sp2C;
     M2C_FIELD(arg0, f32 *, 0x10) = sp18;
     M2C_FIELD(arg0, f32 *, 0x14) = sp1C;
     M2C_FIELD(arg0, f32 *, 0x18) = sp20;
@@ -265,9 +265,9 @@ void C_MTXFrustum(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3, f32 fa
     M2C_FIELD(arg0, f32 *, 0xC) = (f32) lbl_80351CE8;
     M2C_FIELD(arg0, f32 *, 0x14) = (f32) (temp_f8 * temp_f9);
     M2C_FIELD(arg0, f32 *, 0x18) = (f32) (temp_f9 * (farg0 + farg1));
+    M2C_FIELD(arg0, f32 *, 0x24) = (f32) lbl_80351CE8;
     M2C_FIELD(arg0, f32 *, 0x1C) = (f32) lbl_80351CE8;
     M2C_FIELD(arg0, f32 *, 0x20) = (f32) lbl_80351CE8;
-    M2C_FIELD(arg0, f32 *, 0x24) = (f32) lbl_80351CE8;
     M2C_FIELD(arg0, f32 *, 0x28) = (f32) (-farg4 * temp_f6);
     M2C_FIELD(arg0, f32 *, 0x10) = (f32) lbl_80351CE8;
     M2C_FIELD(arg0, f32 *, 0x2C) = (f32) (temp_f6 * -(farg5 * farg4));
@@ -286,8 +286,8 @@ void C_MTXPerspective(void *arg0, f32 farg0, f32 farg1, f32 farg2, f32 farg3) {
     temp_f3 = lbl_80351CE0 / (farg3 - farg2);
     M2C_FIELD(arg0, f32 *, 0) = (f32) (temp_f4 / farg1);
     M2C_FIELD(arg0, f32 *, 4) = (f32) lbl_80351CE8;
-    M2C_FIELD(arg0, f32 *, 0x10) = (f32) lbl_80351CE8;
     M2C_FIELD(arg0, f32 *, 0x18) = (f32) lbl_80351CE8;
+    M2C_FIELD(arg0, f32 *, 0x10) = (f32) lbl_80351CE8;
     M2C_FIELD(arg0, f32 *, 0x14) = temp_f4;
     M2C_FIELD(arg0, f32 *, 0x1C) = (f32) lbl_80351CE8;
     M2C_FIELD(arg0, f32 *, 0xC) = (f32) lbl_80351CE8;
@@ -517,8 +517,8 @@ void __DVDInterruptHandler(M2C_UNK *arg1) {
         if (temp_r3 & 4) {
             var_r29 |= 4;
         }
-        M2C_FIELD((void *)0xCC006000, s32 *, 4) = (s32) (temp_r3 | (temp_r0_3 & 2));
         WaitingCoverClose_80350954 = 0;
+        M2C_FIELD((void *)0xCC006000, s32 *, 4) = (s32) (temp_r3 | (temp_r0_3 & 2));
     } else {
         *(s32 *)0xCC006004 = 0;
     }
@@ -671,7 +671,7 @@ s32 DVDLowRead(s32 arg0, s32 arg1, u32 arg2, s32 arg3) {
     s32 temp_r9;
     s32 var_r0;
     s32 var_r0_2;
-    s32 var_r3;
+    u8 var_r3;
     u32 temp_r22;
     s16 temp_r23;
     u32 temp_r3;
@@ -683,8 +683,8 @@ s32 DVDLowRead(s32 arg0, s32 arg1, u32 arg2, s32 arg3) {
     M2C_FIELD(&CommandList_8031C650, s32 *, 0xC8) = arg1;
     M2C_FIELD(&CommandList_8031C650, u32 *, 0xCC) = arg2;
     if ((u32) WorkAroundType_8035095C == 0U) {
-        M2C_FIELD(&CommandList_8031C650, s32 *, 0) = -1;
         NextCommandNumber_8035097C = 0;
+        M2C_FIELD(&CommandList_8031C650, s32 *, 0) = -1;
         Read(arg0, arg1, arg2, arg3);
     } else if ((u32) WorkAroundType_8035095C == 1U) {
         if ((s32) lbl_8034FF68 != 0) {
@@ -721,8 +721,8 @@ s32 DVDLowRead(s32 arg0, s32 arg1, u32 arg2, s32 arg3) {
                     temp_r4_2 = 0 ^ 0x80000000;
                     if (-((temp_r4_2 - temp_r4_2) - !M2C_CARRY) != 0) {
                         Read(arg0, arg1, arg2, arg3);
-                        M2C_FIELD(&CommandList_8031C650, s32 *, 0) = -1;
                         NextCommandNumber_8035097C = 0;
+                        M2C_FIELD(&CommandList_8031C650, s32 *, 0) = -1;
                     } else {
                         M2C_FIELD(&CommandList_8031C650, s32 *, 0) = 1;
                         M2C_FIELD(&CommandList_8031C650, s32 *, 4) = arg0;

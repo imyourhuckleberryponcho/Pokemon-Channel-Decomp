@@ -183,18 +183,17 @@ s32 __div2u(s32 arg0, u32 arg1, s32 arg2, s32 arg3) {
 }
 
 s32 __div2i(s32 arg0, u32 arg1, s32 arg2, s32 arg3) {
-    s32 sp8;
+    u8 sp8;
     s32 temp_r0;
     s32 temp_r10;
     s32 temp_r9;
-    s32 temp_r9_2;
     s8 temp_r9_3;
     u32 temp_r9_4;
     u16 var_ctr;
     s32 var_r0;
     s32 var_r3;
     s32 var_r3_2;
-    s32 var_r3_3;
+    s8 var_r3_3;
     s32 var_r5;
     s32 var_r6;
     s32 var_r9;
@@ -202,6 +201,7 @@ s32 __div2i(s32 arg0, u32 arg1, s32 arg2, s32 arg3) {
     u32 var_r7;
     u32 var_r7_2;
     u8 spC;
+    s32 temp_r9_2;
 
     var_r3_2 = arg0;
     var_r4 = arg1;
@@ -254,7 +254,7 @@ s32 __div2i(s32 arg0, u32 arg1, s32 arg2, s32 arg3) {
         } while (var_ctr != 0);
         var_r3 = M2C_CARRY;
         var_r3 += (var_r3_3 * 2);
-        if ((sp8 ^ spC) != 0) {
+        if ((spC ^ sp8) != 0) {
             return -var_r3 - !M2C_CARRY;
         }
         /* Duplicate return node #22. Try simplifying control flow for better match */

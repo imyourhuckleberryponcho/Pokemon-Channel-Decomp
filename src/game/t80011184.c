@@ -240,9 +240,9 @@ void fn_80011288(void) {
     if (var_r0_2 != NULL) {
         var_r0_2 = fn_80010D64(M2C_FIELD(M2C_FIELD(lbl_8035051C, void **, 4), s32 **, 4));
     }
+    temp_r3 = get_up_vector_for_viewing_mtx((long)(0x14), (long *)(0));
     var_r30 = 0;
     M2C_FIELD(&lbl_802BFD38, M2C_UNK **, 8) = var_r0_2;
-    temp_r3 = get_up_vector_for_viewing_mtx((long)(0x14), (long *)(0));
     if (temp_r3 != NULL) {
         temp_r30 = M2C_FIELD(&lbl_802BFD38, M2C_UNK **, 8);
         temp_r3_2 = fn_80010DA8(temp_r30, &lbl_8034E260);

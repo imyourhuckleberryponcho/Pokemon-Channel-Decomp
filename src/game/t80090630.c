@@ -133,7 +133,7 @@ s32 scr_method_setProperty(s32 arg0) {
         }
         sp10 = temp_r30;
         sp14 = 1;
-    } else if (fn_8007F65C(arg0) != 0) {
+    } else if ((s16)fn_8007F65C(arg0) != 0) {
         temp_f31 = fn_80080764(arg0);
         switch ((s32) sp14) {                       /* switch 2; irregular */
         case 3:                                     /* switch 2 */
@@ -186,8 +186,8 @@ s32 scr_method_setProperty(s32 arg0) {
                 }
                 break;
             }
-            sp14 = 3;
             var_r0 = get_up_vector_for_viewing_mtx(4);
+            sp14 = 3;
             var_r0 = var_r0 == NULL ? var_r0 : fn_800208F4(&spC);
             sp10 = var_r0;
         } else {

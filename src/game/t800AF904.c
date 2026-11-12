@@ -309,12 +309,12 @@ void TCIntrruptHandler(s16 arg0, M2C_UNK *arg1) {
     s8 temp_r4;
     s32 temp_r7;
     s32 temp_r7_2;
-    s32 var_ctr_2;
+    s8 var_ctr_2;
     s32 var_r4;
     s8 *var_r5;
     u32 temp_r0_2;
     u32 temp_r30;
-    u32 var_ctr;
+    u8 var_ctr;
     void *temp_r31;
     s32 temp_r3;
 
@@ -487,7 +487,6 @@ s32 EXIGetID(s32 arg0, u32 arg1, u32 *arg2) {
     s32 var_r30;
     s32 temp_r23_2;
     s32 temp_r28;
-    s32 temp_r28_2;
     s32 temp_r30;
     s32 temp_r30_2;
     s32 temp_r30_3;
@@ -499,6 +498,7 @@ s32 EXIGetID(s32 arg0, u32 arg1, u32 *arg2) {
     s32 var_r29;
     s32 temp_r23;
     void *temp_r31;
+    s32 temp_r28_2;
 
     var_r29 = saved_reg_r29;
     temp_r31 = &lbl_802CF930 + (arg0 << 6);
@@ -680,8 +680,8 @@ u16 fn_800B0B58(void) {
     *(&lbl_803507D8 + temp_r6) = 0;
     temp_r5 = lbl_803507F8 * 4;
     *(&lbl_803507C8 + temp_r5) = 0;
-    *(&lbl_803507FC + (lbl_803507F8 * 4)) = 0;
     *(&lbl_803507E0 + (lbl_803507F8 * 2)) = 0;
+    *(&lbl_803507FC + (lbl_803507F8 * 4)) = 0;
     fn_800B1A64(&lbl_803507E0, 0, temp_r5, temp_r6);
     if ((u16) *(&lbl_803507E0 + (lbl_803507F8 * 2)) != 0) {
         *(&lbl_803507FC + (lbl_803507F8 * 4)) = 1;

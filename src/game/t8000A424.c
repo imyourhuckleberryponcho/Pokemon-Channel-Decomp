@@ -454,7 +454,7 @@ void fn_8000AEB4(void *arg0) {
         M2C_FIELD(temp_r5, s8 *, 6) = temp_r7;
         M2C_FIELD(temp_r5, s8 *, 7) = 0xFFU;
         temp_r3_2 = M2C_FIELD(M2C_FIELD(arg0, void **, 0x2E0D8), void **, 0xC);
-        M2C_FIELD(temp_r3_2, s8 *, 4) = (s8) M2C_FIELD(temp_r5, s8 *, 4);
+        M2C_FIELD(temp_r3_2, s8 *, 4) = M2C_FIELD(temp_r5, s8 *, 4);
         M2C_FIELD(temp_r3_2, s8 *, 5) = (s8) M2C_FIELD(temp_r5, s8 *, 5);
         M2C_FIELD(temp_r3_2, s8 *, 6) = (s8) M2C_FIELD(temp_r5, s8 *, 6);
         M2C_FIELD(temp_r3_2, s8 *, 7) = (s8) M2C_FIELD(temp_r5, s8 *, 7);
@@ -494,8 +494,8 @@ void fn_8000B204(void *arg0, M2C_UNK arg_sp0) {
     void *temp_r3;
     void *temp_r5_2;
     void *var_r22;
-    void *var_r23;
     void *var_r24;
+    void *var_r23;
     void *var_r25;
 
     sp28 = M2C_FIELD(&lbl_8015E9F8, s32 *, 0);
@@ -592,9 +592,9 @@ s32 fn_8000B514(s32 arg0, void *arg1, void *arg2, s32 arg3, M2C_UNK arg_sp0) {
     void *var_r18;
     void *var_r19;
     void *var_r27;
-    void *var_r24;
     void *var_r25;
     void *var_r26;
+    void *var_r24;
     void *var_r23;
     void *var_r22;
     void *var_r21;

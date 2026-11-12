@@ -123,7 +123,7 @@ loop_15:
 #pragma push
 #pragma peephole off
 s32 __equals_dec(void *arg0, void *arg1) {
-    u16 var_ctr;
+    s8 var_ctr;
     u32 var_ctr_2;
     u8 var_ctr_3;
     s32 var_r8;
@@ -171,8 +171,8 @@ loop_13:
                     return 0;
                 }
                 var_r8 = var_r8 + 1;
-                var_ctr_2 = var_ctr_2 - 1;
-                if (var_ctr_2 == 0) {
+                var_ctr_2 = var_ctr_2;
+                if ((var_ctr_2 - 1) == 0) {
                     /* Duplicate return node #21. Try simplifying control flow for better match */
                     return 1;
                 }
@@ -724,10 +724,10 @@ loop_16:
 
 void fn_8014F2C4(s32 arg0, s32 arg1, u32 arg2) {
     u32 var_r6;
-    s32 temp_r7;
+    s32 var_r11;
     s32 temp_r8;
     u8 temp_r9;
-    s32 var_r11;
+    s32 temp_r7;
     s32 var_r3;
     s32 var_r5_2;
     u32 temp_r0_2;

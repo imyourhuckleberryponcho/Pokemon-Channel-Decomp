@@ -230,7 +230,7 @@ void fn_80101A00(void *arg0) {
         } else {
             if (var_f0_2 > (f32) (s8) M2C_FIELD(&lbl_8031E920, u8 *, 0x1E)) {
                 M2C_FIELD(arg0, u8 *, 0x1A) = (u8) (s32) (((f32) (s8) M2C_FIELD(arg0, u8 *, 0x1A) * (f32) (s8) M2C_FIELD(&lbl_8031E920, u8 *, 0x1E)) / var_f0_2);
-                M2C_FIELD(arg0, u8 *, 0x1B) = (u8) (s32) (((f32) (s8) M2C_FIELD(arg0, u8 *, 0x1B) * (f32) M2C_FIELD(&lbl_8031E920, u8 *, 0x1E)) / var_f0_2);
+                M2C_FIELD(arg0, u8 *, 0x1B) = (u8) (s32) (((f32) M2C_FIELD(arg0, u8 *, 0x1B) * (f32) M2C_FIELD(&lbl_8031E920, u8 *, 0x1E)) / var_f0_2);
                 temp_r0_5 = M2C_FIELD(arg0, u8 *, 0x1A);
                 temp_r6_3 = M2C_FIELD(arg0, u8 *, 0x1B);
                 var_f0_2 = ((f32) (s8) temp_r0_5 * (f32) (s8) temp_r0_5);

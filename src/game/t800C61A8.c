@@ -864,10 +864,10 @@ void __OSReboot(void) {
     u64 temp_ret_4;
 
     OSDisableInterrupts();
+    *(s32 *)0x812FDFF0 = lbl_803508B8;
     *(s32 *)0x817FFFFC = 0;
     *(s32 *)0x817FFFF8 = 0;
     *(s8 *)0x800030E2 = 1;
-    *(s32 *)0x812FDFF0 = lbl_803508B8;
     *(s32 *)0x812FDFEC = lbl_803508BC;
     DVDInit();
     OSClearContext(&spA0, 0x81300000, lbl_803508B8, 1);

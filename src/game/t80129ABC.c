@@ -419,7 +419,7 @@ block_47:
 
 void fn_8012AA28(void *arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 *arg4, f32 *arg5) {
     f32 var_f2;
-    u8 sp1C;
+    u32 var_r30;
     f32 sp14;
     f32 sp10;
     f32 spC;
@@ -463,7 +463,7 @@ void fn_8012AA28(void *arg0, f32 *arg1, f32 *arg2, f32 *arg3, f32 *arg4, f32 *ar
     f64 temp_f3_7;
     f64 temp_f3_8;
     s32 temp_r3;
-    u32 var_r30;
+    u8 sp1C;
     void *var_r31;
 
     temp_f31 = lbl_803522D8;

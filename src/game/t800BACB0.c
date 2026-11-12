@@ -321,7 +321,7 @@ loop_23:
                 if ((u8) (&sp14)[var_r29] != 0) {
                     return 0xA017U;
                 }
-                if ((u8) *(var_r28 + (var_r29 + 0x14)) != 0) {
+                if (*(var_r28 + (var_r29 + 0x14)) != 0) {
                     return 0xA02DU;
                 }
                 return 0xA02FU;
@@ -333,7 +333,7 @@ loop_23:
             }
             goto block_30;
         }
-        if ((u8) *(var_r28 + (var_r29 + 0x14)) == (u8) (&sp14)[var_r29]) {
+        if (*(var_r28 + (var_r29 + 0x14)) == (u8) (&sp14)[var_r29]) {
             var_r29 += 1;
             goto loop_23;
         }
@@ -525,7 +525,7 @@ block_19:
         if (temp_r3_5 != 0) {
             return temp_r3_5;
         }
-        temp_r3_4 = fn_800BC390(arg0, sp20, sp1E, arg3, arg4, 0);
+        temp_r3_4 = fn_800BC390(arg0, sp20, sp1E, arg3, (s32)arg4, 0);
         if (temp_r3_4 != 0) {
             return temp_r3_4;
         }

@@ -656,7 +656,7 @@ void fn_8014C628(void *arg0, s32 *arg1) {
 }
 
 u32 *fn_8014C7A4(void *arg0, u32 arg1) {
-    s32 temp_r9_2;
+    u32 temp_r4;
     s32 temp_cr0_eq;
     s32 temp_r4_3;
     s32 temp_r4_4;
@@ -666,7 +666,7 @@ u32 *fn_8014C7A4(void *arg0, u32 arg1) {
     u32 *temp_r5;
     u32 *temp_r5_2;
     u32 *var_r6;
-    u32 temp_r4;
+    s32 temp_r9_2;
     u32 temp_r4_2;
     s32 temp_r10;
     u8 var_r0;
@@ -732,14 +732,14 @@ loop_7:
             /* draft: did not compile: *(arg0 + temp_r4_4) = 0; */
             M2C_FIELD(arg0, u32 *, 8) = 0U;
         } else {
-            M2C_FIELD(M2C_FIELD(var_r6, u32 **, 0xC), void **, 8) = (void *) M2C_FIELD(var_r6, void **, 8);
             M2C_FIELD(M2C_FIELD(var_r6, void **, 8), u32 **, 0xC) = (u32 *) M2C_FIELD(var_r6, u32 **, 0xC);
+            M2C_FIELD(M2C_FIELD(var_r6, u32 **, 0xC), void **, 8) = (void *) M2C_FIELD(var_r6, void **, 8);
         }
         return var_r6;
     }
     var_r6 = M2C_FIELD(var_r6, u32 **, 0xC);
     var_r0 = M2C_FIELD(var_r6, u32 *, 0) & 0xFFFFFFF8;
-    if (var_r7 < var_r0) {
+    if (var_r0 > var_r7) {
         var_r7 = var_r0;
     }
     if (var_r6 == temp_r5) {

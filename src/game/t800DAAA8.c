@@ -66,7 +66,7 @@ s32 fn_800DC964(void *arg0, u8 *arg1);
 s32 fn_800DC9FC(void *arg0);
 
 s32 VerifyDir(void *arg0, s32 *arg1) {
-    s32 sp18;
+    u16 var_r10;
     s32 sp1C;
     u16 *sp14;
     s32 temp_r0;
@@ -91,7 +91,7 @@ s32 VerifyDir(void *arg0, s32 *arg1) {
     u16 temp_r9_6;
     int temp_r9_7;
     u16 temp_r9_8;
-    u16 var_r10;
+    s32 sp18;
     u16 var_r11;
 
     /* draft: did not compile: var_r7 = &sp1C[0]; */

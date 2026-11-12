@@ -360,14 +360,14 @@ void HSD_JObjResetRST(void *arg0, void *arg1, M2C_UNK arg_sp0) {
     s32 temp_cr0_eq;
     s32 temp_r4;
     s32 var_r3;
-    void *var_r24;
+    void *var_r31;
     void *var_r25;
     void *var_r26;
     void *var_r27;
     void *var_r28;
     void *var_r29;
     void *var_r30;
-    void *var_r31;
+    void *var_r24;
 
     if (arg0 != NULL) {
         if (arg1 == NULL) {
@@ -655,6 +655,8 @@ void HSD_JObjRemoveAnimByFlags(void *arg0, s32 arg1) {
     }
 }
 
+#pragma push
+#pragma dont_inline on
 void HSD_JObjRemoveAnimAllByFlags(void *arg0, s32 arg1, M2C_UNK arg_sp0) {
     s32 temp_cr0_eq;
     s32 temp_cr0_eq_2;
@@ -788,6 +790,7 @@ loop_49:
         }
     }
 }
+#pragma pop
 
 void HSD_JObjReqAnimByFlags(void *arg0, s32 arg1, f32 farg0) {
     if (arg0 != NULL) {

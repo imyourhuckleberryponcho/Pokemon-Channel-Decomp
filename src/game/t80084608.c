@@ -515,7 +515,7 @@ block_29:
 s32 scr_ACount(s32 arg0, M2C_UNK arg_sp0) {
     u32 sp18;
     M2C_UNK sp14;
-    M2C_UNK sp10;
+    u32 temp_r27_3;
     M2C_UNK spC;
     M2C_UNK sp8;
     s32 temp_cr0_eq;
@@ -529,7 +529,7 @@ s32 scr_ACount(s32 arg0, M2C_UNK arg_sp0) {
     u32 *temp_r3_2;
     u32 *var_r26;
     u8 temp_r0_2;
-    u32 temp_r27_3;
+    M2C_UNK sp10;
     u32 var_ctr;
     u8 temp_r0;
     u8 temp_r0_3;

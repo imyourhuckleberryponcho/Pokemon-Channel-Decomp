@@ -352,9 +352,9 @@ block_9:
         temp_f3_3 = lbl_80352598 * temp_f3_2 * -((temp_f2 * (temp_f3_2 * temp_f3_2)) - lbl_803525A8);
         temp_f3_4 = lbl_80352598 * temp_f3_3 * -((temp_f2 * (temp_f3_3 * temp_f3_3)) - lbl_803525A8);
         var_f1_2 = temp_f2 * (lbl_80352598 * temp_f3_4 * -((temp_f2 * (temp_f3_4 * temp_f3_4)) - lbl_803525A8));
-    } else if ((f32) var_f1_2 == temp_f2) {
+    } else if (var_f1_2 == temp_f2) {
 
-    } else if (temp_f2 != (f32) var_f1_2) {
+    } else if (temp_f2 != var_f1_2) {
         var_f1_2 = (f64) lbl_80350388;
     } else {
         var_f1_2 = (f64) lbl_8035038C;
@@ -657,14 +657,14 @@ loop_59:
 f64 __ieee754_log(f64 farg0) {
     s32 unkspC;
     f64 sp8;                                        /* compiler-managed */
-    f64 temp_f1;
+    f64 temp_f5;
     f64 temp_f11;
     f64 temp_f12;
     f64 temp_f0;
     f64 temp_f2;
     f64 temp_f3;
     f64 temp_f3_2;
-    f64 temp_f5;
+    f64 temp_f1;
     f64 temp_f5_2;
     f64 temp_f6;
     s32 temp_r3;
@@ -689,7 +689,7 @@ f64 __ieee754_log(f64 farg0) {
         goto block_6;
     }
 block_6:
-    if (M2C_BITWISE(s32, sp8) >= 0x7FF00000) {
+    if ((u16)M2C_BITWISE(s32, sp8) >= 0x7FF00000) {
         return 2.0 * sp8;
     }
     temp_r6 = M2C_BITWISE(s32, sp8) & 0xFFFFF;
@@ -699,8 +699,8 @@ block_6:
     temp_r8 = ((M2C_BITWISE(s32, sp8) >> 0x14) + var_r8) - 0x3FF + ((temp_r5 >> 0x14U) & 1);
     temp_f0 = M2C_BITWISE(f64, sp8) - lbl_803526A0;
     if ((s32) ((temp_r6 + 2) & 0xFFFFF) < 3) {
-        if (temp_f0 == (f32) lbl_80350F58) {
-            if (temp_r8 == 0) {
+        if (temp_f0 == lbl_80350F58) {
+            if (temp_r8 == 0U) {
                 return lbl_80350F58;
             }
             temp_f2 = (f64) temp_r8;
@@ -742,7 +742,7 @@ f64 fn_80154420(f64 farg0, f64 farg1) {
     s32 unksp24;
     s32 unksp34;
     s32 unkspC;
-    s32 unksp14;
+    u32 unksp14;
     f64 sp50;                                       /* compiler-managed */
     f64 sp48;                                       /* compiler-managed */
     f64 sp40;

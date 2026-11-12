@@ -254,9 +254,9 @@ s32 fn_800C7B20(void) {
     s32 temp_r7;
     s32 temp_r8;
     u8 var_r0;
-    s32 var_r10;
+    s8 var_r10;
     u16 var_r29;
-    u8 var_r7;
+    u16 var_r7;
     u32 temp_r4;
     u8 temp_r6_3;
     u64 temp_r3;
@@ -498,8 +498,8 @@ block_8:
                         temp_r0_10 = *var_r6;
                         var_r6 = var_r6 + 2;
                         M2C_FIELD(&Scb_8031BA00, u16 *, 2) = (u16) (M2C_FIELD(&Scb_8031BA00, u16 *, 2) + ~(temp_r0_10 | temp_r0_10));
-                        var_ctr_2 = var_ctr_2 - 1;
-                    } while (var_ctr_2 != 0);
+                        var_ctr_2 = var_ctr_2;
+                    } while ((var_ctr_2 - 1) != 0);
                 }
             }
         }
@@ -701,21 +701,21 @@ void __OSThreadInit(void) {
     temp_r31 = &RunQueue_8031BA58 + 0x418;
     M2C_FIELD(&RunQueue_8031BA58, s16 *, 0x6E0) = 2;
     M2C_FIELD(&RunQueue_8031BA58, s16 *, 0x6E2) = 1;
-    M2C_FIELD(&RunQueue_8031BA58, s32 *, 0x6EC) = 0x10;
     M2C_FIELD(&RunQueue_8031BA58, s32 *, 0x6E8) = 0x10;
     M2C_FIELD(&RunQueue_8031BA58, s32 *, 0x6E4) = 0;
     M2C_FIELD(&RunQueue_8031BA58, s32 *, 0x6F0) = -1;
     M2C_FIELD(&RunQueue_8031BA58, s32 *, 0x708) = 0;
+    M2C_FIELD(&RunQueue_8031BA58, s32 *, 0x6EC) = 0x10;
     /* draft: did not compile: OSInitThreadQueue(temp_r31 + 0x2E8, 0x10); */
-    M2C_FIELD(&RunQueue_8031BA58, s32 *, 0x710) = 0;
     M2C_FIELD(&RunQueue_8031BA58, s32 *, 0x70C) = 0;
+    M2C_FIELD(&RunQueue_8031BA58, s32 *, 0x710) = 0;
     var_r29 = &RunQueue_8031BA58;
-    *(void **)0x800000D8 = temp_r31;
     OSClearContext(temp_r31);
     OSSetCurrentContext(temp_r31);
     M2C_FIELD(&RunQueue_8031BA58, M2C_UNK **, 0x71C) = &_stack_addr;
     *M2C_FIELD(&RunQueue_8031BA58, s32 **, 0x720) = 0xDEADBABE;
     SwitchThreadCallback_8034FF50(*(void **)0x800000E4, temp_r31);
+    *(void **)0x800000D8 = temp_r31;
     M2C_FIELD(&RunQueue_8031BA58, s32 **, 0x720) = &_stack_end;
     OSClearStack(0);
     RunQueueBits_803508F0 = 0;

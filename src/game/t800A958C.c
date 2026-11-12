@@ -473,7 +473,7 @@ s32 fn_800AA28C(void *arg0, M2C_UNK arg_sp0) {
     int spC;
     s32 sp10;
     s32 sp8;
-    s32 temp_r25;
+    u8 temp_r25;
     int temp_r26;
     s32 temp_r27;
     s32 var_r27;

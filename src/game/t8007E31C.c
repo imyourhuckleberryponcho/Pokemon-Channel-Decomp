@@ -157,6 +157,8 @@ void fn_8007EB58(void *arg0) {
 }
 #pragma pop
 
+#pragma push
+#pragma optimize_for_size on
 void *fn_8007EB94(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         fn_8007EB58((void *)(0));
@@ -169,6 +171,7 @@ void *fn_8007EB94(void *arg0, s16 arg1) {
     }
     return arg0;
 }
+#pragma pop
 
 #pragma push
 #pragma optimize_for_size on
@@ -189,6 +192,8 @@ void fn_8007EBF4(void *arg0) {
 }
 #pragma pop
 
+#pragma push
+#pragma optimize_for_size on
 void *fn_8007EC30(void *arg0, s16 arg1) {
     if (arg0 != NULL) {
         fn_8007EBF4((void *)(0));
@@ -201,6 +206,7 @@ void *fn_8007EC30(void *arg0, s16 arg1) {
     }
     return arg0;
 }
+#pragma pop
 
 void fn_8007EC90(void ***arg0, s32 *arg1, void ***arg2, void ***arg3) {
     void **temp_r0;

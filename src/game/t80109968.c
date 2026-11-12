@@ -1010,10 +1010,10 @@ void _hsdClassInfoInit(void) {
     M2C_FIELD(&lbl_802AA538, void **, 8) = (void *) (&lbl_802AA538 + 0x114);
     M2C_FIELD(&lbl_802AA538, s32 *, 0x20) = 0;
     M2C_FIELD(&lbl_802AA538, s32 *, 0x1C) = 0;
-    M2C_FIELD(&lbl_802AA538, void **, 0xC) = (void *) (&lbl_802AA538 + 0x12C);
+    M2C_FIELD(&lbl_802AA538, s32 *, 0x18) = 0;
     M2C_FIELD(&lbl_802AA538, s32 *, 0x14) = 0;
     M2C_FIELD(&lbl_802AA538, s32 *, 0x24) = 0;
-    M2C_FIELD(&lbl_802AA538, s32 *, 0x18) = 0;
+    M2C_FIELD(&lbl_802AA538, void **, 0xC) = (void *) (&lbl_802AA538 + 0x12C);
     M2C_FIELD(&lbl_802AA538, s32 *, 4) = 1;
     M2C_FIELD(&lbl_802AA538, s16 *, 0x12) = 0x3C;
     M2C_FIELD(&lbl_802AA538, s16 *, 0x10) = 4;

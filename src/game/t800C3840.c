@@ -223,15 +223,15 @@ void OSCreateAlarm(void *arg0) {
 }
 
 static void InsertAlarm(void *arg0, s32 arg2, s32 arg3, s32 arg4) {
-    u32 temp_r26;
     s32 temp_r27;
+    u32 temp_r26;
     s32 temp_r3;
     s32 temp_r4;
     s32 temp_r4_3;
     s32 temp_r6;
     s32 temp_r6_2;
     s32 temp_r6_3;
-    s32 temp_r7;
+    u8 temp_r7;
     s32 temp_r8;
     s32 var_r25;
     s32 var_r30;
@@ -243,7 +243,6 @@ static void InsertAlarm(void *arg0, s32 arg2, s32 arg3, s32 arg4) {
     u64 temp_ret_3;
     u64 temp_ret_4;
     void *temp_r3_3;
-    void *temp_r4_4;
     void *var_r6;
 
     var_r5 = arg2;
@@ -278,11 +277,10 @@ static void InsertAlarm(void *arg0, s32 arg2, s32 arg3, s32 arg4) {
 loop_13:
     if (var_r6 == NULL) {
         M2C_FIELD(arg0, void **, 0x14) = NULL;
-        temp_r4_4 = M2C_FIELD(&AlarmQueue_80350880, void **, 4);
         M2C_FIELD(&AlarmQueue_80350880, void **, 4) = arg0;
-        M2C_FIELD(arg0, void **, 0x10) = temp_r4_4;
-        if (temp_r4_4 != NULL) {
-            M2C_FIELD(temp_r4_4, void **, 0x14) = arg0;
+        M2C_FIELD(arg0, void **, 0x10) = (M2C_FIELD(&AlarmQueue_80350880, void **, 4));
+        if ((M2C_FIELD(&AlarmQueue_80350880, void **, 4)) != NULL) {
+            M2C_FIELD((M2C_FIELD(&AlarmQueue_80350880, void **, 4)), void **, 0x14) = arg0;
             return;
         }
         M2C_FIELD(&AlarmQueue_80350880, void **, 0) = arg0;

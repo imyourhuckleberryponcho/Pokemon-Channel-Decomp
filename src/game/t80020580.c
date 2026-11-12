@@ -375,7 +375,7 @@ void fn_80021078(void *arg0, void *arg1) {
     s32 temp_r3;
     s32 temp_r3_4;
     s32 temp_r4;
-    s32 temp_r4_2;
+    s8 temp_r4_2;
     s8 temp_r4_4;
     s32 temp_r5;
     s32 temp_r5_2;
@@ -809,7 +809,7 @@ u32 fn_80021DA8(void *arg0, u16 *arg1, u32 arg2, u16 *arg3, u32 arg4, M2C_UNK ar
     u32 temp_r11_2;
     u32 temp_r31;
     u32 var_ctr;
-    u32 var_ctr_3;
+    s8 var_ctr_3;
     s8 var_ctr_5;
     u32 var_r24;
     u32 var_r24_2;
@@ -939,7 +939,7 @@ u32 fn_80022044(void *arg0, u16 *arg1, u32 arg2, u16 *arg3, u32 arg4, M2C_UNK ar
     s32 temp_r0_2;
     s32 temp_r0_3;
     s32 temp_r26;
-    u32 var_ctr_5;
+    s8 var_ctr_5;
     s8 var_ctr_2;
     s32 var_ctr_4;
     s32 var_ctr_6;

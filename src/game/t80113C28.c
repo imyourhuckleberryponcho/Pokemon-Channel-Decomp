@@ -229,7 +229,8 @@ loop_46:
             }
             if ((u32) (var_r3_6 + 0x10000) != -1U) {
                 if (!(var_r3_6 & 0x80000000)) {
-                    temp_r25 = var_r3_6 * 0x1868;
+                    temp_r25 = var_r3_6;
+                    temp_r25 *= 0x1868;
                     synthVolume(0U, var_r3_4, M2C_FIELD((&lbl_80320580 + temp_r25), u8 *, 0xEB0), 3);
                     var_r27_2 = 0U;
                     var_r25_2 = &lbl_80320580 + temp_r25;

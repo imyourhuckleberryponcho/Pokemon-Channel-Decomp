@@ -318,7 +318,7 @@ s32 HSD_LObjGetInterestWObj(void *arg0) {
 }
 
 s32 LObjLoad(void *arg0, void *arg1) {
-    s32 temp_r0;
+    void *temp_r31;
     s32 var_r0;
     s32 var_r0_2;
     s32 var_r0_3;
@@ -334,7 +334,7 @@ s32 LObjLoad(void *arg0, void *arg1) {
     void *temp_r29_2;
     void *temp_r29_3;
     void *temp_r29_4;
-    void *temp_r31;
+    s32 temp_r0;
     void *temp_r3;
     void *temp_r3_2;
     void *temp_r3_3;

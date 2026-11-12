@@ -170,7 +170,7 @@ void DoSetPitch(void *arg0) {
     s32 temp_r4;
     s32 temp_r7_2;
     s32 var_ctr;
-    u32 temp_r6_4;
+    u16 temp_r6_4;
     u32 temp_r5;
     u16 *var_r4;
     s32 var_r8;
@@ -406,7 +406,6 @@ void fn_8011FDDC(void *arg0, void *arg1, M2C_UNK arg_sp0) {
     u32 var_r28;
     u32 temp_r0;
     u32 temp_r3;
-    u32 temp_r6;
     u8 temp_r6_2;
     s32 temp_r30;
 
@@ -421,11 +420,10 @@ void fn_8011FDDC(void *arg0, void *arg1, M2C_UNK arg_sp0) {
     if (var_r31 == 0) {
         var_r31 = 1;
     }
-    temp_r6 = M2C_FIELD(arg1, u32 *, 0);
-    var_r28 = ((u32) (M2C_FIELD(arg0, s32 *, 0x154) * (u8) (temp_r6 >> 8U)) >> 7U);
-    var_r28 += (temp_r6 & 0xFF0000);
+    var_r28 = ((u32) (M2C_FIELD(arg0, s32 *, 0x154) * (u8) ((M2C_FIELD(arg1, u32 *, 0)) >> 8U)) >> 7U);
+    var_r28 += ((M2C_FIELD(arg1, u32 *, 0)) & 0xFF0000);
     var_r28 = var_r28 <= 0x7F0000U ? var_r28 : 0x7F0000;
-    if ((((temp_r6 >> 0x18U) & ~0xFF00) | ((M2C_FIELD(arg1, u32 *, 4) << 8) & 0xFF00)) != -1U) {
+    if (((((M2C_FIELD(arg1, u32 *, 0)) >> 0x18U) & ~0xFF00) | ((M2C_FIELD(arg1, u32 *, 4) << 8) & 0xFF00)) != -1U) {
         /* draft: did not compile: temp_r3 = fn_8011E60C(); */
         if (temp_r3 != 0U) {
             temp_r0 = var_r28 >> 0x10U;

@@ -274,7 +274,7 @@ s32 SD_Mkdir(void *arg0, u32 arg1) {
 #pragma pop
 
 u16 fn_800B93C8(void *arg0, s32 arg1) {
-    void *temp_r29;
+    u16 temp_r3_2;
     s32 sp11;
     M2C_UNK sp88;
     M2C_UNK sp80;
@@ -288,7 +288,7 @@ u16 fn_800B93C8(void *arg0, s32 arg1) {
     s32 temp_r4;
     s32 var_r28;
     u16 temp_r3;
-    u16 temp_r3_2;
+    void *temp_r29;
     u16 temp_r3_3;
     s32 temp_r3_4;
     u16 temp_r3_5;

@@ -295,8 +295,8 @@ void fn_8001E6F0(void *arg0, void *arg1, f32 farg0, f32 farg1) {
             var_f24 += (-spC >= 0.0f) ? -temp_f2_2 : temp_f2_2;
         }
     }
-    temp_f4 = -temp_f31;
     temp_f2_3 = ((var_f25 - temp_f31) >= 0.0f) ? temp_f31 : var_f25;
+    temp_f4 = -temp_f31;
     M2C_FIELD(arg0, f32 *, 8) = (f32) (((temp_f4 - temp_f2_3) >= 0.0f) ? temp_f4 : temp_f2_3);
     temp_f5 = -lbl_803514B8;
     temp_f3 = ((var_f24 - lbl_803514B8) >= 0.0f) ? lbl_803514B8 : var_f24;

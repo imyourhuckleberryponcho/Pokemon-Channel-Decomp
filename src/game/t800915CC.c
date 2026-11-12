@@ -85,9 +85,8 @@ u32 fn_800916D4(s32 arg0) {
 
 void fn_80091710(void) {
     s32 temp_r3;
-    s32 temp_r3_2;
+    u8 temp_r3_2;
 
-    M2C_FIELD(&lbl_802CE6D8, s32 *, 0) = -1;
     M2C_FIELD(&lbl_802CE6D8, s32 *, 4) = -1;
     M2C_FIELD(&lbl_802CE6D8, s32 *, 8) = -1;
     M2C_FIELD(&lbl_802CE6D8, s32 *, 0xC) = -1;
@@ -95,13 +94,14 @@ void fn_80091710(void) {
     M2C_FIELD(&lbl_802CE6D8, s32 *, 0x14) = -1;
     M2C_FIELD(&lbl_802CE6D8, s32 *, 0x18) = -1;
     M2C_FIELD(&lbl_802CE6D8, s32 *, 0x1C) = -1;
-    M2C_FIELD(&lbl_802CE6D8, s32 *, 0x20) = -1;
+    M2C_FIELD(&lbl_802CE6D8, s32 *, 0) = -1;
     M2C_FIELD(&lbl_802CE6D8, s32 *, 0x24) = -1;
     M2C_FIELD(&lbl_802CE6D8, s32 *, 0) = fn_80091664((long)(0));
     M2C_FIELD(&lbl_802CE6D8, s32 *, 0x20) = fn_80091664((long)(1));
     M2C_FIELD(&lbl_802CE6D8, s32 *, 0x24) = fn_80091664((long)(2));
     temp_r3 = fn_80091664((long)(3));
     M2C_FIELD(&lbl_802CE6D8, s32 *, 4) = temp_r3;
+    M2C_FIELD(&lbl_802CE6D8, s32 *, 0x20) = -1;
     M2C_FIELD(&lbl_802CE6D8, s32 *, 8) = temp_r3;
     temp_r3_2 = fn_80091664((long)(4));
     M2C_FIELD(&lbl_802CE6D8, s32 *, 0xC) = temp_r3_2;

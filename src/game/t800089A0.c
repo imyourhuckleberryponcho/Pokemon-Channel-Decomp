@@ -319,8 +319,8 @@ void fn_80008EA4(void) {
     sp24 = (u8) temp_r0 ^ 0x80000000;
     sp20 = 0x43300000;
     M2C_FIELD(&lbl_802BF0C0, f32 *, 0) = temp_f8;
-    M2C_FIELD(&lbl_802BF0C0, f32 *, 0) = (f32) temp_f5;
     M2C_FIELD(&lbl_802BF0C0, f32 *, 4) = temp_f7;
+    M2C_FIELD(&lbl_802BF0C0, f32 *, 0) = (f32) temp_f5;
     M2C_FIELD(&lbl_802BF0C0, f32 *, 8) = (f32) (temp_f31 * (f32) (u8) M2C_FIELD(temp_r5_2, u8 *, 2));
     M2C_FIELD(&lbl_802BF0C0, f32 *, 0xC) = (f32) (temp_f31 * (f32) (u8) temp_r0);
     M2C_FIELD(&lbl_802BF0C0, f32 *, 0) = (f32) (((temp_f2 - (f32) lbl_80351040) >= 0.0f) ? temp_f2 : lbl_80351038);

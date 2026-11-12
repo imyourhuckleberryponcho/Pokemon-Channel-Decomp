@@ -313,8 +313,8 @@ void fn_800ABFD4(void *arg0, s32 arg1, s32 arg2, f32 farg0, f32 farg1, f32 farg2
         GXSetVtxDesc(0xD, 1);
         GXBegin(0x80, 0, 4);
         *(f32 *)0xCC008000 = farg0;
-        *(f32 *)0xCC008000 = farg4;
         *(f32 *)0xCC008000 = (u8) M2C_FIELD(arg0, s32 *, 0);
+        *(f32 *)0xCC008000 = farg4;
         *(f32 *)0xCC008000 = (u8) M2C_FIELD(arg0, u8 *, 1);
         *(f32 *)0xCC008000 = (u8) M2C_FIELD(arg0, u8 *, 2);
         *(f32 *)0xCC008000 = (u8) M2C_FIELD(arg0, u8 *, 3);

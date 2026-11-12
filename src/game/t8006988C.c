@@ -189,7 +189,7 @@ void fn_80069BE8(void *arg0, s32 arg1) {
     s32 temp_r4_5;
     s32 temp_r8;
     s32 temp_r8_2;
-    s32 var_ctr;
+    u8 var_ctr;
     s32 var_r0;
     s32 var_r0_2;
     s32 var_r3;

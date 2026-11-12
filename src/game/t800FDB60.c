@@ -466,7 +466,8 @@ void mkVBillBoardMtx(void *arg0, void *arg1, void *arg2) {
     temp_f1 = M2C_FIELD(arg1, f32 *, 0x10);
     temp_f0 = M2C_FIELD(arg1, f32 *, 0);
     temp_f3 = M2C_FIELD(arg1, f32 *, 0x20);
-    var_f31 = (temp_f3 * temp_f3) + ((temp_f1 * temp_f1) + (temp_f0 * temp_f0));
+    var_f31 = (temp_f3 * temp_f3);
+    var_f31 += ((temp_f1 * temp_f1) + (temp_f0 * temp_f0));
     if (var_f31 > lbl_80351FB0) {
         temp_f1_2 = __frsqrte(var_f31);
         temp_f1_3 = lbl_80351FB8 * temp_f1_2 * -(((f64) var_f31 * (temp_f1_2 * temp_f1_2)) - lbl_80351FC0);
@@ -518,7 +519,7 @@ void mkVBillBoardMtx(void *arg0, void *arg1, void *arg2) {
 }
 
 void mkHBillBoardMtx(void *arg0, void *arg1, void *arg2) {
-    s32 sp28;
+    u32 sp28;
     s32 sp24;
     f32 sp40;
     f32 sp3C;
@@ -723,7 +724,8 @@ void mkBillBoardMtx(void *arg0, void *arg1, void *arg2) {
         PSVECCrossProduct((float *)(&sp20), (float *)(&sp38), (float *)(&sp2C), (long)(0), (float)(0), (long *)(0));
         var_f29 /= lbl_80351FAC + PSVECMag(&sp2C);
     } else {
-        var_f4 = (sp20 * sp20) + (sp28 * sp28);
+        var_f4 = (sp28 * sp28);
+        var_f4 += (sp20 * sp20);
         if (var_f4 > lbl_80351FB0) {
             temp_f1_10 = __frsqrte(var_f4);
             temp_f1_11 = lbl_80351FB8 * temp_f1_10 * -(((f64) var_f4 * (temp_f1_10 * temp_f1_10)) - lbl_80351FC0);

@@ -495,7 +495,7 @@ s32 HSD_TlutLoadDesc(s32 arg0) {
 #pragma pop
 
 s32 HSD_TObjTevLoadDesc(s32 arg0) {
-    s32 temp_r31;
+    u8 temp_r31;
 
     if (arg0 != 0) {
         temp_r31 = HSD_TObjTevAlloc();

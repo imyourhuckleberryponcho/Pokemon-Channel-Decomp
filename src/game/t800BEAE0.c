@@ -79,12 +79,12 @@ u16 fn_800BEEE4(void *arg0) { return 0; } /* draft: stub */
 u16 fn_800BF078(void *arg0, u16 arg1) {
     s8 spC;
     s32 var_r26;
-    u16 temp_r22;
+    s32 var_r31;
     u16 temp_r27;
     u16 temp_r3;
     s8 var_r30;
     u16 var_r30_2;
-    s32 var_r31;
+    u16 temp_r22;
     s32 var_r28;
 
     spC = arg1;
@@ -300,7 +300,7 @@ loop_36:
             goto block_50;
         }
         var_r20 = 0U;
-        temp_r3_2 = fn_800C0FEC(arg0, var_r25);
+        temp_r3_2 = fn_800C0FEC(arg0, (s32)var_r25);
         if (temp_r3_2 == -1U) {
             return 0xA02AU;
         }
@@ -353,7 +353,6 @@ s32 fn_800BFD28(u16 *arg0, s32 arg1, u16 arg2, u16 *arg3) { return 0; } /* draft
 u16 fn_800BFE78(void *arg0, u32 arg1, u32 *arg2, u16 *arg3) {
     u16 sp18;
     s32 temp_r3_3;
-    u32 temp_r17;
     u16 temp_r28;
     u16 temp_r3;
     u16 temp_r3_2;
@@ -366,9 +365,9 @@ u16 fn_800BFE78(void *arg0, u32 arg1, u32 *arg2, u16 *arg3) {
     u32 var_r30_2;
     void *temp_r26;
 
+    var_r27 = 0;
     var_r22 = 0U;
     var_r24 = 1;
-    var_r27 = 0;
     temp_r26 = &lbl_802CFCA8 + (M2C_FIELD(arg0, u16 *, 0) * 0x25E48);
     if ((arg1 < (u32) M2C_FIELD(arg0, u32 *, 0x60)) || (arg1 >= (u32) M2C_FIELD(arg0, u32 *, 0x68))) {
         return 0xA00CU;
@@ -385,11 +384,10 @@ u16 fn_800BFE78(void *arg0, u32 arg1, u32 *arg2, u16 *arg3) {
     var_r30 = arg1;
     *arg2 = 0U;
     *arg3 = 0;
-    temp_r17 = M2C_FIELD(arg0, u16 *, 0xBC);
-    temp_r17 -= 2;
+    (M2C_FIELD(arg0, u16 *, 0xBC)) -= 2;
     var_r21 = 0;
 loop_34:
-    if (var_r21 >= temp_r17) {
+    if (var_r21 >= (M2C_FIELD(arg0, u16 *, 0xBC))) {
         return 0xA029U;
     }
     if (var_r24 != 0) {

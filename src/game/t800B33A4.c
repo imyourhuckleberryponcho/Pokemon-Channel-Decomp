@@ -485,7 +485,7 @@ block_7:
     if (EXIImmEx(lbl_803507F8, &sp8, 1, 2) == 0) {
         temp_r4_10 = lbl_803507F8 * 2;
         *(&lbl_803507E0 + temp_r4_10) = *(&lbl_803507E0 + temp_r4_10) | 0xF0;
-        if (EXIDeselect(lbl_803507F8, temp_r4_10) == 0) {
+        if ((u16)EXIDeselect(lbl_803507F8, temp_r4_10) == 0) {
             temp_r4_11 = lbl_803507F8 * 2;
             *(&lbl_803507E0 + temp_r4_11) = *(&lbl_803507E0 + temp_r4_11) | 0xE0;
         }

@@ -378,8 +378,8 @@ s32 AssignColorReg(s32 arg0, s32 arg1, s32 arg2) {
     }
     if ((u8) M2C_FIELD(temp_r4, u8 *, 0xC) == 6) {
         /* draft: did not compile: var_r6 = arg2 + 8; */
-        var_r8 = 4;
         var_ctr = 4;
+        var_r8 = 4;
 loop_9:
         if ((u8) M2C_FIELD(var_r6, u8 *, 0xD) == 0) {
             /* draft: did not compile: temp_r6_2 = arg0 + temp_r7; */
@@ -400,16 +400,15 @@ loop_9:
         goto loop_9;
     }
     /* draft: did not compile: var_r6_2 = arg2 + 8; */
-    var_r8_2 = 4;
-    var_ctr_2 = 4;
+    var_r8_2 = var_ctr_2 = 4;
 loop_14:
     if ((u8) M2C_FIELD(var_r6_2, u8 *, 0xC) == 0) {
         /* draft: did not compile: temp_r6_3 = arg0 + temp_r7; */
         M2C_FIELD((arg2 + (var_r8_2 * 2)), s8 *, 0xC) = 3;
         M2C_FIELD(temp_r6_3, s8 *, 0x26) = (s8) M2C_FIELD((&lbl_802AA90C + (var_r8_2 * 4)), s32 *, -0x10);
         M2C_FIELD(temp_r4, u8 *, 0xE) = var_r8_2;
-        M2C_FIELD(temp_r4, s8 *, 0xF) = 0;
         M2C_FIELD(temp_r6_3, s8 *, 0x24) = 5;
+        M2C_FIELD(temp_r4, s8 *, 0xF) = 0;
         return 0;
     }
     /* draft: did not compile: var_r6_2 += 2; */

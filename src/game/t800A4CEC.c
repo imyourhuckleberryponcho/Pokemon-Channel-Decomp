@@ -663,13 +663,13 @@ f32 fn_800A6074(void *arg0, s32 arg1, f32 farg0, f32 farg1) {
     f32 temp_f10;
     f32 temp_f5_2;
     f32 temp_f4;
-    f32 temp_f5;
-    f32 temp_f11;
-    f32 temp_f6;
-    f32 temp_f6_2;
     f32 temp_f6_3;
-    f32 temp_f7;
+    f32 temp_f11;
     f32 temp_f8;
+    f32 temp_f6_2;
+    f32 temp_f5;
+    f32 temp_f7;
+    f32 temp_f6;
     f32 temp_f9;
     s32 temp_r5_2;
     void *temp_r3;
@@ -698,7 +698,7 @@ f32 fn_800A6074(void *arg0, s32 arg1, f32 farg0, f32 farg1) {
     temp_f5 = (temp_f6_3 * temp_f7) - (temp_f9 * temp_f8);
     temp_f6 = (temp_f10 * temp_f6_3);
     temp_f6 -= (temp_f11 * temp_f9);
-    temp_f4 = (temp_f7 * temp_f11) - (temp_f10 * temp_f8);
+    temp_f4 = (temp_f11 * temp_f7) - (temp_f10 * temp_f8);
     return ((temp_f4 * M2C_FIELD(temp_r4, f32 *, 4)) + ((((temp_f5 - temp_f6) - temp_f4) * M2C_FIELD(temp_r4_2, f32 *, 4)) + (temp_f6 * M2C_FIELD(temp_r3, f32 *, 4)))) / temp_f5;
 }
 
@@ -746,10 +746,10 @@ void fn_800A61C4(void *arg0, void *arg1, s32 arg2) {
     }
     temp_r6 = M2C_FIELD(temp_r4, s32 *, 4);
     /* draft: did not compile: temp_r7 = M2C_FIELD(temp_r4, s32 *, 8) + (arg2 * 0x24); */
+    sp50 = sp14;
     temp_r30 = temp_r6 + (M2C_FIELD(temp_r7, s16 *, 0) * 0xC);
     temp_r29 = temp_r6 + (M2C_FIELD(temp_r7, s16 *, 0x18) * 0xC);
     PSVECSubtract(temp_r6 + (M2C_FIELD(temp_r7, s16 *, 0xC) * 0xC), temp_r30, &sp14, temp_r6, temp_r7);
-    sp50 = sp14;
     sp54 = sp18;
     sp58 = sp1C;
     PSVECSubtract(temp_r29, temp_r30, &sp8, sp18, sp14);

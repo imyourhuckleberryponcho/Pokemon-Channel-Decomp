@@ -586,9 +586,9 @@ void resolveIKJoint1(void *arg0) {
     void *temp_r3;
     void *temp_r3_2;
     void *temp_r4_2;
-    void *temp_r5;
     void *var_r28;
     void *var_r31;
+    void *temp_r5;
 
     var_f27 = saved_reg_f27;
     var_f28 = saved_reg_f28;
@@ -848,7 +848,6 @@ void resolveIKJoint2(void *arg0) {
     void *temp_r4;
     void *temp_r5;
     void *temp_r5_2;
-    void *temp_r5_3;
     void *temp_r5_4;
     void *temp_r6;
     void *temp_r6_2;
@@ -932,12 +931,11 @@ loop_4:
             if (temp_r3_3 == NULL) {
                 __assert(&lbl_80350180, 0x91E, &lbl_80350198);
             }
-            temp_r5_3 = M2C_FIELD(arg0, void **, 0xC);
             temp_r30 = ((u32) M2C_FIELD(temp_r3_3, u32 *, 4) >> 2U) & 1;
-            sp20 = M2C_FIELD(temp_r5_3, f32 *, 0x44);
-            sp24 = M2C_FIELD(temp_r5_3, f32 *, 0x54);
-            sp28 = M2C_FIELD(temp_r5_3, f32 *, 0x64);
-            PSVECNormalize(&sp20, &sp20, temp_r5_3);
+            sp20 = M2C_FIELD((M2C_FIELD(arg0, void **, 0xC)), f32 *, 0x44);
+            sp24 = M2C_FIELD((M2C_FIELD(arg0, void **, 0xC)), f32 *, 0x54);
+            sp28 = M2C_FIELD((M2C_FIELD(arg0, void **, 0xC)), f32 *, 0x64);
+            PSVECNormalize(&sp20, &sp20, (M2C_FIELD(arg0, void **, 0xC)));
             temp_f1 = PSVECDotProduct(&sp20, &sp44);
             if (temp_f1 >= lbl_80351F70) {
                 var_f0 = lbl_80351F60;

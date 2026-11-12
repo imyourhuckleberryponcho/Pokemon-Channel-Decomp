@@ -66,8 +66,7 @@ void GXInitTexObjLOD(void *arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4, s32 arg5
     if (var_f3 < lbl_80351D80) {
         var_f3 = lbl_80351D80;
     } else {
-        M2C_ERROR(/* unknown instruction: cror eq, gt, eq */);
-        if (var_f3 == lbl_80351D84) {
+        if (var_f3 >= lbl_80351D84) {
             var_f3 = lbl_80351D88;
         }
     }

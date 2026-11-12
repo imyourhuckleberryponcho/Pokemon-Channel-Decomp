@@ -447,7 +447,7 @@ u16 fn_800B2FD4(void *arg0, u16 arg1) {
     sp8 = arg0;
     *(&lbl_803507D0 + (lbl_803507F8 * 4)) = 0;
     temp_r27 = *(&lbl_803507F4 + (lbl_803507F8 * 2));
-    if (EXILock(lbl_803507F8, 0, fn_800B2F7C) == 0) {
+    if (EXILock(lbl_803507F8, 0, (u16)fn_800B2F7C) == 0) {
         do {
 
         } while ((s32) *(&lbl_803507D0 + (lbl_803507F8 * 4)) == 0);

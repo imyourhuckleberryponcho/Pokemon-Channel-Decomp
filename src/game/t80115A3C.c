@@ -69,9 +69,9 @@ void fn_80116430(void) {
     var_r7 = &lbl_80320580;
     var_r8 = &lbl_8032C8C0;
     lbl_80350D2C = 0;
-    var_r9 = 0;
     lbl_80350D28 = 0;
     var_ctr = 8;
+    var_r9 = 0;
     do {
         if (var_r9 == 0) {
             M2C_FIELD(var_r7, void **, 4) = NULL;
@@ -199,16 +199,16 @@ void synthInitPortamento(void *arg0) {
 s32 fn_801166C8(u8 arg0, u8 arg1, u8 arg2, s32 arg3, s32 *arg4, M2C_UNK arg_sp0) {
     s8 saved_reg_r26;
     s32 saved_reg_r24;
-    s32 temp_r0;
+    u16 temp_r0;
     s8 temp_r3;
     u8 temp_r4;
     s32 temp_r6;
     s32 temp_r6_2;
     u8 var_r23;
-    s8 var_r26;
     s32 var_r27;
     s32 var_r30;
     u32 var_r28;
+    s8 var_r26;
     u8 temp_r5;
     void *var_r24;
     void *var_r25;
